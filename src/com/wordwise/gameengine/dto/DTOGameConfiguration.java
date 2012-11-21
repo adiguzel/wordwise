@@ -1,6 +1,6 @@
 package com.wordwise.gameengine.dto;
 
-public class DTOGameConfigaration {
+public class DTOGameConfiguration {
 	private int difficulty;
 	private String proficientLanguage;
 	private String learningLanguage;

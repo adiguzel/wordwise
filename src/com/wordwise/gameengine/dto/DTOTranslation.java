@@ -1,22 +1,22 @@
 package com.wordwise.gameengine.dto;
 
 public class DTOTranslation {
-	private String word;
+	//Represents the language code of the translation
 	private String lang;
-	private String translation;
+	//Represents the text of the translation
+	private String text;
 	
-	public DTOTranslation(String word, String lang, String translation){
-		this.word = word;
+	public DTOTranslation(String lang, String text){
 		this.lang = lang;
-		this.translation = translation;
+		this.text = text;
 	}
 
-	public String getWord() {
-		return word;
+	public String getText() {
+		return text;
 	}
 
-	public void setWord(String word) {
-		this.word = word;
+	public void setTex(String word) {
+		this.text = word;
 	}
 
 	public String getLang() {
@@ -25,13 +25,5 @@ public class DTOTranslation {
 
 	public void setLang(String lang) {
 		this.lang = lang;
-	}
-
-	public String getTranslation() {
-		return translation;
-	}
-
-	public void setTranslation(String translation) {
-		this.translation = translation;
 	}
 }
