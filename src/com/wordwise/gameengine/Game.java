@@ -1,10 +1,9 @@
-package com.wordwise.gameengine.game;
+package com.wordwise.gameengine;
 
-import com.wordwise.gameengine.GameManager;
 
 public interface Game {
     GameManager gManager = GameManager.getInstance();
-
+    
 	public void start();
 
 	public void stop();

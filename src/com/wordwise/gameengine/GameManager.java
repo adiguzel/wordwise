@@ -1,6 +1,5 @@
 package com.wordwise.gameengine;
 
-import com.wordwise.gameengine.game.Game;
 
 public final class GameManager {
 	private static GameManager instance = null;
