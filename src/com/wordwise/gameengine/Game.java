@@ -1,8 +1,9 @@
 package com.wordwise.gameengine;
 
-
 public interface Game {
-    GameManager gManager = GameManager.getInstance();
+    public static final GameManager gManager = GameManager.getInstance();
+    
+    public void init();
     
 	public void start();
 

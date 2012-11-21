@@ -6,7 +6,6 @@ public class Words2Translations implements Game {
 
 	public void start() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void stop() {
@@ -15,6 +14,11 @@ public class Words2Translations implements Game {
 	}
 
 	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void init() {
 		// TODO Auto-generated method stub
 		
 	}

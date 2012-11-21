@@ -19,4 +19,9 @@ public class LetterBox implements Game {
 		
 	}
 
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

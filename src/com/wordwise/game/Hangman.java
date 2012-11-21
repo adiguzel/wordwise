@@ -19,4 +19,9 @@ public class Hangman implements Game{
 		
 	}
 
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
