@@ -19,6 +19,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>  
+        <activity
+            android:name=".ConfigurationWizardStep1"
+            android:label="@string/title_configuration_step1" >
+        </activity>
+            <activity
+            android:name=".ConfigurationWizardStep2"
+            android:label="@string/title_configuration_step2" >
         </activity>
     </application>
 
