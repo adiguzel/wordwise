@@ -4,25 +4,34 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-     <Button
+    <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="@string/next" 
-        android:layout_alignParentBottom="true"/>
-    
+        android:paddingBottom="10dip"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip"
+        android:paddingTop="10dip"
+        android:text="@string/next"
+        android:onClick="finishStep" />
+
     <TextView
         android:id="@+id/numberOfSelectedLanguages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/numberOfSelectedLanguages" 
-      />
+        android:paddingBottom="10dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:paddingTop="10dip"
+        android:text="@string/numberOfSelectedLanguages" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/numberOfSelectedLanguages" />
+        android:layout_below="@+id/numberOfSelectedLanguages" 
+        android:layout_above="@+id/next"/>
 
 </RelativeLayout>

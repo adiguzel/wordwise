@@ -1,15 +1,44 @@
 package com.wordwise;
 
-import android.os.Bundle;
 import android.app.Activity;
-
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ConfigurationWizardStep2 extends Activity {
+	ListView listView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.configuration_step2);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.configuration_step2);
+		listView = (ListView) findViewById(R.id.list);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_single_choice, LANGUAGES);
+		listView.setAdapter(adapter);
+		// setListAdapter();
+		// final ListView listView = getListView();
+		listView.setItemsCanFocus(false);
+		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+	
+
+	}
+
+	private static final String[] LANGUAGES = new String[] { "English",
+			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
+			"Spanish" };
+	
+    //Calls to this function is configured in the layout res file
+	public void back(View view) {
+		Intent intent = new Intent(this, ConfigurationWizardStep1.class);
+		startActivity(intent);
+	}
+	//Calls to this function is configured in the layout res file
+	public void finishStep(View view) {
+	}
 
 }

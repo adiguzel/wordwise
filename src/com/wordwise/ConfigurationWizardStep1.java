@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.wordwise.model.Configuration;
 import com.wordwise.model.MultiSelectAdapter;
-import com.wordwise.model.Selectable;
 
 public class ConfigurationWizardStep1 extends Activity {
 	String selectedLanguagesText;
 	ListView list;
-	Button next;
 	TextView selectedLanguages;
-	Selectable[] LANGUAGES = new Selectable[] { new Selectable("English"),
-			new Selectable("German") };
+	private static final String[] LANGUAGES = new String[] { "English",
+			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
+			"Spanish" };
 	MultiSelectAdapter adapter;
 	List<String> languages = new ArrayList<String>();
 
@@ -35,14 +34,24 @@ public class ConfigurationWizardStep1 extends Activity {
 		setContentView(R.layout.configuration_step1);
 
 		list = (ListView) findViewById(R.id.list);
-		next = (Button) findViewById(R.id.next);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		selectedLanguagesText = selectedLanguages.getText().toString();
 		setSelectedLanguageCountText(0);
 
 		// list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		adapter = new MultiSelectAdapter(this, LANGUAGES);
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_multiple_choice, LANGUAGES);
 		list.setAdapter(adapter);
+		// setListAdapter();
+		// final ListView listView = getListView();
+		list.setItemsCanFocus(false);
+		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+		/*
+		 * adapter = new MultiSelectAdapter(this, LANGUAGES);
+		 * list.setAdapter(adapter);
+		 */
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -55,38 +64,31 @@ public class ConfigurationWizardStep1 extends Activity {
 
 		});
 
-		next.setOnClickListener(new OnClickListener() {
+	}
 
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Log.i("listview", "" + list.getChildCount());
-				for (int i = 0; i < list.getChildCount(); i++) {
-					View view = list.getChildAt(i);
-					CheckedTextView cv = (CheckedTextView) view
-							.findViewById(R.id.checkList);
-					if (cv.isChecked()) {
-						Log.i("listview", cv.getText().toString());
-					}
-				}
-			}
-		});
+	public void finishStep(View view) {
+		/*
+		 * Log.i("listview", "" + list.getChildCount()); for (int i = 0; i <
+		 * list.getChildCount(); i++) { View view = list.getChildAt(i);
+		 * CheckedTextView cv = (CheckedTextView) view
+		 * .findViewById(R.id.checkList); if (cv.isChecked()) {
+		 * Log.i("listview", cv.getText().toString()); } }
+		 */
 
+		Intent intent = new Intent(this, ConfigurationWizardStep2.class);
+		startActivity(intent);
 	}
 
 	public void toggle(CheckedTextView v) {
 		String language = v.getText().toString();
 		if (v.isChecked()) {
 			v.setChecked(false);
-			if (languages.contains(language))
-				languages.remove(language);
-
+			Configuration.removeLanguage(language);
 		} else {
 			v.setChecked(true);
-			if (!languages.contains(language)) {
-				languages.add(language);
-			}
+			Configuration.addLanguage(language);
 		}
-		setSelectedLanguageCountText(languages.size());
+		setSelectedLanguageCountText(Configuration.getProficientLanguages().size());
 	}
 
 	private void setSelectedLanguageCountText(int count) {
