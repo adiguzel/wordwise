@@ -28,7 +28,8 @@ public class ConfigurationWizardStep2 extends Activity {
 		// final ListView listView = getListView();
 		listView.setItemsCanFocus(false);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
+		listView.setItemChecked(2, true);
+		listView.setItemChecked(3, true);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

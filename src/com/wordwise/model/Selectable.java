@@ -9,6 +9,11 @@ public class Selectable {
 		this.name = name;
 		selected = false;
 	}
+ 	
+ 	public Selectable(String name, boolean selected) {
+		this.name = name;
+		this.selected = selected;
+	}
 
  	public String getName() {
 		return name;

@@ -12,10 +12,12 @@ import com.wordwise.R;
 public class MultiSelectAdapter extends BaseAdapter {
 	Selectable[] items;
 	Context context;
+	int textViewResourceId;
 
-	public MultiSelectAdapter(Context context, Selectable[] items) {
+	public MultiSelectAdapter(Context context,  int textViewResourceId, Selectable[] items) {
 		this.items = items;
 		this.context = context;
+		this.textViewResourceId = textViewResourceId;
 	}
 
 	// @Override
@@ -25,7 +27,7 @@ public class MultiSelectAdapter extends BaseAdapter {
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = vi.inflate(R.layout.checked_text_view, null);
+			v = vi.inflate(textViewResourceId/*R.layout.checked_text_view*/, null);
 		}
 		CheckedTextView post = (CheckedTextView) v.findViewById(R.id.checkList);
 		post.setText(items[position].getName());
