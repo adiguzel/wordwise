@@ -3,9 +3,9 @@ package com.wordwise;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,20 +18,20 @@ import com.wordwise.model.Configuration;
 import com.wordwise.model.LanguageManager;
 import com.wordwise.model.MultiSelectAdapter;
 
-public class ConfigurationWizardStep1 extends Activity {
-	String selectedLanguagesText;
-	ListView list;
-	TextView selectedLanguages;
-	LanguageManager lManager = LanguageManager.getInstance();
-	private static final String[] LANGUAGES = new String[] { "English",
+public class ConfigurationWizardStep1 extends FragmentActivity {
+	private String selectedLanguagesText;
+	private ListView list;
+	private TextView selectedLanguages;
+	private LanguageManager lManager = LanguageManager.getInstance();
+	private Configuration configuration = Configuration.getInstance();
+	/*private static final String[] LANGUAGES = new String[] { "English",
 			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
-			"Spanish" };
+			"Spanish" };*/
 	/*
 	 * private static final Selectable[] LANGUAGES = new Selectable[] { new
 	 * Selectable("English", true), new Selectable("German", false) };
 	 */
-	MultiSelectAdapter adapter;
-	List<String> languages = new ArrayList<String>();
+	private MultiSelectAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,14 +44,19 @@ public class ConfigurationWizardStep1 extends Activity {
 		selectedLanguagesText = selectedLanguages.getText().toString();
 		setSelectedLanguageCountText(0);
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		/*
+		 * MessageDialog.newInstance(test).show(this.getSupportFragmentManager(),
+		 * "");
+		 */
+
+		System.out.println(">>>> " + lManager.toLanguageNameArray().length);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_multiple_choice, lManager.toLanguageNameArray());
+				android.R.layout.simple_list_item_multiple_choice,
+				lManager.toLanguageNameArray());
 		list.setAdapter(adapter);
 		list.setItemsCanFocus(false);
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-		list.setItemChecked(2, true);
-		list.setItemChecked(3, true);
 		/*
 		 * adapter = new MultiSelectAdapter(this,R.layout.checked_text_view,
 		 * LANGUAGES); list.setAdapter(adapter);
@@ -63,6 +68,7 @@ public class ConfigurationWizardStep1 extends Activity {
 				toggle(tv);
 			}
 		});
+		setSelectedIndexes();
 	}
 
 	public void finishStep(View view) {
@@ -73,7 +79,10 @@ public class ConfigurationWizardStep1 extends Activity {
 		 * .findViewById(R.id.checkList); if (cv.isChecked()) {
 		 * Log.i("listview", cv.getText().toString()); } }
 		 */
-
+		//TODO Check if at least one lang is selected
+		
+		//Save changes
+		configuration.saveProficientLanguages();
 		Intent intent = new Intent(this, ConfigurationWizardStep2.class);
 		startActivity(intent);
 	}
@@ -82,16 +91,36 @@ public class ConfigurationWizardStep1 extends Activity {
 		String language = v.getText().toString();
 		if (v.isChecked()) {
 			v.setChecked(false);
-			Configuration.removeLanguage(language);
+			configuration.removeLanguage(language);
 		} else {
 			v.setChecked(true);
-			Configuration.addLanguage(language);
+			configuration.addLanguage(language);
 		}
-		setSelectedLanguageCountText(Configuration.getProficientLanguages()
+		setSelectedLanguageCountText(configuration.getProficientLanguages()
 				.size());
 	}
 
 	private void setSelectedLanguageCountText(int count) {
 		selectedLanguages.setText(String.format(selectedLanguagesText, count));
 	}
+
+	public void setSelectedIndexes() {
+		List<Integer> selectedIndexes = getSelectedIndexes();
+		for (Integer i : selectedIndexes) {
+			list.setItemChecked(i, true);
+		}
+		setSelectedLanguageCountText(selectedIndexes.size());
+	}
+
+	// DUMMY IMPLEMENTATION
+	public List<Integer> getSelectedIndexes() {
+		List<Integer> selectedIndexes = new ArrayList<Integer>();
+		for (String langCode : configuration.getProficientLanguages()) {
+			Integer index = lManager.langCodeToIndex(langCode);
+			if (index >= 0)
+				selectedIndexes.add(index);
+		}
+		return selectedIndexes;
+	}
+
 }

@@ -13,7 +13,8 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ConfigurationWizardStep2 extends Activity {
-	ListView listView;
+	private ListView listView;
+	private Configuration configuration = Configuration.getInstance();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,6 @@ public class ConfigurationWizardStep2 extends Activity {
 		// final ListView listView = getListView();
 		listView.setItemsCanFocus(false);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		listView.setItemChecked(2, true);
-		listView.setItemChecked(3, true);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -37,7 +36,7 @@ public class ConfigurationWizardStep2 extends Activity {
 				// TODO Auto-generated method stub
 				CheckedTextView tv = (CheckedTextView) arg1;
 				String language = tv.getText().toString();
-				Configuration.setLearningLanguage(language);
+				configuration.setLearningLanguage(language);
 			}
 
 		});
