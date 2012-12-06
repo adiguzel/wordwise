@@ -20,7 +20,7 @@
             android:entries="@array/languages"
             android:entryValues="@array/languageCodes"
             android:key="proficient_languages"
-            android:summary="@string/title_preferences_proficient_languages"
+            android:summary="@string/summary_preferences_proficient_languages"
             android:title="@string/title_preferences_proficient_languages" />
         
          <ListPreference
