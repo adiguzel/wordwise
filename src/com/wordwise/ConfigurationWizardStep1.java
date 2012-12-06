@@ -15,7 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.wordwise.client.FirstRestClient;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.LanguageManager;
 import com.wordwise.model.MultiSelectAdapter;
@@ -71,6 +73,15 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 			}
 		});
 		setSelectedIndexes();
+		
+        FirstRestClient v_Client = new FirstRestClient();
+        try {
+        	Toast v_Toast = Toast.makeText(this, v_Client.get(), Toast.LENGTH_LONG);
+        	v_Toast.show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void finishStep(View view) {
