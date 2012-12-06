@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     }
     
     private void configure(){
-    	Intent intent = new Intent(this, ConfigurationWizardStep1.class);
+    	Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 }

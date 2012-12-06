@@ -11,5 +11,15 @@
     <string name="next">Next</string>
     <string name="finish">Finish</string>
     <string name="numberOfSelectedLanguages">%s language(s) selected</string>
+    <string name="title_preferences_category_general">General</string>
+    <string name="title_preferences_category_languages">Languages</string>
+    <string name="title_preferences_dialog_name">Name</string>
+    <string name="title_preferences_summary_name">Change your name</string>
+    <string name="message_preferences_dialog_name">Provide your name</string>
+    <string name="default_preferences_dialog_name">Enter your name</string>
+    <string name="title_preferences_proficient_languages">Proficient Languages</string>
+    <string name="summary_preferences_proficient_languages">Select which languages you can speak fluently</string>
+    <string name="title_preferences_learning_language">Language to learn</string>
+    <string name="summary_preferences_learning_language">Select which language you want to learn</string>
 
 </resources>

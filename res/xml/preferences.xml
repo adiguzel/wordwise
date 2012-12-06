@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+`
+    <PreferenceCategory
+        android:key="general"
+        android:title="@string/title_preferences_category_general" >
+        <EditTextPreference
+            android:defaultValue="@string/default_preferences_dialog_name"
+            android:dialogMessage="@string/message_preferences_dialog_name"
+            android:dialogTitle="@string/title_preferences_dialog_name"
+            android:key="name"
+            android:summary="@string/title_preferences_summary_name"
+            android:title="@string/title_preferences_dialog_name" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:key="languages"
+        android:title="@string/title_preferences_category_languages" >
+        <MultiSelectListPreference
+            android:defaultValue="@array/empty_array"
+            android:entries="@array/languages"
+            android:entryValues="@array/languageCodes"
+            android:key="proficient_languages"
+            android:summary="@string/title_preferences_proficient_languages"
+            android:title="@string/title_preferences_proficient_languages" />
+        
+         <ListPreference
+            android:defaultValue="@array/empty_array"
+            android:entries="@array/languages"
+            android:entryValues="@array/languageCodes"
+            android:key="learning_language"
+            android:summary="@string/summary_preferences_learning_language"
+            android:title="@string/title_preferences_learning_language" />
+    </PreferenceCategory>
+    
+   
+
+</PreferenceScreen>
