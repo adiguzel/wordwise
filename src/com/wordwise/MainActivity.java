@@ -1,11 +1,12 @@
 package com.wordwise;
 
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 
-public class MainActivity extends Activity {
+import com.wordwise.activity.MainGameScreen;
+import com.wordwise.activity.MenuActivity;
+
+public class MainActivity extends MenuActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,14 +19,8 @@ public class MainActivity extends Activity {
         
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-    
     private void configure(){
-    	Intent intent = new Intent(this, Settings.class);
+    	Intent intent = new Intent(this, MainGameScreen.class);
         startActivity(intent);
     }
 }

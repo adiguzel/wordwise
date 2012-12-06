@@ -21,5 +21,11 @@
     <string name="summary_preferences_proficient_languages">Select which languages you can speak fluently</string>
     <string name="title_preferences_learning_language">Language to learn</string>
     <string name="summary_preferences_learning_language">Select which language you want to learn</string>
+    <string name="descripion_image_main_menu">Wordwise image</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="start_continue_game">Start / Continue Game</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 
 </resources>

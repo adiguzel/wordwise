@@ -1,10 +1,9 @@
-package com.wordwise;
+package com.wordwise.activity.setting;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.wordwise.R;
 
 public class Settings extends PreferenceActivity {
 

@@ -1,11 +1,12 @@
-package com.wordwise.game;
+package com.wordwise.activity.game;
 
 import com.wordwise.gameengine.Game;
 
-public class Words2Translations implements Game {
+public class Hangman implements Game{
 
 	public void start() {
 		// TODO Auto-generated method stub
+		
 	}
 
 	public void stop() {

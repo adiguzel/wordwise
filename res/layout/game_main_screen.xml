@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <ImageView
+        android:id="@+id/cbPicView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="3"
+        android:contentDescription="@string/descripion_image_main_menu"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/startContinueButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startOrContinueGame"
+        android:paddingBottom="10dip"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip"
+        android:paddingTop="10dip"
+        android:text="@string/start_continue_game" />
+
+    <Button
+        android:id="@+id/howToPlayButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:onClick="showHowToPlay"
+        android:paddingBottom="10dip"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip"
+        android:paddingTop="10dip"
+        android:text="@string/how_to_play" />
+
+</LinearLayout>

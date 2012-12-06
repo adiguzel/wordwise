@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-`
     <PreferenceCategory
         android:key="general"
         android:title="@string/title_preferences_category_general" >
@@ -21,7 +20,7 @@
             android:entries="@array/languages"
             android:entryValues="@array/languageCodes"
             android:key="proficient_languages"
-            android:summary="@string/title_preferences_proficient_languages"
+            android:summary="@string/summary_preferences_proficient_languages"
             android:title="@string/title_preferences_proficient_languages" />
         
          <ListPreference
@@ -32,7 +31,4 @@
             android:summary="@string/summary_preferences_learning_language"
             android:title="@string/title_preferences_learning_language" />
     </PreferenceCategory>
-    
-   
-
 </PreferenceScreen>

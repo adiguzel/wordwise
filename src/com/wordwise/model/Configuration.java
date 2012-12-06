@@ -3,12 +3,14 @@ package com.wordwise.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Configuration {
+import android.app.Activity;
+
+public class Configuration extends Activity{
 	private static Configuration instance = null;
 	private static int difficulty;
 	private static List<String> proficientLanguages = new ArrayList<String>();
-	private static String learningLanguage;
-
+    private static String learningLanguage;
+  //  private SharedPreferences SP;
 	public static Configuration getInstance() {
 		if (instance == null)
 			return new Configuration();
@@ -18,6 +20,8 @@ public class Configuration {
 	// TODO IMPLEMENTATION NEEDED
 	public void saveProficientLanguages() {
 		// SAVE TO SETTINGS FILE
+	//	SP = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+		//System.out.println("AL BAKALIM>>> " + SP.getString("proficient_languages", "test"));
 	}
 
 	public int getDifficulty() {
