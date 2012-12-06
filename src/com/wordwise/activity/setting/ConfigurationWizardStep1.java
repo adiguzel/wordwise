@@ -1,4 +1,4 @@
-package com.wordwise;
+package com.wordwise.activity.setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.LanguageManager;
-import com.wordwise.model.MultiSelectAdapter;
 
 public class ConfigurationWizardStep1 extends FragmentActivity {
 	private String selectedLanguagesText;
@@ -33,7 +33,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	 * private static final Selectable[] LANGUAGES = new Selectable[] { new
 	 * Selectable("English", true), new Selectable("German", false) };
 	 */
-	private MultiSelectAdapter adapter;
+	//private MultiSelectAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

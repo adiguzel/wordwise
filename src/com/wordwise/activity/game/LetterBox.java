@@ -1,8 +1,8 @@
-package com.wordwise.game;
+package com.wordwise.activity.game;
 
 import com.wordwise.gameengine.Game;
 
-public class Memory implements Game {
+public class LetterBox implements Game {
 
 	public void start() {
 		// TODO Auto-generated method stub

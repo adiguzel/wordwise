@@ -1,8 +1,10 @@
 package com.wordwise;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.wordwise.activity.MainGameScreen;
+import com.wordwise.activity.MenuActivity;
 
 public class MainActivity extends MenuActivity {
 

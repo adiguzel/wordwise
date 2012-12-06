@@ -1,16 +1,17 @@
-package com.wordwise;
-
-import com.wordwise.model.Configuration;
+package com.wordwise.activity.setting;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.wordwise.R;
+import com.wordwise.model.Configuration;
 
 public class ConfigurationWizardStep2 extends Activity {
 	private ListView listView;

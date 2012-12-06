@@ -1,9 +1,12 @@
-package com.wordwise;
+package com.wordwise.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.wordwise.R;
+import com.wordwise.activity.setting.Settings;
 
 public abstract class MenuActivity extends Activity {
 
