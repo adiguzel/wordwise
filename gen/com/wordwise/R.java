@@ -25,10 +25,13 @@ public final class R {
         public static final int buttons=0x7f090004;
         public static final int cbPicView=0x7f090007;
         public static final int checkList=0x7f090000;
+        public static final int easyNewGameButton=0x7f09000a;
         public static final int finish=0x7f090006;
+        public static final int hardNewGameButton=0x7f09000c;
         public static final int howToPlayButton=0x7f090009;
         public static final int list=0x7f090003;
-        public static final int menu_settings=0x7f09000a;
+        public static final int mediumNewGameButton=0x7f09000b;
+        public static final int menu_settings=0x7f09000d;
         public static final int next=0x7f090001;
         public static final int numberOfSelectedLanguages=0x7f090002;
         public static final int startContinueButton=0x7f090008;
@@ -39,6 +42,7 @@ public final class R {
         public static final int configuration_step1=0x7f030002;
         public static final int configuration_step2=0x7f030003;
         public static final int game_main_screen=0x7f030004;
+        public static final int new_game=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f080000;
@@ -48,9 +52,12 @@ public final class R {
         public static final int back=0x7f060007;
         public static final int default_preferences_dialog_name=0x7f060010;
         public static final int descripion_image_main_menu=0x7f060015;
+        public static final int easy=0x7f060018;
         public static final int finish=0x7f060009;
+        public static final int hard=0x7f06001a;
         public static final int hello_world=0x7f060001;
         public static final int how_to_play=0x7f060016;
+        public static final int medium=0x7f060019;
         public static final int menu_settings=0x7f060002;
         public static final int message_preferences_dialog_name=0x7f06000f;
         public static final int next=0x7f060008;

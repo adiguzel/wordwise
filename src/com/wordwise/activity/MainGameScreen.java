@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.R;
-import com.wordwise.activity.setting.Settings;
 
 public class MainGameScreen extends MenuActivity {
 
@@ -24,16 +23,12 @@ public class MainGameScreen extends MenuActivity {
     } 
     
     public void startOrContinueGame(View view) {
-		//Intent intent = new Intent(this, ConfigurationWizardStep1.class);
-		//startActivity(intent);
+		Intent intent = new Intent(this, NewGame.class);
+		startActivity(intent);
 	}
     public void showHowToPlay(View view) {
 		//Intent intent = new Intent(this, ConfigurationWizardStep1.class);
 		//startActivity(intent);
 	}
     
-    public void showSettings(View view) {
-		Intent intent = new Intent(this, Settings.class);
-		startActivity(intent);
-	}
 }

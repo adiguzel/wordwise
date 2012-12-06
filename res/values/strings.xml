@@ -24,5 +24,8 @@
     <string name="descripion_image_main_menu">Wordwise image</string>
     <string name="how_to_play">How to Play</string>
     <string name="start_continue_game">Start / Continue Game</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 
 </resources>
