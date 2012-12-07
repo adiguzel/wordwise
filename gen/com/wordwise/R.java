@@ -85,6 +85,7 @@ public final class R {
         public static final int title_preferences_summary_name=0x7f06000f;
         public static final int wordDifficultyText=0x7f06001d;
         public static final int wordQualityText=0x7f06001c;
+        public static final int word_evaluation_provide_difficulty_rating_dialog=0x7f06001e;
     }
     public static final class style {
         public static final int AppTheme=0x7f070000;

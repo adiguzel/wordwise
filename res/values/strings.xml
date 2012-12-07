@@ -28,7 +28,8 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
-    <string name="wordQualityText">Word Quality</string>
-    <string name="wordDifficultyText">Word Difficulty</string>
+    <string name="wordQualityText">Quality</string>
+    <string name="wordDifficultyText">Difficulty</string>
+    <string name="word_evaluation_provide_difficulty_rating_dialog">Please provide your rating for difficulty of the word</string>
 
 </resources>

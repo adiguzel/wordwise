@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.activity.NewGame;
@@ -36,6 +37,15 @@ public class WordEvaluation extends Activity implements Game {
 	}
 	
 	public void submitEvaluation(View v){
+		float qualityRating = wordQualityRating.getRating();
+		float difficultyRating = wordDifficultyRating.getRating();
+		
+		if(difficultyRating == 0.0f){
+			Toast.makeText(this, R.string.word_evaluation_provide_difficulty_rating_dialog, Toast.LENGTH_LONG).show();
+			return;
+		}
+		Toast.makeText(this, "quality : "+qualityRating + " difficulty "+difficultyRating, Toast.LENGTH_LONG).show();
+		//TODO Implement submitting evaluation and showing a toast if it was not successful
 		/*Intent intent = new Intent(this, NewGame.class);
 		startActivity(intent);*/
 	}
