@@ -30,11 +30,11 @@ public class NewGame extends MenuActivity {
 			gManager.startGameCycle();
 			break;
 		case R.id.mediumNewGameButton:
-			//TODO Prepare the DTO for easy and start the game
+			//TODO Prepare the DTO for medium and start the game
 			
 			break;
 		case R.id.hardNewGameButton:
-			//TODO Prepare the DTO for easy and start the game
+			//TODO Prepare the DTO for hard and start the game
 			gManager.startGameCycle();
 			break;
 		default:
