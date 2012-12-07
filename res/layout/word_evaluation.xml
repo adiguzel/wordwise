@@ -3,64 +3,69 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
 
-    <TextView
-        android:id="@+id/wordToEvaluate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:paddingTop="10dip" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ratings"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" >
 
-    <TextView
-        android:id="@+id/wordQualityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wordQualityText"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:paddingTop="10dip" />
+        <TextView
+            android:id="@+id/wordToEvaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <RatingBar
-        android:id="@+id/wordQualityRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dip" />
+        <TextView
+            android:id="@+id/wordQualityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:text="@string/wordQualityText"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:id="@+id/wordDifficultyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wordDifficultyText"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:paddingTop="10dip" />
+        <RatingBar
+            android:id="@+id/wordQualityRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="2"
+            android:paddingTop="10dip"
+            android:stepSize="1.0" />
 
-    <RatingBar
-        android:id="@+id/wordDifficultyRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dip" />
+        <TextView
+            android:id="@+id/wordDifficultyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:text="@string/wordDifficultyText"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
- </LinearLayout>
+        <RatingBar
+            android:id="@+id/wordDifficultyRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="3"
+            android:paddingTop="10dip"
+            android:stepSize="1.0" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dip"
+        android:onClick="submitEvaluation"
         android:paddingBottom="10dip"
         android:paddingLeft="40dip"
         android:paddingRight="40dip"
         android:paddingTop="10dip"
-        android:text="@string/done"
-        android:onClick="submitEvaluation"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/done" />
 
 </RelativeLayout>

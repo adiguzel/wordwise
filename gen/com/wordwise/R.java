@@ -25,22 +25,23 @@ public final class R {
         public static final int buttons=0x7f090004;
         public static final int cbPicView=0x7f090007;
         public static final int checkList=0x7f090000;
-        public static final int done=0x7f090012;
+        public static final int done=0x7f090013;
         public static final int easyNewGameButton=0x7f09000a;
         public static final int finish=0x7f090006;
         public static final int hardNewGameButton=0x7f09000c;
         public static final int howToPlayButton=0x7f090009;
         public static final int list=0x7f090003;
         public static final int mediumNewGameButton=0x7f09000b;
-        public static final int menu_settings=0x7f090013;
+        public static final int menu_settings=0x7f090014;
         public static final int next=0x7f090001;
         public static final int numberOfSelectedLanguages=0x7f090002;
+        public static final int ratings=0x7f09000d;
         public static final int startContinueButton=0x7f090008;
-        public static final int wordDifficultyRating=0x7f090011;
-        public static final int wordDifficultyText=0x7f090010;
-        public static final int wordQualityRating=0x7f09000f;
-        public static final int wordQualityText=0x7f09000e;
-        public static final int wordToEvaluate=0x7f09000d;
+        public static final int wordDifficultyRating=0x7f090012;
+        public static final int wordDifficultyText=0x7f090011;
+        public static final int wordQualityRating=0x7f090010;
+        public static final int wordQualityText=0x7f09000f;
+        public static final int wordToEvaluate=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -85,8 +86,21 @@ public final class R {
         public static final int title_preferences_summary_name=0x7f06000f;
         public static final int wordDifficultyText=0x7f06001d;
         public static final int wordQualityText=0x7f06001c;
+        public static final int word_evaluation_provide_difficulty_rating_dialog=0x7f06001e;
     }
     public static final class style {
+        /** 
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
+         */
         public static final int AppTheme=0x7f070000;
     }
     public static final class xml {
