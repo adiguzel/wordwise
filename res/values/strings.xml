@@ -10,6 +10,7 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="finish">Finish</string>
+    <string name="done">Done</string>
     <string name="numberOfSelectedLanguages">%s language(s) selected</string>
     <string name="title_preferences_category_general">General</string>
     <string name="title_preferences_category_languages">Languages</string>
@@ -27,5 +28,7 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
+    <string name="wordQualityText">Word Quality</string>
+    <string name="wordDifficultyText">Word Difficulty</string>
 
 </resources>

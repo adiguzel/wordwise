@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
+import com.wordwise.activity.game.WordEvaluation;
 
 public class MainActivity extends MenuActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void configure(){
-    	Intent intent = new Intent(this, MainGameScreen.class);
+    	Intent intent = new Intent(this, WordEvaluation.class);
         startActivity(intent);
     }
 }
