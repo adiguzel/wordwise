@@ -3,9 +3,8 @@ package com.wordwise;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
-import com.wordwise.activity.game.WordEvaluation;
+import com.wordwise.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
 
@@ -21,7 +20,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void configure(){
-    	Intent intent = new Intent(this, WordEvaluation.class);
+    	Intent intent = new Intent(this, ConfigurationWizardStep1.class);
         startActivity(intent);
     }
 }
