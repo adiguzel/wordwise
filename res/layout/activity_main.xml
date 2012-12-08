@@ -19,7 +19,7 @@
         android:id="@+id/aboutButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="goToAboutActiviyView"
+        android:onClick="showAbout"
         android:paddingBottom="10dip"
         android:paddingLeft="40dip"
         android:paddingRight="40dip"

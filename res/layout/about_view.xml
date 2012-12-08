@@ -26,12 +26,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dip"
-            android:onClick="getHowToPlayActivity"
+            android:onClick="showHowToPlay"
             android:paddingBottom="10dip"
             android:paddingLeft="40dip"
             android:paddingRight="40dip"
             android:paddingTop="10dip"
-            android:text="@string/howToPlayButtonLabel" />
+            android:text="@string/how_to_play" />
     </LinearLayout>
 
 </ScrollView>

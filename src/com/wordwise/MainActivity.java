@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.wordwise.activity.AboutActivity;
 import com.wordwise.activity.MenuActivity;
 import com.wordwise.activity.setting.ConfigurationWizardStep1;
 
@@ -32,7 +33,7 @@ public class MainActivity extends MenuActivity {
     /* It calls the about activity where the user can get some info about the game
      * or learn how to play as well
      */
-    public void goToAboutActiviyView(View view) {
+    public void showAbout(View view) {
     	Intent intent = new Intent(this, AboutActivity.class);
     	startActivity(intent);
     }

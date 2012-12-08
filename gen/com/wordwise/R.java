@@ -79,7 +79,6 @@ public final class R {
         public static final int finish=0x7f070009;
         public static final int hard=0x7f07001b;
         public static final int hello_world=0x7f070001;
-        public static final int howToPlayButtonLabel=0x7f070023;
         public static final int how_to_play=0x7f070017;
         public static final int medium=0x7f07001a;
         public static final int menu_settings=0x7f070002;

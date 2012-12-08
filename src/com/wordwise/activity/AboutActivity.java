@@ -1,11 +1,12 @@
-package com.wordwise;
+package com.wordwise.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import com.wordwise.R;
 
 public class AboutActivity extends Activity {
 	
@@ -19,7 +20,7 @@ public class AboutActivity extends Activity {
 		howToPlay = (Button) findViewById(R.id.aboutButton);
 	}
 
-	public void getHowToPlayActivity(View view) {
+	public void showHowToPlay(View view) {
 		//TODO HowToPlay activity should be implemented and 
 		
 //		Intent intent = new Intent(this, HowToPlayActivity.class);
