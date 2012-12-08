@@ -5,13 +5,13 @@ import java.util.List;
 public class DTOWord {
 	//Represents the text of the word in English
 	private String text;
-	//Difficulty of the word in a scale of 1-3
-	private int difficulty;
-	/*Quality of the word, 
+	//Average difficulty of the word in a scale of 1-3
+	private double difficulty;
+	/*Average quality of the word, 
 	//0 : bad quality, does not exist in reality
 	//1 : good quality, existing word
 	//-1: not specified*/
-	private int quality;
+	private double quality;
 	//list of translations for the English word
 	private List<DTOTranslation> translations;
 	
@@ -22,11 +22,11 @@ public class DTOWord {
 		this.translations = translations;
 	}
 
-	public int getDifficulty() {
+	public double getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(int difficulty) {
+	public void setDifficulty(double difficulty) {
 		this.difficulty = difficulty;
 	}
 
@@ -46,11 +46,11 @@ public class DTOWord {
 		this.text = text;
 	}
 
-	public int getQuality() {
+	public double getQuality() {
 		return quality;
 	}
 
-	public void setQuality(int quality) {
+	public void setQuality(double quality) {
 		this.quality = quality;
 	}
 }
