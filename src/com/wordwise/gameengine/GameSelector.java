@@ -1,6 +1,6 @@
 package com.wordwise.gameengine;
 
-public abstract class GameSelectionStrategy {
+public abstract class GameSelector {
 	
 	public abstract Game nextGame();
 			

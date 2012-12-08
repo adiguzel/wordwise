@@ -1,9 +1,9 @@
 package com.wordwise.model;
 
 import com.wordwise.gameengine.Game;
-import com.wordwise.gameengine.GameSelectionStrategy;
+import com.wordwise.gameengine.GameSelector;
 
-public class RandomSelectionStrategy extends GameSelectionStrategy{
+public class RandomGameSelector extends GameSelector{
 
 	@Override
 	public Game nextGame() {
