@@ -8,7 +8,7 @@ import com.wordwise.R;
 import com.wordwise.gameengine.GameManager;
 
 public class NewGame extends MenuActivity {
-	private GameManager gManager = GameManager.getInstance();
+	private GameManager gManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

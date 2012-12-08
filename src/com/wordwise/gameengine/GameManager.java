@@ -1,50 +1,42 @@
 package com.wordwise.gameengine;
 
 
-public final class GameManager {
-	private static GameManager instance = null;
+public abstract class GameManager {
 	private Game currentGame;
-	private GameSelector gameFactory;
-
-	private GameManager() {}
-
-	public static GameManager getInstance() {
-		if (instance == null) {
-			instance = new GameManager();
-		}
-		return instance;
+	private GameSelector gameSelector;
+	
+	public GameManager(GameSelector gameSelector){
+		this.gameSelector = gameSelector;
 	}
 
-	public void endGame() {
+	public final void endGame() {
 		currentGame.stop();
 		startGameCycle();
 	}
 
-	public void startGameCycle() {
+	public final void startGameCycle() {
 		startNextGame();
 	}
 
-	public void continueGameCycle() {
+	public final void continueGameCycle() {
 		currentGame.start();
 	}
 
-	public void endGameCycle() {
+	public final void endGameCycle() {
 		currentGame.stop();
 		
 		//AND CALL THE INTENT TO GO BACK OR EXIT
 	}
 	
-	public void startNextGame(){
+	public final void startNextGame(){
 		//IMPLEMENT A GAME SELECTION MECHANISM
 		//FIND THE NEXT GAME
 		//MAKE IT CURRENT AND START IT
+		currentGame = gameSelector.nextGame();
+		if(currentGame != null )
+			currentGame.start();
+		else
+			System.out.println("Game is null");
 	}
 
-	public GameSelector getGameFactory() {
-		return gameFactory;
-	}
-
-	public void setGameFactory(GameSelector gameFactory) {
-		this.gameFactory = gameFactory;
-	}
 }
