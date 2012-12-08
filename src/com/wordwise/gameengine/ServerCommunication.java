@@ -41,7 +41,7 @@ public interface ServerCommunication {
 	 *            difficulty expected difficulty of the words
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(String lang, int difficulty);
+	public List<DTOWord> listWords(Language lang, int difficulty);
 
 	/**
 	 * Retrieves all specified number of words in a given language and for a
@@ -55,7 +55,7 @@ public interface ServerCommunication {
 	 *            number of words that are to be listed
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(String lang, int difficulty, int number);
+	public List<DTOWord> listWords(Language lang, int difficulty, int number);
 
 	/**
 	 * Retrieves all the words for a given language
@@ -64,6 +64,6 @@ public interface ServerCommunication {
 	 *            language code of the desired words
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(String lang);
+	public List<DTOWord> listWords(Language lang);
 
 }
