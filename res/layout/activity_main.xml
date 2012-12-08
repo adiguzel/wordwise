@@ -1,14 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <TextView
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+    
+    <ImageView
+        android:id="@+id/cbPicView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"
+        android:contentDescription="@string/descripion_image_main_menu"
+        android:src="@drawable/ic_launcher" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToAboutActiviyView"
+        android:paddingBottom="10dip"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip"
+        android:paddingTop="10dip"
+        android:text="@string/aboutButtonLabel" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:onClick="exitApplication"
+        android:paddingBottom="10dip"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip"
+        android:paddingTop="10dip"
+        android:text="@string/exitButtonLabel" />
+    
+
+</LinearLayout>

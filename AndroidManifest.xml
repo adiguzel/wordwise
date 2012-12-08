@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wordwise"
     android:versionCode="1"
@@ -10,12 +11,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" 
-        android:allowBackup="true">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.wordwise.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,23 +25,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.setting.ConfigurationWizardStep1"
+            android:name="com.wordwise.activity.setting.ConfigurationWizardStep1"
             android:label="@string/title_configuration_step1" >
         </activity>
         <activity
-            android:name=".activity.setting.ConfigurationWizardStep2"
+            android:name="com.wordwise.activity.setting.ConfigurationWizardStep2"
             android:label="@string/title_configuration_step2" >
         </activity>
         <activity
-            android:name=".activity.setting.Settings"
+            android:name="com.wordwise.activity.setting.Settings"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activity.MainGameScreen"
+            android:name="com.wordwise.activity.MainGameScreen"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activity.NewGame"
+            android:name="com.wordwise.activity.NewGame"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -50,6 +51,10 @@
         <activity
             android:name="com.wordwise.activity.game.TranslationEvaluation"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.wordwise.AboutActivity"
+            android:label="@string/title_activity_about_activiy" >
         </activity>
     </application>
 
