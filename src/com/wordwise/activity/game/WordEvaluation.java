@@ -1,7 +1,6 @@
 package com.wordwise.activity.game;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
@@ -9,15 +8,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.activity.NewGame;
 import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.ServerCommunication;
+import com.wordwise.gameengine.dto.DTOWord;
 
 public class WordEvaluation extends Activity implements Game {
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;
-	private String wordToEvaluate = "";
-
+	//word to evaluate
+	private DTOWord word;
+	private ServerCommunication wordServerComm;
 	
 
 	@Override
@@ -28,12 +29,12 @@ public class WordEvaluation extends Activity implements Game {
 		wordToEvaluateText = (TextView) findViewById(R.id.wordToEvaluate);
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
 		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
-		getWordAndTranslations();	
+		retrieveWord();	
 	}
 	
-	public void getWordAndTranslations(){
-		wordToEvaluate = "Test Word";
-		wordToEvaluateText.setText(wordToEvaluate);		
+	public boolean retrieveWord(){
+		//wordServerComm.listWords(lang, difficulty, number);
+		return true;
 	}
 	
 	public void submitEvaluation(View v){

@@ -2,10 +2,12 @@ package com.wordwise.gameengine.dto;
 
 import java.util.List;
 
+import com.wordwise.gameengine.Language;
+
 public class DTOGameConfiguration {
 	private int difficulty;
-	private List<String> proficientLanguages;
-	private String learningLanguage;
+	private List<Language> proficientLanguages;
+	private Language learningLanguage;
 
 	public int getDifficulty() {
 		return difficulty;
@@ -15,19 +17,19 @@ public class DTOGameConfiguration {
 		this.difficulty = difficulty;
 	}
 
-	public List<String> getProficientLanguage() {
+	public List<Language> getProficientLanguage() {
 		return proficientLanguages;
 	}
 
-	public void setProficientLanguage(List<String> proficientLanguages) {
+	public void setProficientLanguage(List<Language> proficientLanguages) {
 		this.proficientLanguages = proficientLanguages;
 	}
 
-	public String getLearningLanguage() {
+	public Language getLearningLanguage() {
 		return learningLanguage;
 	}
 
-	public void setLearningLanguage(String learningLanguage) {
+	public void setLearningLanguage(Language learningLanguage) {
 		this.learningLanguage = learningLanguage;
 	}
 

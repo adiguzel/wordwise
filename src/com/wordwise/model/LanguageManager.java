@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.wordwise.gameengine.Language;
+
 public class LanguageManager {
 	static LanguageManager instance = null;
 	private List<Language> languages;

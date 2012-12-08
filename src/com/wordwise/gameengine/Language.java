@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.gameengine;
 
 public class Language {
 	// Name of the language in English
