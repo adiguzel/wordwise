@@ -4,7 +4,7 @@ package com.wordwise.gameengine;
 public final class GameManager {
 	private static GameManager instance = null;
 	private Game currentGame;
-	private GameFactory gameFactory;
+	private GameSelectionStrategy gameFactory;
 
 	private GameManager() {}
 
@@ -40,11 +40,11 @@ public final class GameManager {
 		//MAKE IT CURRENT AND START IT
 	}
 
-	public GameFactory getGameFactory() {
+	public GameSelectionStrategy getGameFactory() {
 		return gameFactory;
 	}
 
-	public void setGameFactory(GameFactory gameFactory) {
+	public void setGameFactory(GameSelectionStrategy gameFactory) {
 		this.gameFactory = gameFactory;
 	}
 }

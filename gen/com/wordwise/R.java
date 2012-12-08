@@ -63,7 +63,8 @@ public final class R {
         public static final int word_evaluation=0x7f030007;
     }
     public static final class menu {
-        public static final int activity_main=0x7f090000;
+        public static final int activity_about_activity=0x7f090000;
+        public static final int activity_main=0x7f090001;
     }
     public static final class string {
         public static final int aboutApplicationText=0x7f070022;
