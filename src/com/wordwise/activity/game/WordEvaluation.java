@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.ServerCommunication;
-import com.wordwise.gameengine.dto.DTOGameConfiguration;
 import com.wordwise.gameengine.dto.DTOWord;
 
 public class WordEvaluation extends Activity implements Game {
@@ -20,7 +20,7 @@ public class WordEvaluation extends Activity implements Game {
 	//word to evaluate
 	private DTOWord word;
 	private ServerCommunication wordServerComm;
-	private DTOGameConfiguration gameConf;
+	private GameConfiguration gameConf;
 	
 
 	@Override

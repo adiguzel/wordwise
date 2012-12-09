@@ -4,6 +4,7 @@ package com.wordwise.gameengine;
 public abstract class GameManager {
 	private Game currentGame;
 	private GameSelector gameSelector;
+	private GameConfiguration configuration;
 	
 	public GameManager(GameSelector gameSelector){
 		this.gameSelector = gameSelector;
@@ -37,6 +38,14 @@ public abstract class GameManager {
 			currentGame.start();
 		else
 			System.out.println("Game is null");
+	}
+
+	public GameConfiguration getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(GameConfiguration configuration) {
+		this.configuration = configuration;
 	}
 
 }

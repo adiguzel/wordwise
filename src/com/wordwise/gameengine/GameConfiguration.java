@@ -1,10 +1,9 @@
-package com.wordwise.gameengine.dto;
+package com.wordwise.gameengine;
 
 import java.util.List;
 
-import com.wordwise.gameengine.Language;
 
-public class DTOGameConfiguration {
+public class GameConfiguration {
 	private int difficulty;
 	private List<Language> proficientLanguages;
 	private Language learningLanguage;
