@@ -16,7 +16,7 @@ public class Hangman extends Activity implements Game {
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
-	private String mysteryWord = "LACUCARACA";
+	private String mysteryWord = "LACUCARACAMMMY";
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
@@ -196,6 +196,7 @@ public class Hangman extends Activity implements Game {
 		this.validateGuess('Z');
 		this.validateGuess('L');
 		this.validateGuess('C');
+		this.validateGuess('Y');
 	}
 
 	public void stop() {
