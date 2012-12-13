@@ -1,7 +1,10 @@
 package com.wordwise.activity.game;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +14,8 @@ import com.wordwise.gameengine.Game;
 public class Hangman extends Activity implements Game {
 
 	private ImageView hangmanImageView;
-	//test initialization for the mystery word
+
+	// dummy test initialization for the mystery word
 	private String mysteryWord = "LACUCARACA";
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
@@ -27,20 +31,42 @@ public class Hangman extends Activity implements Game {
 		this.initialHangmanImage();
 		this.initWrongGuesses();
 		this.initMystWord();
-
+		
+		this.openTheSoftKeyboard();
+	
 	}
 	
-	
+
+	private void openTheSoftKeyboard() {
+		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+						InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+	}
+
+	private void closeTheSoftKeyboard() {
+		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(), 0);
+
+	}
+
 	private void bindViews() {
 		hangmanImageView = (ImageView) this.findViewById(R.id.hangman_img);
-		wrongLettersTextView = (TextView) this.findViewById(R.id.hangman_wrong_letters);
-		mysteryWordTextView = (TextView) this.findViewById(R.id.hangman_mystery_word);
-		
+		wrongLettersTextView = (TextView) this
+				.findViewById(R.id.hangman_wrong_letters);
+		mysteryWordTextView = (TextView) this
+				.findViewById(R.id.hangman_mystery_word);
+
 	}
 
 	private void initWrongGuesses() {
 		numWrongGuesses = 0;
-		wrongLettersTextView.setText("DASE");
+		wrongLettersTextView.setText("Wrong Letters: \n\n");
+	}
+
+	private void updateWrongGuesses(char wrongLetter) {
+		wrongLettersTextView.setText(wrongLettersTextView.getText().toString()
+				+ "  " + Character.toString(wrongLetter));
 	}
 
 	// This method will initialize the mysteryTextView with underscores
@@ -97,13 +123,14 @@ public class Hangman extends Activity implements Game {
 		}
 	}
 
-	/* sets the View of Mystery Word to a text view with underscores
-	and spaces */
-	
-	private void initMystWord() { 
+	/*
+	 * sets the View of Mystery Word to a text view with underscores and spaces
+	 */
+
+	private void initMystWord() {
 		mysteryWordTextView.setText(underscore(mysteryWord));
 	}
-	
+
 	public void start() {
 		// TODO Auto-generated method stub
 
