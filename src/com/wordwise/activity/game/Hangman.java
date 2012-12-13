@@ -3,10 +3,10 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
@@ -17,6 +17,7 @@ public class Hangman extends Activity implements Game {
 
 	// dummy test initialization for the mystery word
 	private String mysteryWord = "LACUCARACA";
+
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
@@ -26,16 +27,69 @@ public class Hangman extends Activity implements Game {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hangman);
 
-		// Initializes the screen
-		this.bindViews();
-		this.initialHangmanImage();
-		this.initWrongGuesses();
-		this.initMystWord();
+		this.init();
 		
-		this.openTheSoftKeyboard();
-	
+		this.start();
+
 	}
-	
+
+	// TODO Implement method that listens the input from the keyboard
+	// TODO Implement method to read the mysteryWord from the server
+	// TODO Edit checkWin() and checkLose() and link them with GameManager
+	// TODO Pause,Resume,Stop,Save Progress
+	// TODO Polish the procedure with the device keyboard
+	// TODO update the layout suggestion maybe ?
+
+	private void checkWin() {
+		if (mysteryWordTextView.getText().toString().indexOf("_ ") == -1) {
+
+			this.closeTheSoftKeyboard();
+
+			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_LONG);
+			msg.show();
+			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
+		}
+	}
+
+	private void checkLose() {
+		if (numWrongGuesses == 9) {
+			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
+					Toast.LENGTH_LONG);
+			msg.show();
+		}
+	}
+
+	private void validateGuess(char guess) {
+		if (mysteryWord.indexOf(guess) == -1) {
+			String wrongLetters = wrongLettersTextView.getText().toString();
+			if (wrongLetters.indexOf(guess) == -1) {
+				if (numWrongGuesses < 9) {
+					numWrongGuesses++;
+					updateWrongGuesses(guess);
+					updateHangmanImage();
+				}
+				checkLose();
+			}
+		} else {
+			if (numWrongGuesses < 9) {
+				updateMysteriousWord(guess);
+				checkWin();
+			} else {
+				checkLose();
+			}
+		}
+	}
+
+	private void updateMysteriousWord(char ch) {
+		char[] updatedWord = mysteryWordTextView.getText().toString()
+				.toCharArray();
+		for (int i = 0; i < mysteryWord.length(); i++) {
+			if (ch == mysteryWord.charAt(i)) {
+				updatedWord[i * 2] = mysteryWord.charAt(i);
+			}
+		}
+		mysteryWordTextView.setText(new String(updatedWord));
+	}
 
 	private void openTheSoftKeyboard() {
 		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
@@ -46,11 +100,12 @@ public class Hangman extends Activity implements Game {
 
 	private void closeTheSoftKeyboard() {
 		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(), 0);
+				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
+						0);
 
 	}
 
-	private void bindViews() {
+	private void linkTheViews() {
 		hangmanImageView = (ImageView) this.findViewById(R.id.hangman_img);
 		wrongLettersTextView = (TextView) this
 				.findViewById(R.id.hangman_wrong_letters);
@@ -59,7 +114,7 @@ public class Hangman extends Activity implements Game {
 
 	}
 
-	private void initWrongGuesses() {
+	private void initWrongGuessesTextView() {
 		numWrongGuesses = 0;
 		wrongLettersTextView.setText("Wrong Letters: \n\n");
 	}
@@ -70,7 +125,7 @@ public class Hangman extends Activity implements Game {
 	}
 
 	// This method will initialize the mysteryTextView with underscores
-	private String underscore(String mysteryWord) {
+	private String underscoreTheMysteryWord(String mysteryWord) {
 		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < mysteryWord.length(); i++) {
 			result.append("_ ");
@@ -81,7 +136,7 @@ public class Hangman extends Activity implements Game {
 	/*
 	 * sets the Hangman image to the starting image
 	 */
-	private void initialHangmanImage() {
+	private void initTheHangmanImage() {
 		hangmanImageView.setImageResource(R.drawable.hangman_img00);
 	}
 
@@ -127,13 +182,20 @@ public class Hangman extends Activity implements Game {
 	 * sets the View of Mystery Word to a text view with underscores and spaces
 	 */
 
-	private void initMystWord() {
-		mysteryWordTextView.setText(underscore(mysteryWord));
+	private void initMysteriousWord() {
+		mysteryWordTextView.setText(underscoreTheMysteryWord(mysteryWord));
 	}
 
 	public void start() {
 		// TODO Auto-generated method stub
-
+		// TEST to see whether it is working
+		this.validateGuess('a');
+		this.validateGuess('a');
+		this.validateGuess('a');
+		this.validateGuess('A');
+		this.validateGuess('Z');
+		this.validateGuess('L');
+		this.validateGuess('C');
 	}
 
 	public void stop() {
@@ -148,7 +210,12 @@ public class Hangman extends Activity implements Game {
 
 	public void init() {
 		// TODO Auto-generated method stub
-
+		// Initializes the screen
+		this.linkTheViews();
+		this.initTheHangmanImage();
+		this.initWrongGuessesTextView();
+		this.initMysteriousWord();
+		this.openTheSoftKeyboard();
 	}
 
 }
