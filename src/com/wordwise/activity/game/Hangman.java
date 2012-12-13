@@ -3,29 +3,48 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 
 public class Hangman extends Activity implements Game {
 
-	private ImageView hangmanImage;
-	private String mysteryWord;
-	private int numWrongGuesses = 0;
+	private ImageView hangmanImageView;
+	//test initialization for the mystery word
+	private String mysteryWord = "LACUCARACA";
+	private int numWrongGuesses;
+	private TextView wrongLettersTextView;
+	private TextView mysteryWordTextView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hangman);
-		
-		//Initializes the screen
+
+		// Initializes the screen
+		this.bindViews();
 		this.initialHangmanImage();
+		this.initWrongGuesses();
+		this.initMystWord();
 
 	}
-
 	
-	//This method will initialize the mysteryTextView with underscores
-	private String underscore() {
+	
+	private void bindViews() {
+		hangmanImageView = (ImageView) this.findViewById(R.id.hangman_img);
+		wrongLettersTextView = (TextView) this.findViewById(R.id.hangman_wrong_letters);
+		mysteryWordTextView = (TextView) this.findViewById(R.id.hangman_mystery_word);
+		
+	}
+
+	private void initWrongGuesses() {
+		numWrongGuesses = 0;
+		wrongLettersTextView.setText("DASE");
+	}
+
+	// This method will initialize the mysteryTextView with underscores
+	private String underscore(String mysteryWord) {
 		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < mysteryWord.length(); i++) {
 			result.append("_ ");
@@ -37,7 +56,7 @@ public class Hangman extends Activity implements Game {
 	 * sets the Hangman image to the starting image
 	 */
 	private void initialHangmanImage() {
-		hangmanImage.setImageResource(R.drawable.hangman_img00);
+		hangmanImageView.setImageResource(R.drawable.hangman_img00);
 	}
 
 	/*
@@ -46,38 +65,45 @@ public class Hangman extends Activity implements Game {
 	private void updateHangmanImage() {
 		switch (numWrongGuesses) {
 		case 0:
-			hangmanImage.setImageResource(R.drawable.hangman_img00);
+			hangmanImageView.setImageResource(R.drawable.hangman_img00);
 			break;
 		case 1:
-			hangmanImage.setImageResource(R.drawable.hangman_img01);
+			hangmanImageView.setImageResource(R.drawable.hangman_img01);
 			break;
 		case 2:
-			hangmanImage.setImageResource(R.drawable.hangman_img02);
+			hangmanImageView.setImageResource(R.drawable.hangman_img02);
 			break;
 		case 3:
-			hangmanImage.setImageResource(R.drawable.hangman_img03);
+			hangmanImageView.setImageResource(R.drawable.hangman_img03);
 			break;
 		case 4:
-			hangmanImage.setImageResource(R.drawable.hangman_img04);
+			hangmanImageView.setImageResource(R.drawable.hangman_img04);
 			break;
 		case 5:
-			hangmanImage.setImageResource(R.drawable.hangman_img05);
+			hangmanImageView.setImageResource(R.drawable.hangman_img05);
 			break;
 		case 6:
-			hangmanImage.setImageResource(R.drawable.hangman_img06);
+			hangmanImageView.setImageResource(R.drawable.hangman_img06);
 			break;
 		case 7:
-			hangmanImage.setImageResource(R.drawable.hangman_img07);
+			hangmanImageView.setImageResource(R.drawable.hangman_img07);
 			break;
 		case 8:
-			hangmanImage.setImageResource(R.drawable.hangman_img08);
+			hangmanImageView.setImageResource(R.drawable.hangman_img08);
 			break;
 		case 9:
-			hangmanImage.setImageResource(R.drawable.hangman_img09);
+			hangmanImageView.setImageResource(R.drawable.hangman_img09);
 			break;
 		}
 	}
 
+	/* sets the View of Mystery Word to a text view with underscores
+	and spaces */
+	
+	private void initMystWord() { 
+		mysteryWordTextView.setText(underscore(mysteryWord));
+	}
+	
 	public void start() {
 		// TODO Auto-generated method stub
 
