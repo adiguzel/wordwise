@@ -13,6 +13,9 @@ import com.wordwise.gameengine.Game;
 
 public class Hangman extends Activity implements Game {
 
+	private final int DOESNT_EXIST = -1;
+	private final int MAXIMUM_WRONG_GUESSES = 9;
+
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
@@ -28,7 +31,7 @@ public class Hangman extends Activity implements Game {
 		setContentView(R.layout.hangman);
 
 		this.init();
-		
+
 		this.start();
 
 	}
@@ -38,10 +41,10 @@ public class Hangman extends Activity implements Game {
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
 	// TODO Polish the procedure with the device keyboard
-	// TODO update the layout suggestion maybe ?
+	// TODO try to display the keyboard on display touch
 
 	private void checkWin() {
-		if (mysteryWordTextView.getText().toString().indexOf("_ ") == -1) {
+		if (mysteryWordTextView.getText().toString().indexOf("_ ") == DOESNT_EXIST) {
 
 			this.closeTheSoftKeyboard();
 
@@ -52,7 +55,7 @@ public class Hangman extends Activity implements Game {
 	}
 
 	private void checkLose() {
-		if (numWrongGuesses == 9) {
+		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_LONG);
 			msg.show();
@@ -60,10 +63,10 @@ public class Hangman extends Activity implements Game {
 	}
 
 	private void validateGuess(char guess) {
-		if (mysteryWord.indexOf(guess) == -1) {
+		if (mysteryWord.indexOf(guess) == DOESNT_EXIST) {
 			String wrongLetters = wrongLettersTextView.getText().toString();
-			if (wrongLetters.indexOf(guess) == -1) {
-				if (numWrongGuesses < 9) {
+			if (wrongLetters.indexOf(guess) == DOESNT_EXIST) {
+				if (numWrongGuesses < MAXIMUM_WRONG_GUESSES) {
 					numWrongGuesses++;
 					updateWrongGuesses(guess);
 					updateHangmanImage();
@@ -71,7 +74,7 @@ public class Hangman extends Activity implements Game {
 				checkLose();
 			}
 		} else {
-			if (numWrongGuesses < 9) {
+			if (numWrongGuesses < MAXIMUM_WRONG_GUESSES) {
 				updateMysteriousWord(guess);
 				checkWin();
 			} else {
@@ -172,7 +175,7 @@ public class Hangman extends Activity implements Game {
 		case 8:
 			hangmanImageView.setImageResource(R.drawable.hangman_img08);
 			break;
-		case 9:
+		case MAXIMUM_WRONG_GUESSES:
 			hangmanImageView.setImageResource(R.drawable.hangman_img09);
 			break;
 		}
