@@ -3,6 +3,8 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,13 +37,115 @@ public class Hangman extends Activity implements Game {
 		this.start();
 
 	}
+	
+	public void onStop() {
+		super.onStop();
+		this.closeTheSoftKeyboard();
+	}
+	
+	public void onDestroy() {
+		super.onDestroy();
+		this.closeTheSoftKeyboard();
+	}
 
-	// TODO Implement method that listens the input from the keyboard
 	// TODO Implement method to read the mysteryWord from the server
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
-	// TODO Polish the procedure with the device keyboard
 	// TODO try to display the keyboard on display touch
+	
+
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_A:
+			validateGuess('A');
+			break;
+		case KeyEvent.KEYCODE_B:
+			validateGuess('B');
+			break;
+		case KeyEvent.KEYCODE_C:
+			validateGuess('C');
+			break;
+		case KeyEvent.KEYCODE_D:
+			validateGuess('D');
+			break;
+		case KeyEvent.KEYCODE_E:
+			validateGuess('E');
+			break;
+		case KeyEvent.KEYCODE_F:
+			validateGuess('F');
+			break;
+		case KeyEvent.KEYCODE_G:
+			validateGuess('G');
+			break;
+		case KeyEvent.KEYCODE_H:
+			validateGuess('H');
+			break;
+		case KeyEvent.KEYCODE_I:
+			validateGuess('I');
+			break;
+		case KeyEvent.KEYCODE_J:
+			validateGuess('J');
+			break;
+		case KeyEvent.KEYCODE_K:
+			validateGuess('K');
+			break;
+		case KeyEvent.KEYCODE_L:
+			validateGuess('L');
+			break;
+		case KeyEvent.KEYCODE_M:
+			validateGuess('M');
+			break;
+		case KeyEvent.KEYCODE_N:
+			validateGuess('N');
+			break;
+		case KeyEvent.KEYCODE_O:
+			validateGuess('O');
+			break;
+		case KeyEvent.KEYCODE_P:
+			validateGuess('P');
+			break;
+		case KeyEvent.KEYCODE_Q:
+			validateGuess('Q');
+			break;
+		case KeyEvent.KEYCODE_R:
+			validateGuess('R');
+			break;
+		case KeyEvent.KEYCODE_S:
+			validateGuess('S');
+			break;
+		case KeyEvent.KEYCODE_T:
+			validateGuess('T');
+			break;
+		case KeyEvent.KEYCODE_U:
+			validateGuess('U');
+			break;
+		case KeyEvent.KEYCODE_V:
+			validateGuess('V');
+			break;
+		case KeyEvent.KEYCODE_W:
+			validateGuess('W');
+			break;
+		case KeyEvent.KEYCODE_X:
+			validateGuess('X');
+			break;
+		case KeyEvent.KEYCODE_Y:
+			validateGuess('Y');
+			break;
+		case KeyEvent.KEYCODE_Z:
+			validateGuess('Z');
+			break;
+//		case KeyEvent.KEYCODE_BACK:
+//			Log.d("WORDWISE","back button pressed");
+//			Toast msg = Toast.makeText(this, "BITCH DONT DEAR TO PRESS THAT BUTTON!", Toast.LENGTH_SHORT);
+//			msg.show();
+//			this.openTheSoftKeyboard();
+//			break;
+		default:
+			return super.onKeyDown(keyCode, event);
+		}
+		return true;
+	}
 
 	private void checkWin() {
 		if (mysteryWordTextView.getText().toString().indexOf("_ ") == DOESNT_EXIST) {
@@ -56,6 +160,9 @@ public class Hangman extends Activity implements Game {
 
 	private void checkLose() {
 		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
+			
+			this.closeTheSoftKeyboard();
+			
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_LONG);
 			msg.show();
@@ -192,14 +299,6 @@ public class Hangman extends Activity implements Game {
 	public void start() {
 		// TODO Auto-generated method stub
 		// TEST to see whether it is working
-		this.validateGuess('a');
-		this.validateGuess('a');
-		this.validateGuess('a');
-		this.validateGuess('A');
-		this.validateGuess('Z');
-		this.validateGuess('L');
-		this.validateGuess('C');
-		this.validateGuess('Y');
 	}
 
 	public void stop() {
