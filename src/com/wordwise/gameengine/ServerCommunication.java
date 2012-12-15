@@ -5,6 +5,7 @@ import java.util.List;
 import com.wordwise.gameengine.dto.DTOTranslationRating;
 import com.wordwise.gameengine.dto.DTOWord;
 import com.wordwise.gameengine.dto.DTOWordRating;
+import com.wordwise.server.model.Word;
 
 public interface ServerCommunication {
 
@@ -13,7 +14,7 @@ public interface ServerCommunication {
 	 *            word to be added
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWord(DTOWord word);
+	public boolean addWord(Word word);
 
 	/**
 	 * @param wordRating
