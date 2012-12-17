@@ -31,4 +31,16 @@
     <dimen name="button_shape_stroke_pressed">3dp</dimen>
     <dimen name="button_shape_stroke_focused">3dp</dimen>
     
+    <dimen name="word2translations_padding_main">10dip</dimen>
+    <dimen name="word2translations_button_margin_left">10dip</dimen>
+    <dimen name="word2translations_button_margin_right">10dip</dimen>
+    <dimen name="word2translations_button_margin_top">0dip</dimen>
+    <dimen name="word2translations_button_margin_bottom">20dip</dimen>
+    
+    <dimen name="button_text_padding_left">40dip</dimen>
+    <dimen name="button_text_padding_right">40dip</dimen>
+    <dimen name="button_text_padding_top">10dip</dimen>
+    <dimen name="button_text_padding_bottom">10dip</dimen>
+    
+    
 </resources>

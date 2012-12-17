@@ -16,14 +16,14 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" 
             android:text="@string/word2Translations_game_information"
-            android:padding="10dip"/>
+            android:padding="@dimen/word2translations_padding_main"/>
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dip" >
+            android:padding="@dimen/word2translations_padding_main">
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="10dip"
-                android:paddingTop="10dip"
+                android:paddingBottom="@dimen/word2translations_padding_main"
+                android:paddingTop="@dimen/word2translations_padding_main"
                 android:textAlignment="center" >
 
                 <TextView
@@ -65,8 +65,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="10dip"
-                android:paddingTop="10dip" >
+                android:paddingBottom="@dimen/word2translations_padding_main"
+                android:paddingTop="@dimen/word2translations_padding_main" >
 
                 <TextView
                     android:id="@+id/word2"
@@ -98,8 +98,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="10dip"
-                android:paddingTop="10dip" >
+                android:paddingBottom="@dimen/word2translations_padding_main"
+                android:paddingTop="@dimen/word2translations_padding_main" >
 
                 <TextView
                     android:id="@+id/word3"
@@ -131,8 +131,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="10dip"
-                android:paddingTop="10dip" >
+                android:paddingBottom="@dimen/word2translations_padding_main"
+                android:paddingTop="@dimen/word2translations_padding_main" >
 
                 <TextView
                     android:id="@+id/word4"
@@ -173,18 +173,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
+        android:layout_marginBottom="@dimen/word2translations_button_margin_bottom"
+        android:layout_marginLeft="@dimen/word2translations_button_margin_left"
+        android:layout_marginRight="@dimen/word2translations_button_margin_right"
         android:background="@drawable/wordwise_button"
         android:gravity="center"
         android:onClick="validate"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
+        android:paddingBottom="@dimen/button_text_padding_bottom"
+        android:paddingLeft="@dimen/button_text_padding_left"
+        android:paddingRight="@dimen/button_text_padding_right"
+        android:paddingTop="@dimen/button_text_padding_top"
         android:text="@string/check"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/wordwise_button_text_color"
         android:textStyle="bold" />
 
 </RelativeLayout>

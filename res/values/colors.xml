@@ -18,5 +18,7 @@
     <color name="wordwise_main_light_gray_highlighted_start">#80E0E0E0</color>
     <color name="wordwise_main_light_gray_highlighted_end">#80CCCCCC</color>
     <color name="wordwise_main_light_gray_highlighted_border">#DD989898</color>
+    
+    <color name="wordwise_button_text_color">#FFFFFF</color>
 
 </resources>

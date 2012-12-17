@@ -19,6 +19,7 @@ public final class R {
         public static final int black=0x7f060002;
         public static final int opaque_red=0x7f060000;
         public static final int translucent_red=0x7f060001;
+        public static final int wordwise_button_text_color=0x7f060010;
         public static final int wordwise_main_fail_red=0x7f06000c;
         public static final int wordwise_main_gray_border=0x7f060008;
         public static final int wordwise_main_gray_end=0x7f060007;
@@ -50,9 +51,18 @@ public final class R {
         public static final int button_shape_stroke_focused=0x7f070014;
         public static final int button_shape_stroke_main=0x7f070012;
         public static final int button_shape_stroke_pressed=0x7f070013;
+        public static final int button_text_padding_bottom=0x7f07001d;
+        public static final int button_text_padding_left=0x7f07001a;
+        public static final int button_text_padding_right=0x7f07001b;
+        public static final int button_text_padding_top=0x7f07001c;
         public static final int font_size_large=0x7f070002;
         public static final int font_size_medium=0x7f070001;
         public static final int font_size_small=0x7f070000;
+        public static final int word2translations_button_margin_bottom=0x7f070019;
+        public static final int word2translations_button_margin_left=0x7f070016;
+        public static final int word2translations_button_margin_right=0x7f070017;
+        public static final int word2translations_button_margin_top=0x7f070018;
+        public static final int word2translations_padding_main=0x7f070015;
         public static final int word2translations_translation_padding_bottom=0x7f07000c;
         public static final int word2translations_translation_padding_left=0x7f070009;
         public static final int word2translations_translation_padding_right=0x7f07000a;
