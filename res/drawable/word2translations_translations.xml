@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+    android:shape="rectangle" >
+
     <gradient
-        android:startColor="#FDF8F8FF"
+        android:angle="@integer/background_shape_gradient_angle_main"
         android:endColor="#FFF8F8FF"
-        android:angle="90"/>
-    <padding android:left="2dp"
-        android:top="7dp"
-        android:right="2dp"
-        android:bottom="7dp" />
-    <corners android:radius="3dp" />
-     <stroke
-                android:width="1dp"
-                android:color="#DDCCCCCC" />
+        android:startColor="#FDF8F8FF" />
+
+    <padding
+        android:bottom="@dimen/word2translations_translation_padding_bottom"
+        android:left="@dimen/word2translations_translation_padding_left"
+        android:right="@dimen/word2translations_translation_padding_right"
+        android:top="@dimen/word2translations_translation_padding_top" />
+
+    <corners android:radius="@dimen/background_shape_corner_radius" />
+
+    <stroke
+        android:width="@dimen/background_shape_stroke_main"
+        android:color="#DDCCCCCC" />
+
 </shape>

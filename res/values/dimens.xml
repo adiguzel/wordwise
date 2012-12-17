@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+    <dimen name="font_size_small">14sp</dimen>
+    <dimen name="font_size_medium">16sp</dimen>
+    <dimen name="font_size_large">18sp</dimen>
+    
+    <dimen name="background_shape_padding_left">7dp</dimen>
+    <dimen name="background_shape_padding_right">7dp</dimen>
+    <dimen name="background_shape_padding_top">7dp</dimen>
+    <dimen name="background_shape_padding_bottom">7dp</dimen>
+    
+    <dimen name="background_shape_corner_radius">3dp</dimen>
+    
+    <dimen name="background_shape_stroke_main">1dp</dimen>
+    
+    <dimen name="word2translations_translation_padding_left">2dp</dimen>
+    <dimen name="word2translations_translation_padding_right">2dp</dimen>
+    <dimen name="word2translations_translation_padding_top">7dp</dimen>
+    <dimen name="word2translations_translation_padding_bottom">7dp</dimen>
+    
+    <dimen name="button_shape_padding_left">10dp</dimen>
+    <dimen name="button_shape_padding_right">10dp</dimen>
+    <dimen name="button_shape_padding_top">10dp</dimen>
+    <dimen name="button_shape_padding_bottom">10dp</dimen>
+    
+    
+    <dimen name="button_shape_corner_radius">3dp</dimen>
+    
+    <dimen name="button_shape_stroke_main">3dp</dimen>
+    <dimen name="button_shape_stroke_pressed">3dp</dimen>
+    <dimen name="button_shape_stroke_focused">3dp</dimen>
+    
+</resources>

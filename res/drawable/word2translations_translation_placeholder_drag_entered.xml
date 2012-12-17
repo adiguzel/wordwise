@@ -4,10 +4,10 @@
     <gradient
         android:startColor="#DDCCCCCC"
         android:endColor="#FF999999"
-        android:angle="45"/>
-    <padding android:left="7dp"
-        android:top="7dp"
-        android:right="7dp"
-        android:bottom="7dp" />
-    <corners android:radius="3dp" />
+        android:angle="@integer/background_shape_gradient_angle_main"/>
+    <padding android:left="@dimen/background_shape_padding_left"
+        android:top="@dimen/background_shape_padding_top"
+        android:right="@dimen/background_shape_padding_right"
+        android:bottom="@dimen/background_shape_padding_bottom" />
+    <corners android:radius="@dimen/background_shape_corner_radius" />
 </shape>
