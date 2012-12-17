@@ -16,23 +16,38 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int black=0x7f060002;
+        public static final int light_blue=0x7f060004;
+        public static final int light_green=0x7f060003;
         public static final int opaque_red=0x7f060000;
         public static final int translucent_red=0x7f060001;
     }
     public static final class drawable {
-        public static final int hangman_img00=0x7f020000;
-        public static final int hangman_img01=0x7f020001;
-        public static final int hangman_img02=0x7f020002;
-        public static final int hangman_img03=0x7f020003;
-        public static final int hangman_img04=0x7f020004;
-        public static final int hangman_img05=0x7f020005;
-        public static final int hangman_img06=0x7f020006;
-        public static final int hangman_img07=0x7f020007;
-        public static final int hangman_img08=0x7f020008;
-        public static final int hangman_img09=0x7f020009;
-        public static final int ic_action_search=0x7f02000a;
-        public static final int ic_action_settings=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
+        public static final int back=0x7f020000;
+        public static final int hangman_img00=0x7f020001;
+        public static final int hangman_img01=0x7f020002;
+        public static final int hangman_img02=0x7f020003;
+        public static final int hangman_img03=0x7f020004;
+        public static final int hangman_img04=0x7f020005;
+        public static final int hangman_img05=0x7f020006;
+        public static final int hangman_img06=0x7f020007;
+        public static final int hangman_img07=0x7f020008;
+        public static final int hangman_img08=0x7f020009;
+        public static final int hangman_img09=0x7f02000a;
+        public static final int hangman_img1=0x7f02000b;
+        public static final int ic_action_search=0x7f02000c;
+        public static final int ic_action_settings=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int ic_navigation_accept_dark=0x7f02000f;
+        public static final int ic_navigation_accept_light=0x7f020010;
+        public static final int word2translations_translation_placeholder_drag_entered=0x7f020011;
+        public static final int word2translations_translation_placeholder_droppable=0x7f020012;
+        public static final int word2translations_translation_placeholder_initial=0x7f020013;
+        public static final int word2translations_translation_placeholder_match_failed=0x7f020014;
+        public static final int word2translations_translation_placeholder_match_success=0x7f020015;
+        public static final int word2translations_translations=0x7f020016;
+        public static final int word2translations_word=0x7f020017;
+        public static final int wordwise_button=0x7f020018;
     }
     public static final class id {
         public static final int ScrollView01=0x7f0a0000;
@@ -56,11 +71,22 @@ public final class R {
         public static final int howToPlayButton=0x7f0a000e;
         public static final int list=0x7f0a0009;
         public static final int mediumNewGameButton=0x7f0a0015;
-        public static final int menu_settings=0x7f0a001e;
+        public static final int menu_settings=0x7f0a0029;
         public static final int next=0x7f0a0007;
         public static final int numberOfSelectedLanguages=0x7f0a0008;
         public static final int ratings=0x7f0a0017;
         public static final int startContinueButton=0x7f0a000d;
+        public static final int translation1_placeholder=0x7f0a0020;
+        public static final int translation2_placeholder=0x7f0a0022;
+        public static final int translation3_placeholder=0x7f0a0024;
+        public static final int translation4_placeholder=0x7f0a0026;
+        public static final int translationsGrid=0x7f0a0027;
+        public static final int validateButton=0x7f0a0028;
+        public static final int word1=0x7f0a001f;
+        public static final int word2=0x7f0a0021;
+        public static final int word2TranslationGameLabel=0x7f0a001e;
+        public static final int word3=0x7f0a0023;
+        public static final int word4=0x7f0a0025;
         public static final int wordDifficultyRating=0x7f0a001c;
         public static final int wordDifficultyText=0x7f0a001b;
         public static final int wordQualityRating=0x7f0a001a;
@@ -77,6 +103,7 @@ public final class R {
         public static final int hangman=0x7f030006;
         public static final int new_game=0x7f030007;
         public static final int word_evaluation=0x7f030008;
+        public static final int words2translations=0x7f030009;
     }
     public static final class menu {
         public static final int activity_about_activity=0x7f090000;
@@ -87,6 +114,7 @@ public final class R {
         public static final int aboutButtonLabel=0x7f07001f;
         public static final int app_name=0x7f070000;
         public static final int back=0x7f070007;
+        public static final int check=0x7f070023;
         public static final int default_preferences_dialog_name=0x7f070011;
         public static final int descripion_image_main_menu=0x7f070016;
         public static final int done=0x7f07000a;
@@ -115,6 +143,7 @@ public final class R {
         public static final int title_preferences_learning_language=0x7f070014;
         public static final int title_preferences_proficient_languages=0x7f070012;
         public static final int title_preferences_summary_name=0x7f07000f;
+        public static final int word2Translations_game_information=0x7f070024;
         public static final int wordDifficultyText=0x7f07001d;
         public static final int wordQualityText=0x7f07001c;
         public static final int word_evaluation_provide_difficulty_rating_dialog=0x7f07001e;

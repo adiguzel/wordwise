@@ -28,6 +28,7 @@ public class WordEvaluation extends Activity implements Game {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.word_evaluation);
 
+
 		wordToEvaluateText = (TextView) findViewById(R.id.wordToEvaluate);
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
 		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
