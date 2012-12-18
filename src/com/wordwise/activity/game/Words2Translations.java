@@ -7,9 +7,10 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.View;
@@ -166,7 +167,9 @@ public class Words2Translations extends Activity implements Game {
 			textView.setText(mThumbIds[position]);
 			textView.setTag(textView.getText());
 			textView.setOnLongClickListener(new TranslationLongClickListener());
-			textView.setTextSize(18);
+			final Resources res = getResources();
+			final float scale = res.getDisplayMetrics().density;
+			textView.setTextSize(16);
 			//textView.setSingleLine(false);
 			textView.setGravity(Gravity.CENTER_VERTICAL
 					| Gravity.CENTER_HORIZONTAL);

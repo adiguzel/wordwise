@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/word2translations_padding_main"
             android:text="@string/word2Translations_game_information"
-            android:textSize="@dimen/text_size_medium" />
+            android:textSize="@dimen/text_size_small" />
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,7 +42,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_small" />
             </LinearLayout>
 
             <View
@@ -75,7 +75,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_small" />
             </LinearLayout>
 
             <View
@@ -108,7 +108,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_small" />
             </LinearLayout>
 
             <View
@@ -141,7 +141,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -151,7 +151,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_small" />
             </LinearLayout>
         </LinearLayout>
 
@@ -162,7 +162,7 @@
             android:horizontalSpacing="10dip"
             android:numColumns="auto_fit"
             android:padding="10dip"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="@dimen/text_size_small"
             android:verticalSpacing="3dip" >
         </GridView>
     </LinearLayout>
