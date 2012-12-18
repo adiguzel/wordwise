@@ -14,16 +14,16 @@
             android:id="@+id/word2TranslationGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:padding="@dimen/word2translations_padding_main"
             android:text="@string/word2Translations_game_information"
-            android:padding="@dimen/word2translations_padding_main"/>
+            android:textSize="@dimen/text_size_medium" />
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/word2translations_padding_main">
+            android:padding="@dimen/word2translations_padding_main" >
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,7 +42,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="@dimen/text_size_medium" />
             </LinearLayout>
 
             <View
@@ -75,7 +75,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="@dimen/text_size_medium" />
             </LinearLayout>
 
             <View
@@ -108,7 +108,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="@dimen/text_size_medium" />
             </LinearLayout>
 
             <View
@@ -141,7 +141,7 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
 
                 <TextView
@@ -151,7 +151,7 @@
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textSize="@dimen/text_size_medium" />
             </LinearLayout>
         </LinearLayout>
 
@@ -162,29 +162,22 @@
             android:horizontalSpacing="10dip"
             android:numColumns="auto_fit"
             android:padding="10dip"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/text_size_medium"
             android:verticalSpacing="3dip" >
         </GridView>
     </LinearLayout>
 
     <Button
         android:id="@+id/validateButton"
-        android:layout_width="fill_parent"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/word2translations_button_margin_bottom"
         android:layout_marginLeft="@dimen/word2translations_button_margin_left"
         android:layout_marginRight="@dimen/word2translations_button_margin_right"
-        android:background="@drawable/wordwise_button"
-        android:gravity="center"
         android:onClick="validate"
-        android:paddingBottom="@dimen/button_text_padding_bottom"
-        android:paddingLeft="@dimen/button_text_padding_left"
-        android:paddingRight="@dimen/button_text_padding_right"
-        android:paddingTop="@dimen/button_text_padding_top"
-        android:text="@string/check"
-        android:textColor="@color/wordwise_button_text_color"
-        android:textStyle="bold" />
+        android:text="@string/check" />
 
 </RelativeLayout>

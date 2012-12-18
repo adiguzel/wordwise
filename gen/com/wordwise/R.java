@@ -55,9 +55,9 @@ public final class R {
         public static final int button_text_padding_left=0x7f07001a;
         public static final int button_text_padding_right=0x7f07001b;
         public static final int button_text_padding_top=0x7f07001c;
-        public static final int font_size_large=0x7f070002;
-        public static final int font_size_medium=0x7f070001;
-        public static final int font_size_small=0x7f070000;
+        public static final int text_size_large=0x7f070002;
+        public static final int text_size_medium=0x7f070001;
+        public static final int text_size_small=0x7f070000;
         public static final int word2translations_button_margin_bottom=0x7f070019;
         public static final int word2translations_button_margin_left=0x7f070016;
         public static final int word2translations_button_margin_right=0x7f070017;
@@ -214,6 +214,7 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppTheme=0x7f0a0000;
+        public static final int wordwiseButtonStyle=0x7f0a0001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;
