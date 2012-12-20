@@ -5,12 +5,12 @@
     <item android:state_pressed="true" >
         <shape>
             <gradient
-                android:startColor="@color/wordwise_main_green_start"
-                android:endColor="@color/wordwise_main_green_start"
+                android:startColor="@color/wordwise_main_green_pressed_start"
+                android:endColor="@color/wordwise_main_green_pressed_end"
                 android:angle="@integer/button_shape_gradient_angle_pressed"  />
             <stroke
                 android:width="@dimen/button_shape_stroke_pressed"
-                android:color="@color/wordwise_main_green_start" />
+                android:color="@color/wordwise_main_green_pressed_border" />
             <corners
                 android:radius="@dimen/button_shape_corner_radius" />
             <padding
@@ -24,12 +24,12 @@
     <item android:state_focused="true" >
         <shape>
             <gradient
-                android:endColor="@color/wordwise_main_green_start"
-                android:startColor="@color/wordwise_main_green_start"
+                android:endColor="@color/wordwise_main_green_focused_start"
+                android:startColor="@color/wordwise_main_green_focused_end"
                 android:angle="@integer/button_shape_gradient_angle_focused"  />
             <stroke
                 android:width="@dimen/button_shape_stroke_focused"
-                android:color="@color/wordwise_main_green_start" />
+                android:color="@color/wordwise_main_green_focused_border" />
             <corners
                 android:radius="@dimen/button_shape_corner_radius" />
             <padding

@@ -5,9 +5,21 @@
     <color name="translucent_red">#80ff0000</color>
     <color name="black">#000000</color>
     <!-- Wordwise commons -->
-    <color name="wordwise_main_green_start">#FF66A335</color>
-    <color name="wordwise_main_green_end">#DD66A335</color>
-    <color name="wordwise_main_green_border">#FF7FC348</color>
+    <color name="divider_color">#FFCCCCCC<!--  #FF7FC348--></color>
+    
+    <color name="wordwise_main_green_start">#FF669900</color>
+    <color name="wordwise_main_green_end">#CC669900</color>
+    <color name="wordwise_main_green_border">#FFCCCCCC<!--  #FF7FC348--></color>
+    
+    
+    <color name="wordwise_main_green_pressed_start">#AA222222</color>
+    <color name="wordwise_main_green_pressed_end">#CC669900</color>
+    <color name="wordwise_main_green_pressed_border">#FFCCCCCC<!--  #FF7FC348--></color>
+    
+    <color name="wordwise_main_green_focused_start">#FF669900</color>
+    <color name="wordwise_main_green_focused_end">#CC669900</color>
+    <color name="wordwise_main_green_focused_border">#FFCCCCCC<!--  #FF7FC348--></color>
+    
     <color name="wordwise_main_gray_start">#DDD0D0D0</color>
     <color name="wordwise_main_gray_end">#FFE0E0E0</color>
     <color name="wordwise_main_gray_border">#DDC8C8C8</color>
@@ -20,5 +32,16 @@
     <color name="wordwise_main_light_gray_highlighted_border">#DD989898</color>
     
     <color name="wordwise_button_text_color">#FFFFFF</color>
-
+	<color name="light_button_shape_text_color">#000000</color>
+	<color name="light_button_shape_start">#FFFFFFFF</color>
+	<color name="light_button_shape_end">#DDFFFFFF</color>
+	<color name="light_button_shape_border">#FFCCCCCC</color>
+	
+	<color name="light_button_shape_pressed_start">#FF177BBD</color>
+	<color name="light_button_shape_pressed_end">#FF177BBD</color>
+	<color name="light_button_shape_pressed_border">#FF277BBD</color>
+	
+	<color name="light_button_shape_focused_start">#FF177BBD</color>
+	<color name="light_button_shape_focused_end">#FF177BBD</color>
+	<color name="light_button_shape_focused_border">#FF277BBD</color>
 </resources>

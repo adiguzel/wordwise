@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:padding="@dimen/word2translations_padding_main" >
+
+    <include android:id="@+id/topBar" layout="@layout/game_top_bar"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/hangman_main_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_below="@id/topBar"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/word2translations_padding_main"
+        android:paddingTop="@dimen/word2translations_padding_main" >
 
         <TextView
             android:id="@+id/word2TranslationGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/word2translations_padding_main"
             android:text="@string/word2Translations_game_information"
             android:textSize="@dimen/text_size_small" />
 
@@ -23,7 +28,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/word2translations_padding_main" >
+            android:paddingBottom="@dimen/word2translations_padding_main"
+            android:paddingTop="@dimen/word2translations_padding_main" >
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,15 +37,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_padding_main"
-                android:paddingTop="@dimen/word2translations_padding_main"
+                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                android:paddingTop="@dimen/word2translations_word_margin_top"
                 android:textAlignment="center" >
 
                 <TextView
                     android:id="@+id/word1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dip"
+                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_small"
@@ -49,6 +55,7 @@
                     android:id="@+id/translation1_placeholder"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
@@ -58,21 +65,21 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/divider_color" />
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_padding_main"
-                android:paddingTop="@dimen/word2translations_padding_main" >
+                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                android:paddingTop="@dimen/word2translations_word_margin_top" >
 
                 <TextView
                     android:id="@+id/word2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dip"
+                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_small"
@@ -82,6 +89,7 @@
                     android:id="@+id/translation2_placeholder"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
@@ -91,21 +99,21 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/divider_color" />
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_padding_main"
-                android:paddingTop="@dimen/word2translations_padding_main" >
+                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                android:paddingTop="@dimen/word2translations_word_margin_top" >
 
                 <TextView
                     android:id="@+id/word3"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dip"
+                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_small"
@@ -115,6 +123,7 @@
                     android:id="@+id/translation3_placeholder"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
@@ -124,21 +133,21 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/divider_color" />
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_padding_main"
-                android:paddingTop="@dimen/word2translations_padding_main" >
+                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                android:paddingTop="@dimen/word2translations_word_margin_top" >
 
                 <TextView
                     android:id="@+id/word4"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dip"
+                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_small"
@@ -148,6 +157,7 @@
                     android:id="@+id/translation4_placeholder"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
                     android:layout_weight="0.5"
                     android:background="@drawable/word2translations_translation_placeholder_initial"
                     android:gravity="center"
@@ -159,11 +169,10 @@
             android:id="@+id/translationsGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:horizontalSpacing="10dip"
+            android:horizontalSpacing="@dimen/word2translations_translations_grid_horizontal_spacing"
             android:numColumns="auto_fit"
-            android:padding="10dip"
             android:textSize="@dimen/text_size_small"
-            android:verticalSpacing="3dip" >
+            android:verticalSpacing="@dimen/word2translations_translations_grid_vertical_spacing" >
         </GridView>
     </LinearLayout>
 
@@ -174,9 +183,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/word2translations_button_margin_bottom"
-        android:layout_marginLeft="@dimen/word2translations_button_margin_left"
-        android:layout_marginRight="@dimen/word2translations_button_margin_right"
         android:onClick="validate"
         android:text="@string/check" />
 

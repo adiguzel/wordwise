@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.View;
@@ -102,35 +101,42 @@ public class Words2Translations extends Activity implements Game {
 			v.setOnDragListener(new TranslationDragAdapter());
 		}
 	}
-	
-	//called when validate button is pressed
-	//validates the drag & drop answers and
-	//highlights right and wrong answers
-	public void validate(View v){
-		//TODO use real translation of a word instead of this
-		//DUMMY LIST FOR VERIFICATION
+	//called by quit button to quit the game
+	public void quit(View v) {
+		
+	}
+
+	// called when validate button is pressed
+	// validates the drag & drop answers and
+	// highlights right and wrong answers
+	public void validate(View v) {
+		// TODO use real translation of a word instead of this
+		// DUMMY LIST FOR VERIFICATION
 		List<String> translations = new ArrayList<String>();
 		translations.add("Komputer");
 		translations.add("besuchen");
 		translations.add("Schnee");
 		translations.add("rauchen");
-		
+
 		for (int i = 0; i < words.size(); i++) {
 			TextView t = translationPlaceHolders.get(i);
 			String trans = translations.get(i);
-			
-			if(((String)t.getText()).equals(trans) ){
-				t.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.word2translations_translation_placeholder_match_success));
+
+			if (((String) t.getText()).equals(trans)) {
+				t.setBackgroundDrawable(getResources()
+						.getDrawable(
+								R.drawable.word2translations_translation_placeholder_match_success));
+			} else {
+				t.setBackgroundDrawable(getResources()
+						.getDrawable(
+								R.drawable.word2translations_translation_placeholder_match_failed));
 			}
-			else{
-				t.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.word2translations_translation_placeholder_match_failed));
-			}	
-			/*v.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.word2translations_word));*/
+			/*
+			 * v.setBackgroundDrawable(getResources().getDrawable(
+			 * R.drawable.word2translations_word));
+			 */
 		}
-		
+
 	}
 
 	// TODO use real translations of the words that we got from the server
@@ -170,7 +176,7 @@ public class Words2Translations extends Activity implements Game {
 			final Resources res = getResources();
 			final float scale = res.getDisplayMetrics().density;
 			textView.setTextSize(16);
-			//textView.setSingleLine(false);
+			// textView.setSingleLine(false);
 			textView.setGravity(Gravity.CENTER_VERTICAL
 					| Gravity.CENTER_HORIZONTAL);
 			// we are using the deprecated method instead of setBackground

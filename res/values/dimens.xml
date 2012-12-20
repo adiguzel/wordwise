@@ -10,6 +10,11 @@
     <dimen name="background_shape_padding_top">7dp</dimen>
     <dimen name="background_shape_padding_bottom">7dp</dimen>
     
+    <dimen name="slim_shape_padding_left">3dp</dimen>
+    <dimen name="slim_shape_padding_right">3dp</dimen>
+    <dimen name="slim_shape_padding_top">3dp</dimen>
+    <dimen name="slim_shape_padding_bottom">3dp</dimen>
+    
     <dimen name="background_shape_corner_radius">3dp</dimen>
     
     <dimen name="background_shape_stroke_main">1dp</dimen>
@@ -27,9 +32,9 @@
     
     <dimen name="button_shape_corner_radius">3dp</dimen>
     
-    <dimen name="button_shape_stroke_main">3dp</dimen>
-    <dimen name="button_shape_stroke_pressed">3dp</dimen>
-    <dimen name="button_shape_stroke_focused">3dp</dimen>
+    <dimen name="button_shape_stroke_main">1dp</dimen>
+    <dimen name="button_shape_stroke_pressed">2dp</dimen>
+    <dimen name="button_shape_stroke_focused">2dp</dimen>
     
     <dimen name="word2translations_padding_main">10dip</dimen>
     <dimen name="word2translations_button_margin_left">10dip</dimen>
@@ -37,10 +42,19 @@
     <dimen name="word2translations_button_margin_top">0dip</dimen>
     <dimen name="word2translations_button_margin_bottom">20dip</dimen>
     
+    <dimen name="word2translations_word_margin_top">3dip</dimen>
+    <dimen name="word2translations_word_margin_bottom">3dip</dimen>
+    <dimen name="word2translations_word_margin_row">5dip</dimen>
+    
+    <dimen name="word2translations_translations_grid_horizontal_spacing">10dip</dimen>
+    <dimen name="word2translations_translations_grid_vertical_spacing">4dip</dimen>
+      
     <dimen name="button_text_padding_left">40dip</dimen>
     <dimen name="button_text_padding_right">40dip</dimen>
     <dimen name="button_text_padding_top">10dip</dimen>
     <dimen name="button_text_padding_bottom">10dip</dimen>
+    
+    
     
     
 </resources>

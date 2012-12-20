@@ -4,8 +4,8 @@
 
     <gradient
         android:angle="@integer/background_shape_gradient_angle_main"
-        android:endColor="#FFF8F8FF"
-        android:startColor="#FDF8F8FF" />
+        android:endColor="#FFFFFFFF"
+        android:startColor="#DDFFFFFF" />
 
     <padding
         android:bottom="@dimen/word2translations_translation_padding_bottom"
