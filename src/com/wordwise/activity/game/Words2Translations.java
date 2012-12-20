@@ -30,6 +30,9 @@ public class Words2Translations extends Activity implements Game {
 	private Map<String, TextView> idToTranslationView = new HashMap<String, TextView>();
 	private int droppedCount = 0;
 	private Button validateButton;
+	// used for the workaround for the initial translation view not being reset
+	// to visible
+	private View firstTranslation = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class Words2Translations extends Activity implements Game {
 	}
 
 	public void init() {
-		validateButton = (Button)findViewById(R.id.validateButton);
+		validateButton = (Button) findViewById(R.id.validateButton);
 		initTranslationPlaceHolders();
 		initWords();
 		initTranslationsGrid();
@@ -112,13 +115,19 @@ public class Words2Translations extends Activity implements Game {
 					// TODO Auto-generated method stub
 					String tag = (String) v.getTag();
 					if (!tag.isEmpty()) {
-						View translationView = idToTranslationView.get(tag);
-						translationView.setVisibility(View.VISIBLE);
-						translationView.invalidate();
-						((TextView) v).setText("");
-						((TextView) v).setTag("");
-						droppedCount--;
-						validateButton.setEnabled(false);
+						TextView translationView = idToTranslationView.get(tag);
+						if (translationView != null) {
+							translationView.setVisibility(View.VISIBLE);
+							((TextView) v).setText("");
+							((TextView) v).setTag("");
+							droppedCount--;
+							validateButton.setEnabled(false);
+							if (tag.equals((String) firstTranslation.getTag())) {
+								// firstTranslation = dragged;
+								dragged.setVisibility(View.VISIBLE);
+							}
+						}
+
 					}
 				}
 			});
@@ -207,6 +216,9 @@ public class Words2Translations extends Activity implements Game {
 			// because it is introduced in API level 16
 			textView.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.word2translations_translations));
+			if (position == 0) {
+				firstTranslation = textView;
+			}
 			return textView;
 		}
 
@@ -296,7 +308,7 @@ public class Words2Translations extends Activity implements Game {
 				dragged.setVisibility(View.INVISIBLE);
 				dragged.invalidate();
 				droppedCount++;
-				if(droppedCount == words.size()){
+				if (droppedCount == words.size()) {
 					validateButton.setEnabled(true);
 				}
 				// Returns true. DragEvent.getResult() will return true.
