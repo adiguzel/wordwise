@@ -3,7 +3,6 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -31,21 +30,18 @@ public class Hangman extends Activity implements Game {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hangman);
-
 		this.init();
-
 		this.start();
-
 	}
 	
 	public void onStop() {
 		super.onStop();
-		this.closeTheSoftKeyboard();
+		stop();
 	}
 	
 	public void onDestroy() {
 		super.onDestroy();
-		this.closeTheSoftKeyboard();
+		stop();
 	}
 
 	// TODO Implement method to read the mysteryWord from the server
@@ -302,17 +298,14 @@ public class Hangman extends Activity implements Game {
 	}
 
 	public void stop() {
-		// TODO Auto-generated method stub
-
+		this.closeTheSoftKeyboard();
 	}
 
 	public void pause() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void init() {
-		// TODO Auto-generated method stub
 		// Initializes the screen
 		this.linkTheViews();
 		this.initTheHangmanImage();
