@@ -36,6 +36,7 @@ public class Hangman extends Activity implements Game {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().hide();
 		setContentView(R.layout.hangman);
 		this.init();
 		this.start();
