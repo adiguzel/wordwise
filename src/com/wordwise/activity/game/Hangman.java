@@ -3,7 +3,9 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,12 +35,12 @@ public class Hangman extends Activity implements Game {
 		this.init();
 		this.start();
 	}
-	
+
 	public void onStop() {
 		super.onStop();
 		stop();
 	}
-	
+
 	public void onDestroy() {
 		super.onDestroy();
 		stop();
@@ -48,8 +50,6 @@ public class Hangman extends Activity implements Game {
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
 	// TODO try to display the keyboard on display touch
-	
-
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
@@ -131,12 +131,13 @@ public class Hangman extends Activity implements Game {
 		case KeyEvent.KEYCODE_Z:
 			validateGuess('Z');
 			break;
-//		case KeyEvent.KEYCODE_BACK:
-//			Log.d("WORDWISE","back button pressed");
-//			Toast msg = Toast.makeText(this, "BITCH DONT DEAR TO PRESS THAT BUTTON!", Toast.LENGTH_SHORT);
-//			msg.show();
-//			this.openTheSoftKeyboard();
-//			break;
+		// case KeyEvent.KEYCODE_BACK:
+		// Log.d("WORDWISE","back button pressed");
+		// Toast msg = Toast.makeText(this,
+		// "BITCH DONT DEAR TO PRESS THAT BUTTON!", Toast.LENGTH_SHORT);
+		// msg.show();
+		// this.openTheSoftKeyboard();
+		// break;
 		default:
 			return super.onKeyDown(keyCode, event);
 		}
@@ -156,9 +157,9 @@ public class Hangman extends Activity implements Game {
 
 	private void checkLose() {
 		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
-			
+
 			this.closeTheSoftKeyboard();
-			
+
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_LONG);
 			msg.show();
@@ -201,7 +202,6 @@ public class Hangman extends Activity implements Game {
 		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
 				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
 						InputMethodManager.HIDE_IMPLICIT_ONLY);
-
 	}
 
 	private void closeTheSoftKeyboard() {
@@ -290,6 +290,11 @@ public class Hangman extends Activity implements Game {
 
 	private void initMysteriousWord() {
 		mysteryWordTextView.setText(underscoreTheMysteryWord(mysteryWord));
+		mysteryWordTextView.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				openTheSoftKeyboard();
+			}
+		});
 	}
 
 	public void start() {
