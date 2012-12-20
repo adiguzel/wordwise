@@ -325,5 +325,10 @@ public class Hangman extends Activity implements Game {
 		this.initMysteriousWord();
 		this.openTheSoftKeyboard();
 	}
+	
+	// called by quit button to quit the game
+	public void quit(View v) {
+		//TODO implement
+	}
 
 }
