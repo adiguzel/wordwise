@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/word2translations_padding_main" >
+
+    <include
+        android:id="@+id/topBar"
+        layout="@layout/game_top_bar" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/hangman_main_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/word2translations_padding_main"
+        android:paddingTop="@dimen/word2translations_padding_main" >
+
+        <TextView
+            android:id="@+id/word2TranslationGameLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/memory_game_information"
+            android:textSize="@dimen/text_size_small" />
+
+        <GridView
+            android:id="@+id/memoryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="@dimen/word2translations_translations_grid_horizontal_spacing"
+            android:numColumns="3"
+            android:paddingBottom="@dimen/word2translations_padding_main"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:textSize="@dimen/text_size_small"
+            android:verticalSpacing="@dimen/word2translations_translations_grid_vertical_spacing" >
+        </GridView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:enabled="false"
+        android:onClick="finishGame"
+        android:text="@string/continueLabel" />
+
+</RelativeLayout>
