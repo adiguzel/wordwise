@@ -3,6 +3,7 @@ package com.wordwise.activity.game;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,6 +28,10 @@ public class Hangman extends Activity implements Game {
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
+	//TODO use it to get the char from the keyCode
+	//charMap.getDisplayLabel(keyCode);
+	private KeyCharacterMap charMap = KeyCharacterMap.load(KeyCharacterMap.VIRTUAL_KEYBOARD);
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class Hangman extends Activity implements Game {
 	// TODO try to display the keyboard on display touch
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Log.v("Hangman", "KEY : " + keyCode);
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_A:
 			validateGuess('A');
