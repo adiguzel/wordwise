@@ -142,8 +142,9 @@ public final class R {
         public static final int buttons=0x7f0c000a;
         public static final int cbPicView=0x7f0c0003;
         public static final int checkList=0x7f0c0006;
-        public static final int done=0x7f0c0020;
-        public static final int easyNewGameButton=0x7f0c0017;
+        public static final int continueButton=0x7f0c0019;
+        public static final int done=0x7f0c0023;
+        public static final int easyNewGameButton=0x7f0c001a;
         public static final int exitButton=0x7f0c0005;
         public static final int finish=0x7f0c000c;
         public static final int hangman_img=0x7f0c0014;
@@ -151,35 +152,36 @@ public final class R {
         public static final int hangman_mystery_word=0x7f0c0016;
         public static final int hangman_upper_horisontal=0x7f0c0013;
         public static final int hangman_wrong_letters=0x7f0c0015;
-        public static final int hardNewGameButton=0x7f0c0019;
+        public static final int hardNewGameButton=0x7f0c001c;
         public static final int howToPlay=0x7f0c0002;
         public static final int howToPlayButton=0x7f0c000e;
         public static final int list=0x7f0c0009;
-        public static final int mediumNewGameButton=0x7f0c0018;
-        public static final int menu_settings=0x7f0c002c;
+        public static final int mediumNewGameButton=0x7f0c001b;
+        public static final int memoryGrid=0x7f0c0018;
+        public static final int menu_settings=0x7f0c002e;
         public static final int next=0x7f0c0007;
         public static final int numberOfSelectedLanguages=0x7f0c0008;
         public static final int quit=0x7f0c0010;
-        public static final int ratings=0x7f0c001a;
+        public static final int ratings=0x7f0c001d;
         public static final int startContinueButton=0x7f0c000d;
         public static final int topBar=0x7f0c0011;
         public static final int topPanel=0x7f0c000f;
-        public static final int translation1_placeholder=0x7f0c0023;
-        public static final int translation2_placeholder=0x7f0c0025;
-        public static final int translation3_placeholder=0x7f0c0027;
-        public static final int translation4_placeholder=0x7f0c0029;
-        public static final int translationsGrid=0x7f0c002a;
-        public static final int validateButton=0x7f0c002b;
-        public static final int word1=0x7f0c0022;
-        public static final int word2=0x7f0c0024;
-        public static final int word2TranslationGameLabel=0x7f0c0021;
-        public static final int word3=0x7f0c0026;
-        public static final int word4=0x7f0c0028;
-        public static final int wordDifficultyRating=0x7f0c001f;
-        public static final int wordDifficultyText=0x7f0c001e;
-        public static final int wordQualityRating=0x7f0c001d;
-        public static final int wordQualityText=0x7f0c001c;
-        public static final int wordToEvaluate=0x7f0c001b;
+        public static final int translation1_placeholder=0x7f0c0025;
+        public static final int translation2_placeholder=0x7f0c0027;
+        public static final int translation3_placeholder=0x7f0c0029;
+        public static final int translation4_placeholder=0x7f0c002b;
+        public static final int translationsGrid=0x7f0c002c;
+        public static final int validateButton=0x7f0c002d;
+        public static final int word1=0x7f0c0024;
+        public static final int word2=0x7f0c0026;
+        public static final int word2TranslationGameLabel=0x7f0c0017;
+        public static final int word3=0x7f0c0028;
+        public static final int word4=0x7f0c002a;
+        public static final int wordDifficultyRating=0x7f0c0022;
+        public static final int wordDifficultyText=0x7f0c0021;
+        public static final int wordQualityRating=0x7f0c0020;
+        public static final int wordQualityText=0x7f0c001f;
+        public static final int wordToEvaluate=0x7f0c001e;
     }
     public static final class integer {
         public static final int background_shape_gradient_angle_main=0x7f080003;
@@ -196,9 +198,10 @@ public final class R {
         public static final int game_main_screen=0x7f030005;
         public static final int game_top_bar=0x7f030006;
         public static final int hangman=0x7f030007;
-        public static final int new_game=0x7f030008;
-        public static final int word_evaluation=0x7f030009;
-        public static final int words2translations=0x7f03000a;
+        public static final int memory=0x7f030008;
+        public static final int new_game=0x7f030009;
+        public static final int word_evaluation=0x7f03000a;
+        public static final int words2translations=0x7f03000b;
     }
     public static final class menu {
         public static final int activity_about_activity=0x7f0b0000;
@@ -210,6 +213,7 @@ public final class R {
         public static final int app_name=0x7f090000;
         public static final int back=0x7f090007;
         public static final int check=0x7f090023;
+        public static final int continueLabel=0x7f090025;
         public static final int default_preferences_dialog_name=0x7f090011;
         public static final int descripion_image_main_menu=0x7f090016;
         public static final int done=0x7f09000a;
@@ -220,6 +224,7 @@ public final class R {
         public static final int hello_world=0x7f090001;
         public static final int how_to_play=0x7f090017;
         public static final int medium=0x7f09001a;
+        public static final int memory_game_information=0x7f090027;
         public static final int menu_settings=0x7f090002;
         public static final int message_preferences_dialog_name=0x7f090010;
         public static final int next=0x7f090008;
@@ -239,7 +244,7 @@ public final class R {
         public static final int title_preferences_learning_language=0x7f090014;
         public static final int title_preferences_proficient_languages=0x7f090012;
         public static final int title_preferences_summary_name=0x7f09000f;
-        public static final int word2Translations_game_information=0x7f090025;
+        public static final int word2Translations_game_information=0x7f090026;
         public static final int wordDifficultyText=0x7f09001d;
         public static final int wordQualityText=0x7f09001c;
         public static final int word_evaluation_provide_difficulty_rating_dialog=0x7f09001e;

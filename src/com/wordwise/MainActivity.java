@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.wordwise.activity.AboutActivity;
 import com.wordwise.activity.MenuActivity;
+import com.wordwise.activity.game.Memory;
 import com.wordwise.activity.game.WordEvaluation;
 import com.wordwise.activity.game.Words2Translations;
 import com.wordwise.activity.setting.ConfigurationWizardStep1;
@@ -51,7 +52,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void configure(){
-    	Intent intent = new Intent(this, Words2Translations.class);
+    	Intent intent = new Intent(this, Memory.class);
         startActivity(intent);
     }
 }
