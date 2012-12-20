@@ -184,6 +184,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:onClick="validate"
-        android:text="@string/check" />
+        android:text="@string/check" 
+        android:enabled="false"/>
 
 </RelativeLayout>

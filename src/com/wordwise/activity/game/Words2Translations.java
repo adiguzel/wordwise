@@ -1,13 +1,14 @@
 package com.wordwise.activity.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -15,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -24,6 +26,10 @@ import com.wordwise.gameengine.Game;
 public class Words2Translations extends Activity implements Game {
 	private List<TextView> translationPlaceHolders;
 	private List<TextView> words;
+	private View dragged = null;
+	private Map<String, TextView> idToTranslationView = new HashMap<String, TextView>();
+	private int droppedCount = 0;
+	private Button validateButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,6 @@ public class Words2Translations extends Activity implements Game {
 
 		this.init();
 		this.start();
-
 	}
 
 	public void start() {
@@ -51,6 +56,7 @@ public class Words2Translations extends Activity implements Game {
 	}
 
 	public void init() {
+		validateButton = (Button)findViewById(R.id.validateButton);
 		initTranslationPlaceHolders();
 		initWords();
 		initTranslationsGrid();
@@ -98,17 +104,36 @@ public class Words2Translations extends Activity implements Game {
 				.add((TextView) findViewById(R.id.translation4_placeholder));
 
 		for (TextView v : translationPlaceHolders) {
+			v.setTag("");
 			v.setOnDragListener(new TranslationDragAdapter());
+			v.setOnClickListener(new View.OnClickListener() {
+
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					String tag = (String) v.getTag();
+					if (!tag.isEmpty()) {
+						View translationView = idToTranslationView.get(tag);
+						translationView.setVisibility(View.VISIBLE);
+						translationView.invalidate();
+						((TextView) v).setText("");
+						((TextView) v).setTag("");
+						droppedCount--;
+						validateButton.setEnabled(false);
+					}
+				}
+			});
 		}
 	}
-	//called by quit button to quit the game
+
+	// called by quit button to quit the game
 	public void quit(View v) {
-		
+
 	}
 
 	// called when validate button is pressed
 	// validates the drag & drop answers and
 	// highlights right and wrong answers
+	@SuppressWarnings("deprecation")
 	public void validate(View v) {
 		// TODO use real translation of a word instead of this
 		// DUMMY LIST FOR VERIFICATION
@@ -171,10 +196,9 @@ public class Words2Translations extends Activity implements Game {
 			}
 
 			textView.setText(mThumbIds[position]);
+			idToTranslationView.put(mThumbIds[position], textView);
 			textView.setTag(textView.getText());
 			textView.setOnLongClickListener(new TranslationLongClickListener());
-			final Resources res = getResources();
-			final float scale = res.getDisplayMetrics().density;
 			textView.setTextSize(16);
 			// textView.setSingleLine(false);
 			textView.setGravity(Gravity.CENTER_VERTICAL
@@ -209,6 +233,7 @@ public class Words2Translations extends Activity implements Game {
 					null, // no need to use local data
 					0 // flags (not currently used, set to 0)
 			);
+			dragged = v;
 			return true;
 		}
 	}
@@ -265,8 +290,15 @@ public class Words2Translations extends Activity implements Game {
 				String dragData = (String) item.getText();
 				if (v instanceof TextView) {
 					((TextView) v).setText(dragData);
+					((TextView) v).setTag(dragData);
 				}
 				changeState(v, TRANSLATION_PLACEHOLDER_DRAGGED);
+				dragged.setVisibility(View.INVISIBLE);
+				dragged.invalidate();
+				droppedCount++;
+				if(droppedCount == words.size()){
+					validateButton.setEnabled(true);
+				}
 				// Returns true. DragEvent.getResult() will return true.
 				return (true);
 

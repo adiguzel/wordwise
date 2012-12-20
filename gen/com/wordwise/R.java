@@ -21,44 +21,49 @@ public final class R {
   #FF7FC348
          */
         public static final int divider_color=0x7f060003;
-        public static final int light_button_shape_border=0x7f06001b;
-        public static final int light_button_shape_end=0x7f06001a;
-        public static final int light_button_shape_focused_border=0x7f060021;
-        public static final int light_button_shape_focused_end=0x7f060020;
-        public static final int light_button_shape_focused_start=0x7f06001f;
-        public static final int light_button_shape_pressed_border=0x7f06001e;
-        public static final int light_button_shape_pressed_end=0x7f06001d;
-        public static final int light_button_shape_pressed_start=0x7f06001c;
-        public static final int light_button_shape_start=0x7f060019;
-        public static final int light_button_shape_text_color=0x7f060018;
+        public static final int light_button_shape_border=0x7f06001e;
+        public static final int light_button_shape_end=0x7f06001d;
+        public static final int light_button_shape_focused_border=0x7f060024;
+        public static final int light_button_shape_focused_end=0x7f060023;
+        public static final int light_button_shape_focused_start=0x7f060022;
+        public static final int light_button_shape_pressed_border=0x7f060021;
+        public static final int light_button_shape_pressed_end=0x7f060020;
+        public static final int light_button_shape_pressed_start=0x7f06001f;
+        public static final int light_button_shape_start=0x7f06001c;
+        public static final int light_button_shape_text_color=0x7f06001b;
         public static final int opaque_red=0x7f060000;
         public static final int translucent_red=0x7f060001;
-        public static final int wordwise_button_text_color=0x7f060017;
-        public static final int wordwise_main_fail_red=0x7f060013;
-        public static final int wordwise_main_gray_border=0x7f06000f;
-        public static final int wordwise_main_gray_end=0x7f06000e;
-        public static final int wordwise_main_gray_start=0x7f06000d;
+        public static final int wordwise_button_text_color=0x7f06001a;
+        public static final int wordwise_main_fail_red=0x7f060016;
+        public static final int wordwise_main_gray_border=0x7f060012;
+        public static final int wordwise_main_gray_end=0x7f060011;
+        public static final int wordwise_main_gray_start=0x7f060010;
         /**   #FF7FC348
          */
         public static final int wordwise_main_green_border=0x7f060006;
+        /**   #FF7FC348
+         */
+        public static final int wordwise_main_green_disabled_border=0x7f060009;
+        public static final int wordwise_main_green_disabled_end=0x7f060008;
+        public static final int wordwise_main_green_disabled_start=0x7f060007;
         public static final int wordwise_main_green_end=0x7f060005;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_focused_border=0x7f06000c;
-        public static final int wordwise_main_green_focused_end=0x7f06000b;
-        public static final int wordwise_main_green_focused_start=0x7f06000a;
+        public static final int wordwise_main_green_focused_border=0x7f06000f;
+        public static final int wordwise_main_green_focused_end=0x7f06000e;
+        public static final int wordwise_main_green_focused_start=0x7f06000d;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_pressed_border=0x7f060009;
-        public static final int wordwise_main_green_pressed_end=0x7f060008;
-        public static final int wordwise_main_green_pressed_start=0x7f060007;
+        public static final int wordwise_main_green_pressed_border=0x7f06000c;
+        public static final int wordwise_main_green_pressed_end=0x7f06000b;
+        public static final int wordwise_main_green_pressed_start=0x7f06000a;
         public static final int wordwise_main_green_start=0x7f060004;
-        public static final int wordwise_main_light_gray_border=0x7f060012;
-        public static final int wordwise_main_light_gray_end=0x7f060011;
-        public static final int wordwise_main_light_gray_highlighted_border=0x7f060016;
-        public static final int wordwise_main_light_gray_highlighted_end=0x7f060015;
-        public static final int wordwise_main_light_gray_highlighted_start=0x7f060014;
-        public static final int wordwise_main_light_gray_start=0x7f060010;
+        public static final int wordwise_main_light_gray_border=0x7f060015;
+        public static final int wordwise_main_light_gray_end=0x7f060014;
+        public static final int wordwise_main_light_gray_highlighted_border=0x7f060019;
+        public static final int wordwise_main_light_gray_highlighted_end=0x7f060018;
+        public static final int wordwise_main_light_gray_highlighted_start=0x7f060017;
+        public static final int wordwise_main_light_gray_start=0x7f060013;
     }
     public static final class dimen {
         public static final int background_shape_corner_radius=0x7f07000b;

@@ -15,20 +15,11 @@
     </style>
 
     <style name="wordwiseSmallButtonStyle">
-        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingLeft">@dimen/button_text_padding_left</item>
-        <item name="android:paddingRight">@dimen/button_text_padding_right</item>
-        <item name="android:paddingBottom">@dimen/button_text_padding_bottom</item>
-        <item name="android:paddingTop">@dimen/button_text_padding_top</item>
     </style>
 
-    <style name="wordwiseSmallLightButtonStyle">
+    <style name="wordwiseSmallLightButtonStyle" parent="wordwiseSmallButtonStyle">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:gravity">center</item>
-
         <item name="android:background">@drawable/light_button</item>
     </style>
 

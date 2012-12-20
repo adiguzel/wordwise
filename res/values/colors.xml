@@ -12,6 +12,10 @@
     <color name="wordwise_main_green_border">#FFCCCCCC<!--  #FF7FC348--></color>
     
     
+    <color name="wordwise_main_green_disabled_start">#88669900</color>
+    <color name="wordwise_main_green_disabled_end">#88669900</color>
+    <color name="wordwise_main_green_disabled_border">#88CCCCCC<!--  #FF7FC348--></color>
+    
     <color name="wordwise_main_green_pressed_start">#AA222222</color>
     <color name="wordwise_main_green_pressed_end">#CC669900</color>
     <color name="wordwise_main_green_pressed_border">#FFCCCCCC<!--  #FF7FC348--></color>
