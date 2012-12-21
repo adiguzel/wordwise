@@ -2,36 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="@dimen/word2translations_padding_main" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/word2TranslationGameLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/initial_conf_proficient_lang_info"
+            android:textSize="@dimen/text_size_large" 
+            android:paddingBottom="@dimen/word2translations_padding_main"/>
+
+        <TextView
+            android:id="@+id/numberOfSelectedLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numberOfSelectedLanguages"
+            android:textColor="@color/wordwise_main_gray_start" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
-        android:text="@string/next"
-        android:onClick="finishStep" />
-
-    <TextView
-        android:id="@+id/numberOfSelectedLanguages"
+        style="@style/wordwiseButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dip"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
-        android:paddingTop="10dip"
-        android:text="@string/numberOfSelectedLanguages" />
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberOfSelectedLanguages" 
-        android:layout_above="@+id/next"/>
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/content"
+        android:layout_gravity="center_horizontal"
+        android:enabled="false"
+        android:onClick="finishStep"
+        android:text="@string/next" />
 
 </RelativeLayout>

@@ -3,15 +3,14 @@ package com.wordwise.activity.setting;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +25,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	private TextView selectedLanguages;
 	private LanguageManager lManager = LanguageManager.getInstance();
 	private Configuration configuration = Configuration.getInstance();
+	private Button next;
 	/*private static final String[] LANGUAGES = new String[] { "English",
 			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
 			"Spanish" };*/
@@ -42,6 +42,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		setContentView(R.layout.configuration_step1);
 
 		list = (ListView) findViewById(R.id.list);
+		next = (Button) findViewById(R.id.next);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		selectedLanguagesText = selectedLanguages.getText().toString();
 		setSelectedLanguageCountText(0);
@@ -89,6 +90,11 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 			v.setChecked(true);
 			configuration.addLanguage(language);
 		}
+		if(configuration.getProficientLanguages()
+				.size() > 0)
+			next.setEnabled(true);
+		else 
+			next.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
 				.size());
 	}

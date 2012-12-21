@@ -53,7 +53,7 @@ public class MainActivity extends MenuActivity {
     }
     
     private void loadMainScreen(){
-    	Intent intent = new Intent(this, MainGameScreen.class);
+    	Intent intent = new Intent(this, Memory.class);
         startActivity(intent);
     }
 }
