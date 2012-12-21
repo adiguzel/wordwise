@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.wordwise.gameengine.Language;
+import com.wordwise.server.model.Language;
 
 public class LanguageManager {
 	static LanguageManager instance = null;
@@ -36,7 +36,7 @@ public class LanguageManager {
 	private Map<String, Language> tolangNameToLangMap() {
 		Map<String, Language> langMap = new HashMap<String, Language>();
 		for (Language l : languages) {
-			langMap.put(l.getName(), l);
+			langMap.put(l.getLanguage(), l);
 		}
 		return langMap;
 	}
@@ -70,7 +70,7 @@ public class LanguageManager {
 		List<String> langs = new ArrayList<String>();
 		String[] langNames = new String[1];
 		for (Language lang : languages)
-			langs.add(lang.getName());
+			langs.add(lang.getLanguage());
 
 		return langs.toArray(langNames);
 	}

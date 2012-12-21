@@ -11,14 +11,14 @@ import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.ServerCommunication;
-import com.wordwise.gameengine.dto.DTOWord;
+import com.wordwise.server.model.Word;
 
 public class WordEvaluation extends Activity implements Game {
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;
 	//word to evaluate
-	private DTOWord word;
+	private Word word;
 	private ServerCommunication wordServerComm;
 	private GameConfiguration gameConf;
 	
@@ -38,11 +38,11 @@ public class WordEvaluation extends Activity implements Game {
 			//TODO show that word could not be retrieved 
 		}
 		else{
-			wordToEvaluateText.setText(word.getText());
+			wordToEvaluateText.setText(word.getWord());
 		}
 	}
 	
-	public DTOWord retrieveWord(){
+	public Word retrieveWord(){
 		//TODO uncomment the implementation after having ServerComm implementation and game conf. object
 		/*List<DTOWord> words = wordServerComm.listWords(gameConf.getLearningLanguage(), gameConf.getDifficulty(), 1);
 		if(!words.isEmpty()){

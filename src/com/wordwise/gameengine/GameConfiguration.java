@@ -2,6 +2,8 @@ package com.wordwise.gameengine;
 
 import java.util.List;
 
+import com.wordwise.server.model.Language;
+
 
 public class GameConfiguration {
 	private int difficulty;

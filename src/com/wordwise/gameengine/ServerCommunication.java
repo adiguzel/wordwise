@@ -2,9 +2,8 @@ package com.wordwise.gameengine;
 
 import java.util.List;
 
-import com.wordwise.gameengine.dto.DTOTranslationRating;
-import com.wordwise.gameengine.dto.DTOWord;
-import com.wordwise.gameengine.dto.DTOWordRating;
+import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Word;
 
 public interface ServerCommunication {
@@ -22,7 +21,7 @@ public interface ServerCommunication {
 	 *            ratings for it
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateWord(DTOWordRating wordRating);
+	public boolean rateWord(Rate wordRating);
 
 	/**
 	 * @param word
@@ -32,8 +31,8 @@ public interface ServerCommunication {
 	 *            rating for it
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateTranslations(DTOWord word,
-			List<DTOTranslationRating> translationRatings);
+	public boolean rateTranslations(Word word,
+			List<Rate> translationRatings);
 
 	/**
 	 * @param lang
@@ -42,7 +41,7 @@ public interface ServerCommunication {
 	 *            difficulty expected difficulty of the words
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(Language lang, int difficulty);
+	public List<Word> listWords(Language lang, int difficulty);
 
 	/**
 	 * Retrieves all specified number of words in a given language and for a
@@ -56,7 +55,7 @@ public interface ServerCommunication {
 	 *            number of words that are to be listed
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(Language lang, int difficulty, int number);
+	public List<Word> listWords(Language lang, int difficulty, int number);
 
 	/**
 	 * Retrieves all the words for a given language
@@ -65,6 +64,6 @@ public interface ServerCommunication {
 	 *            language code of the desired words
 	 * @return list of words and its high quality translations
 	 */
-	public List<DTOWord> listWords(Language lang);
+	public List<Word> listWords(Language lang);
 
 }
