@@ -12,5 +12,4 @@ public class WordwiseGameManager extends GameManager{
 		super(gameSelector);
 		this.context = context;
 	}
-
 }

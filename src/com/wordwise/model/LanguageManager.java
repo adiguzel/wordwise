@@ -10,22 +10,22 @@ import com.wordwise.gameengine.Language;
 public class LanguageManager {
 	static LanguageManager instance = null;
 	private List<Language> languages;
-	private Map<String, Language> languageCodeToIndexMap;
-	private Map<String, Language> languageNameToIndexMap;
+	private Map<String, Language> langCodeToLangMap;
+	private Map<String, Language> langNameToLangMap;
 
 	public static LanguageManager getInstance() {
 		if (instance == null)
-			return new LanguageManager();
+			instance = new LanguageManager();
 		return instance;
 	}
 
 	private LanguageManager() {
 		languages = readLanguagesFromFile();
-		languageCodeToIndexMap = toLanguageCodeToIndexMap();
-		languageNameToIndexMap = toLanguageNameToIndexMap();
+		langCodeToLangMap = tolangCodeToLangMap();
+		langNameToLangMap = tolangNameToLangMap();
 	}
 
-	private Map<String, Language> toLanguageCodeToIndexMap() {
+	private Map<String, Language> tolangCodeToLangMap() {
 		Map<String, Language> langMap = new HashMap<String, Language>();
 		for (Language l : languages) {
 			langMap.put(l.getCode(), l);
@@ -33,7 +33,7 @@ public class LanguageManager {
 		return langMap;
 	}
 	
-	private Map<String, Language> toLanguageNameToIndexMap() {
+	private Map<String, Language> tolangNameToLangMap() {
 		Map<String, Language> langMap = new HashMap<String, Language>();
 		for (Language l : languages) {
 			langMap.put(l.getName(), l);
@@ -84,7 +84,7 @@ public class LanguageManager {
 	}
 
 	public Integer langCodeToIndex(String code){
-		Language l = languageCodeToIndexMap.get(code);
+		Language l = langCodeToLangMap.get(code);
 		return languages.indexOf(l);
 	}
 
@@ -92,13 +92,13 @@ public class LanguageManager {
 	 * Returns the language instance with the given language code
 	 */
 	public Language fromCode(String code) {
-		return languageCodeToIndexMap.get(code);
+		return langCodeToLangMap.get(code);
 	}
 
 	/*
 	 * Returns the language instance with the given language name
 	 */
 	public Language fromName(String name) {
-		return languageNameToIndexMap.get(name);
+		return langNameToLangMap.get(name);
 	}
 }

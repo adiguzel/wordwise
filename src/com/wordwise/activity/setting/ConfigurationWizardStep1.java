@@ -74,19 +74,8 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	}
 
 	public void finishStep(View view) {
-		/*
-		 * Log.i("listview", "" + list.getChildCount()); for (int i = 0; i <
-		 * list.getChildCount(); i++) { View view = list.getChildAt(i);
-		 * CheckedTextView cv = (CheckedTextView) view
-		 * .findViewById(R.id.checkList); if (cv.isChecked()) {
-		 * Log.i("listview", cv.getText().toString()); } }
-		 */
 		//TODO Check if at least one lang is selected
 		
-		//Save changes
-		SharedPreferences SP = getPreferences(Context.MODE_PRIVATE);
-		System.out.println("AL BAKALIM>>> " + SP.getAll().toString());
-		configuration.saveProficientLanguages();
 		Intent intent = new Intent(this, ConfigurationWizardStep2.class);
 		startActivity(intent);
 	}
@@ -116,7 +105,6 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		setSelectedLanguageCountText(selectedIndexes.size());
 	}
 
-	// DUMMY IMPLEMENTATION
 	public List<Integer> getSelectedIndexes() {
 		List<Integer> selectedIndexes = new ArrayList<Integer>();
 		for (String langCode : configuration.getProficientLanguages()) {

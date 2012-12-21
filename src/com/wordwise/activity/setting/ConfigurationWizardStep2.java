@@ -11,6 +11,7 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.wordwise.R;
+import com.wordwise.activity.MainGameScreen;
 import com.wordwise.model.Configuration;
 
 public class ConfigurationWizardStep2 extends Activity {
@@ -55,6 +56,11 @@ public class ConfigurationWizardStep2 extends Activity {
 
 	// Calls to this function is configured in the layout res file
 	public void finishStep(View view) {
+		// TODO check if a lang is selected
+		boolean confSuccessful = configuration.finishInitialConfiguration();
+		if (confSuccessful) {
+			Intent intent = new Intent(this, MainGameScreen.class);
+			startActivity(intent);
+		}
 	}
-
 }

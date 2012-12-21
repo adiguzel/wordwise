@@ -1,10 +1,16 @@
 package com.wordwise.activity.game;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.wordwise.R;
+import com.wordwise.R.color;
 import com.wordwise.gameengine.Game;
 
 public class Memory extends Activity implements Game {
@@ -22,7 +29,8 @@ public class Memory extends Activity implements Game {
 	private final int IN_PROGRESS = 0;
 	private final int FINISHED = 1;
 	private int gameState = IN_PROGRESS; 
-
+	private TextView firstFlipped = null;
+	SharedPreferences SP;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,7 @@ public class Memory extends Activity implements Game {
 		setContentView(R.layout.memory);
 		this.init();
 		this.start();
+		SP = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 
 	public void start() {
@@ -70,6 +79,48 @@ public class Memory extends Activity implements Game {
 
 	}
 	
+	private void flipFaceUp(TextView v){
+		
+		String tag = (String) v.getTag();
+		v.setText(tag);
+		flip(v);
+		if(firstFlipped  == null){
+			firstFlipped = v;
+		}
+		else{ 
+			if(((String)firstFlipped.getTag()).equals((String)v.getTag())){
+				firstFlipped.setBackgroundColor(color.wordwise_main_green_disabled_start);
+				v.setBackgroundColor(color.wordwise_main_green_disabled_start);
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				firstFlipped.setVisibility(View.INVISIBLE);
+				v.setVisibility(View.INVISIBLE);
+				
+			}
+			else{
+				flipFaceDown(firstFlipped);
+				flipFaceDown(v);
+			}
+			firstFlipped = null;
+		}
+	}
+	
+	private void flipFaceDown(TextView v){
+		v.setText("");
+		flip(v);
+	}
+	
+	private void flip(TextView v){
+		ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.flipping); 
+		anim.setTarget(v);
+		anim.setDuration(1000);
+		anim.start();
+	}
+	
 
 	// TODO use real translations of the words that we got from the server
 	private class WordAndTranslationAdapter extends BaseAdapter {
@@ -91,7 +142,6 @@ public class Memory extends Activity implements Game {
 			return 0;
 		}
 
-		@SuppressWarnings("deprecation")
 		public View getView(int position, View convertView, ViewGroup parent) {
 			TextView textView;
 			if (convertView == null) { // if it's not recycled, initialize some
@@ -112,14 +162,16 @@ public class Memory extends Activity implements Game {
 			// because it is introduced in API level 16
 			textView.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.memory_square_grid_item));
+			final int positon = position;
 			textView.setOnClickListener(new View.OnClickListener() {
-				
+			
+				final int asd = positon;
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(mContext, R.animator.flipping); 
-					anim.setTarget(v);
-					anim.setDuration(1000);
-					anim.start();
+					//Retrieve the values
+					Set<String> set = new HashSet<String>();
+					set.add("AM");
+					Log.v("AL BAKALIM>>> ",  (SP.getString("learning_language", "AM")).toString());
+					flipFaceUp((TextView)v);
 				}
 			});
 			
