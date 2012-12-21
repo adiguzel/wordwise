@@ -45,7 +45,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		next = (Button) findViewById(R.id.next);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		selectedLanguagesText = selectedLanguages.getText().toString();
-		setSelectedLanguageCountText(0);
+		
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		/*
 		 * MessageDialog.newInstance(test).show(this.getSupportFragmentManager(),
@@ -73,6 +73,15 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		});
 		setSelectedIndexes();
 	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		setSelectedLanguageCountText(configuration.getProficientLanguages().size());		
+	}
+	
+	
 
 	public void finishStep(View view) {
 		//TODO Check if at least one lang is selected

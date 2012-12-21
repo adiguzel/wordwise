@@ -16,9 +16,9 @@
             android:id="@+id/word2TranslationGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/word2translations_padding_main"
             android:text="@string/initial_conf_proficient_lang_info"
-            android:textSize="@dimen/text_size_large" 
-            android:paddingBottom="@dimen/word2translations_padding_main"/>
+            android:textSize="@dimen/text_size_large" />
 
         <TextView
             android:id="@+id/numberOfSelectedLanguages"
@@ -33,16 +33,15 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-
     <Button
         android:id="@+id/next"
         style="@style/wordwiseButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_above="@+id/content"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/content"
         android:enabled="false"
+        android:gravity="center_vertical|center_horizontal"
         android:onClick="finishStep"
         android:text="@string/next" />
 

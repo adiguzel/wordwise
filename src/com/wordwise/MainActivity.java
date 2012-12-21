@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.wordwise.activity.AboutActivity;
 import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
+import com.wordwise.activity.game.Hangman;
 import com.wordwise.activity.game.Memory;
 import com.wordwise.activity.game.WordEvaluation;
 import com.wordwise.activity.game.Words2Translations;
@@ -53,7 +54,7 @@ public class MainActivity extends MenuActivity {
     }
     
     private void loadMainScreen(){
-    	Intent intent = new Intent(this, Memory.class);
+    	Intent intent = new Intent(this, Hangman.class);
         startActivity(intent);
     }
 }
