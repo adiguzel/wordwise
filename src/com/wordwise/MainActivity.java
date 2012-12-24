@@ -1,18 +1,13 @@
 package com.wordwise;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.wordwise.activity.AboutActivity;
 import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
 import com.wordwise.activity.game.Hangman;
-import com.wordwise.activity.game.Memory;
-import com.wordwise.activity.game.WordEvaluation;
-import com.wordwise.activity.game.Words2Translations;
 import com.wordwise.activity.setting.ConfigurationWizardStep1;
 import com.wordwise.model.Configuration;
 
@@ -22,8 +17,8 @@ public class MainActivity extends MenuActivity {
     	
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-        
-        if(!Configuration.getInstance().isConfigured())
+       
+        if(!Configuration.getInstance(getApplicationContext()).isConfigured())
         	configure();  
         else{
         	loadMainScreen();
@@ -54,7 +49,7 @@ public class MainActivity extends MenuActivity {
     }
     
     private void loadMainScreen(){
-    	Intent intent = new Intent(this, Hangman.class);
+    	Intent intent = new Intent(this, MainGameScreen.class);
         startActivity(intent);
     }
 }

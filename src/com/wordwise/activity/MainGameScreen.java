@@ -13,7 +13,6 @@ public class MainGameScreen extends MenuActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_main_screen);
-         
     }
 
     @Override

@@ -13,6 +13,6 @@ public class WordwiseApplication extends Application{
     }
 
     public static Context getAppContext() {
-        return WordwiseApplication.context;
+        return context;
     }
 }

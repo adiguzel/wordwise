@@ -7,28 +7,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.wordwise.R;
 import com.wordwise.activity.MainGameScreen;
 import com.wordwise.model.Configuration;
+import com.wordwise.model.LanguageManager;
 
 public class ConfigurationWizardStep2 extends Activity {
 	private ListView listView;
-	private Configuration configuration = Configuration.getInstance();
+	private Configuration configuration;
+	private Button finish;
+	private LanguageManager lManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.configuration_step2);
+
+		configuration = Configuration.getInstance(getApplicationContext());
+		lManager = LanguageManager.getInstance();
+
 		listView = (ListView) findViewById(R.id.list);
+		finish = (Button) findViewById(R.id.finish);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_single_choice, LANGUAGES);
+				android.R.layout.simple_list_item_single_choice,
+				lManager.toLanguageNameArray());
 		listView.setAdapter(adapter);
-		// setListAdapter();
-		// final ListView listView = getListView();
 		listView.setItemsCanFocus(false);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -38,7 +46,10 @@ public class ConfigurationWizardStep2 extends Activity {
 				// TODO Auto-generated method stub
 				CheckedTextView tv = (CheckedTextView) arg1;
 				String language = tv.getText().toString();
+				String langCode = lManager.fromName(language).getCode();
 				configuration.setLearningLanguage(language);
+				if (!finish.isEnabled())
+					finish.setEnabled(true);
 			}
 
 		});

@@ -23,8 +23,8 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	private String selectedLanguagesText;
 	private ListView list;
 	private TextView selectedLanguages;
-	private LanguageManager lManager = LanguageManager.getInstance();
-	private Configuration configuration = Configuration.getInstance();
+	private LanguageManager lManager;
+	private Configuration configuration;
 	private Button next;
 	/*private static final String[] LANGUAGES = new String[] { "English",
 			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
@@ -40,9 +40,14 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.configuration_step1);
-
+		
+		configuration = Configuration.getInstance(getApplicationContext());
+		lManager = LanguageManager.getInstance();
+		
 		list = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
+		if(!configuration.getProficientLanguages().isEmpty())
+			next.setEnabled(true);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		selectedLanguagesText = selectedLanguages.getText().toString();
 		
@@ -84,20 +89,20 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	
 
 	public void finishStep(View view) {
-		//TODO Check if at least one lang is selected
-		
+		//TODO Check if at least one lang is selected	
 		Intent intent = new Intent(this, ConfigurationWizardStep2.class);
 		startActivity(intent);
 	}
 
 	public void toggle(CheckedTextView v) {
 		String language = v.getText().toString();
+		String code = lManager.fromName(language).getCode();
 		if (v.isChecked()) {
 			v.setChecked(false);
-			configuration.removeLanguage(language);
+			configuration.removeLanguage(code);
 		} else {
 			v.setChecked(true);
-			configuration.addLanguage(language);
+			configuration.addLanguage(code);
 		}
 		if(configuration.getProficientLanguages()
 				.size() > 0)

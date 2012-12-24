@@ -3,64 +3,66 @@ package com.wordwise.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.wordwise.WordwiseApplication;
-
-public class Configuration {
+public class Configuration{
 	static final int EASY = 1;
 	static final int MEDIUM = 2;
 	static final int HARD = 3;
+	
+	private final String APP_SHARED_PREFS = "com.wordwise";
+
 	private static Configuration instance = null;
 	private int difficulty;
 	private Set<String> proficientLanguages;
 	private String learningLanguage;
 	private SharedPreferences SP;
 
-	private Configuration() {
-		SP = PreferenceManager.getDefaultSharedPreferences(WordwiseApplication
-				.getAppContext());
+	private Configuration(Context context) {
+		SP = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());//context.getSharedPreferences(APP_SHARED_PREFS , Activity.MODE_PRIVATE);//PreferenceManager.getDefaultSharedPreferences(context);
 		difficulty = loadDifficulty();
 		learningLanguage = loadLearningLanguage();
 		proficientLanguages = loadProficientLanguages();
-		if(!learningLanguage.isEmpty())
-		Log.v("CONF FIN LEARN", learningLanguage);
 	}
 
-	public static Configuration getInstance() {
+	public static Configuration getInstance(Context context) {
 		if (instance == null) {
-			instance = new Configuration();
+			instance = new Configuration(context);
 		}
+		return instance;
+	}
+	
+	public static Configuration getInstance() {
 		return instance;
 	}
 
 	public int loadDifficulty() {
-		Log.v("CONF DIFFICULTY", Integer.toString((SP.getInt("difficulty", EASY))));
 		return SP.getInt("difficulty", EASY);
 	}
 
 	public String loadLearningLanguage() {
-		Log.v("CONF LEARN", SP.getString("learning_language", ""));
 		return SP.getString("learning_language", "");
 	}
 
 	public Set<String> loadProficientLanguages() {
-		Log.v("CONF PROF",( SP.getStringSet("proficient_languages", new HashSet<String>())).toString());
 		return SP.getStringSet("proficient_languages", new HashSet<String>());
 	}
 
-	public void saveDifficulty() {
-		SP.edit().putInt("difficulty", difficulty);
+	public boolean saveDifficulty() {
+		return SP.edit().putInt("difficulty", difficulty).commit();
 	}
 
-	public void saveLearningLanguage() {
-		SP.edit().putString("learning_language", learningLanguage);
+	public boolean saveLearningLanguage() {
+		return SP.edit().putString("learning_language", learningLanguage).commit();
+
 	}
 
-	public void saveProficientLanguages() {
-		SP.edit().putStringSet("proficient_languages", proficientLanguages);
+	public boolean saveProficientLanguages() {
+		return SP.edit().putStringSet("proficient_languages", proficientLanguages).commit();
 	}
 
 	public int getDifficulty() {

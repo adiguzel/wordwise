@@ -48,4 +48,21 @@
 	<color name="light_button_shape_focused_start">#FF177BBD</color>
 	<color name="light_button_shape_focused_end">#FF177BBD</color>
 	<color name="light_button_shape_focused_border">#FF277BBD</color>
+	
+    <color name="wordwise_back_button_start">#FF177BBD</color>
+    <color name="wordwise_back_button_end">#CC177BBD</color>
+    <color name="wordwise_back_button_border">#FFCCCCCC<!--  #FF7FC348--></color>
+    
+    
+    <color name="wordwise_back_button_disabled_start">#8899CCFF</color>
+    <color name="wordwise_back_button_disabled_end">#8899CCFF</color>
+    <color name="wordwise_back_button_disabled_border">#883399FF<!--  #FF7FC348--></color>
+    
+    <color name="wordwise_back_button_pressed_start">#AA222222</color>
+    <color name="wordwise_back_button_pressed_end">#CC177BBD</color>
+    <color name="wordwise_back_button_pressed_border">#FFCCCCCC<!--  #FF7FC348--></color>
+    
+    <color name="wordwise_back_button_focused_start">#FF177BBD</color>
+    <color name="wordwise_back_button_focused_end">#CC177BBD</color>
+    <color name="wordwise_back_button_focused_border">#FFCCCCCC<!--  #FF7FC348--></color>
 </resources>

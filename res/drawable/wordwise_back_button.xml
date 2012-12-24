@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+        <shape>
+            <gradient
+                android:startColor="@color/wordwise_back_button_pressed_start"
+                android:endColor="@color/wordwise_back_button_pressed_end"
+                android:angle="@integer/button_shape_gradient_angle_pressed"  />
+            <stroke
+                android:width="@dimen/button_shape_stroke_pressed"
+                android:color="@color/wordwise_back_button_pressed_border" />
+            <corners
+                android:radius="@dimen/button_shape_corner_radius" />
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true" >
+        <shape>
+            <gradient
+                android:endColor="@color/wordwise_back_button_focused_start"
+                android:startColor="@color/wordwise_back_button_focused_end"
+                android:angle="@integer/button_shape_gradient_angle_focused"  />
+            <stroke
+                android:width="@dimen/button_shape_stroke_focused"
+                android:color="@color/wordwise_back_button_focused_border" />
+            <corners
+                android:radius="@dimen/button_shape_corner_radius" />
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
+        </shape>
+    </item>
+    
+    <item android:state_enabled="false">        
+        <shape>
+            <gradient
+                android:endColor="@color/wordwise_back_button_disabled_end"
+                android:startColor="@color/wordwise_back_button_disabled_start"
+                android:angle="@integer/button_shape_gradient_angle_main" 
+                />
+            <stroke
+                android:width="@dimen/button_shape_stroke_main"
+                android:color="@color/wordwise_back_button_disabled_border" />
+            <corners
+                android:radius="@dimen/button_shape_corner_radius" />
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
+        </shape>
+    </item>
+    
+    
+    <item>        
+        <shape>
+            <gradient
+                android:endColor="@color/wordwise_back_button_end"
+                android:startColor="@color/wordwise_back_button_start"
+                android:angle="@integer/button_shape_gradient_angle_main" 
+                />
+            <stroke
+                android:width="@dimen/button_shape_stroke_main"
+                android:color="@color/wordwise_back_button_border" />
+            <corners
+                android:radius="@dimen/button_shape_corner_radius" />
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
+        </shape>
+    </item>
+</selector>

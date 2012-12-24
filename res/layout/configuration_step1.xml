@@ -10,7 +10,8 @@
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:layout_above="@+id/next">
 
         <TextView
             android:id="@+id/word2TranslationGameLabel"
@@ -39,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/content"
         android:enabled="false"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="finishStep"

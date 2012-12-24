@@ -32,14 +32,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/content"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/back"
-            style="@style/wordwiseButtonStyle"
+            style="@style/wordwiseBackButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/word2translations_word_margin_row"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
             android:onClick="back"
@@ -50,6 +50,7 @@
             style="@style/wordwiseButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/word2translations_word_margin_row"
             android:layout_weight="1"
             android:enabled="false"
             android:gravity="center_vertical|center_horizontal"

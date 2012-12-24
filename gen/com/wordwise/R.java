@@ -36,6 +36,26 @@ public final class R {
         public static final int light_button_shape_text_color=0x7f07001b;
         public static final int opaque_red=0x7f070000;
         public static final int translucent_red=0x7f070001;
+        /**   #FF7FC348
+         */
+        public static final int wordwise_back_button_border=0x7f070027;
+        /**   #FF7FC348
+         */
+        public static final int wordwise_back_button_disabled_border=0x7f07002a;
+        public static final int wordwise_back_button_disabled_end=0x7f070029;
+        public static final int wordwise_back_button_disabled_start=0x7f070028;
+        public static final int wordwise_back_button_end=0x7f070026;
+        /**   #FF7FC348
+         */
+        public static final int wordwise_back_button_focused_border=0x7f070030;
+        public static final int wordwise_back_button_focused_end=0x7f07002f;
+        public static final int wordwise_back_button_focused_start=0x7f07002e;
+        /**   #FF7FC348
+         */
+        public static final int wordwise_back_button_pressed_border=0x7f07002d;
+        public static final int wordwise_back_button_pressed_end=0x7f07002c;
+        public static final int wordwise_back_button_pressed_start=0x7f07002b;
+        public static final int wordwise_back_button_start=0x7f070025;
         public static final int wordwise_button_text_color=0x7f07001a;
         public static final int wordwise_main_fail_red=0x7f070016;
         public static final int wordwise_main_gray_border=0x7f070012;
@@ -110,32 +130,34 @@ public final class R {
         public static final int word2translations_word_margin_top=0x7f08001e;
     }
     public static final class drawable {
-        public static final int hangman_img00=0x7f020000;
-        public static final int hangman_img01=0x7f020001;
-        public static final int hangman_img02=0x7f020002;
-        public static final int hangman_img03=0x7f020003;
-        public static final int hangman_img04=0x7f020004;
-        public static final int hangman_img05=0x7f020005;
-        public static final int hangman_img06=0x7f020006;
-        public static final int hangman_img07=0x7f020007;
-        public static final int hangman_img08=0x7f020008;
-        public static final int hangman_img09=0x7f020009;
-        public static final int hangman_img1=0x7f02000a;
-        public static final int ic_action_search=0x7f02000b;
-        public static final int ic_action_settings=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int ic_navigation_accept_dark=0x7f02000e;
-        public static final int ic_navigation_accept_light=0x7f02000f;
-        public static final int light_button=0x7f020010;
-        public static final int memory_square_grid_item=0x7f020011;
-        public static final int word2translations_translation_placeholder_drag_entered=0x7f020012;
-        public static final int word2translations_translation_placeholder_droppable=0x7f020013;
-        public static final int word2translations_translation_placeholder_initial=0x7f020014;
-        public static final int word2translations_translation_placeholder_match_failed=0x7f020015;
-        public static final int word2translations_translation_placeholder_match_success=0x7f020016;
-        public static final int word2translations_translations=0x7f020017;
-        public static final int word2translations_word=0x7f020018;
-        public static final int wordwise_button=0x7f020019;
+        public static final int back=0x7f020000;
+        public static final int hangman_img00=0x7f020001;
+        public static final int hangman_img01=0x7f020002;
+        public static final int hangman_img02=0x7f020003;
+        public static final int hangman_img03=0x7f020004;
+        public static final int hangman_img04=0x7f020005;
+        public static final int hangman_img05=0x7f020006;
+        public static final int hangman_img06=0x7f020007;
+        public static final int hangman_img07=0x7f020008;
+        public static final int hangman_img08=0x7f020009;
+        public static final int hangman_img09=0x7f02000a;
+        public static final int hangman_img1=0x7f02000b;
+        public static final int ic_action_search=0x7f02000c;
+        public static final int ic_action_settings=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int ic_navigation_accept_dark=0x7f02000f;
+        public static final int ic_navigation_accept_light=0x7f020010;
+        public static final int light_button=0x7f020011;
+        public static final int memory_square_grid_item=0x7f020012;
+        public static final int word2translations_translation_placeholder_drag_entered=0x7f020013;
+        public static final int word2translations_translation_placeholder_droppable=0x7f020014;
+        public static final int word2translations_translation_placeholder_initial=0x7f020015;
+        public static final int word2translations_translation_placeholder_match_failed=0x7f020016;
+        public static final int word2translations_translation_placeholder_match_success=0x7f020017;
+        public static final int word2translations_translations=0x7f020018;
+        public static final int word2translations_word=0x7f020019;
+        public static final int wordwise_back_button=0x7f02001a;
+        public static final int wordwise_button=0x7f02001b;
     }
     public static final class id {
         public static final int ScrollView01=0x7f0d0000;
@@ -159,12 +181,12 @@ public final class R {
         public static final int hardNewGameButton=0x7f0d001d;
         public static final int howToPlay=0x7f0d0002;
         public static final int howToPlayButton=0x7f0d0010;
-        public static final int list=0x7f0d000a;
+        public static final int list=0x7f0d000b;
         public static final int mediumNewGameButton=0x7f0d001c;
         public static final int memoryGrid=0x7f0d0019;
         public static final int menu_settings=0x7f0d002f;
-        public static final int next=0x7f0d000b;
-        public static final int numberOfSelectedLanguages=0x7f0d0009;
+        public static final int next=0x7f0d0008;
+        public static final int numberOfSelectedLanguages=0x7f0d000a;
         public static final int quit=0x7f0d0012;
         public static final int ratings=0x7f0d001e;
         public static final int startContinueButton=0x7f0d000f;
@@ -178,7 +200,7 @@ public final class R {
         public static final int validateButton=0x7f0d002e;
         public static final int word1=0x7f0d0025;
         public static final int word2=0x7f0d0027;
-        public static final int word2TranslationGameLabel=0x7f0d0008;
+        public static final int word2TranslationGameLabel=0x7f0d0009;
         public static final int word3=0x7f0d0029;
         public static final int word4=0x7f0d002b;
         public static final int wordDifficultyRating=0x7f0d0023;
@@ -269,10 +291,11 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppTheme=0x7f0b0000;
+        public static final int wordwiseBackButtonStyle=0x7f0b0002;
         public static final int wordwiseButtonStyle=0x7f0b0001;
-        public static final int wordwiseSmallButtonStyle=0x7f0b0002;
-        public static final int wordwiseSmallLightBoldButtonStyle=0x7f0b0004;
-        public static final int wordwiseSmallLightButtonStyle=0x7f0b0003;
+        public static final int wordwiseSmallButtonStyle=0x7f0b0003;
+        public static final int wordwiseSmallLightBoldButtonStyle=0x7f0b0005;
+        public static final int wordwiseSmallLightButtonStyle=0x7f0b0004;
     }
     public static final class xml {
         public static final int preferences=0x7f050000;
