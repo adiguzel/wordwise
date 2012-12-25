@@ -134,7 +134,7 @@
   </class>  
   <class id="17" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.setting.Settings" 
     project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/setting/Settings.java" binary="false">    
-    <position height="-1" width="-1" x="1566" y="176"/>    
+    <position height="-1" width="-1" x="1484" y="118"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
