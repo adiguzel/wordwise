@@ -8,6 +8,7 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class Hangman extends Activity implements Game {
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
+	
 	//TODO use it to get the char from the keyCode
 	//charMap.getDisplayLabel(keyCode);
 	private KeyCharacterMap charMap = KeyCharacterMap.load(KeyCharacterMap.VIRTUAL_KEYBOARD);
@@ -58,7 +60,7 @@ public class Hangman extends Activity implements Game {
 	// TODO try to display the keyboard on display touch
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		Log.v("Hangman", "KEY : " + keyCode);
+		Log.v("Hangman", "KEY : " + event.getUnicodeChar());
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_A:
 			validateGuess('A');
@@ -138,13 +140,6 @@ public class Hangman extends Activity implements Game {
 		case KeyEvent.KEYCODE_Z:
 			validateGuess('Z');
 			break;
-		// case KeyEvent.KEYCODE_BACK:
-		// Log.d("WORDWISE","back button pressed");
-		// Toast msg = Toast.makeText(this,
-		// "BITCH DONT DEAR TO PRESS THAT BUTTON!", Toast.LENGTH_SHORT);
-		// msg.show();
-		// this.openTheSoftKeyboard();
-		// break;
 		default:
 			return super.onKeyDown(keyCode, event);
 		}

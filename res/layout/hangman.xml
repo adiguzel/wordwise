@@ -8,16 +8,10 @@
         android:id="@+id/topBar"
         layout="@layout/game_top_bar" />
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ScrollView01"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/topBar" >
-
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/hangman_main_vertical"
+            android:layout_below="@id/topBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -55,7 +49,7 @@
                 android:textColor="#000000"
                 android:textSize="10pt" >
             </TextView>
+            
         </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>
