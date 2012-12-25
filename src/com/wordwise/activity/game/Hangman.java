@@ -60,7 +60,8 @@ public class Hangman extends Activity implements Game {
 	// TODO try to display the keyboard on display touch
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		Log.v("Hangman", "KEY : " + event.getUnicodeChar());
+		int metastate = event.getMetaState();
+		Log.v("Hangman", "KEY : " + event.getUnicodeChar(metastate));
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_A:
 			validateGuess('A');
