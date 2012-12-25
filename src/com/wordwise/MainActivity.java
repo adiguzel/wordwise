@@ -7,7 +7,6 @@ import android.view.View;
 import com.wordwise.activity.AboutActivity;
 import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
-import com.wordwise.activity.game.Hangman;
 import com.wordwise.activity.setting.ConfigurationWizardStep1;
 import com.wordwise.model.Configuration;
 
@@ -16,13 +15,18 @@ public class MainActivity extends MenuActivity {
     public void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
        
         if(!Configuration.getInstance(getApplicationContext()).isConfigured())
         	configure();  
         else{
         	loadMainScreen();
         }
+        
+        /* Setting of the content View should be at the last position in order to receive 
+         * configuration screens at first and than avoid having an empty activity if the user 
+         * presses back button
+         */
+        setContentView(R.layout.activity_main);
     }
     
     /* It calls the about activity where the user can get some info about the game
@@ -33,15 +37,6 @@ public class MainActivity extends MenuActivity {
     	startActivity(intent);
     }
     
-    /* It is called when the "Exit" button is pressed
-     * and it exits from the application to the Home screen
-     */
-    public void exitApplication(View view) {
-    	Intent intent = new Intent(Intent.ACTION_MAIN);
-    	intent.addCategory(Intent.CATEGORY_HOME);
-    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    	startActivity(intent);
-    }
 
     private void configure(){
     	Intent intent = new Intent(this, ConfigurationWizardStep1.class);

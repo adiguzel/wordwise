@@ -1,0 +1,402 @@
+<class-diagram version="1.0.11" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.MainActivity" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/MainActivity.java" binary="false">    
+    <position height="-1" width="-1" x="1026" y="-148"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.WordwiseApplication" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/WordwiseApplication.java" binary="false">    
+    <position height="-1" width="-1" x="1094" y="984"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.AboutActivity" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/AboutActivity.java" binary="false">    
+    <position height="-1" width="-1" x="516" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.MainGameScreen" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/MainGameScreen.java" binary="false">    
+    <position height="-1" width="-1" x="931" y="243"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.MenuActivity" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/MenuActivity.java" binary="false">    
+    <position height="-1" width="-1" x="1264" y="358"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.NewGame" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/NewGame.java" binary="false">    
+    <position height="-1" width="-1" x="937" y="638"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.Hangman" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Hangman.java" binary="false">    
+    <position height="-1" width="-1" x="1264" y="1738"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.LetterBox" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/game/LetterBox.java" binary="false">    
+    <position height="-1" width="-1" x="1644" y="1522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.Memory" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Memory.java" binary="false">    
+    <position height="-1" width="-1" x="1844" y="1632"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.WordEvaluation" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/game/WordEvaluation.java" binary="false">    
+    <position height="-1" width="-1" x="2114" y="1600"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="11" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.Words2Translations" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/game/Words2Translations.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="2218" y="1184"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.client.RESTfullServerCommunication" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/client/RESTfullServerCommunication.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="316" y="1480"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.fragment.dialog.MessageDialog" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/fragment/dialog/MessageDialog.java" binary="false">    
+    <position height="-1" width="-1" x="134" y="1264"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.gameengine.Game" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/gameengine/Game.java" binary="false">    
+    <position height="-1" width="-1" x="1680" y="1188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="15" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.setting.ConfigurationWizardStep1" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/setting/ConfigurationWizardStep1.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1844" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="16" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.setting.ConfigurationWizardStep2" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/setting/ConfigurationWizardStep2.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1342" y="740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="17" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.setting.Settings" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/setting/Settings.java" binary="false">    
+    <position height="-1" width="-1" x="1566" y="176"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="18" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.Configuration" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/model/Configuration.java" binary="false">    
+    <position height="-1" width="-1" x="1881" y="-117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="19" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.LanguageManager" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/model/LanguageManager.java" binary="false">    
+    <position height="-1" width="-1" x="2329" y="-37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="20" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.MultiSelectAdapter" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/model/MultiSelectAdapter.java" binary="false">    
+    <position height="196" width="260" x="2310" y="282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="21" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.RandomGameSelector" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/model/RandomGameSelector.java" binary="false">    
+    <position height="-1" width="-1" x="2110" y="902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="22" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.Selectable" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/model/Selectable.java" binary="false">    
+    <position height="-1" width="-1" x="2438" y="744"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="23" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.model.WordwiseGameManager" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/model/WordwiseGameManager.java" binary="false">    
+    <position height="-1" width="-1" x="2162" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="24" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.util.ListOps" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/util/ListOps.java" binary="false">    
+    <position height="-1" width="-1" x="2570" y="1894"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="25" corner="BOTTOM_RIGHT" language="java" name="com.wordwise.activity.game.TranslationEvaluation" 
+    project="WordWiseClient" file="/WordWiseClient/src/com/wordwise/activity/game/TranslationEvaluation.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="304" y="872"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="26" corner="BOTTOM_RIGHT" language="java" 
+    name="com.wordwise.activity.game.Words2Translations.TranslationAdapter" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Words2Translations.java" binary="false">    
+    <position height="-1" width="-1" x="-698" y="-234"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="27" corner="BOTTOM_RIGHT" language="java" 
+    name="com.wordwise.activity.game.Memory.WordAndTranslationAdapter" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Memory.java" binary="false">    
+    <position height="-1" width="-1" x="-229" y="-234"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="28" corner="BOTTOM_RIGHT" language="java" 
+    name="com.wordwise.activity.game.Words2Translations.TranslationLongClickListener" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Words2Translations.java" binary="false">    
+    <position height="-1" width="-1" x="-709" y="-7"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="29" corner="BOTTOM_RIGHT" language="java" 
+    name="com.wordwise.activity.game.Words2Translations.TranslationDragAdapter" project="WordWiseClient" 
+    file="/WordWiseClient/src/com/wordwise/activity/game/Words2Translations.java" binary="false">    
+    <position height="-1" width="-1" x="430" y="-240"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <nesting id="30">    
+    <bendpoint x="34" y="180"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="26"/>  
+  </nesting>  
+  <nesting id="31">    
+    <bendpoint x="-302" y="200"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="28"/>  
+  </nesting>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <association id="35">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="36" name="configuration"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="38">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <dependency id="39">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="41">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="42" name="instance"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <nesting id="45">    
+    <bendpoint x="-94" y="10"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="27"/>  
+  </nesting>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="49">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="50" name="instance"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="53" name="configuration"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="56" name="lManager"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="59" name="items"/>      
+      <multiplicity id="60" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <realization id="62">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="64">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <realization id="65">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <nesting id="66">    
+    <bendpoint x="264" y="-64"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="29"/>  
+  </nesting>  
+  <dependency id="67">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="68">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <realization id="69">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <association id="70">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="71" name="lManager"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
