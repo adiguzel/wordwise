@@ -1,8 +1,5 @@
 package com.wordwise.activity.game;
 
-import java.util.Locale;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +14,6 @@ import android.widget.Toast;
 
 import com.wordwise.MainActivity;
 import com.wordwise.R;
-import com.wordwise.activity.MainGameScreen;
 import com.wordwise.gameengine.Game;
 
 public class Hangman extends Activity implements Game {
