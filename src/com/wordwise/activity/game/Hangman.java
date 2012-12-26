@@ -2,7 +2,6 @@ package com.wordwise.activity.game;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wordwise.MainActivity;
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 
@@ -24,7 +22,7 @@ public class Hangman extends Activity implements Game {
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
-	private String mysteryWord = "LACUCARACAS";
+	private String mysteryWord = "ÜBUNG";
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
@@ -53,39 +51,37 @@ public class Hangman extends Activity implements Game {
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
 
+	//This is the method that checks for the unicode characters that are accessed useing multiple keys or long press
 	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_UNKNOWN
 				&& event.getAction() == KeyEvent.ACTION_MULTIPLE
 				&& this.isALetter(keyCode)) {
 			String letter = event.getCharacters();
 			letter = letter.toUpperCase();
-			Log.d("listener", "onMultiple " + " " + event.getCharacters() + " "
-					+ keyCode + " <<KEYCODE" + " count:" + count);
 			validateGuess(letter.charAt(0));
 		}
 		return true;
 	}
 
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
+	//This method checks for the normal characters accessed with one click (no long, no several keys)
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			// Implement saving of the states
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-			return false;
-		} else if (this.isALetter(keyCode)) {
+			// Implement saving of the game state
+			return super.onKeyDown(keyCode, event);
 
-			Log.d("listener", "onKeyUp " + " " + (char) event.getUnicodeChar()
-					+ " " + keyCode + " <<KEYCODE");
+		} else if (this.isALetter(keyCode)) {
 			String letter = "" + (char) event.getUnicodeChar();
 			letter = letter.toUpperCase();
 			validateGuess(letter.charAt(0));
+			return true;
 		}
 		return true;
 	}
 
 	private boolean isALetter(int keyCode) {
 		// Letter ASCII constraints
-		if (((keyCode < 7) || (keyCode > 16)) /* numbers (anything else to be added)*/ ) {
+		//Only numbers added
+		if (((keyCode < 7) || (keyCode > 16)) ) {
 			return true;
 		} else {
 			return false;
@@ -171,7 +167,7 @@ public class Hangman extends Activity implements Game {
 
 	private void initWrongGuessesTextView() {
 		numWrongGuesses = 0;
-		wrongLettersTextView.setText("Wrong Letters: \n\n");
+		wrongLettersTextView.setText("wrong letters: \n\n");
 	}
 
 	private void updateWrongGuesses(char wrongLetter) {
@@ -187,7 +183,6 @@ public class Hangman extends Activity implements Game {
 		}
 		return result.toString();
 	}
-
 	/*
 	 * sets the Hangman image to the starting image
 	 */
