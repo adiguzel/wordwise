@@ -1,19 +1,23 @@
 package com.wordwise.activity.game;
 
+import java.util.Locale;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wordwise.MainActivity;
 import com.wordwise.R;
+import com.wordwise.activity.MainGameScreen;
 import com.wordwise.gameengine.Game;
 
 public class Hangman extends Activity implements Game {
@@ -24,16 +28,11 @@ public class Hangman extends Activity implements Game {
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
-	private String mysteryWord = "LACUCARACAMMMY";
+	private String mysteryWord = "LACUCARACAS";
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
-	
-	//TODO use it to get the char from the keyCode
-	//charMap.getDisplayLabel(keyCode);
-	private KeyCharacterMap charMap = KeyCharacterMap.load(KeyCharacterMap.VIRTUAL_KEYBOARD);
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,94 +56,44 @@ public class Hangman extends Activity implements Game {
 	// TODO Implement method to read the mysteryWord from the server
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
-	// TODO try to display the keyboard on display touch
 
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		int metastate = event.getMetaState();
-		Log.v("Hangman", "KEY : " + event.getUnicodeChar(metastate));
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_A:
-			validateGuess('A');
-			break;
-		case KeyEvent.KEYCODE_B:
-			validateGuess('B');
-			break;
-		case KeyEvent.KEYCODE_C:
-			validateGuess('C');
-			break;
-		case KeyEvent.KEYCODE_D:
-			validateGuess('D');
-			break;
-		case KeyEvent.KEYCODE_E:
-			validateGuess('E');
-			break;
-		case KeyEvent.KEYCODE_F:
-			validateGuess('F');
-			break;
-		case KeyEvent.KEYCODE_G:
-			validateGuess('G');
-			break;
-		case KeyEvent.KEYCODE_H:
-			validateGuess('H');
-			break;
-		case KeyEvent.KEYCODE_I:
-			validateGuess('I');
-			break;
-		case KeyEvent.KEYCODE_J:
-			validateGuess('J');
-			break;
-		case KeyEvent.KEYCODE_K:
-			validateGuess('K');
-			break;
-		case KeyEvent.KEYCODE_L:
-			validateGuess('L');
-			break;
-		case KeyEvent.KEYCODE_M:
-			validateGuess('M');
-			break;
-		case KeyEvent.KEYCODE_N:
-			validateGuess('N');
-			break;
-		case KeyEvent.KEYCODE_O:
-			validateGuess('O');
-			break;
-		case KeyEvent.KEYCODE_P:
-			validateGuess('P');
-			break;
-		case KeyEvent.KEYCODE_Q:
-			validateGuess('Q');
-			break;
-		case KeyEvent.KEYCODE_R:
-			validateGuess('R');
-			break;
-		case KeyEvent.KEYCODE_S:
-			validateGuess('S');
-			break;
-		case KeyEvent.KEYCODE_T:
-			validateGuess('T');
-			break;
-		case KeyEvent.KEYCODE_U:
-			validateGuess('U');
-			break;
-		case KeyEvent.KEYCODE_V:
-			validateGuess('V');
-			break;
-		case KeyEvent.KEYCODE_W:
-			validateGuess('W');
-			break;
-		case KeyEvent.KEYCODE_X:
-			validateGuess('X');
-			break;
-		case KeyEvent.KEYCODE_Y:
-			validateGuess('Y');
-			break;
-		case KeyEvent.KEYCODE_Z:
-			validateGuess('Z');
-			break;
-		default:
-			return super.onKeyDown(keyCode, event);
+	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_UNKNOWN
+				&& event.getAction() == KeyEvent.ACTION_MULTIPLE
+				&& this.isALetter(keyCode)) {
+			String letter = event.getCharacters();
+			letter = letter.toUpperCase();
+			Log.d("listener", "onMultiple " + " " + event.getCharacters() + " "
+					+ keyCode + " <<KEYCODE" + " count:" + count);
+			validateGuess(letter.charAt(0));
 		}
 		return true;
+	}
+
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			// Implement saving of the states
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+			return false;
+		} else if (this.isALetter(keyCode)) {
+
+			Log.d("listener", "onKeyUp " + " " + (char) event.getUnicodeChar()
+					+ " " + keyCode + " <<KEYCODE");
+			String letter = "" + (char) event.getUnicodeChar();
+			letter = letter.toUpperCase();
+			validateGuess(letter.charAt(0));
+		}
+		return true;
+	}
+
+	private boolean isALetter(int keyCode) {
+		// Letter ASCII constraints
+		if (((keyCode < 7) || (keyCode > 16)) /* numbers (anything else to be added)*/ ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private void checkWin() {
@@ -166,6 +115,7 @@ public class Hangman extends Activity implements Game {
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_LONG);
 			msg.show();
+			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
 		}
 	}
 
@@ -321,10 +271,10 @@ public class Hangman extends Activity implements Game {
 		this.initMysteriousWord();
 		this.openTheSoftKeyboard();
 	}
-	
+
 	// called by quit button to quit the game
 	public void quit(View v) {
-		//TODO implement
+		// TODO implement
 	}
 
 }
