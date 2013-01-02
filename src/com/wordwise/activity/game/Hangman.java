@@ -19,6 +19,10 @@ public class Hangman extends Activity implements Game {
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
 
+	private boolean savedGame = false;
+	private boolean wonGame = false;
+	private boolean lostGame = false;
+
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
@@ -27,6 +31,11 @@ public class Hangman extends Activity implements Game {
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
+
+	private static final String PREFERENCES_MYSTERY_WORD_TEXT_VIEW = "mysteryWordTextView";
+	private static final String PREFERENCES_MYSTERY_WORD = "mysteryWord";
+	private static final String PREFERENCES_WRONG_LETTERS = "wrongLetters";
+	private static final String PREFERENCES_NUM_WRONG_GUESSES = "numWrongGuesses";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,19 +48,26 @@ public class Hangman extends Activity implements Game {
 
 	public void onStop() {
 		super.onStop();
-		stop();
+		this.stop();
 	}
 
 	public void onDestroy() {
 		super.onDestroy();
-		stop();
+		this.stop();
+	}
+
+	public void onPause() {
+		super.onPause();
+		this.pause();
+		Log.d("Hangman", "onPause called");
 	}
 
 	// TODO Implement method to read the mysteryWord from the server
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
 	// TODO Pause,Resume,Stop,Save Progress
 
-	//This is the method that checks for the unicode characters that are accessed useing multiple keys or long press
+	// This is the method that checks for the unicode characters that are
+	// accessed useing multiple keys or long press
 	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_UNKNOWN
 				&& event.getAction() == KeyEvent.ACTION_MULTIPLE
@@ -63,7 +79,8 @@ public class Hangman extends Activity implements Game {
 		return true;
 	}
 
-	//This method checks for the normal characters accessed with one click (no long, no several keys)
+	// This method checks for the normal characters accessed with one click (no
+	// long, no several keys)
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			// Implement saving of the game state
@@ -80,8 +97,8 @@ public class Hangman extends Activity implements Game {
 
 	private boolean isALetter(int keyCode) {
 		// Letter ASCII constraints
-		//Only numbers added
-		if (((keyCode < 7) || (keyCode > 16)) ) {
+		// Only numbers added
+		if (((keyCode < 7) || (keyCode > 16))) {
 			return true;
 		} else {
 			return false;
@@ -95,6 +112,8 @@ public class Hangman extends Activity implements Game {
 
 			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_LONG);
 			msg.show();
+
+			this.wonGame = true;
 			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
 		}
 	}
@@ -107,6 +126,8 @@ public class Hangman extends Activity implements Game {
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_LONG);
 			msg.show();
+
+			this.lostGame = true;
 			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
 		}
 	}
@@ -182,6 +203,7 @@ public class Hangman extends Activity implements Game {
 		}
 		return result.toString();
 	}
+
 	/*
 	 * sets the Hangman image to the starting image
 	 */
@@ -250,7 +272,26 @@ public class Hangman extends Activity implements Game {
 	}
 
 	public void pause() {
-		// TODO Auto-generated method stub
+		if (this.lostGame == true || this.wonGame == true) {
+			this.closeTheSoftKeyboard();
+		} else {
+			this.closeTheSoftKeyboard();
+			// save the current state
+			getPreferences(MODE_PRIVATE).edit()
+					.putString(PREFERENCES_MYSTERY_WORD, mysteryWord).commit();
+			getPreferences(MODE_PRIVATE)
+					.edit()
+					.putString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
+							mysteryWordTextView.getText().toString()).commit();
+			getPreferences(MODE_PRIVATE)
+					.edit()
+					.putString(PREFERENCES_WRONG_LETTERS,
+							wrongLettersTextView.getText().toString()).commit();
+			getPreferences(MODE_PRIVATE).edit()
+					.putInt(PREFERENCES_NUM_WRONG_GUESSES, numWrongGuesses)
+					.commit();
+			this.savedGame = true;
+		}
 	}
 
 	public void init() {
