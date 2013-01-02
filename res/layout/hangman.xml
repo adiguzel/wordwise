@@ -8,48 +8,67 @@
         android:id="@+id/topBar"
         layout="@layout/game_top_bar" />
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/hangman_main_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/hangman_main_vertical"
-            android:layout_below="@id/topBar"
+            android:id="@+id/hangman_upper_horisontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dip" >
+
+            <ImageView
+                android:id="@+id/hangman_img"
+                android:layout_width="150dip"
+                android:layout_height="180dip"
+                android:layout_gravity="left"
+                android:src="@drawable/hangman_img00" >
+            </ImageView>
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/hangman_upper_horisontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:id="@+id/hangman_upper_vertical"
+                android:layout_width="150dip"
+                android:layout_height="180dip"
+                android:orientation="vertical"
                 android:padding="10dip" >
-
-                <ImageView
-                    android:id="@+id/hangman_img"
-                    android:layout_width="150dip"
-                    android:layout_height="180dip"
-                    android:layout_gravity="left"
-                    android:src="@drawable/hangman_img00" >
-                </ImageView>
-
+                
                 <TextView
-                    android:id="@+id/hangman_wrong_letters"
-                    android:layout_width="130dip"
-                    android:layout_height="180dip"
-                    android:layout_gravity="right"
-                    android:gravity="center_horizontal" />
+                android:id="@+id/hangman_wrong_letters_title"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_gravity="right"
+                android:gravity="center_horizontal" 
+                android:text="@string/wrong_letters_title" />
+                
+                <TextView
+                android:id="@+id/hangman_wrong_letters"
+                android:layout_width="fill_parent"
+                android:layout_height="100dip"
+                android:layout_gravity="right"
+                android:textColor="@color/hangman_wrong_letters_red_color"
+                android:gravity="center_horizontal" />
+                
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/hangman_mystery_word"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="#000000"
-                android:textSize="10pt" >
-            </TextView>
-            
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/hangman_mystery_word"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="10pt" >
+        </TextView>
+    </LinearLayout>
 
 </RelativeLayout>

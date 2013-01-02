@@ -43,5 +43,6 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 	<string name="memory_game_information"><b>Remember</b> places of the word - translation pairs and match them </string>
     <string name="initial_conf_proficient_lang_info">Now please choose which languages you speak fluently</string>
     <string name="initial_conf_learning_lang_info">Finally, choose which languages you want to practice</string>
+    <string name="wrong_letters_title">Wrong Letters:</string>
 	
 </resources>

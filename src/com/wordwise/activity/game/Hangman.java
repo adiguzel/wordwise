@@ -165,9 +165,8 @@ public class Hangman extends Activity implements Game {
 
 	}
 
-	private void initWrongGuessesTextView() {
+	private void initWrongGuesses() {
 		numWrongGuesses = 0;
-		wrongLettersTextView.setText("wrong letters: \n\n");
 	}
 
 	private void updateWrongGuesses(char wrongLetter) {
@@ -258,7 +257,7 @@ public class Hangman extends Activity implements Game {
 		// Initializes the screen
 		this.linkTheViews();
 		this.initTheHangmanImage();
-		this.initWrongGuessesTextView();
+		this.initWrongGuesses();
 		this.initMysteriousWord();
 		this.openTheSoftKeyboard();
 	}
