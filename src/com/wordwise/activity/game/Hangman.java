@@ -43,6 +43,7 @@ public class Hangman extends Activity implements Game {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//This is the fragment of the coede that changes the lanuguage
 		String languageToLoad  = "de"; // your language
 	    Locale locale = new Locale(languageToLoad); 
 	    Locale.setDefault(locale);
