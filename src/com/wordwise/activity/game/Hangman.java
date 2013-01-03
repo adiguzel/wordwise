@@ -2,8 +2,8 @@ package com.wordwise.activity.game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,7 +19,7 @@ public class Hangman extends Activity implements Game {
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
 
-	private boolean savedGame = false;
+	private static boolean savedGame = false;
 	private boolean wonGame = false;
 	private boolean lostGame = false;
 
@@ -43,11 +43,15 @@ public class Hangman extends Activity implements Game {
 		getActionBar().hide();
 		setContentView(R.layout.hangman);
 		this.init();
+		if (Hangman.savedGame == true) {
+			this.loadTheSavedGame();
+		}
 		this.start();
 	}
 
 	public void onStop() {
 		super.onStop();
+		this.pause();
 		this.stop();
 	}
 
@@ -59,12 +63,15 @@ public class Hangman extends Activity implements Game {
 	public void onPause() {
 		super.onPause();
 		this.pause();
-		Log.d("Hangman", "onPause called");
+	}
+	
+	public void onResume() {
+		super.onResume();
+		this.openTheSoftKeyboard();
 	}
 
 	// TODO Implement method to read the mysteryWord from the server
 	// TODO Edit checkWin() and checkLose() and link them with GameManager
-	// TODO Pause,Resume,Stop,Save Progress
 
 	// This is the method that checks for the unicode characters that are
 	// accessed useing multiple keys or long press
@@ -95,6 +102,7 @@ public class Hangman extends Activity implements Game {
 		return true;
 	}
 
+	//This method adds constraint about which chars should not be used at all. For example numbers ...
 	private boolean isALetter(int keyCode) {
 		// Letter ASCII constraints
 		// Only numbers added
@@ -175,6 +183,24 @@ public class Hangman extends Activity implements Game {
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
 						0);
 
+	}
+
+	private void loadTheSavedGame() {
+		this.openTheSoftKeyboard();
+		this.mysteryWord = getPreferences(MODE_PRIVATE).getString(
+				PREFERENCES_MYSTERY_WORD, this.mysteryWord);
+		this.mysteryWordTextView.setText(getPreferences(MODE_PRIVATE)
+				.getString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
+						underscoreTheMysteryWord(this.mysteryWord)));
+		this.wrongLettersTextView.setText(getPreferences(MODE_PRIVATE)
+				.getString(PREFERENCES_WRONG_LETTERS, ""));
+		this.numWrongGuesses = getPreferences(MODE_PRIVATE).getInt(
+				PREFERENCES_NUM_WRONG_GUESSES, 0);
+
+		this.updateHangmanImage();
+
+		// give the information that the saved game is already initialized
+		Hangman.savedGame = false;
 	}
 
 	private void linkTheViews() {
@@ -276,21 +302,23 @@ public class Hangman extends Activity implements Game {
 			this.closeTheSoftKeyboard();
 		} else {
 			this.closeTheSoftKeyboard();
-			// save the current state
-			getPreferences(MODE_PRIVATE).edit()
-					.putString(PREFERENCES_MYSTERY_WORD, mysteryWord).commit();
-			getPreferences(MODE_PRIVATE)
-					.edit()
-					.putString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
-							mysteryWordTextView.getText().toString()).commit();
-			getPreferences(MODE_PRIVATE)
-					.edit()
-					.putString(PREFERENCES_WRONG_LETTERS,
-							wrongLettersTextView.getText().toString()).commit();
-			getPreferences(MODE_PRIVATE).edit()
-					.putInt(PREFERENCES_NUM_WRONG_GUESSES, numWrongGuesses)
-					.commit();
-			this.savedGame = true;
+			// Store values between instances here
+			SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+			SharedPreferences.Editor editor = preferences.edit();
+
+			// values to store
+			editor.putString(PREFERENCES_MYSTERY_WORD, mysteryWord);
+			editor.putString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
+					mysteryWordTextView.getText().toString());
+			editor.putString(PREFERENCES_WRONG_LETTERS, wrongLettersTextView
+					.getText().toString());
+			editor.putInt(PREFERENCES_NUM_WRONG_GUESSES, numWrongGuesses);
+
+			// Commit to storage
+			editor.commit();
+
+			// give the signal that the game was saved
+			Hangman.savedGame = true;
 		}
 	}
 
