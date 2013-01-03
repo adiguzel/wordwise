@@ -1,8 +1,11 @@
 package com.wordwise.activity.game;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,7 +13,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 
@@ -40,6 +42,15 @@ public class Hangman extends Activity implements Game {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		String languageToLoad  = "de"; // your language
+	    Locale locale = new Locale(languageToLoad); 
+	    Locale.setDefault(locale);
+	    Configuration config = new Configuration();
+	    config.locale = locale;
+	    getBaseContext().getResources().updateConfiguration(config, 
+	    getBaseContext().getResources().getDisplayMetrics());
+		
 		getActionBar().hide();
 		setContentView(R.layout.hangman);
 		this.init();
