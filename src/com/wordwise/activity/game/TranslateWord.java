@@ -43,6 +43,10 @@ public class TranslateWord extends Activity implements Game {
 		wordToBeTranslatedBuffer = wordToBeTranslated.getText().toString();
 		wordTranslationBuffer = wordTranslation.getText().toString();
 		
+		//Remove the words from the edit fields when the data is submitted
+		this.wordToBeTranslated.setText("");
+		this.wordTranslation.setText("");
+		
 		Toast msg = Toast.makeText(this, "Your translation was submitted successfully!", Toast.LENGTH_SHORT);
 		msg.show();
 		
