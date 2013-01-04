@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.wordwise.activity.AboutActivity;
-import com.wordwise.activity.MainGameScreen;
 import com.wordwise.activity.MenuActivity;
+import com.wordwise.activity.game.Memory;
 import com.wordwise.activity.setting.ConfigurationWizardStep1;
 import com.wordwise.model.Configuration;
 
@@ -18,9 +18,9 @@ public class MainActivity extends MenuActivity {
        
         if(!Configuration.getInstance(getApplicationContext()).isConfigured())
         	configure();  
-        else{
+        else
         	loadMainScreen();
-        }
+        
         
         /* Setting of the content View should be at the last position in order to receive 
          * configuration screens at first and than avoid having an empty activity if the user 
@@ -44,7 +44,7 @@ public class MainActivity extends MenuActivity {
     }
     
     private void loadMainScreen(){
-    	Intent intent = new Intent(this, MainGameScreen.class);
+    	Intent intent = new Intent(this, Memory.class);
         startActivity(intent);
     }
 }
