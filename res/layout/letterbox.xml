@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/word2translations_padding_main" >
+
+    <include android:id="@+id/topBar" layout="@layout/game_top_bar"/>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/hangman_main_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/word2translations_padding_main"
+        android:paddingTop="@dimen/word2translations_padding_main" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/validateButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:onClick="validate"
+        android:text="@string/check" 
+        android:enabled="false"/>
+    
+    <GridView
+        android:id="@+id/gridViewLetters"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_alignLeft="@+id/hangman_main_vertical"
+        android:layout_alignTop="@+id/hangman_main_vertical"
+        android:gravity="center"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="0dp"
+        android:numColumns="8"
+        android:stretchMode="columnWidth"
+        android:background="@color/divider_color"
+        android:layout_marginTop="8dp">
+
+    </GridView>
+
+    <GridView
+        android:id="@+id/gridViewWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validateButton"
+        android:layout_alignLeft="@+id/validateButton"
+        android:layout_below="@+id/gridViewLetters"
+        android:numColumns="3" 
+        android:layout_marginTop="10dp">
+
+    </GridView>
+
+</RelativeLayout>

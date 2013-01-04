@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.GameManager;
+import com.wordwise.model.RandomGameSelector;
+import com.wordwise.model.WordwiseGameManager;
 
 public class NewGame extends MenuActivity {
 	private GameManager gManager;
@@ -20,6 +22,7 @@ public class NewGame extends MenuActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
+		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
 		return true;
 	}
 
@@ -31,7 +34,7 @@ public class NewGame extends MenuActivity {
 			break;
 		case R.id.mediumNewGameButton:
 			//TODO Prepare the DTO for medium and start the game
-			
+			gManager.startGameCycle();
 			break;
 		case R.id.hardNewGameButton:
 			//TODO Prepare the DTO for hard and start the game
