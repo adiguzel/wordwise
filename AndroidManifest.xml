@@ -57,6 +57,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.wordwise.activity.game.LetterBox"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.wordwise.activity.game.WordEvaluation"
             android:label="@string/app_name" >
         </activity>
