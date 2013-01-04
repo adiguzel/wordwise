@@ -23,71 +23,72 @@ public final class R {
         /**  Wordwise commons 
   #FF7FC348
          */
-        public static final int divider_color=0x7f070003;
-        public static final int hangman_wrong_letters_red_color=0x7f070031;
-        public static final int light_button_shape_border=0x7f07001e;
-        public static final int light_button_shape_end=0x7f07001d;
-        public static final int light_button_shape_focused_border=0x7f070024;
-        public static final int light_button_shape_focused_end=0x7f070023;
-        public static final int light_button_shape_focused_start=0x7f070022;
-        public static final int light_button_shape_pressed_border=0x7f070021;
-        public static final int light_button_shape_pressed_end=0x7f070020;
-        public static final int light_button_shape_pressed_start=0x7f07001f;
-        public static final int light_button_shape_start=0x7f07001c;
-        public static final int light_button_shape_text_color=0x7f07001b;
+        public static final int divider_color=0x7f070004;
+        public static final int hangman_wrong_letters_red_color=0x7f070032;
+        public static final int light_button_shape_border=0x7f07001f;
+        public static final int light_button_shape_end=0x7f07001e;
+        public static final int light_button_shape_focused_border=0x7f070025;
+        public static final int light_button_shape_focused_end=0x7f070024;
+        public static final int light_button_shape_focused_start=0x7f070023;
+        public static final int light_button_shape_pressed_border=0x7f070022;
+        public static final int light_button_shape_pressed_end=0x7f070021;
+        public static final int light_button_shape_pressed_start=0x7f070020;
+        public static final int light_button_shape_start=0x7f07001d;
+        public static final int light_button_shape_text_color=0x7f07001c;
         public static final int opaque_red=0x7f070000;
         public static final int translucent_red=0x7f070001;
+        public static final int white=0x7f070003;
         /**   #FF7FC348
          */
-        public static final int wordwise_back_button_border=0x7f070027;
+        public static final int wordwise_back_button_border=0x7f070028;
         /**   #FF7FC348
          */
-        public static final int wordwise_back_button_disabled_border=0x7f07002a;
-        public static final int wordwise_back_button_disabled_end=0x7f070029;
-        public static final int wordwise_back_button_disabled_start=0x7f070028;
-        public static final int wordwise_back_button_end=0x7f070026;
+        public static final int wordwise_back_button_disabled_border=0x7f07002b;
+        public static final int wordwise_back_button_disabled_end=0x7f07002a;
+        public static final int wordwise_back_button_disabled_start=0x7f070029;
+        public static final int wordwise_back_button_end=0x7f070027;
         /**   #FF7FC348
          */
-        public static final int wordwise_back_button_focused_border=0x7f070030;
-        public static final int wordwise_back_button_focused_end=0x7f07002f;
-        public static final int wordwise_back_button_focused_start=0x7f07002e;
+        public static final int wordwise_back_button_focused_border=0x7f070031;
+        public static final int wordwise_back_button_focused_end=0x7f070030;
+        public static final int wordwise_back_button_focused_start=0x7f07002f;
         /**   #FF7FC348
          */
-        public static final int wordwise_back_button_pressed_border=0x7f07002d;
-        public static final int wordwise_back_button_pressed_end=0x7f07002c;
-        public static final int wordwise_back_button_pressed_start=0x7f07002b;
-        public static final int wordwise_back_button_start=0x7f070025;
-        public static final int wordwise_button_text_color=0x7f07001a;
-        public static final int wordwise_main_fail_red=0x7f070016;
-        public static final int wordwise_main_gray_border=0x7f070012;
-        public static final int wordwise_main_gray_end=0x7f070011;
-        public static final int wordwise_main_gray_start=0x7f070010;
+        public static final int wordwise_back_button_pressed_border=0x7f07002e;
+        public static final int wordwise_back_button_pressed_end=0x7f07002d;
+        public static final int wordwise_back_button_pressed_start=0x7f07002c;
+        public static final int wordwise_back_button_start=0x7f070026;
+        public static final int wordwise_button_text_color=0x7f07001b;
+        public static final int wordwise_main_fail_red=0x7f070017;
+        public static final int wordwise_main_gray_border=0x7f070013;
+        public static final int wordwise_main_gray_end=0x7f070012;
+        public static final int wordwise_main_gray_start=0x7f070011;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_border=0x7f070006;
+        public static final int wordwise_main_green_border=0x7f070007;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_disabled_border=0x7f070009;
-        public static final int wordwise_main_green_disabled_end=0x7f070008;
-        public static final int wordwise_main_green_disabled_start=0x7f070007;
-        public static final int wordwise_main_green_end=0x7f070005;
+        public static final int wordwise_main_green_disabled_border=0x7f07000a;
+        public static final int wordwise_main_green_disabled_end=0x7f070009;
+        public static final int wordwise_main_green_disabled_start=0x7f070008;
+        public static final int wordwise_main_green_end=0x7f070006;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_focused_border=0x7f07000f;
-        public static final int wordwise_main_green_focused_end=0x7f07000e;
-        public static final int wordwise_main_green_focused_start=0x7f07000d;
+        public static final int wordwise_main_green_focused_border=0x7f070010;
+        public static final int wordwise_main_green_focused_end=0x7f07000f;
+        public static final int wordwise_main_green_focused_start=0x7f07000e;
         /**   #FF7FC348
          */
-        public static final int wordwise_main_green_pressed_border=0x7f07000c;
-        public static final int wordwise_main_green_pressed_end=0x7f07000b;
-        public static final int wordwise_main_green_pressed_start=0x7f07000a;
-        public static final int wordwise_main_green_start=0x7f070004;
-        public static final int wordwise_main_light_gray_border=0x7f070015;
-        public static final int wordwise_main_light_gray_end=0x7f070014;
-        public static final int wordwise_main_light_gray_highlighted_border=0x7f070019;
-        public static final int wordwise_main_light_gray_highlighted_end=0x7f070018;
-        public static final int wordwise_main_light_gray_highlighted_start=0x7f070017;
-        public static final int wordwise_main_light_gray_start=0x7f070013;
+        public static final int wordwise_main_green_pressed_border=0x7f07000d;
+        public static final int wordwise_main_green_pressed_end=0x7f07000c;
+        public static final int wordwise_main_green_pressed_start=0x7f07000b;
+        public static final int wordwise_main_green_start=0x7f070005;
+        public static final int wordwise_main_light_gray_border=0x7f070016;
+        public static final int wordwise_main_light_gray_end=0x7f070015;
+        public static final int wordwise_main_light_gray_highlighted_border=0x7f07001a;
+        public static final int wordwise_main_light_gray_highlighted_end=0x7f070019;
+        public static final int wordwise_main_light_gray_highlighted_start=0x7f070018;
+        public static final int wordwise_main_light_gray_start=0x7f070014;
     }
     public static final class dimen {
         public static final int background_shape_corner_radius=0x7f08000b;
@@ -169,10 +170,12 @@ public final class R {
         public static final int cbPicView=0x7f0d0003;
         public static final int checkList=0x7f0d0005;
         public static final int content=0x7f0d0006;
-        public static final int continueButton=0x7f0d001b;
-        public static final int done=0x7f0d0025;
-        public static final int easyNewGameButton=0x7f0d001c;
+        public static final int continueButton=0x7f0d001e;
+        public static final int done=0x7f0d002c;
+        public static final int easyNewGameButton=0x7f0d001f;
         public static final int finish=0x7f0d000d;
+        public static final int gridViewLetters=0x7f0d001b;
+        public static final int gridViewWords=0x7f0d001c;
         public static final int hangman_img=0x7f0d0015;
         public static final int hangman_main_vertical=0x7f0d0013;
         public static final int hangman_mystery_word=0x7f0d0019;
@@ -180,36 +183,40 @@ public final class R {
         public static final int hangman_upper_vertical=0x7f0d0016;
         public static final int hangman_wrong_letters=0x7f0d0018;
         public static final int hangman_wrong_letters_title=0x7f0d0017;
-        public static final int hardNewGameButton=0x7f0d001e;
+        public static final int hardNewGameButton=0x7f0d0021;
         public static final int howToPlay=0x7f0d0002;
         public static final int howToPlayButton=0x7f0d000f;
         public static final int list=0x7f0d000a;
-        public static final int mediumNewGameButton=0x7f0d001d;
-        public static final int memoryGrid=0x7f0d001a;
-        public static final int menu_settings=0x7f0d0030;
+        public static final int mediumNewGameButton=0x7f0d0020;
+        public static final int memoryGrid=0x7f0d001d;
+        public static final int menu_settings=0x7f0d0036;
         public static final int next=0x7f0d0007;
         public static final int numberOfSelectedLanguages=0x7f0d0009;
         public static final int quit=0x7f0d0011;
-        public static final int ratings=0x7f0d001f;
+        public static final int ratings=0x7f0d0022;
         public static final int startContinueButton=0x7f0d000e;
+        public static final int submitTranslation=0x7f0d0026;
         public static final int topBar=0x7f0d0012;
         public static final int topPanel=0x7f0d0010;
-        public static final int translation1_placeholder=0x7f0d0027;
-        public static final int translation2_placeholder=0x7f0d0029;
-        public static final int translation3_placeholder=0x7f0d002b;
-        public static final int translation4_placeholder=0x7f0d002d;
-        public static final int translationsGrid=0x7f0d002e;
-        public static final int validateButton=0x7f0d002f;
-        public static final int word1=0x7f0d0026;
-        public static final int word2=0x7f0d0028;
+        public static final int translateWordActivityInfo=0x7f0d0023;
+        public static final int translation1_placeholder=0x7f0d002e;
+        public static final int translation2_placeholder=0x7f0d0030;
+        public static final int translation3_placeholder=0x7f0d0032;
+        public static final int translation4_placeholder=0x7f0d0034;
+        public static final int translationsGrid=0x7f0d0035;
+        public static final int validateButton=0x7f0d001a;
+        public static final int word1=0x7f0d002d;
+        public static final int word2=0x7f0d002f;
         public static final int word2TranslationGameLabel=0x7f0d0008;
-        public static final int word3=0x7f0d002a;
-        public static final int word4=0x7f0d002c;
-        public static final int wordDifficultyRating=0x7f0d0024;
-        public static final int wordDifficultyText=0x7f0d0023;
-        public static final int wordQualityRating=0x7f0d0022;
-        public static final int wordQualityText=0x7f0d0021;
-        public static final int wordToEvaluate=0x7f0d0020;
+        public static final int word3=0x7f0d0031;
+        public static final int word4=0x7f0d0033;
+        public static final int wordDifficultyRating=0x7f0d002b;
+        public static final int wordDifficultyText=0x7f0d002a;
+        public static final int wordQualityRating=0x7f0d0029;
+        public static final int wordQualityText=0x7f0d0028;
+        public static final int wordToBeTranslated=0x7f0d0024;
+        public static final int wordToEvaluate=0x7f0d0027;
+        public static final int wordTranslation=0x7f0d0025;
     }
     public static final class integer {
         public static final int background_shape_gradient_angle_main=0x7f090003;
@@ -225,11 +232,15 @@ public final class R {
         public static final int configuration_step2=0x7f030004;
         public static final int game_main_screen=0x7f030005;
         public static final int game_top_bar=0x7f030006;
-        public static final int hangman=0x7f030007;
-        public static final int memory=0x7f030008;
-        public static final int new_game=0x7f030009;
-        public static final int word_evaluation=0x7f03000a;
-        public static final int words2translations=0x7f03000b;
+        public static final int grid_row=0x7f030007;
+        public static final int grid_text_view=0x7f030008;
+        public static final int hangman=0x7f030009;
+        public static final int letterbox=0x7f03000a;
+        public static final int memory=0x7f03000b;
+        public static final int new_game=0x7f03000c;
+        public static final int translate_word=0x7f03000d;
+        public static final int word_evaluation=0x7f03000e;
+        public static final int words2translations=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_about_activity=0x7f0c0000;
@@ -274,6 +285,10 @@ public final class R {
         public static final int title_preferences_learning_language=0x7f0a0014;
         public static final int title_preferences_proficient_languages=0x7f0a0012;
         public static final int title_preferences_summary_name=0x7f0a000f;
+        public static final int translate_word_activity_info=0x7f0a002b;
+        public static final int translate_word_add_translation=0x7f0a002d;
+        public static final int translate_word_add_word=0x7f0a002c;
+        public static final int translate_word_submit_translation_button=0x7f0a002e;
         public static final int word2Translations_game_information=0x7f0a0026;
         public static final int wordDifficultyText=0x7f0a001d;
         public static final int wordQualityText=0x7f0a001c;
