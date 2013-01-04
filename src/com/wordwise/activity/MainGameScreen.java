@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.R;
+import com.wordwise.activity.game.TranslateWord;
 
 public class MainGameScreen extends MenuActivity {
 
@@ -26,8 +27,11 @@ public class MainGameScreen extends MenuActivity {
 		startActivity(intent);
 	}
     public void showHowToPlay(View view) {
-		//Intent intent = new Intent(this, ConfigurationWizardStep1.class);
-		//startActivity(intent);
+    	
+    	//Used by Dragan for testing purpose of TranslateWord activity
+    	//To be removed on a later stage ...
+		Intent intent = new Intent(this, TranslateWord.class);
+		startActivity(intent);
 	}
     
 }
