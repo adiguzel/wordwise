@@ -99,10 +99,10 @@ public class LetterBoxManager
 		
 		insertTranslationsIntoLetters(returnList);
 		
-		/*for (int i = 0; i < returnList.size(); i++)
+		for (int i = 0; i < returnList.size(); i++)
 		{
 			returnList.set(i, returnList.get(i).toUpperCase());
-		}*/
+		}
 		
 		return returnList;
 	}
