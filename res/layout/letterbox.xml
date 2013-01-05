@@ -9,36 +9,41 @@
         android:layout_alignParentTop="true"
         layout="@layout/game_top_bar" />
 
-    <RelativeLayout
-        android:id="@+id/grids"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical" 
+        android:layout_above="@+id/validateButton"
         android:layout_below="@+id/topBar"
-        android:layout_above="@+id/validateButton">
+        android:layout_marginBottom="@dimen/word2translations_padding_main"
+        android:layout_marginTop="@dimen/word2translations_padding_main" >
 
-        <GridView
-            android:id="@+id/gridViewLetters"
+        <RelativeLayout
+            android:id="@+id/grids"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/word2translations_padding_main"
-            android:background="@color/divider_color"
-            android:gravity="center"
-            android:horizontalSpacing="0dp"
-            android:numColumns="8"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="0dp" >
-        </GridView>
+            android:layout_height="wrap_content" >
 
-        <GridView
-            android:id="@+id/gridViewWords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/gridViewLetters"
-            android:layout_marginTop="10dp"
-            android:numColumns="3" >
-        </GridView>
-    </RelativeLayout>
+            <com.wordwise.view.ScrollableGridView
+                android:id="@+id/gridViewLetters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider_color"
+                android:gravity="center"
+                android:horizontalSpacing="0dp"
+                android:numColumns="8"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp" >
+            </com.wordwise.view.ScrollableGridView>
+
+            <com.wordwise.view.ScrollableGridView
+                android:id="@+id/gridViewWords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gridViewLetters"
+                android:layout_marginTop="@dimen/word2translations_padding_main"
+                android:numColumns="3" >
+            </com.wordwise.view.ScrollableGridView>
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/validateButton"
