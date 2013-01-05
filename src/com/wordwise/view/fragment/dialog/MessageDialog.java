@@ -1,4 +1,4 @@
-package com.wordwise.fragment.dialog;
+package com.wordwise.view.fragment.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

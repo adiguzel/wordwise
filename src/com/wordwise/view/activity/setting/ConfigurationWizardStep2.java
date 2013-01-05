@@ -1,4 +1,4 @@
-package com.wordwise.activity.setting;
+package com.wordwise.view.activity.setting;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.wordwise.R;
-import com.wordwise.activity.MainGameScreen;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.LanguageManager;
+import com.wordwise.view.activity.MainGameScreen;
 
 public class ConfigurationWizardStep2 extends Activity {
 	private ListView listView;

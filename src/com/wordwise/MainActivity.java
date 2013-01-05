@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.wordwise.activity.AboutActivity;
-import com.wordwise.activity.MainGameScreen;
-import com.wordwise.activity.MenuActivity;
-import com.wordwise.activity.game.Memory;
-import com.wordwise.activity.setting.ConfigurationWizardStep1;
 import com.wordwise.model.Configuration;
+import com.wordwise.view.activity.AboutActivity;
+import com.wordwise.view.activity.MainGameScreen;
+import com.wordwise.view.activity.MenuActivity;
+import com.wordwise.view.activity.game.Memory;
+import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
     @Override

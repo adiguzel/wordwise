@@ -1,4 +1,4 @@
-package com.wordwise.activity.setting;
+package com.wordwise.view.activity.setting;
 
 import java.util.ArrayList;
 import java.util.List;

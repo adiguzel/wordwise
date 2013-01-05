@@ -1,4 +1,4 @@
-package com.wordwise.activity;
+package com.wordwise.view.activity;
 
 import android.os.Bundle;
 import android.view.Menu;

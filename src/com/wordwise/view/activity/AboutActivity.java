@@ -1,4 +1,4 @@
-package com.wordwise.activity;
+package com.wordwise.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wordwise.R;
-import com.wordwise.activity.game.Hangman;
+import com.wordwise.view.activity.game.Hangman;
 
 public class AboutActivity extends Activity {
 	

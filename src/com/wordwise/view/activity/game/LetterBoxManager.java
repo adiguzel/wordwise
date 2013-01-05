@@ -1,4 +1,4 @@
-package com.wordwise.activity.game;
+package com.wordwise.view.activity.game;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,9 +8,9 @@ import java.util.Random;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.activity.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.view.activity.game.LetterBoxPositionUtils.Direction;
 
 public class LetterBoxManager
 {

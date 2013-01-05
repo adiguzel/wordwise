@@ -2,12 +2,12 @@ package com.wordwise.model;
 
 import android.content.Context;
 
-import com.wordwise.activity.game.Hangman;
-import com.wordwise.activity.game.LetterBox;
-import com.wordwise.activity.game.Memory;
-import com.wordwise.activity.game.Words2Translations;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
+import com.wordwise.view.activity.game.Hangman;
+import com.wordwise.view.activity.game.LetterBox;
+import com.wordwise.view.activity.game.Memory;
+import com.wordwise.view.activity.game.Words2Translations;
 
 public class WordwiseGameManager extends GameManager{
 	private Context context;

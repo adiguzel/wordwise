@@ -1,4 +1,4 @@
-package com.wordwise.activity.game;
+package com.wordwise.view.activity.game;
 
 import android.app.Activity;
 import android.app.AlertDialog;

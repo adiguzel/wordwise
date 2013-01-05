@@ -25,55 +25,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.wordwise.activity.setting.ConfigurationWizardStep1"
+            android:name="com.wordwise.view.activity.setting.ConfigurationWizardStep1"
             android:label="@string/title_configuration_step1" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.setting.ConfigurationWizardStep2"
+            android:name="com.wordwise.view.activity.setting.ConfigurationWizardStep2"
             android:label="@string/title_configuration_step2" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.setting.Settings"
+            android:name="com.wordwise.view.activity.setting.Settings"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.MainGameScreen"
+            android:name="com.wordwise.view.activity.MainGameScreen"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.NewGame"
+            android:name="com.wordwise.view.activity.NewGame"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.Hangman"
+            android:name="com.wordwise.view.activity.game.Hangman"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.Words2Translations"
+            android:name="com.wordwise.view.activity.game.Words2Translations"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.Memory"
+            android:name="com.wordwise.view.activity.game.Memory"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.LetterBox"
+            android:name="com.wordwise.view.activity.game.LetterBox"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.WordEvaluation"
+            android:name="com.wordwise.view.activity.game.WordEvaluation"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.TranslateWord"
+            android:name="com.wordwise.view.activity.game.TranslateWord"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.game.TranslationEvaluation"
+            android:name="com.wordwise.view.activity.game.TranslationEvaluation"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.wordwise.activity.AboutActivity"
+            android:name="com.wordwise.view.activity.AboutActivity"
             android:label="@string/title_activity_about_activiy" >
         </activity>
     </application>
