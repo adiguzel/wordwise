@@ -1,7 +1,9 @@
 package com.wordwise.model;
 
 import android.content.Context;
+import android.content.Intent;
 
+import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
 import com.wordwise.view.activity.game.Hangman;
@@ -24,9 +26,10 @@ public class WordwiseGameManager extends GameManager{
 	}
 
 	@Override
-	public Context getContext()
+	public void startGame(Game game)
 	{
-		return context;
+		Intent gameIntent = new Intent(context, game.getClass());
+		context.startActivity(gameIntent);
 	}
 
 }
