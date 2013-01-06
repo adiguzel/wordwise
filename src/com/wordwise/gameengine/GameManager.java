@@ -1,7 +1,5 @@
 package com.wordwise.gameengine;
 
-import android.content.Context;
-import android.content.Intent;
 
 
 public abstract class GameManager {
@@ -41,8 +39,7 @@ public abstract class GameManager {
 		if(currentGame != null )
 		{
 			currentGame.start();
-			Intent game = new Intent(getContext(), currentGame.getClass());
-			getContext().startActivity(game);
+			startGame(currentGame);
 		}		
 		else
 			System.out.println("Game is null");
@@ -52,7 +49,7 @@ public abstract class GameManager {
 		return configuration;
 	}
 	
-	public abstract Context getContext();
+	public abstract void startGame(Game game);
 
 	public void setConfiguration(GameConfiguration configuration) {
 		this.configuration = configuration;
