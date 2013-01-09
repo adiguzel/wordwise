@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.wordwise.model.Configuration;
+import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.MainGameScreen;
 import com.wordwise.view.activity.MenuActivity;
-import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
@@ -28,6 +28,8 @@ public class MainActivity extends MenuActivity {
          * presses back button
          */
         setContentView(R.layout.activity_main);
+        
+        LanguageUtils.Init(getResources());
     }
     
     /* It calls the about activity where the user can get some info about the game
