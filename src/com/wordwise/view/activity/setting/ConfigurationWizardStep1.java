@@ -30,17 +30,31 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.configuration_step1);
-		
-		configuration = Configuration.getInstance(getApplicationContext());		
+
+		configuration = Configuration.getInstance(getApplicationContext());
 		list = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
-		if(!configuration.getProficientLanguages().isEmpty())
-			next.setEnabled(true);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
-		selectedLanguagesText = selectedLanguages.getText().toString();
 		
+		initListView();
+		
+		if (!configuration.getProficientLanguages().isEmpty())
+			next.setEnabled(true);
+		
+
+		selectedLanguagesText = selectedLanguages.getText().toString();
+		setSelectedIndexes();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setSelectedLanguageCountText(configuration.getProficientLanguages()
+				.size());
+	}
+
+	public void initListView() {
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice,
@@ -55,22 +69,14 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 				toggle(tv);
 			}
 		});
-		setSelectedIndexes();
 	}
-	
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		setSelectedLanguageCountText(configuration.getProficientLanguages().size());		
-	}
-	
-	
 
 	public void finishStep(View view) {
-		//TODO Check if at least one lang is selected	
-		Intent intent = new Intent(this, ConfigurationWizardStep2.class);
-		startActivity(intent);
+		if (!configuration.getProficientLanguages().isEmpty()) {
+			Intent intent = new Intent(this, ConfigurationWizardStep2.class);
+			startActivity(intent);
+		}
+		// TODO show error
 	}
 
 	public void toggle(CheckedTextView v) {
@@ -83,10 +89,9 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 			v.setChecked(true);
 			configuration.addLanguage(l);
 		}
-		if(configuration.getProficientLanguages()
-				.size() > 0)
+		if (configuration.getProficientLanguages().size() > 0)
 			next.setEnabled(true);
-		else 
+		else
 			next.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
 				.size());

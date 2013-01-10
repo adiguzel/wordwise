@@ -15,47 +15,42 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_below="@id/topBar"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp" >
+        android:layout_below="@id/topBar">
 
         <TextView
             android:id="@+id/translateWordActivityInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="30dip"
-            android:text="@string/translate_word_activity_info" />
+            android:paddingTop="@dimen/translateWord_Spacing"
+            android:text="@string/translate_word_activity_info" 
+            android:textSize="@dimen/text_size_medium"/>
         
         <EditText 
             android:id="@+id/wordToBeTranslated"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content" 
             android:hint="@string/translate_word_add_word"
-            android:paddingTop="30dip"
+            android:paddingTop="@dimen/translateWord_Spacing"
             android:inputType="text"/>
         
         <EditText 
             android:id="@+id/wordTranslation"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content" 
             android:hint="@string/translate_word_add_translation"
-            android:paddingTop="10dip"
+            android:paddingTop="@dimen/translateWord_Spacing"
             android:inputType="text"/>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/submitTranslation"
-        android:layout_width="wrap_content"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dip"
         android:onClick="submitTranslation"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
         android:text="@string/translate_word_submit_translation_button" />
 
 </RelativeLayout>

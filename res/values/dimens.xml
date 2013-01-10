@@ -55,6 +55,6 @@
     <dimen name="button_text_padding_bottom">10dip</dimen>
     
     
-    
+    <dimen name="translateWord_Spacing">30dip</dimen>
     
 </resources>

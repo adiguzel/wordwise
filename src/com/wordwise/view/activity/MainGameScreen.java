@@ -26,6 +26,7 @@ public class MainGameScreen extends MenuActivity {
 		Intent intent = new Intent(this, NewGame.class);
 		startActivity(intent);
 	}
+    
     public void showHowToPlay(View view) {
     	
     	//Used by Dragan for testing purpose of TranslateWord activity

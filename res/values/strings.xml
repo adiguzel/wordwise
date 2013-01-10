@@ -44,9 +44,9 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="initial_conf_proficient_lang_info">Now please choose which languages you speak fluently</string>
     <string name="initial_conf_learning_lang_info">Finally, choose which languages you want to practice</string>
     <string name="wrong_letters_title">Wrong Letters:</string>
-    <string name="translate_word_activity_info">Please enter a word and a translation ...</string>
-    <string name="translate_word_add_word">Enter the word that you want to translate here...</string>
-    <string name="translate_word_add_translation">Enter the translation here ...</string>
+    <string name="translate_word_activity_info">Please enter a word and a translation</string>
+    <string name="translate_word_add_word">Enter the English word</string>
+    <string name="translate_word_add_translation">Enter the translation</string>
     <string name="translate_word_submit_translation_button">Submit translation</string>
 	
 </resources>

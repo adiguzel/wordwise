@@ -14,20 +14,20 @@ public class MultiSelectAdapter extends BaseAdapter {
 	Context context;
 	int textViewResourceId;
 
-	public MultiSelectAdapter(Context context,  int textViewResourceId, Selectable[] items) {
+	public MultiSelectAdapter(Context context, int textViewResourceId,
+			Selectable[] items) {
 		this.items = items;
 		this.context = context;
 		this.textViewResourceId = textViewResourceId;
 	}
 
-	// @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		View v = convertView;
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = vi.inflate(textViewResourceId/*R.layout.checked_text_view*/, null);
+			v = vi.inflate(textViewResourceId, null);
 		}
 		CheckedTextView post = (CheckedTextView) v.findViewById(R.id.checkList);
 		post.setText(items[position].getName());

@@ -17,25 +17,20 @@
 
     <Button
         android:id="@+id/startContinueButton"
+        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="startOrContinueGame"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
-        android:text="@string/start_continue_game" />
+        android:text="@string/start_continue_game"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"/>
 
     <Button
         android:id="@+id/howToPlayButton"
+        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dip"
         android:onClick="showHowToPlay"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
         android:text="@string/how_to_play" />
 
 </LinearLayout>

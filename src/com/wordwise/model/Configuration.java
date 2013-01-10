@@ -6,23 +6,26 @@ import java.util.Set;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
+import com.wordwise.gameengine.Game;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
-	static final int EASY = 1;
-	static final int MEDIUM = 2;
-	static final int HARD = 3;
 	private static Configuration instance = null;
 	
 	private int difficulty;
-	private Set<Language> proficientLanguages = new HashSet<Language> ();
+	private Set<Language> proficientLanguages = new HashSet<Language>();
 	private Language learningLanguage = null;
 	private SharedPreferences SP;
 
 	private Configuration(Context context) {
-		SP = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());//context.getSharedPreferences(APP_SHARED_PREFS , Activity.MODE_PRIVATE);//PreferenceManager.getDefaultSharedPreferences(context);
+		init(context);
+	}
+	
+	private void init(Context context){
+		SP = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 		difficulty = loadDifficulty();
 		learningLanguage = loadLearningLanguage();
 		proficientLanguages = loadProficientLanguages();
@@ -31,7 +34,9 @@ public class Configuration{
 	public static Configuration getInstance(Context context) {
 		if (instance == null) {
 			instance = new Configuration(context);
+			Log.v("Conf", "girmeli instance");
 		}
+		Log.v("Conf", "agalar beyler, bu nasil olur?");
 		return instance;
 	}
 	
@@ -40,11 +45,12 @@ public class Configuration{
 	}
 
 	public int loadDifficulty() {
-		return SP.getInt("difficulty", EASY);
+		return SP.getInt("difficulty", Game.EASY);
 	}
 
 	public Language loadLearningLanguage() {
 		String langCode = SP.getString("learning_language", "");
+		Log.v("Conf", "code : " + langCode);
 		return LanguageUtils.getByCode(langCode);
 	}
 
@@ -104,6 +110,9 @@ public class Configuration{
 	}
 
 	public boolean isConfigured() {
+		Log.v("Conf", "learning : "+learningLanguage);
+		Log.v("Conf", "prof : "+proficientLanguages);
+		Log.v("Conf", "res : "+ (learningLanguage != null && !proficientLanguages.isEmpty()));
 		return learningLanguage != null && !proficientLanguages.isEmpty();
 	}
 

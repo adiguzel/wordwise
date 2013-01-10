@@ -22,6 +22,9 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.GameManager;
+import com.wordwise.model.RandomGameSelector;
+import com.wordwise.model.WordwiseGameManager;
 
 public class Words2Translations extends Activity implements Game {
 	private List<TextView> translationPlaceHolders;
@@ -33,13 +36,13 @@ public class Words2Translations extends Activity implements Game {
 	// used for the workaround for the initial translation view not being reset
 	// to visible
 	private View firstTranslation = null;
+	private GameManager gameManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		setContentView(R.layout.words2translations);
-
 		this.init();
 		this.start();
 	}
@@ -49,13 +52,11 @@ public class Words2Translations extends Activity implements Game {
 	}
 
 	public void stop() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void pause() {
-		// TODO Auto-generated method stub
-
+		// TODO Auto-generated method stubd
 	}
 
 	public void init() {
@@ -63,6 +64,7 @@ public class Words2Translations extends Activity implements Game {
 		initTranslationPlaceHolders();
 		initWords();
 		initTranslationsGrid();
+		gameManager = new WordwiseGameManager(new RandomGameSelector(), this);
 	}
 
 	private void initTranslationsGrid() {
@@ -170,7 +172,14 @@ public class Words2Translations extends Activity implements Game {
 			 * R.drawable.word2translations_word));
 			 */
 		}
+		v.setVisibility(Button.INVISIBLE);
+		Button continueButton =  (Button) findViewById(R.id.continueButton);
+		continueButton.setVisibility(Button.VISIBLE);
 
+	}
+	
+	public void continueNextGame(View v) {
+		gameManager.endGame();
 	}
 
 	// TODO use real translations of the words that we got from the server

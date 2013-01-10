@@ -1,11 +1,11 @@
 package com.wordwise.gameengine;
 
-
+import android.util.Log;
 
 public abstract class GameManager {
-	private Game currentGame;
-	private GameSelector gameSelector;
-	private GameConfiguration configuration;
+	protected Game currentGame;
+	protected GameSelector gameSelector;
+	protected GameConfiguration configuration;
 	
 	public GameManager(GameSelector gameSelector){
 		this.gameSelector = gameSelector;
@@ -32,9 +32,6 @@ public abstract class GameManager {
 	
 	public final void startNextGame()
 	{
-		//IMPLEMENT A GAME SELECTION MECHANISM
-		//FIND THE NEXT GAME
-		//MAKE IT CURRENT AND START IT
 		currentGame = gameSelector.nextGame();
 		if(currentGame != null )
 		{

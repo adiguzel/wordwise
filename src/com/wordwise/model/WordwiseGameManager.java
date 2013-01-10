@@ -1,5 +1,7 @@
 package com.wordwise.model;
 
+import java.util.Currency;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -20,7 +22,7 @@ public class WordwiseGameManager extends GameManager{
 		gameSelector.registerGame(new LetterBox());
 		gameSelector.registerGame(new Hangman());
 		gameSelector.registerGame(new Words2Translations());
-		gameSelector.registerGame(new Memory());
+		//gameSelector.registerGame(new Memory());
 		
 		this.context = context;
 	}

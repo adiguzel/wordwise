@@ -186,5 +186,16 @@
         android:onClick="validate"
         android:text="@string/check" 
         android:enabled="false"/>
+    
+      <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel" 
+        android:visibility="invisible"/>
 
 </RelativeLayout>

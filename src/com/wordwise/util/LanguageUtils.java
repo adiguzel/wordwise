@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.wordwise.R;
 import com.wordwise.server.model.Language;
@@ -34,6 +35,8 @@ public class LanguageUtils {
 	}
 
 	public static Language getByCode(String code) {
+		// this check is necessary, otherwise Android throws null pointer
+		// runtime exception
 		if (languages != null) {
 			for (Language language : languages) {
 				if (language.getCode().equalsIgnoreCase(code)) {
@@ -69,11 +72,14 @@ public class LanguageUtils {
 	public static Integer getIndex(Language l) {
 		return languages.indexOf(l);
 	}
-	
-	public static Set<String> languageSetToCodeSet(Set<Language> languages){
+
+	public static Set<String> languageSetToCodeSet(Set<Language> languages) {
 		Set<String> langCodeSet = new HashSet<String>();
-		for(Language l : languages)
-			langCodeSet.add(l.getCode());
+		for (Language l : languages) {
+			if (l != null)
+				langCodeSet.add(l.getCode());
+		}
+
 		return langCodeSet;
 	}
 
