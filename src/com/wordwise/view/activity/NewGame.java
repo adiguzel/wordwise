@@ -8,6 +8,7 @@ import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.RandomGameSelector;
 import com.wordwise.model.WordwiseGameManager;
 
@@ -20,6 +21,7 @@ public class NewGame extends MenuActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_game);
 		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
+		GameManagerContainer.setGameManager(gManager);
 		configuration = Configuration.getInstance();
 	}
 

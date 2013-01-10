@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.RandomGameSelector;
 import com.wordwise.model.WordwiseGameManager;
 
@@ -64,7 +65,7 @@ public class Words2Translations extends Activity implements Game {
 		initTranslationPlaceHolders();
 		initWords();
 		initTranslationsGrid();
-		gameManager = new WordwiseGameManager(new RandomGameSelector(), this);
+		gameManager = GameManagerContainer.getGameManager();
 	}
 
 	private void initTranslationsGrid() {

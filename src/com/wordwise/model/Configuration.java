@@ -14,7 +14,7 @@ import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
 	private static Configuration instance = null;
-	
+
 	private int difficulty;
 	private Set<Language> proficientLanguages = new HashSet<Language>();
 	private Language learningLanguage = null;
