@@ -13,14 +13,14 @@ import android.widget.ListView;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.model.LanguageManager;
+import com.wordwise.server.model.Language;
+import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.MainGameScreen;
 
 public class ConfigurationWizardStep2 extends Activity {
 	private ListView listView;
 	private Configuration configuration;
 	private Button finish;
-	private LanguageManager lManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,14 +28,12 @@ public class ConfigurationWizardStep2 extends Activity {
 		setContentView(R.layout.configuration_step2);
 
 		configuration = Configuration.getInstance(getApplicationContext());
-		lManager = LanguageManager.getInstance();
-
 		listView = (ListView) findViewById(R.id.list);
 		finish = (Button) findViewById(R.id.finish);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_single_choice,
-				lManager.toLanguageNameArray());
+				LanguageUtils.toLanguageNameArray());
 		listView.setAdapter(adapter);
 		listView.setItemsCanFocus(false);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -45,8 +43,8 @@ public class ConfigurationWizardStep2 extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				CheckedTextView tv = (CheckedTextView) arg1;
-				String language = tv.getText().toString();
-				String langCode = lManager.fromName(language).getCode();
+				String langName = tv.getText().toString();
+				Language language = LanguageUtils.getByName(langName);
 				configuration.setLearningLanguage(language);
 				if (!finish.isEnabled())
 					finish.setEnabled(true);
@@ -54,11 +52,6 @@ public class ConfigurationWizardStep2 extends Activity {
 
 		});
 	}
-
-	private static final String[] LANGUAGES = new String[] { "English",
-			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
-			"Spanish" };
-
 	// Calls to this function is configured in the layout res file
 	public void back(View view) {
 		Intent intent = new Intent(this, ConfigurationWizardStep1.class);

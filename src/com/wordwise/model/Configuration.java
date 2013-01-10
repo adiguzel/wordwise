@@ -3,23 +3,22 @@ package com.wordwise.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
+import com.wordwise.server.model.Language;
+import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
 	static final int EASY = 1;
 	static final int MEDIUM = 2;
 	static final int HARD = 3;
-	
-	private final String APP_SHARED_PREFS = "com.wordwise";
-
 	private static Configuration instance = null;
+	
 	private int difficulty;
-	private Set<String> proficientLanguages;
-	private String learningLanguage;
+	private Set<Language> proficientLanguages = new HashSet<Language> ();
+	private Language learningLanguage = null;
 	private SharedPreferences SP;
 
 	private Configuration(Context context) {
@@ -44,12 +43,18 @@ public class Configuration{
 		return SP.getInt("difficulty", EASY);
 	}
 
-	public String loadLearningLanguage() {
-		return SP.getString("learning_language", "");
+	public Language loadLearningLanguage() {
+		String langCode = SP.getString("learning_language", "");
+		return LanguageUtils.getByCode(langCode);
 	}
 
-	public Set<String> loadProficientLanguages() {
-		return SP.getStringSet("proficient_languages", new HashSet<String>());
+	public Set<Language> loadProficientLanguages() {
+		Set<String> proficientLanguageCodes = SP.getStringSet("proficient_languages", new HashSet<String>());
+		Set<Language> proficientLanguages = new HashSet<Language> ();
+		for(String langCode : proficientLanguageCodes){
+			proficientLanguages.add(LanguageUtils.getByCode(langCode));
+		}
+		return proficientLanguages;
 	}
 
 	public boolean saveDifficulty() {
@@ -57,12 +62,15 @@ public class Configuration{
 	}
 
 	public boolean saveLearningLanguage() {
-		return SP.edit().putString("learning_language", learningLanguage).commit();
-
+		//do nothing if null
+		if(learningLanguage == null)
+			return false;
+		return SP.edit().putString("learning_language", learningLanguage.getCode()).commit();
 	}
 
 	public boolean saveProficientLanguages() {
-		return SP.edit().putStringSet("proficient_languages", proficientLanguages).commit();
+		Set<String> profLanguagesCodeSet = LanguageUtils.languageSetToCodeSet(proficientLanguages);
+		return SP.edit().putStringSet("proficient_languages", profLanguagesCodeSet).commit();
 	}
 
 	public int getDifficulty() {
@@ -75,29 +83,28 @@ public class Configuration{
 		saveDifficulty();
 	}
 
-	public Set<String> getProficientLanguages() {
+	public Set<Language> getProficientLanguages() {
 		return proficientLanguages;
 	}
 
-	public void addLanguage(String language) {
+	public void addLanguage(Language language) {
 		proficientLanguages.add(language);
 	}
 
-	public void removeLanguage(String language) {
+	public void removeLanguage(Language language) {
 		proficientLanguages.remove(language);
 	}
 
-	public String getLearningLanguage() {
+	public Language getLearningLanguage() {
 		return learningLanguage;
 	}
 
-	public void setLearningLanguage(String learningLanguage) {
-		this.learningLanguage = learningLanguage;
-
+	public void setLearningLanguage(Language language) {
+		this.learningLanguage = language;
 	}
 
 	public boolean isConfigured() {
-		return !learningLanguage.isEmpty() && !proficientLanguages.isEmpty();
+		return learningLanguage != null && !proficientLanguages.isEmpty();
 	}
 
 	public boolean finishInitialConfiguration() {

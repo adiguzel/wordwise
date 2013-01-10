@@ -74,14 +74,14 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	}
 
 	public void toggle(CheckedTextView v) {
-		String language = v.getText().toString();
-		String code = LanguageUtils.getByName(language).getCode();
+		String langName = v.getText().toString();
+		Language l = LanguageUtils.getByName(langName);
 		if (v.isChecked()) {
 			v.setChecked(false);
-			configuration.removeLanguage(code);
+			configuration.removeLanguage(l);
 		} else {
 			v.setChecked(true);
-			configuration.addLanguage(code);
+			configuration.addLanguage(l);
 		}
 		if(configuration.getProficientLanguages()
 				.size() > 0)
@@ -106,8 +106,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 
 	public List<Integer> getSelectedIndexes() {
 		List<Integer> selectedIndexes = new ArrayList<Integer>();
-		for (String langCode : configuration.getProficientLanguages()) {
-			Language l = LanguageUtils.getByCode(langCode);
+		for (Language l : configuration.getProficientLanguages()) {
 			Integer index = LanguageUtils.getIndex(l);
 			if (index >= 0)
 				selectedIndexes.add(index);

@@ -1,7 +1,9 @@
 package com.wordwise.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.content.res.Resources;
 
@@ -32,14 +34,16 @@ public class LanguageUtils {
 	}
 
 	public static Language getByCode(String code) {
-		for (Language language : languages) {
-			if (language.getCode().equalsIgnoreCase(code)) {
-				return language;
+		if (languages != null) {
+			for (Language language : languages) {
+				if (language.getCode().equalsIgnoreCase(code)) {
+					return language;
+				}
 			}
 		}
 		return null;
 	}
-	
+
 	/*
 	 * Returns the language instance with the given language name
 	 */
@@ -55,16 +59,22 @@ public class LanguageUtils {
 	public static String[] toLanguageNameArray() {
 		List<String> langs = new ArrayList<String>();
 		String[] langNames = new String[1];
-		
+
 		for (Language lang : languages)
 			langs.add(lang.getLanguage());
 
 		return langs.toArray(langNames);
 	}
-	
-	public static Integer getIndex(Language l){
+
+	public static Integer getIndex(Language l) {
 		return languages.indexOf(l);
 	}
 	
+	public static Set<String> languageSetToCodeSet(Set<Language> languages){
+		Set<String> langCodeSet = new HashSet<String>();
+		for(Language l : languages)
+			langCodeSet.add(l.getCode());
+		return langCodeSet;
+	}
 
 }
