@@ -29,7 +29,7 @@ public class MainActivity extends MenuActivity {
          */
         setContentView(R.layout.activity_main);
         
-        LanguageUtils.Init(getResources());
+        LanguageUtils.init(getResources());
     }
     
     /* It calls the about activity where the user can get some info about the game

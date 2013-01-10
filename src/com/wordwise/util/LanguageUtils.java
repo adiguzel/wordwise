@@ -12,7 +12,7 @@ public class LanguageUtils
 {
 	private static List<Language> languages = null;
 	
-	public static void Init(Resources resources)
+	public static void init(Resources resources)
 	{
 		languages = new ArrayList<Language>();
 		
@@ -25,7 +25,7 @@ public class LanguageUtils
 		}
 	}
 	
-	public static List<Language> GetAllLanguages() throws RuntimeException
+	public static List<Language> getAllLanguages() throws RuntimeException
 	{
 		if (languages == null)
 		{
@@ -34,7 +34,7 @@ public class LanguageUtils
 		return languages;
 	}
 	
-	public static Language GetByCode(String code)
+	public static Language getByCode(String code)
 	{
 		for (Language language : languages)
 		{
