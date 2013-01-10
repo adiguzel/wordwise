@@ -8,41 +8,63 @@ import android.content.res.Resources;
 import com.wordwise.R;
 import com.wordwise.server.model.Language;
 
-public class LanguageUtils
-{
+public class LanguageUtils {
 	private static List<Language> languages = null;
-	
-	public static void init(Resources resources)
-	{
+
+	public static void init(Resources resources) {
 		languages = new ArrayList<Language>();
-		
-		String[] languageCodes = resources.getStringArray(R.array.languageCodes);
+
+		String[] languageCodes = resources
+				.getStringArray(R.array.languageCodes);
 		String[] languageNames = resources.getStringArray(R.array.languages);
-		
-		for (int i = 0; ((i < languageCodes.length) && (i < languageNames.length)); i++)
-		{
+
+		for (int i = 0; ((i < languageCodes.length) && (i < languageNames.length)); i++) {
 			languages.add(new Language(languageNames[i], languageCodes[i]));
 		}
 	}
-	
-	public static List<Language> getAllLanguages() throws RuntimeException
-	{
-		if (languages == null)
-		{
-			throw new RuntimeException("Call method Init() before using other methods!");
+
+	public static List<Language> getAllLanguages() throws RuntimeException {
+		if (languages == null) {
+			throw new RuntimeException(
+					"Call method Init() before using other methods!");
 		}
 		return languages;
 	}
-	
-	public static Language getByCode(String code)
-	{
-		for (Language language : languages)
-		{
-			if (language.getCode().equalsIgnoreCase(code))
-			{
+
+	public static Language getByCode(String code) {
+		for (Language language : languages) {
+			if (language.getCode().equalsIgnoreCase(code)) {
 				return language;
 			}
 		}
 		return null;
 	}
+	
+	/*
+	 * Returns the language instance with the given language name
+	 */
+	public static Language getByName(String name) {
+		for (Language language : languages) {
+			if (language.getLanguage().equalsIgnoreCase(name)) {
+				return language;
+			}
+		}
+		return null;
+	}
+
+	public static String[] toLanguageNameArray() {
+		List<String> langs = new ArrayList<String>();
+		String[] langNames = new String[1];
+		
+		for (Language lang : languages)
+			langs.add(lang.getLanguage());
+
+		return langs.toArray(langNames);
+	}
+	
+	public static Integer getIndex(Language l){
+		return languages.indexOf(l);
+	}
+	
+
 }

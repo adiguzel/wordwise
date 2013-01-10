@@ -17,23 +17,15 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.model.LanguageManager;
+import com.wordwise.server.model.Language;
+import com.wordwise.util.LanguageUtils;
 
 public class ConfigurationWizardStep1 extends FragmentActivity {
 	private String selectedLanguagesText;
 	private ListView list;
 	private TextView selectedLanguages;
-	private LanguageManager lManager;
 	private Configuration configuration;
 	private Button next;
-	/*private static final String[] LANGUAGES = new String[] { "English",
-			"German", "Portugese", "Turkish", "Bulgarian", "Macedonian",
-			"Spanish" };*/
-	/*
-	 * private static final Selectable[] LANGUAGES = new Selectable[] { new
-	 * Selectable("English", true), new Selectable("German", false) };
-	 */
-	//private MultiSelectAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,9 +33,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 
 		setContentView(R.layout.configuration_step1);
 		
-		configuration = Configuration.getInstance(getApplicationContext());
-		lManager = LanguageManager.getInstance();
-		
+		configuration = Configuration.getInstance(getApplicationContext());		
 		list = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
 		if(!configuration.getProficientLanguages().isEmpty())
@@ -52,23 +42,12 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		selectedLanguagesText = selectedLanguages.getText().toString();
 		
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		/*
-		 * MessageDialog.newInstance(test).show(this.getSupportFragmentManager(),
-		 * "");
-		 */
-
-		System.out.println(">>>> " + lManager.toLanguageNameArray().length);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice,
-				lManager.toLanguageNameArray());
+				LanguageUtils.toLanguageNameArray());
 		list.setAdapter(adapter);
 		list.setItemsCanFocus(false);
 		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-		/*
-		 * adapter = new MultiSelectAdapter(this,R.layout.checked_text_view,
-		 * LANGUAGES); list.setAdapter(adapter);
-		 */
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -96,7 +75,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 
 	public void toggle(CheckedTextView v) {
 		String language = v.getText().toString();
-		String code = lManager.fromName(language).getCode();
+		String code = LanguageUtils.getByName(language).getCode();
 		if (v.isChecked()) {
 			v.setChecked(false);
 			configuration.removeLanguage(code);
@@ -128,7 +107,8 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	public List<Integer> getSelectedIndexes() {
 		List<Integer> selectedIndexes = new ArrayList<Integer>();
 		for (String langCode : configuration.getProficientLanguages()) {
-			Integer index = lManager.langCodeToIndex(langCode);
+			Language l = LanguageUtils.getByCode(langCode);
+			Integer index = LanguageUtils.getIndex(l);
 			if (index >= 0)
 				selectedIndexes.add(index);
 		}
