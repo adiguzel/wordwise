@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.wordwise.R;
@@ -32,6 +33,12 @@ public class LetterBoxManager
 	public LetterBoxManager(LetterBox letterBoxActivity)
 	{
 		this.letterBoxActivity = letterBoxActivity;
+	}
+	
+	public boolean isAllTranslationsFound(){
+		Log.v("Letterbox", "found : " + numberOfFoundWords);
+		Log.v("Letterbox", "actual : "+ translations.size());
+		return numberOfFoundWords == translations.size();
 	}
 	
 	private List<Translation> generateTranslations()
@@ -155,6 +162,7 @@ public class LetterBoxManager
 	
 	private void makeCurrentSelectionAFoundWord()
 	{
+		numberOfFoundWords++;
 		for (GridItem gridItem : currentSelection)
 		{
 			positionsOfFoundWords.add(gridItem.position);
@@ -168,8 +176,8 @@ public class LetterBoxManager
 		{
 			letterBoxActivity.markTranslationAsFound(getTranslation(getCurrentSelectionWord()));
 		}
-		numberOfFoundWords++;
-		if (numberOfFoundWords == translations.size())
+		
+		if (isAllTranslationsFound())
 		{
 			gameOver();
 		}
@@ -190,7 +198,7 @@ public class LetterBoxManager
 
 	private void gameOver()
 	{
-		
+		letterBoxActivity.onGameOver();
 	}
 
 	private boolean currentSelectionMatchesAWord()

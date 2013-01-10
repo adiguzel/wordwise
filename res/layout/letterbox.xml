@@ -12,7 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/validateButton"
+        android:layout_above="@+id/continueButton"
         android:layout_below="@+id/topBar"
         android:layout_marginBottom="@dimen/word2translations_padding_main"
         android:layout_marginTop="@dimen/word2translations_padding_main" >
@@ -46,14 +46,14 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/validateButton"
+        android:id="@+id/continueButton"
         style="@style/wordwiseButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:enabled="false"
-        android:onClick="validate"
-        android:text="@string/check" />
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel" />
 
 </RelativeLayout>

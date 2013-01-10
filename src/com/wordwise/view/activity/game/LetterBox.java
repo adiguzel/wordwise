@@ -12,16 +12,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.GameManager;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
 
 public class LetterBox extends Activity implements Game {
 	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
+	private GameManager gameManager;
+	private Button continueButton;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,15 +52,19 @@ public class LetterBox extends Activity implements Game {
 
 	}
 
-	public void validate(View view) {
-	}
-
 	public void quit(View view) {
+	}
+	
+
+	public void continueNextGame(View v) {
+		gameManager.endGame();
 	}
 	
 	public void init() {
 		initWordsGrid();
 		initLettersGrid();
+		gameManager = GameManagerContainer.getGameManager();
+		continueButton = (Button) findViewById(R.id.continueButton);
 	}
 
 	private void initLettersGrid() {
@@ -84,7 +93,14 @@ public class LetterBox extends Activity implements Game {
 		textView.setPaintFlags(textView.getPaintFlags()
 				| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
-
+	
+	public void onGameOver(){
+		//TODO show information screen that the game is over
+		
+		//set the continue button enabled
+		continueButton.setEnabled(true);
+	}
+	
 	private void initWordsGrid() {
 		final GridView wordsGrid = (GridView) findViewById(R.id.gridViewWords);
 		wordsGrid.setAdapter(new WordsAdapter(this, letterBoxManager
