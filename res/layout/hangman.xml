@@ -40,25 +40,23 @@
                 android:layout_height="180dip"
                 android:orientation="vertical"
                 android:padding="10dip" >
-                
-                <TextView
-                android:id="@+id/hangman_wrong_letters_title"
-                android:layout_width="fill_parent"
-                android:layout_height="50dip"
-                android:layout_gravity="right"
-                android:gravity="center_horizontal" 
-                android:text="@string/wrong_letters_title" />
-                
-                <TextView
-                android:id="@+id/hangman_wrong_letters"
-                android:layout_width="fill_parent"
-                android:layout_height="100dip"
-                android:layout_gravity="right"
-                android:textColor="@color/hangman_wrong_letters_red_color"
-                android:gravity="center_horizontal" />
-                
-            </LinearLayout>
 
+                <TextView
+                    android:id="@+id/hangman_wrong_letters_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dip"
+                    android:layout_gravity="right"
+                    android:gravity="center_horizontal"
+                    android:text="@string/wrong_letters_title" />
+
+                <TextView
+                    android:id="@+id/hangman_wrong_letters"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:layout_gravity="right"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/hangman_wrong_letters_red_color" />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -70,5 +68,16 @@
             android:textSize="10pt" >
         </TextView>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel"
+        android:visibility="invisible" />
 
 </RelativeLayout>

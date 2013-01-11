@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class Hangman extends WordwiseGameActivity implements Game {
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
+	private Button continueButton;
 
 	private static final String PREFERENCES_MYSTERY_WORD_TEXT_VIEW = "mysteryWordTextView";
 	private static final String PREFERENCES_MYSTERY_WORD = "mysteryWord";
@@ -55,6 +57,7 @@ public class Hangman extends WordwiseGameActivity implements Game {
 		config.locale = locale;
 		getBaseContext().getResources().updateConfiguration(config,
 				getBaseContext().getResources().getDisplayMetrics());
+
 
 		getActionBar().hide();
 		setContentView(R.layout.hangman);
@@ -146,6 +149,8 @@ public class Hangman extends WordwiseGameActivity implements Game {
 			msg.show();
 
 			this.wonGame = true;
+			continueButton.setVisibility(Button.VISIBLE);
+
 			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
 		}
 	}
@@ -233,6 +238,8 @@ public class Hangman extends WordwiseGameActivity implements Game {
 				.findViewById(R.id.hangman_wrong_letters);
 		mysteryWordTextView = (TextView) this
 				.findViewById(R.id.hangman_mystery_word);
+		
+		continueButton = (Button) findViewById(R.id.continueButton);
 
 	}
 

@@ -60,10 +60,6 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 
 	}
 
-	public void continueNextGame(View v) {
-		gameManager.endGame();
-	}
-
 	public void init() {
 		initWordsGrid();
 		initLettersGrid();

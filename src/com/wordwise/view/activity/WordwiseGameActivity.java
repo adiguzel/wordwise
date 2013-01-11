@@ -1,5 +1,6 @@
 package com.wordwise.view.activity;
 
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.IGameView;
 import com.wordwise.util.WordwiseUtils;
 
@@ -18,8 +19,7 @@ public class WordwiseGameActivity extends Activity implements IGameView {
 	}
 
 	public void continueNextGame(View v) {
-		// TODO Auto-generated method stub
-
+		GameManagerContainer.getGameManager().endGame();
 	}
 
 	public void validate(View v) {

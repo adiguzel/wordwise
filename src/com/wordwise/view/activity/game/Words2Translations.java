@@ -181,10 +181,6 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 
 	}
 	
-	public void continueNextGame(View v) {
-		gameManager.endGame();
-	}
-
 	// TODO use real translations of the words that we got from the server
 	private class TranslationAdapter extends BaseAdapter {
 		private Context mContext;
