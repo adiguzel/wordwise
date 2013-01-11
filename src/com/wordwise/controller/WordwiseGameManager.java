@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.controller;
 
 import java.util.Currency;
 

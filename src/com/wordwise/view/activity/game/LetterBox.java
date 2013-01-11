@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
+import com.wordwise.controller.game.LetterBoxManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;

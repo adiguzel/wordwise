@@ -21,11 +21,11 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.wordwise.R;
+import com.wordwise.controller.RandomGameSelector;
+import com.wordwise.controller.WordwiseGameManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.model.RandomGameSelector;
-import com.wordwise.model.WordwiseGameManager;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 

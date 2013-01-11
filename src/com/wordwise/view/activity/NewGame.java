@@ -5,12 +5,12 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.R;
+import com.wordwise.controller.RandomGameSelector;
+import com.wordwise.controller.WordwiseGameManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.model.RandomGameSelector;
-import com.wordwise.model.WordwiseGameManager;
 
 public class NewGame extends MenuActivity {
 	private GameManager gManager;

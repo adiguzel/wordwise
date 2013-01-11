@@ -1,4 +1,4 @@
-package com.wordwise.view.activity.game;
+package com.wordwise.controller.game;
 
 import java.util.ArrayList;
 import java.util.List;
