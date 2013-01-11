@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.wordwise.MainActivity;
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
-import com.wordwise.view.activity.MainGameScreen;
 
 public class ConfigurationWizardStep2 extends Activity {
 	private ListView listView;
@@ -63,7 +63,7 @@ public class ConfigurationWizardStep2 extends Activity {
 		// TODO check if a lang is selected
 		boolean confSuccessful = configuration.finishInitialConfiguration();
 		if (confSuccessful) {
-			Intent intent = new Intent(this, MainGameScreen.class);
+			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 		}
 	}

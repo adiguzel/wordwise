@@ -33,4 +33,12 @@
         android:onClick="showHowToPlay"
         android:text="@string/how_to_play" />
 
+        <Button
+        android:id="@+id/quitButton"
+        style="@style/wordwiseSmallLightButtonStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:onClick="quit"
+        android:text="@string/quit" />
 </LinearLayout>

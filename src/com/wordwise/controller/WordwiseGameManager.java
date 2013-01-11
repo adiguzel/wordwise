@@ -3,10 +3,10 @@ package com.wordwise.controller;
 import android.content.Context;
 import android.content.Intent;
 
+import com.wordwise.MainActivity;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
-import com.wordwise.view.activity.MainGameScreen;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
 import com.wordwise.view.activity.game.Words2Translations;
@@ -34,7 +34,7 @@ public class WordwiseGameManager extends GameManager{
 
 	@Override
 	public void endGame(Game game) {
-		Intent gameIntent = new Intent(context, MainGameScreen.class);
+		Intent gameIntent = new Intent(context, MainActivity.class);
 		context.startActivity(gameIntent);
 	}
 }

@@ -11,7 +11,7 @@ import com.wordwise.view.activity.game.Hangman;
 
 public class AboutActivity extends Activity {
 	
-	Button howToPlay;
+	private Button howToPlay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
