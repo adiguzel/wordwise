@@ -41,28 +41,23 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.words2translations);
-		this.init();
-		this.start();
+		this.onGameInit();
+		this.onGameStart();
 	}
 	
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
-	}
-
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		// TODO Auto-generated method stubd
 	}
 
-	public void init() {
+	public void onGameInit() {
 		validateButton = (Button) findViewById(R.id.validateButton);
 		initTranslationPlaceHolders();
 		initWords();

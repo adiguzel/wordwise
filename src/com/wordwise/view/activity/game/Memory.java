@@ -4,9 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,7 +18,6 @@ import com.wordwise.R;
 import com.wordwise.R.color;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.Lock;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity implements Game {
@@ -35,8 +32,8 @@ public class Memory extends WordwiseGameActivity implements Game {
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.memory);
-		this.init();
-		this.start();
+		this.onGameInit();
+		this.onGameStart();
 	}
 	
 	private boolean isFinished(){
@@ -50,22 +47,22 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 	
 	
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void init() {
+	public void onGameInit() {
 		// TODO Auto-generated method stub
 		continueButton = (Button) findViewById(R.id.continueButton);
 		initMemoryGrid();

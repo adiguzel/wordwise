@@ -42,11 +42,6 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		}
 	}
 	
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
-	}
-	
 	public Word retrieveWord(){
 		//TODO uncomment the implementation after having ServerComm implementation and game conf. object
 		/*List<DTOWord> words = wordServerComm.listWords(gameConf.getLearningLanguage(), gameConf.getDifficulty(), 1);
@@ -75,22 +70,22 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		startActivity(intent);*/
 	}
 
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void init() {
+	public void onGameInit() {
 		// TODO Auto-generated method stub
 
 	}

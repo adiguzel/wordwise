@@ -33,14 +33,9 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.translate_word);
 
-		this.init();
+		this.onGameInit();
 		this.infoMessageOnStart();
 
-	}
-	
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	// Dialog that explains to the user what he will be asked to do in the next
@@ -60,7 +55,7 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 		dlgAlert.create().show();
 	}
 
-	public void init() {
+	public void onGameInit() {
 		translateWordActivityInfo = (TextView) this
 				.findViewById(R.id.translateWordActivityInfo);
 		wordToBeTranslated = (EditText) this
@@ -70,17 +65,17 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 
 	}
 
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		// TODO Auto-generated method stub
 
 	}

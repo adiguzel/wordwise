@@ -55,34 +55,28 @@ public class Hangman extends WordwiseGameActivity implements Game {
 				getBaseContext().getResources().getDisplayMetrics());
 
 		setContentView(R.layout.hangman);
-		this.init();
+		this.onGameInit();
 		if (Hangman.savedGame == true) {
 			this.loadTheSavedGame();
 		}
-		this.start();
+		this.onGameStart();
 	}
 
-	// it is overridden to put the behaviour we want when back key pressed instead
-	// of the default behaviour which is to exit the activity
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
-	}
 
 	public void onStop() {
 		super.onStop();
-		this.pause();
-		this.stop();
+		this.onGamePause();
+		this.onGameStop();
 	}
 
 	public void onDestroy() {
 		super.onDestroy();
-		this.stop();
+		this.onGameStop();
 	}
 
 	public void onPause() {
 		super.onPause();
-		this.pause();
+		this.onGamePause();
 	}
 
 	public void onResume() {
@@ -313,16 +307,16 @@ public class Hangman extends WordwiseGameActivity implements Game {
 		});
 	}
 
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 		// TEST to see whether it is working
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		// this.closeTheSoftKeyboard();
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		if (this.lostGame == true || this.wonGame == true) {
 			this.closeTheSoftKeyboard();
 		} else {
@@ -347,7 +341,7 @@ public class Hangman extends WordwiseGameActivity implements Game {
 		}
 	}
 
-	public void init() {
+	public void onGameInit() {
 		// Initializes the screen
 		this.linkTheViews();
 		this.initTheHangmanImage();
@@ -355,4 +349,12 @@ public class Hangman extends WordwiseGameActivity implements Game {
 		this.initMysteriousWord();
 		this.openTheSoftKeyboard();
 	}
+
+	public void onInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

@@ -11,7 +11,7 @@ public abstract class GameManager {
 	}
 
 	public final void endGame() {
-		currentGame.stop();
+		currentGame.onGameStop();
 		startGameCycle();
 	}
 
@@ -20,11 +20,11 @@ public abstract class GameManager {
 	}
 
 	public final void continueGameCycle() {
-		currentGame.start();
+		currentGame.onGameStart();
 	}
 
 	public final void endGameCycle() {
-		currentGame.stop();
+		currentGame.onGameStop();
 		endGame(currentGame);
 	}
 	
@@ -33,7 +33,7 @@ public abstract class GameManager {
 		currentGame = gameSelector.nextGame();
 		if(currentGame != null )
 		{
-			currentGame.start();
+			currentGame.onGameStart();
 			startGame(currentGame);
 		}		
 		else

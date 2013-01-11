@@ -35,8 +35,8 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.letterbox);
 
-		this.init();
-		this.start();
+		this.onGameInit();
+		this.onGameStart();
 	}
 
 	@Override
@@ -44,22 +44,22 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
-	public void start() {
+	public void onGameStart() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void stop() {
+	public void onGameStop() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void pause() {
+	public void onGamePause() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void init() {
+	public void onGameInit() {
 		initWordsGrid();
 		initLettersGrid();
 		gameManager = GameManagerContainer.getGameManager();
