@@ -18,7 +18,6 @@ import com.wordwise.R;
 import com.wordwise.R.color;
 import com.wordwise.controller.game.MemoryAnimationListener;
 import com.wordwise.gameengine.Game;
-import com.wordwise.model.game.Lock;
 import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -29,8 +28,6 @@ public class Memory extends WordwiseGameActivity implements Game {
 	private final int FINISHED = 1;
 	private int gameState = IN_PROGRESS;
 	private MemoryFlipState flipState;
-	private TextView firstFlipped = null;
-	private Lock flipLock = new Lock();
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -38,18 +35,17 @@ public class Memory extends WordwiseGameActivity implements Game {
 		this.onGameInit();
 		this.onGameStart();
 	}
-	
-	private boolean isFinished(){
+
+	private boolean isFinished() {
 		return gameState == FINISHED;
 	}
-	
-	private void onGameFinish(){
-		//TODO show necessary dialogs about game end
-		
+
+	private void onGameFinish() {
+		// TODO show necessary dialogs about game end
+
 		continueButton.setEnabled(true);
 	}
-	
-	
+
 	public void onGameStart() {
 		// TODO Auto-generated method stub
 
@@ -88,64 +84,52 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 
 	private void flipFaceUp(final TextView v) {
-				
-		Runnable r = new Runnable() {
-			
-			public void run() {
-				// TODO Auto-generated method stub
-				flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.REVEAL, flipState));
-			}
-		};
-		r .run();
 
-		Log.v("Lock","is " + flipLock.isLocked() );
-		try {
-			flipLock.lock();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*Log.v("Alt LOCk","is " + flipLock.isLocked() );
-		if (firstFlipped != null) {
-			if (matches(firstFlipped, v)) {
-				firstFlipped
-						.setBackgroundColor(color.wordwise_main_green_disabled_end);
-				firstFlipped.invalidate();
-				v.setBackgroundColor(color.wordwise_main_green_disabled_end);
-				v.invalidate();
-				 try { Thread.sleep(1000); } catch
-				 (InterruptedException e) { }
-
-				 firstFlipped.setVisibility(View.INVISIBLE);
-				 v.setVisibility(View.INVISIBLE);
-
-			} else {
-				flipFaceDown(firstFlipped);
-				flipFaceDown(v);
-				firstFlipped = null;
-			}
-		}*/
+		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.REVEAL,
+				flipState));
 	}
 
 	private void flipFaceDown(final TextView v) {
-		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.HIDE, flipState));
+		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.HIDE,
+				flipState));
 	}
 
 	// applies a flipping animation to a given view
-	private void flip(View v, Animator.AnimatorListener animListener) {
-		try {
-			flipLock.lock();
-			Log.v("app", "Lock acquired");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void flip(final View v, Animator.AnimatorListener animListener) {
 		ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(
 				this, R.animator.flipping);
 		anim.setTarget(v);
 		anim.setDuration(1000);
 		anim.addListener(animListener);
 		anim.start();
+		v.postDelayed(new Runnable() {
+			public void run() {
+				if(flipState.flipExist()){
+					TextView firstFlipped = flipState.getFirstFlipped();
+					if (matches(flipState.getFirstFlipped(), (TextView) v)) {
+						firstFlipped
+								.setBackgroundColor(color.wordwise_main_green_disabled_end);
+						firstFlipped.invalidate();
+						v.setBackgroundColor(color.wordwise_main_green_disabled_end);
+						v.invalidate();
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+						}
+
+						firstFlipped.setVisibility(View.INVISIBLE);
+						v.setVisibility(View.INVISIBLE);
+
+					} else {
+						flipFaceDown(firstFlipped);
+						flipFaceDown((TextView) v);
+						firstFlipped = null;
+					}
+				}
+
+			}
+		}, 600);
+		Log.v("Anim", "anim bitti ");
 	}
 
 	// TODO use real translations of the words that we got from the server
@@ -192,13 +176,6 @@ public class Memory extends WordwiseGameActivity implements Game {
 					// Retrieve the values
 
 					flipFaceUp((TextView) v);
-					try {
-						flipLock.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					Log.v("flip", "flip completed");
 				}
 			});
 

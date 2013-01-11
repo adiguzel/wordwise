@@ -53,11 +53,12 @@ public class MemoryAnimationListener implements Animator.AnimatorListener {
 			String tag = (String) view.getTag();
 			view.setText(tag);
 			if (!flipState.flipExist())
-				flipState.setState(MemoryFlipState.flipON);
+				flipState.setFirstFlipped(view);
 			// flipLock.unlock();
 			Log.v("app", "Lock released");
 		} else {
 			view.setText("");
+			flipState.setFirstFlipped(null);
 		}
 	}
 	private void onStart() {
