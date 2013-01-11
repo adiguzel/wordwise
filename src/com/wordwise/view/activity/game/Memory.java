@@ -3,7 +3,6 @@ package com.wordwise.view.activity.game;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,8 +21,9 @@ import com.wordwise.R.color;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.Lock;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Memory extends Activity implements Game {
+public class Memory extends WordwiseGameActivity implements Game {
 
 	private Button continueButton;
 	private final int IN_PROGRESS = 0;
@@ -72,11 +72,6 @@ public class Memory extends Activity implements Game {
 	private void initMemoryGrid() {
 		GridView translationsGrid = (GridView) findViewById(R.id.memoryGrid);
 		translationsGrid.setAdapter(new WordAndTranslationAdapter(this));
-	}
-
-	// called by quit button to quit the game
-	public void quit(View v) {
-
 	}
 
 	// called by continue button to finish the game and continue from the next

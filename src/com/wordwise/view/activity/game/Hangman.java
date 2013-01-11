@@ -18,8 +18,9 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Hangman extends Activity implements Game {
+public class Hangman extends WordwiseGameActivity implements Game {
 
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
@@ -353,10 +354,4 @@ public class Hangman extends Activity implements Game {
 		this.initMysteriousWord();
 		this.openTheSoftKeyboard();
 	}
-
-	// called by quit button to quit the game
-	public void quit(View v) {
-		// TODO implement
-	}
-
 }

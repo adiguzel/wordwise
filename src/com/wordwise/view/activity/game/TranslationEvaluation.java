@@ -1,8 +1,8 @@
 package com.wordwise.view.activity.game;
 
-import android.app.Activity;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class TranslationEvaluation extends Activity {
+public class TranslationEvaluation extends WordwiseGameActivity {
 
 	
 }

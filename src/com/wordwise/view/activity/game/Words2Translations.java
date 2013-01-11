@@ -27,8 +27,9 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.RandomGameSelector;
 import com.wordwise.model.WordwiseGameManager;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Words2Translations extends Activity implements Game {
+public class Words2Translations extends WordwiseGameActivity implements Game {
 	private List<TextView> translationPlaceHolders;
 	private List<TextView> words;
 	private View dragged = null;
@@ -141,11 +142,6 @@ public class Words2Translations extends Activity implements Game {
 				}
 			});
 		}
-	}
-
-	// called by quit button to quit the game
-	public void quit(View v) {
-
 	}
 
 	// called when validate button is pressed

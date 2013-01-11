@@ -24,8 +24,9 @@ import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class LetterBox extends Activity implements Game {
+public class LetterBox extends WordwiseGameActivity implements Game {
 	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
 	private GameManager gameManager;
 	private Button continueButton;
@@ -38,7 +39,7 @@ public class LetterBox extends Activity implements Game {
 		this.init();
 		this.start();
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
@@ -59,14 +60,10 @@ public class LetterBox extends Activity implements Game {
 
 	}
 
-	public void quit(View view) {
-	}
-	
-
 	public void continueNextGame(View v) {
 		gameManager.endGame();
 	}
-	
+
 	public void init() {
 		initWordsGrid();
 		initLettersGrid();
@@ -100,14 +97,14 @@ public class LetterBox extends Activity implements Game {
 		textView.setPaintFlags(textView.getPaintFlags()
 				| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
-	
-	public void onGameOver(){
-		//TODO show information screen that the game is over
-		
-		//set the continue button enabled
+
+	public void onGameOver() {
+		// TODO show information screen that the game is over
+
+		// set the continue button enabled
 		continueButton.setEnabled(true);
 	}
-	
+
 	private void initWordsGrid() {
 		final GridView wordsGrid = (GridView) findViewById(R.id.gridViewWords);
 		wordsGrid.setAdapter(new WordsAdapter(this, letterBoxManager
@@ -118,9 +115,12 @@ public class LetterBox extends Activity implements Game {
 					int position, long id) {
 				Translation translation = (Translation) wordsGrid.getAdapter()
 						.getItem(position);
-			WordwiseUtils.makeCustomToast(activity, translation.getWord().getWord());
-				/*Toast.makeText(LetterBox.this, translation.getWord().getWord(),
-						Toast.LENGTH_SHORT).show();*/
+				WordwiseUtils.makeCustomToast(activity, translation.getWord()
+						.getWord());
+				/*
+				 * Toast.makeText(LetterBox.this,
+				 * translation.getWord().getWord(), Toast.LENGTH_SHORT).show();
+				 */
 			}
 		});
 	}

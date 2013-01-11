@@ -1,6 +1,5 @@
 package com.wordwise.view.activity.game;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,11 +12,12 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
 //TODO Find out which adtitional information will be necessary
 //TODO Check out whether change of the input will be needed and where ?
 
-public class TranslateWord extends Activity implements Game {
+public class TranslateWord extends WordwiseGameActivity implements Game {
 
 	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please enter a word on your preffered language and add the translation...";
 
@@ -103,8 +103,4 @@ public class TranslateWord extends Activity implements Game {
 		// TODO Send data to server
 	}
 
-	// called by quit button to quit the game
-	public void quit(View v) {
-
-	}
 }

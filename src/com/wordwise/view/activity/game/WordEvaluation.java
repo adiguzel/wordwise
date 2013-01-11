@@ -1,6 +1,5 @@
 package com.wordwise.view.activity.game;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
@@ -13,8 +12,9 @@ import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class WordEvaluation extends Activity implements Game {
+public class WordEvaluation extends WordwiseGameActivity implements Game {
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;
