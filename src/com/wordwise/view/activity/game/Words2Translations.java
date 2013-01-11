@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Context;
@@ -21,8 +20,6 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.controller.RandomGameSelector;
-import com.wordwise.controller.WordwiseGameManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
@@ -42,9 +39,7 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 	private GameManager gameManager;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().hide();
+	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.words2translations);
 		this.init();
 		this.start();

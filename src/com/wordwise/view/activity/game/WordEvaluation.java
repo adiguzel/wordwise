@@ -25,8 +25,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.word_evaluation);
 
 

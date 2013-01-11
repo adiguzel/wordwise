@@ -32,9 +32,7 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 	private GameManager gameManager;
 	private Button continueButton;
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().hide();
+	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.letterbox);
 
 		this.init();

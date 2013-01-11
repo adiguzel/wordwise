@@ -30,24 +30,26 @@ public class Memory extends WordwiseGameActivity implements Game {
 	private final int FINISHED = 1;
 	private int gameState = IN_PROGRESS;
 	private TextView firstFlipped = null;
-	private SharedPreferences SP;
 	private Lock flipLock = new Lock();
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().hide();
+	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.memory);
 		this.init();
 		this.start();
-		SP = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 	
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
+	private boolean isFinished(){
+		return gameState == FINISHED;
 	}
-
+	
+	private void onGameFinish(){
+		//TODO show necessary dialogs about game end
+		
+		continueButton.setEnabled(true);
+	}
+	
+	
 	public void start() {
 		// TODO Auto-generated method stub
 

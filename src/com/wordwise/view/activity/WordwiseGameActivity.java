@@ -1,13 +1,25 @@
 package com.wordwise.view.activity;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.view.View;
+
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.IGameView;
 import com.wordwise.util.WordwiseUtils;
 
-import android.app.Activity;
-import android.view.View;
+public abstract class WordwiseGameActivity extends Activity implements IGameView {
 
-public class WordwiseGameActivity extends Activity implements IGameView {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		getActionBar().hide();
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		performOnCreate(savedInstanceState);
+	}
+	
+	public abstract void performOnCreate(Bundle savedInstanceState);
 
 	@Override
 	public void onBackPressed() {
@@ -30,4 +42,5 @@ public class WordwiseGameActivity extends Activity implements IGameView {
 	protected void onQuitPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
 	}
+
 }

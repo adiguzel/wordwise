@@ -30,9 +30,7 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 	private String wordTranslationBuffer;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().hide();
+	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.translate_word);
 
 		this.init();

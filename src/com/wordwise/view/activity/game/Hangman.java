@@ -2,10 +2,7 @@ package com.wordwise.view.activity.game;
 
 import java.util.Locale;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.util.WordwiseUtils;
@@ -46,9 +44,7 @@ public class Hangman extends WordwiseGameActivity implements Game {
 	private static final String PREFERENCES_NUM_WRONG_GUESSES = "numWrongGuesses";
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+	public void performOnCreate(Bundle savedInstanceState) {
 		// This is the fragment of the code that changes the lanuguage
 		String languageToLoad = "de"; // your language
 		Locale locale = new Locale(languageToLoad);
@@ -58,8 +54,6 @@ public class Hangman extends WordwiseGameActivity implements Game {
 		getBaseContext().getResources().updateConfiguration(config,
 				getBaseContext().getResources().getDisplayMetrics());
 
-
-		getActionBar().hide();
 		setContentView(R.layout.hangman);
 		this.init();
 		if (Hangman.savedGame == true) {
