@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.R;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.game.TranslateWord;
 
 public class MainGameScreen extends MenuActivity {

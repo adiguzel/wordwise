@@ -1,13 +1,13 @@
 package com.wordwise.gameengine;
 
-import java.util.List;
+import java.util.Set;
 
 import com.wordwise.server.model.Language;
 
 
 public class GameConfiguration {
 	private int difficulty;
-	private List<Language> proficientLanguages;
+	private Set<Language> proficientLanguages;
 	private Language learningLanguage;
 
 	public int getDifficulty() {
@@ -18,11 +18,11 @@ public class GameConfiguration {
 		this.difficulty = difficulty;
 	}
 
-	public List<Language> getProficientLanguage() {
+	public Set<Language> getProficientLanguage() {
 		return proficientLanguages;
 	}
 
-	public void setProficientLanguage(List<Language> proficientLanguages) {
+	public void setProficientLanguage(Set<Language> proficientLanguages) {
 		this.proficientLanguages = proficientLanguages;
 	}
 

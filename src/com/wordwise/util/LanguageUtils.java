@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.wordwise.R;
 import com.wordwise.server.model.Language;

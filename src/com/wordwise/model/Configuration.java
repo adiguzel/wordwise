@@ -6,7 +6,6 @@ import java.util.Set;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.wordwise.gameengine.Game;
 import com.wordwise.server.model.Language;
@@ -14,7 +13,6 @@ import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
 	private static Configuration instance = null;
-
 	private int difficulty;
 	private Set<Language> proficientLanguages = new HashSet<Language>();
 	private Language learningLanguage = null;
@@ -34,9 +32,7 @@ public class Configuration{
 	public static Configuration getInstance(Context context) {
 		if (instance == null) {
 			instance = new Configuration(context);
-			Log.v("Conf", "girmeli instance");
 		}
-		Log.v("Conf", "agalar beyler, bu nasil olur?");
 		return instance;
 	}
 	
@@ -50,7 +46,6 @@ public class Configuration{
 
 	public Language loadLearningLanguage() {
 		String langCode = SP.getString("learning_language", "");
-		Log.v("Conf", "code : " + langCode);
 		return LanguageUtils.getByCode(langCode);
 	}
 
@@ -110,9 +105,6 @@ public class Configuration{
 	}
 
 	public boolean isConfigured() {
-		Log.v("Conf", "learning : "+learningLanguage);
-		Log.v("Conf", "prof : "+proficientLanguages);
-		Log.v("Conf", "res : "+ (learningLanguage != null && !proficientLanguages.isEmpty()));
 		return learningLanguage != null && !proficientLanguages.isEmpty();
 	}
 

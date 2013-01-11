@@ -1,7 +1,5 @@
 package com.wordwise.controller;
 
-import java.util.Currency;
-
 import android.content.Context;
 import android.content.Intent;
 
@@ -11,7 +9,6 @@ import com.wordwise.gameengine.GameSelector;
 import com.wordwise.view.activity.MainGameScreen;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
-import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.activity.game.Words2Translations;
 
 public class WordwiseGameManager extends GameManager{

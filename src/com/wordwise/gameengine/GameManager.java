@@ -1,6 +1,5 @@
 package com.wordwise.gameengine;
 
-import android.util.Log;
 
 public abstract class GameManager {
 	protected Game currentGame;

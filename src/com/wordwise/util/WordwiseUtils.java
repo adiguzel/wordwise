@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.R.string;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 
