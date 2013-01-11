@@ -8,6 +8,7 @@ import android.content.Intent;
 import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
+import com.wordwise.view.activity.MainGameScreen;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
 import com.wordwise.view.activity.game.Memory;
@@ -34,4 +35,9 @@ public class WordwiseGameManager extends GameManager{
 		context.startActivity(gameIntent);
 	}
 
+	@Override
+	public void endGame(Game game) {
+		Intent gameIntent = new Intent(context, MainGameScreen.class);
+		context.startActivity(gameIntent);
+	}
 }

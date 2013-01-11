@@ -19,6 +19,7 @@ public class NewGame extends MenuActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().hide();
 		setContentView(R.layout.new_game);
 		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
 		GameManagerContainer.setGameManager(gManager);

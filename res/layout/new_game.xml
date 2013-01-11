@@ -4,49 +4,44 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    android:paddingRight="16dp" 
+    android:gravity="center_vertical">
 
-    <ImageView
-        android:id="@+id/cbPicView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="2"
-        android:contentDescription="@string/descripion_image_main_menu"
-        android:src="@drawable/ic_launcher" />
+  
+    <TextView
+        android:id="@+id/word2TranslationGameLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:text="@string/selectDifficultyLevel"
+        android:textSize="@dimen/text_size_medium" 
+        android:gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/easyNewGameButton"
+        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="startNewGame"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
         android:text="@string/easy" />
 
     <Button
         android:id="@+id/mediumNewGameButton"
+        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="startNewGame"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
         android:text="@string/medium" />
 
     <Button
         android:id="@+id/hardNewGameButton"
+        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dip"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="startNewGame"
-        android:paddingBottom="10dip"
-        android:paddingLeft="40dip"
-        android:paddingRight="40dip"
-        android:paddingTop="10dip"
         android:text="@string/hard" />
 
 </LinearLayout>

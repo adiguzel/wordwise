@@ -21,6 +21,7 @@ import com.wordwise.R;
 import com.wordwise.R.color;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.Lock;
+import com.wordwise.util.WordwiseUtils;
 
 public class Memory extends Activity implements Game {
 
@@ -40,6 +41,11 @@ public class Memory extends Activity implements Game {
 		this.init();
 		this.start();
 		SP = PreferenceManager.getDefaultSharedPreferences(this);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	public void start() {

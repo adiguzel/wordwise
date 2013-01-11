@@ -38,6 +38,11 @@ public class LetterBox extends Activity implements Game {
 		this.init();
 		this.start();
 	}
+	
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
+	}
 
 	public void start() {
 		// TODO Auto-generated method stub

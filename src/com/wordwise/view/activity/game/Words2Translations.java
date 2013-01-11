@@ -26,6 +26,7 @@ import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.RandomGameSelector;
 import com.wordwise.model.WordwiseGameManager;
+import com.wordwise.util.WordwiseUtils;
 
 public class Words2Translations extends Activity implements Game {
 	private List<TextView> translationPlaceHolders;
@@ -46,6 +47,11 @@ public class Words2Translations extends Activity implements Game {
 		setContentView(R.layout.words2translations);
 		this.init();
 		this.start();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	public void start() {

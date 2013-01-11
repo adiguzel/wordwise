@@ -29,7 +29,7 @@
         style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dip"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="showHowToPlay"
         android:text="@string/how_to_play" />
 

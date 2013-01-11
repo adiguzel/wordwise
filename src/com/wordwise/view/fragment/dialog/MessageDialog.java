@@ -8,9 +8,6 @@ import android.support.v4.app.DialogFragment;
 
 import com.wordwise.R;
 
-/**
- * Dialog to inform user blog post result
- */
 public class MessageDialog extends DialogFragment {
 	// Default message value
 	String message = "";

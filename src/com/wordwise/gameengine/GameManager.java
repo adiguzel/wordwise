@@ -26,8 +26,7 @@ public abstract class GameManager {
 
 	public final void endGameCycle() {
 		currentGame.stop();
-		
-		//AND CALL THE INTENT TO GO BACK OR EXIT
+		endGame(currentGame);
 	}
 	
 	public final void startNextGame()
@@ -47,6 +46,8 @@ public abstract class GameManager {
 	}
 	
 	public abstract void startGame(Game game);
+	
+	public abstract void endGame(Game game);
 
 	public void setConfiguration(GameConfiguration configuration) {
 		this.configuration = configuration;

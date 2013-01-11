@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.util.WordwiseUtils;
 
 //TODO Find out which adtitional information will be necessary
 //TODO Check out whether change of the input will be needed and where ?
@@ -37,6 +38,11 @@ public class TranslateWord extends Activity implements Game {
 		this.init();
 		this.infoMessageOnStart();
 
+	}
+	
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	// Dialog that explains to the user what he will be asked to do in the next

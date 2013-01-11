@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.R;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.game.TranslateWord;
 
 public class MainGameScreen extends MenuActivity {
@@ -33,6 +34,11 @@ public class MainGameScreen extends MenuActivity {
     	//To be removed on a later stage ...
 		Intent intent = new Intent(this, TranslateWord.class);
 		startActivity(intent);
+	}
+    
+    @Override
+	public void onBackPressed() {
+		//do nothing
 	}
     
 }

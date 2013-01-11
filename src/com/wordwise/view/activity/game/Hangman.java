@@ -3,7 +3,9 @@ package com.wordwise.view.activity.game;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.util.WordwiseUtils;
 
 public class Hangman extends Activity implements Game {
 
@@ -42,16 +45,16 @@ public class Hangman extends Activity implements Game {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//This is the fragment of the code that changes the lanuguage
-		String languageToLoad  = "de"; // your language
-	    Locale locale = new Locale(languageToLoad); 
-	    Locale.setDefault(locale);
-	    Configuration config = new Configuration();
-	    config.locale = locale;
-	    getBaseContext().getResources().updateConfiguration(config, 
-	    getBaseContext().getResources().getDisplayMetrics());
-		
+
+		// This is the fragment of the code that changes the lanuguage
+		String languageToLoad = "de"; // your language
+		Locale locale = new Locale(languageToLoad);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale;
+		getBaseContext().getResources().updateConfiguration(config,
+				getBaseContext().getResources().getDisplayMetrics());
+
 		getActionBar().hide();
 		setContentView(R.layout.hangman);
 		this.init();
@@ -59,6 +62,13 @@ public class Hangman extends Activity implements Game {
 			this.loadTheSavedGame();
 		}
 		this.start();
+	}
+
+	// it is overridden to put the behaviour we want when back key pressed instead
+	// of the default behaviour which is to exit the activity
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	public void onStop() {
@@ -76,7 +86,7 @@ public class Hangman extends Activity implements Game {
 		super.onPause();
 		this.pause();
 	}
-	
+
 	public void onResume() {
 		super.onResume();
 		this.openTheSoftKeyboard();
@@ -114,7 +124,8 @@ public class Hangman extends Activity implements Game {
 		return true;
 	}
 
-	//This method adds constraint about which chars should not be used at all. For example numbers ...
+	// This method adds constraint about which chars should not be used at all.
+	// For example numbers ...
 	private boolean isALetter(int keyCode) {
 		// Letter ASCII constraints
 		// Only numbers added
@@ -254,36 +265,36 @@ public class Hangman extends Activity implements Game {
 	 */
 	private void updateHangmanImage() {
 		switch (numWrongGuesses) {
-		case 0:
-			hangmanImageView.setImageResource(R.drawable.hangman_img00);
-			break;
-		case 1:
-			hangmanImageView.setImageResource(R.drawable.hangman_img01);
-			break;
-		case 2:
-			hangmanImageView.setImageResource(R.drawable.hangman_img02);
-			break;
-		case 3:
-			hangmanImageView.setImageResource(R.drawable.hangman_img03);
-			break;
-		case 4:
-			hangmanImageView.setImageResource(R.drawable.hangman_img04);
-			break;
-		case 5:
-			hangmanImageView.setImageResource(R.drawable.hangman_img05);
-			break;
-		case 6:
-			hangmanImageView.setImageResource(R.drawable.hangman_img06);
-			break;
-		case 7:
-			hangmanImageView.setImageResource(R.drawable.hangman_img07);
-			break;
-		case 8:
-			hangmanImageView.setImageResource(R.drawable.hangman_img08);
-			break;
-		case MAXIMUM_WRONG_GUESSES:
-			hangmanImageView.setImageResource(R.drawable.hangman_img09);
-			break;
+			case 0 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img00);
+				break;
+			case 1 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img01);
+				break;
+			case 2 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img02);
+				break;
+			case 3 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img03);
+				break;
+			case 4 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img04);
+				break;
+			case 5 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img05);
+				break;
+			case 6 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img06);
+				break;
+			case 7 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img07);
+				break;
+			case 8 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img08);
+				break;
+			case MAXIMUM_WRONG_GUESSES :
+				hangmanImageView.setImageResource(R.drawable.hangman_img09);
+				break;
 		}
 	}
 
@@ -306,7 +317,7 @@ public class Hangman extends Activity implements Game {
 	}
 
 	public void stop() {
-		this.closeTheSoftKeyboard();
+		// this.closeTheSoftKeyboard();
 	}
 
 	public void pause() {

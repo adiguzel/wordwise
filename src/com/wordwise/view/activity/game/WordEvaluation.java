@@ -12,6 +12,7 @@ import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Word;
+import com.wordwise.util.WordwiseUtils;
 
 public class WordEvaluation extends Activity implements Game {
 	private TextView wordToEvaluateText;
@@ -40,6 +41,11 @@ public class WordEvaluation extends Activity implements Game {
 		else{
 			wordToEvaluateText.setText(word.getWord());
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 	
 	public Word retrieveWord(){
