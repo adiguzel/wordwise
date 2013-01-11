@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
+import com.wordwise.util.WordwiseUtils;
 
 public class LetterBox extends Activity implements Game {
 	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
@@ -105,14 +107,15 @@ public class LetterBox extends Activity implements Game {
 		final GridView wordsGrid = (GridView) findViewById(R.id.gridViewWords);
 		wordsGrid.setAdapter(new WordsAdapter(this, letterBoxManager
 				.getTranslations()));
-
+		final Activity activity = this;
 		wordsGrid.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				Translation translation = (Translation) wordsGrid.getAdapter()
 						.getItem(position);
-				Toast.makeText(LetterBox.this, translation.getWord().getWord(),
-						Toast.LENGTH_SHORT).show();
+			WordwiseUtils.makeCustomToast(activity, translation.getWord().getWord());
+				/*Toast.makeText(LetterBox.this, translation.getWord().getWord(),
+						Toast.LENGTH_SHORT).show();*/
 			}
 		});
 	}
