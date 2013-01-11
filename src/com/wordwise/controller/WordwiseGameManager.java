@@ -9,6 +9,7 @@ import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
+import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.activity.game.Words2Translations;
 
 public class WordwiseGameManager extends GameManager{
@@ -17,10 +18,10 @@ public class WordwiseGameManager extends GameManager{
 	public WordwiseGameManager(GameSelector gameSelector, Context context) {
 		super(gameSelector);
 		
-		gameSelector.registerGame(new LetterBox());
-		gameSelector.registerGame(new Hangman());
-		gameSelector.registerGame(new Words2Translations());
-		//gameSelector.registerGame(new Memory());
+		//gameSelector.registerGame(new LetterBox());
+		//gameSelector.registerGame(new Hangman());
+		//gameSelector.registerGame(new Words2Translations());
+		gameSelector.registerGame(new Memory());
 		
 		this.context = context;
 	}

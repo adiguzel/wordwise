@@ -1,9 +1,9 @@
 package com.wordwise.gameengine;
 
 public interface Game {
-	static final int EASY = 1;
-	static final int MEDIUM = 2;
-	static final int HARD = 3;
+	public static final int EASY = 1;
+	public static final int MEDIUM = 2;
+	public static final int HARD = 3;
 	/**
 	 * Initializes the game and its resources
 	 **/

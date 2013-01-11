@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.R.color;
+import com.wordwise.controller.game.MemoryAnimationListener;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.Lock;
+import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity implements Game {
@@ -26,6 +28,7 @@ public class Memory extends WordwiseGameActivity implements Game {
 	private final int IN_PROGRESS = 0;
 	private final int FINISHED = 1;
 	private int gameState = IN_PROGRESS;
+	private MemoryFlipState flipState;
 	private TextView firstFlipped = null;
 	private Lock flipLock = new Lock();
 
@@ -66,6 +69,7 @@ public class Memory extends WordwiseGameActivity implements Game {
 		// TODO Auto-generated method stub
 		continueButton = (Button) findViewById(R.id.continueButton);
 		initMemoryGrid();
+		flipState = new MemoryFlipState();
 	}
 
 	private void initMemoryGrid() {
@@ -84,37 +88,15 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 
 	private void flipFaceUp(final TextView v) {
-		Animator.AnimatorListener animListener = new Animator.AnimatorListener() {
-			public void onAnimationCancel(Animator animation) {
+				
+		Runnable r = new Runnable() {
+			
+			public void run() {
 				// TODO Auto-generated method stub
-			}
-
-			public void onAnimationEnd(Animator animation) {
-				// TODO Auto-generated method stub
-				String tag = (String) v.getTag();
-				v.setText(tag);
-				if (firstFlipped == null)
-					firstFlipped = v;
-				flipLock.unlock();
-			}
-
-			public void onAnimationRepeat(Animator animation) {
-				// TODO Auto-generated method stub
-			}
-
-			public void onAnimationStart(Animator animation) {
-				// TODO Auto-generated method stub
-				try {
-					flipLock.lock();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.REVEAL, flipState));
 			}
 		};
-		
-
-		flip(v, animListener);
+		r .run();
 
 		Log.v("Lock","is " + flipLock.isLocked() );
 		try {
@@ -123,7 +105,7 @@ public class Memory extends WordwiseGameActivity implements Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Log.v("Alt LOCk","is " + flipLock.isLocked() );
+		/*Log.v("Alt LOCk","is " + flipLock.isLocked() );
 		if (firstFlipped != null) {
 			if (matches(firstFlipped, v)) {
 				firstFlipped
@@ -142,45 +124,22 @@ public class Memory extends WordwiseGameActivity implements Game {
 				flipFaceDown(v);
 				firstFlipped = null;
 			}
-		}
-
-		// unlock();
-		/*
-		 * try { Thread.sleep(2000); } catch (InterruptedException e) { }
-		 */
-
+		}*/
 	}
 
 	private void flipFaceDown(final TextView v) {
-		Animator.AnimatorListener animListener = new Animator.AnimatorListener() {
-
-			public void onAnimationCancel(Animator animation) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void onAnimationEnd(Animator animation) {
-				// TODO Auto-generated method stub
-				v.setText("");
-			}
-
-			public void onAnimationRepeat(Animator animation) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void onAnimationStart(Animator animation) {
-				// TODO Auto-generated method stub
-
-			}
-
-		};
-
-		flip(v, animListener);
+		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.HIDE, flipState));
 	}
 
 	// applies a flipping animation to a given view
 	private void flip(View v, Animator.AnimatorListener animListener) {
+		try {
+			flipLock.lock();
+			Log.v("app", "Lock acquired");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(
 				this, R.animator.flipping);
 		anim.setTarget(v);
@@ -233,6 +192,13 @@ public class Memory extends WordwiseGameActivity implements Game {
 					// Retrieve the values
 
 					flipFaceUp((TextView) v);
+					try {
+						flipLock.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Log.v("flip", "flip completed");
 				}
 			});
 
