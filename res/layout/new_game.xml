@@ -2,33 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp" 
-    android:gravity="center_vertical">
+    android:paddingRight="16dp" >
 
-  
     <TextView
         android:id="@+id/word2TranslationGameLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:gravity="center_horizontal"
         android:text="@string/selectDifficultyLevel"
-        android:textSize="@dimen/text_size_medium" 
-        android:gravity="center_horizontal"/>
+        android:textSize="@dimen/text_size_medium" />
 
     <Button
         android:id="@+id/easyNewGameButton"
-        style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:background="@drawable/level_easy_button"
         android:onClick="startNewGame"
         android:text="@string/easy" />
 
     <Button
         android:id="@+id/mediumNewGameButton"
-        style="@style/wordwiseSmallLightButtonStyle"
+        android:background="@drawable/level_medium_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
@@ -37,7 +36,7 @@
 
     <Button
         android:id="@+id/hardNewGameButton"
-        style="@style/wordwiseSmallLightButtonStyle"
+        android:background="@drawable/level_hard_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
