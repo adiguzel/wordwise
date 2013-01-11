@@ -40,20 +40,61 @@ public class WordwiseUtils {
 	public static void makeQuitGameDialog(Activity activity) {
 
 		new AlertDialog.Builder(activity)
-	    .setTitle(activity.getString(R.string.exitGameAlertTopic))
-	    .setMessage(activity.getString(R.string.exitGameAlert))
-	    .setPositiveButton(activity.getString(R.string.exitGamePositiveAnswer), new DialogInterface.OnClickListener() {
+	    .setTitle(activity.getString(R.string.quitGameAlertTopic))
+	    .setMessage(activity.getString(R.string.quitGameAlert))
+	    .setPositiveButton(activity.getString(R.string.quitGamePositiveAnswer), new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
 	            // continue with exit
 	        	GameManager gManager = GameManagerContainer.getGameManager();
 	        	gManager.endGameCycle();
 	        }
 	     })
-	    .setNegativeButton(activity.getString(R.string.exitGameNegativeAnswer), new DialogInterface.OnClickListener() {
+	    .setNegativeButton(activity.getString(R.string.quitGameNegativeAnswer), new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
 	            // do nothing
 	        }
 	     })
 	     .show();
+	}
+	
+	public static void makeQuitApplicationDialog(Activity activity) {
+		String appName = activity.getString(R.string.app_name);
+		String quitAlert = activity.getString(R.string.quitAppAlertTopic);
+		String quitAppAlert = activity.getString(R.string.quitAppAlert);
+		new AlertDialog.Builder(activity)
+	    .setTitle(String.format(quitAlert, appName))
+	    .setMessage(String.format(quitAppAlert, appName))
+	    .setPositiveButton(activity.getString(R.string.quitGamePositiveAnswer), new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // continue with exit
+	        	quitApplication();
+	        }
+	     })
+	    .setNegativeButton(activity.getString(R.string.quitGameNegativeAnswer), new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // do nothing
+	        }
+	     })
+	     .show();
+	}
+	
+	public static void quitApplication(){
+	   	/*
+         * Notify the system to finalize and collect all objects of the app
+         * on exit so that the virtual machine running the app can be killed
+         * by the system without causing issues. NOTE: If this is set to
+         * true then the virtual machine will not be killed until all of its
+         * threads have closed.
+         */
+        System.runFinalizersOnExit(true);
+
+        /*
+         * Force the system to close the app down completely instead of
+         * retaining it in the background. The virtual machine that runs the
+         * app will be killed. The app will be completely created as a new
+         * app in a new virtual machine running in a new process if the user
+         * starts the app again.
+         */
+        System.exit(0);
 	}
 }

@@ -49,9 +49,11 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="translate_word_add_translation">Enter the translation</string>
     <string name="translate_word_submit_translation_button">Submit translation</string>
     <string name="selectDifficultyLevel">Select a difficulty level</string>
-    <string name="exitGameAlert">Are you sure you want to exit to main menu?</string>
-    <string name="exitGameAlertTopic">Exit game</string>
-    <string name="exitGamePositiveAnswer">Yes</string>
-    <string name="exitGameNegativeAnswer">No</string>
+    <string name="quitGameAlert">Are you sure you want to exit to main menu?</string>
+    <string name="quitGameAlertTopic">Quit game</string>
+    <string name="quitGamePositiveAnswer">Yes</string>
+    <string name="quitGameNegativeAnswer">No</string>
+    <string name="quitAppAlert">Are you sure you want to quit %s?</string>
+    <string name="quitAppAlertTopic">Quit %s</string>
 
 </resources>

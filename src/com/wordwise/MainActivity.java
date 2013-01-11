@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.wordwise.model.Configuration;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
 import com.wordwise.view.activity.game.TranslateWord;
@@ -44,24 +45,7 @@ public class MainActivity extends MenuActivity {
 	}
         
     public void quit(View view) {
-    	/*
-         * Notify the system to finalize and collect all objects of the app
-         * on exit so that the virtual machine running the app can be killed
-         * by the system without causing issues. NOTE: If this is set to
-         * true then the virtual machine will not be killed until all of its
-         * threads have closed.
-         */
-        System.runFinalizersOnExit(true);
-
-        /*
-         * Force the system to close the app down completely instead of
-         * retaining it in the background. The virtual machine that runs the
-         * app will be killed. The app will be completely created as a new
-         * app in a new virtual machine running in a new process if the user
-         * starts the app again.
-         */
-        System.exit(0);
-    	//android.os.Process.killProcess(android.os.Process.myPid());
+    	WordwiseUtils.makeQuitApplicationDialog(this);
     } 
     
     @Override
