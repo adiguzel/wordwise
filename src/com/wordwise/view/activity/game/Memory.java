@@ -1,8 +1,5 @@
 package com.wordwise.view.activity.game;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +13,14 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
+import android.widget.ViewFlipper;
 
 import com.tekle.oss.android.animation.AnimationFactory;
+import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
-import com.wordwise.R.color;
 import com.wordwise.controller.game.MemoryAnimationListener;
+import com.wordwise.controller.game.MemoryWordAndTranslationAdapter;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.view.activity.WordwiseGameActivity;
@@ -85,7 +85,7 @@ public class Memory extends WordwiseGameActivity implements Game {
 
 	private void initMemoryGrid() {
 		GridView translationsGrid = (GridView) findViewById(R.id.memoryGrid);
-		translationsGrid.setAdapter(new WordAndTranslationAdapter(this));
+		translationsGrid.setAdapter(new MemoryWordAndTranslationAdapter(this));
 	}
 
 	// called by continue button to finish the game and continue from the next
@@ -100,7 +100,9 @@ public class Memory extends WordwiseGameActivity implements Game {
 				&& ((String) v1.getTag()).equals((String) v2.getTag());
 		
 	}
-
+	private void flip2( View viewFlipper) {
+		AnimationFactory.flipTransition((ViewAnimator) viewFlipper, FlipDirection.LEFT_RIGHT);
+	}
 	private void flipFaceUp(final TextView v) {
 
 		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.REVEAL,
@@ -171,61 +173,5 @@ public class Memory extends WordwiseGameActivity implements Game {
 		v.invalidate();
 	}
 
-	// TODO use real translations of the words that we got from the server
-	private class WordAndTranslationAdapter extends BaseAdapter {
-		private Context mContext;
-
-		public WordAndTranslationAdapter(Context c) {
-			mContext = c;
-		}
-
-		public int getCount() {
-			return mThumbIds.length;
-		}
-
-		public Object getItem(int position) {
-			return null;
-		}
-
-		public long getItemId(int position) {
-			return 0;
-		}
-
-		@SuppressWarnings("deprecation")
-		public View getView(int position, View convertView, ViewGroup parent) {
-			TextView textView;
-			if (convertView == null) { // if it's not recycled, initialize some
-										// attributes
-				textView = new TextView(mContext);
-			} else {
-				textView = (TextView) convertView;
-			}
-
-			textView.setTag(mThumbIds[position]);
-			textView.setTextSize(16);
-			// textView.setSingleLine(false);
-			textView.setGravity(Gravity.CENTER_VERTICAL
-					| Gravity.CENTER_HORIZONTAL);
-			// we are using the deprecated method instead of setBackground
-			// because it is introduced in API level 16
-			changeState(textView, STATE_INITIAL);
-			textView.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					// Retrieve the values
-					flipFaceUp((TextView) v);
-				}
-			});
-
-			return textView;
-		}
-
-		// TODO change this to random mix of the translations of the words from
-		// server
-		// TODO possibly change this to an ArrayList
-		private String[] mThumbIds = {"besuchen", "besuchen", "Komputer",
-				"Komputer", "Test", "Test2", "Test", "Test2", "Test", "Test2",
-				"Test", "Test2"};
-
-	}
 
 }

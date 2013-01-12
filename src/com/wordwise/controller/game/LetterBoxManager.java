@@ -9,9 +9,10 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.controller.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.util.game.LetterBoxPositionUtils;
+import com.wordwise.util.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.view.activity.game.LetterBox;
 
 public class LetterBoxManager
