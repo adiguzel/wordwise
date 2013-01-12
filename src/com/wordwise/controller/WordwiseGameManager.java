@@ -18,9 +18,9 @@ public class WordwiseGameManager extends GameManager{
 	public WordwiseGameManager(GameSelector gameSelector, Context context) {
 		super(gameSelector);
 		
-		gameSelector.registerGame(new LetterBox());
-		gameSelector.registerGame(new Hangman());
-		gameSelector.registerGame(new Words2Translations());
+		//gameSelector.registerGame(new LetterBox());
+	//	gameSelector.registerGame(new Hangman());
+		//gameSelector.registerGame(new Words2Translations());
 		gameSelector.registerGame(new Memory());
 		
 		this.context = context;

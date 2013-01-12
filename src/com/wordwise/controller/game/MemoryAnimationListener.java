@@ -1,12 +1,13 @@
 package com.wordwise.controller.game;
 
-import android.animation.Animator;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.TextView;
 
 import com.wordwise.model.game.MemoryFlipState;
 
-public class MemoryAnimationListener implements Animator.AnimatorListener {
+public class MemoryAnimationListener implements AnimationListener {
 
 	public static final boolean REVEAL = true;
 	public static final boolean HIDE = false;
@@ -28,22 +29,17 @@ public class MemoryAnimationListener implements Animator.AnimatorListener {
 		this.flipState = flipState;
 	}
 
-	public void onAnimationCancel(Animator animation) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onAnimationEnd(Animator animation) {
+	public void onAnimationEnd(Animation animation) {
 		// TODO Auto-generated method stub
 		onEnd();
 	}
 
-	public void onAnimationRepeat(Animator animation) {
+	public void onAnimationRepeat(Animation animation) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void onAnimationStart(Animator animation) {
+	public void onAnimationStart(Animation animation) {
 		// TODO Auto-generated method stub
 		onStart();
 	}
@@ -52,16 +48,20 @@ public class MemoryAnimationListener implements Animator.AnimatorListener {
 		if (action == REVEAL) {
 			String tag = (String) view.getTag();
 			view.setText(tag);
-			if (!flipState.flipExist())
+			view.invalidate();
+			if (!flipState.flipExist()){
+				Log.v("flip", "adjust flip");
 				flipState.setFirstFlipped(view);
-			// flipLock.unlock();
-			Log.v("app", "Lock released");
-		} else {
+			}
+				
+		} else {//UNREVEAL
 			view.setText("");
 			flipState.setFirstFlipped(null);
 		}
 	}
+	
 	private void onStart() {
 
 	}
+
 }

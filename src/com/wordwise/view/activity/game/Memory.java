@@ -9,11 +9,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.tekle.oss.android.animation.AnimationFactory;
 import com.wordwise.R;
 import com.wordwise.R.color;
 import com.wordwise.controller.game.MemoryAnimationListener;
@@ -22,6 +26,9 @@ import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity implements Game {
+	private final int STATE_INITIAL = 0;
+	private final int STATE_MATCH_SUCCESS = 1;
+	private final int STATE_MATCH_FAIL = 2;
 
 	private Button continueButton;
 	private final int IN_PROGRESS = 0;
@@ -29,6 +36,8 @@ public class Memory extends WordwiseGameActivity implements Game {
 	private int gameState = IN_PROGRESS;
 	private MemoryFlipState flipState;
 
+	private int pairCount = 6;
+	
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.memory);
@@ -37,13 +46,19 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 
 	private boolean isFinished() {
-		return gameState == FINISHED;
+		return pairCount == 0;
 	}
 
 	private void onGameFinish() {
 		// TODO show necessary dialogs about game end
-
 		continueButton.setEnabled(true);
+	}
+	
+	private void checkOrAdjustGameState(){
+		pairCount --;
+		if(isFinished()){
+			onGameFinish();
+		}
 	}
 
 	public void onGameStart() {
@@ -80,7 +95,10 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 
 	private boolean matches(TextView v1, TextView v2) {
-		return ((String) v1.getTag()).equals((String) v2.getTag());
+		//condition : they are not the same object but their tags are the same
+		return (v1 != v2)
+				&& ((String) v1.getTag()).equals((String) v2.getTag());
+		
 	}
 
 	private void flipFaceUp(final TextView v) {
@@ -95,41 +113,62 @@ public class Memory extends WordwiseGameActivity implements Game {
 	}
 
 	// applies a flipping animation to a given view
-	private void flip(final View v, Animator.AnimatorListener animListener) {
-		ObjectAnimator anim = (ObjectAnimator) AnimatorInflater.loadAnimator(
+	private void flip(final View v, AnimationListener animListener) {
+	
+		Animation anim = AnimationUtils.loadAnimation(
 				this, R.animator.flipping);
-		anim.setTarget(v);
+		
 		anim.setDuration(1000);
-		anim.addListener(animListener);
-		anim.start();
+		anim.setAnimationListener(animListener);
+		//anim.start();
+		v.startAnimation(anim);
 		v.postDelayed(new Runnable() {
 			public void run() {
-				if(flipState.flipExist()){
+				if (flipState.flipExist()) {
 					TextView firstFlipped = flipState.getFirstFlipped();
 					if (matches(flipState.getFirstFlipped(), (TextView) v)) {
-						firstFlipped
-								.setBackgroundColor(color.wordwise_main_green_disabled_end);
-						firstFlipped.invalidate();
-						v.setBackgroundColor(color.wordwise_main_green_disabled_end);
-						v.invalidate();
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-						}
+						changeState(firstFlipped, STATE_MATCH_SUCCESS);
+						changeState(v, STATE_MATCH_SUCCESS);
+						v.setEnabled(false);
+						firstFlipped.setEnabled(false);
+						flipState.setFirstFlipped(null);
+				checkOrAdjustGameState();
+						
+						/*
+						 * try { Thread.sleep(1000); } catch
+						 * (InterruptedException e) { }
+						 */
 
-						firstFlipped.setVisibility(View.INVISIBLE);
-						v.setVisibility(View.INVISIBLE);
+						// firstFlipped.setVisibility(View.INVISIBLE);
+						// v.setVisibility(View.INVISIBLE);
 
-					} else {
+					} else if(firstFlipped != (TextView) v){
+						Log.v("flip", "no success");
 						flipFaceDown(firstFlipped);
 						flipFaceDown((TextView) v);
-						firstFlipped = null;
+						flipState.setFirstFlipped(null);
 					}
 				}
 
 			}
-		}, 600);
-		Log.v("Anim", "anim bitti ");
+		}, 1200);
+	}
+
+	@SuppressWarnings("deprecation")
+	private void changeState(View v, int state) {
+		switch (state) {
+			case STATE_INITIAL :
+				v.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.memory_square_grid_item));
+				break;
+			case STATE_MATCH_SUCCESS :
+				v.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.memory_square_grid_item_success));
+				break;
+			case STATE_MATCH_FAIL :
+				break;
+		}
+		v.invalidate();
 	}
 
 	// TODO use real translations of the words that we got from the server
@@ -169,12 +208,10 @@ public class Memory extends WordwiseGameActivity implements Game {
 					| Gravity.CENTER_HORIZONTAL);
 			// we are using the deprecated method instead of setBackground
 			// because it is introduced in API level 16
-			textView.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.memory_square_grid_item));
+			changeState(textView, STATE_INITIAL);
 			textView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					// Retrieve the values
-
 					flipFaceUp((TextView) v);
 				}
 			});
