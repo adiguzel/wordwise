@@ -12,5 +12,30 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		
 	}
 
+	public void onGameInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onGameStart() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onGameStop() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onGamePause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onGameEnd() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

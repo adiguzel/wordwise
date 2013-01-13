@@ -1,9 +1,11 @@
 package com.wordwise.gameengine;
 
 public interface Game {
+	// difficulty levels for games
 	public static final int EASY = 1;
 	public static final int MEDIUM = 2;
 	public static final int HARD = 3;
+
 	/**
 	 * Initializes the game and its resources
 	 **/
@@ -28,4 +30,11 @@ public interface Game {
 	 * places where the game pause is detected
 	 **/
 	public void onGamePause();
+
+	/**
+	 * Executes the necessary steps to when a game is finished such as showing
+	 * success or fail message to user, game statistics and enabling continue
+	 * button
+	 **/
+	public void onGameEnd();
 }

@@ -11,7 +11,6 @@ import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Word;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
@@ -88,6 +87,11 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	public void onGameInit() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void onGameEnd() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

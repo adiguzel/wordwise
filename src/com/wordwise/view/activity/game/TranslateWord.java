@@ -110,6 +110,11 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void onGameEnd() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void submitTranslation(View v) {
 		wordToBeTranslatedBuffer = wordToBeTranslated.getText().toString();
@@ -126,5 +131,7 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 
 		// TODO Send data to server
 	}
+
+	
 
 }

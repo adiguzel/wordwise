@@ -1,6 +1,5 @@
 package com.wordwise.controller.game;
 
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.TextView;
@@ -45,21 +44,16 @@ public class MemoryAnimationListener implements AnimationListener {
 	}
 
 	private void onEnd() {
+
 		if (action == REVEAL) {
-			String tag = (String) view.getTag();
-			view.setText(tag);
-			view.invalidate();
-			if (!flipState.flipExist()){
-				Log.v("flip", "adjust flip");
+			if (!flipState.flipExist()) {
 				flipState.setFirstFlipped(view);
 			}
-				
-		} else {//UNREVEAL
-			view.setText("");
+		} else
 			flipState.setFirstFlipped(null);
-		}
+
 	}
-	
+
 	private void onStart() {
 
 	}

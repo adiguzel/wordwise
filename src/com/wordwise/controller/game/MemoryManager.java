@@ -16,7 +16,7 @@ import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.game.MemoryViewFlipper;
 
 public class MemoryManager {
-	
+	//activity to work on
 	private Memory memoryActivity;
 	private MemoryFlipState flipState = new MemoryFlipState();
 	private List<MemoryViewFlipper> foundFlippers;

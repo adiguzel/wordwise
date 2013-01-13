@@ -46,7 +46,7 @@
         android:layout_alignParentBottom="true"
         android:enabled="false"
         android:gravity="center_vertical|center_horizontal"
-        android:onClick="finishGame"
+        android:onClick="continueNextGame"
         android:text="@string/continueLabel" />
 
 </RelativeLayout>

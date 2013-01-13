@@ -36,7 +36,6 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 	// used for the workaround for the initial translation view not being reset
 	// to visible
 	private View firstTranslation = null;
-	private GameManager gameManager;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -62,7 +61,11 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 		initTranslationPlaceHolders();
 		initWords();
 		initTranslationsGrid();
-		gameManager = GameManagerContainer.getGameManager();
+	}
+	
+	public void onGameEnd() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void initTranslationsGrid() {
@@ -333,4 +336,5 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 		}
 	}
 
+	
 }

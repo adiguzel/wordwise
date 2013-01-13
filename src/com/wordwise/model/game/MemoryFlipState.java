@@ -1,6 +1,10 @@
 package com.wordwise.model.game;
 
 import android.view.View;
+/**
+ * @author Ugur Adigüzel
+ * Keeps track of the flips and knows which view was flipped first
+ */
 
 public class MemoryFlipState {
 	
@@ -8,7 +12,7 @@ public class MemoryFlipState {
 	public static boolean flipOFF = false;
 	
 	private boolean state = flipOFF;
-	//the textview which was revealed first
+	//the view which was revealed first
 	private View firstFlipped = null;
 
 	public boolean getState() {

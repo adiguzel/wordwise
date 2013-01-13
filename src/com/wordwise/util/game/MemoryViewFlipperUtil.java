@@ -12,37 +12,46 @@ import com.wordwise.server.model.Translation;
 import com.wordwise.view.game.MemoryViewFlipper;
 
 public class MemoryViewFlipperUtil {
-	
+
 	public static final int STATE_INITIAL = 0;
 	public static final int STATE_MATCH_SUCCESS = 1;
 	public static final int STATE_MATCH_FAIL = 2;
 
+	/**
+	 * Generates the randomly ordered flippers using the given translations
+	 * */
 	public static List<MemoryViewFlipper> getRandomViewFlipperList(
 			List<Translation> translations, Context context) {
-		List<MemoryViewFlipper> initialList = generateViewFlippers(translations,context);
+		// initial non-random list
+		List<MemoryViewFlipper> initialList = generateViewFlippers(
+				translations, context);
 		List<MemoryViewFlipper> randomList = new ArrayList<MemoryViewFlipper>();
-		if(initialList == null)
+		if (initialList == null)
 			return null;
-		
-		int remElementCount = initialList.size();
+
 		int listSize = initialList.size();
 		Random random = new Random();
-		for(int i = 0 ; i < listSize; i++){
-			int index = random.nextInt(remElementCount);
-			MemoryViewFlipper aFlipper =initialList.get(index);
-			randomList.add(aFlipper);
+		for (int i = listSize; i > 0; i--) {
+			// get a random index generated up to remaining element count
+			int index = random.nextInt(i);
+			// add the flipper at the index to random list
+			randomList.add(initialList.get(index));
+			// delete the flipper at the index from the initial list
 			initialList.remove(index);
-			remElementCount--;
 		}
-		
+
 		return randomList;
 	}
-
+	
+	/**
+	 * Generates the flippers using the given translations in a non-random
+	 * fashion
+	 * */
 	private static List<MemoryViewFlipper> generateViewFlippers(
 			List<Translation> translations, Context context) {
-		if(translations == null)
+		if (translations == null)
 			return null;
-		
+
 		List<MemoryViewFlipper> flippers = new ArrayList<MemoryViewFlipper>();
 
 		for (Translation translation : translations) {
@@ -57,8 +66,10 @@ public class MemoryViewFlipperUtil {
 		return flippers;
 	}
 
-	
 	@SuppressWarnings("deprecation")
+	/**
+	 * Changes the state of a given square grid item to given state
+	 * */
 	public static void changeState(View v, int state) {
 		switch (state) {
 			case STATE_INITIAL :
@@ -70,6 +81,8 @@ public class MemoryViewFlipperUtil {
 						R.drawable.memory_square_grid_item_success));
 				break;
 			case STATE_MATCH_FAIL :
+				break;
+			default :
 				break;
 		}
 		v.invalidate();

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,18 +15,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.LetterBoxManager;
-import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class LetterBox extends WordwiseGameActivity implements Game {
+public class LetterBox extends WordwiseGameActivity{
 	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
 	private GameManager gameManager;
 	private Button continueButton;
@@ -39,11 +36,7 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 		this.onGameStart();
 	}
 
-	@Override
-	public void onBackPressed() {
-		WordwiseUtils.makeQuitGameDialog(this);
-	}
-
+	
 	public void onGameStart() {
 		// TODO Auto-generated method stub
 
@@ -194,5 +187,10 @@ public class LetterBox extends WordwiseGameActivity implements Game {
 			textView.setGravity(Gravity.CENTER);
 			return textView;
 		}
+	}
+
+	public void onGameEnd() {
+		// TODO Auto-generated method stub
+		
 	}
 }
