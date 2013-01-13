@@ -1,8 +1,13 @@
 package com.wordwise.view.activity.game;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +16,8 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
+import com.wordwise.model.Configuration;
+import com.wordwise.server.model.Language;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -21,6 +28,10 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 
 	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please enter a word on your preffered language and add the translation...";
 
+	private Configuration configuration;
+	private Set<Language> proficientLanguages;
+	private int numberOfProficientLanguages;
+	
 	private TextView translateWordActivityInfo;
 	private EditText wordToBeTranslated;
 	private EditText wordTranslation;
@@ -62,7 +73,27 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 				.findViewById(R.id.wordToBeTranslated);
 		wordTranslation = (EditText) this.findViewById(R.id.wordTranslation);
 		submitTranslation = (Button) this.findViewById(R.id.submitTranslation);
+		
+		configuration = Configuration.getInstance(this);
+		proficientLanguages = configuration.getProficientLanguages();
+		numberOfProficientLanguages = proficientLanguages.size();
+		
+		
+		
+		Log.d("Dragan","" + chooseARandomProficientLanguage());
+		
+	}
+	
+	private String chooseARandomProficientLanguage() {
+		
+		configuration = Configuration.getInstance(this);
+		proficientLanguages = configuration.getProficientLanguages();
+		numberOfProficientLanguages = proficientLanguages.size();
 
+		Object[] profLanguagesArray = proficientLanguages.toArray();
+		Object a = profLanguagesArray[0];
+		
+		return "Fuck OFF" + " " + a.toString();
 	}
 
 	public void onGameStart() {
