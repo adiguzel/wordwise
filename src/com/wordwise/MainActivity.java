@@ -10,6 +10,7 @@ import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
+import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.TranslateWord;
 import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
@@ -40,7 +41,7 @@ public class MainActivity extends MenuActivity {
     	
     	//Used by Dragan for testing purpose of TranslateWord activity
     	//To be removed on a later stage ...
-		Intent intent = new Intent(this, TranslateWord.class);
+		Intent intent = new Intent(this, Hangman.class);
 		startActivity(intent);
 	}
         
