@@ -3,6 +3,7 @@ package com.wordwise.controller.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
@@ -17,14 +18,18 @@ import android.widget.ViewFlipper;
 public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	private int processedCount = 0;
 	private Context mContext;
-	List<MemoryViewFlipper> flippers;
-	//private List<Translation> translations;
-	
+	private List<MemoryViewFlipper> flippers;
+
 	public MemoryWordAndTranslationAdapter(Context c) {
+		super();
 		mContext = c;
 		flippers = MemoryViewFlipperUtil.getRandomViewFlipperList(generateTranslations(), mContext);
 	}
 	
+	public List<MemoryViewFlipper> getFlippers() {
+		return flippers;
+	}
+
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return flippers.size();
@@ -43,11 +48,12 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ViewFlipper flipper;
-		if (view == null) { // if it's not recycled, initialize some								// attributes
+	/*	if (view == null) { // if it's not recycled, initialize some								// attributes
 			flipper = flippers.get(position);
 		} else {
 			flipper = (ViewFlipper) view;
-		}
+		}*/
+		flipper = flippers.get(position);
 		return flipper;
 	}
 	

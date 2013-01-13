@@ -1,7 +1,6 @@
 package com.wordwise.model.game;
 
-import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 
 public class MemoryFlipState {
 	
@@ -10,7 +9,7 @@ public class MemoryFlipState {
 	
 	private boolean state = flipOFF;
 	//the textview which was revealed first
-	private TextView firstFlipped = null;
+	private View firstFlipped = null;
 
 	public boolean getState() {
 		return state;
@@ -20,15 +19,14 @@ public class MemoryFlipState {
 		return state == flipON;
 	}
 
-	public TextView getFirstFlipped() {
+	public View getFirstFlipped() {
 		return firstFlipped;
 	}
 
-	public void setFirstFlipped(TextView firstFlipped) {
+	public void setFirstFlipped(View firstFlipped) {
 		state = flipOFF;
 		this.firstFlipped = firstFlipped;
 		if(firstFlipped != null){
-			Log.v("flip", "setting the flip");
 			state = flipON;
 		}
 	}

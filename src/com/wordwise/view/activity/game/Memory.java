@@ -1,34 +1,16 @@
 package com.wordwise.view.activity.game;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.ViewAnimator;
-import android.widget.ViewFlipper;
 
-import com.tekle.oss.android.animation.AnimationFactory;
-import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
-import com.wordwise.controller.game.MemoryAnimationListener;
-import com.wordwise.controller.game.MemoryWordAndTranslationAdapter;
+import com.wordwise.controller.game.MemoryManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity implements Game {
-	private final int STATE_INITIAL = 0;
-	private final int STATE_MATCH_SUCCESS = 1;
-	private final int STATE_MATCH_FAIL = 2;
 
 	private Button continueButton;
 	private final int IN_PROGRESS = 0;
@@ -45,20 +27,9 @@ public class Memory extends WordwiseGameActivity implements Game {
 		this.onGameStart();
 	}
 
-	private boolean isFinished() {
-		return pairCount == 0;
-	}
-
-	private void onGameFinish() {
+	public void onGameFinish() {
 		// TODO show necessary dialogs about game end
 		continueButton.setEnabled(true);
-	}
-	
-	private void checkOrAdjustGameState(){
-		pairCount --;
-		if(isFinished()){
-			onGameFinish();
-		}
 	}
 
 	public void onGameStart() {
@@ -79,13 +50,9 @@ public class Memory extends WordwiseGameActivity implements Game {
 	public void onGameInit() {
 		// TODO Auto-generated method stub
 		continueButton = (Button) findViewById(R.id.continueButton);
-		initMemoryGrid();
 		flipState = new MemoryFlipState();
-	}
-
-	private void initMemoryGrid() {
-		GridView translationsGrid = (GridView) findViewById(R.id.memoryGrid);
-		translationsGrid.setAdapter(new MemoryWordAndTranslationAdapter(this));
+		MemoryManager mManager = new MemoryManager(this);
+		mManager.initMemoryGrid();
 	}
 
 	// called by continue button to finish the game and continue from the next
@@ -94,84 +61,6 @@ public class Memory extends WordwiseGameActivity implements Game {
 
 	}
 
-	private boolean matches(TextView v1, TextView v2) {
-		//condition : they are not the same object but their tags are the same
-		return (v1 != v2)
-				&& ((String) v1.getTag()).equals((String) v2.getTag());
-		
-	}
-	private void flip2( View viewFlipper) {
-		AnimationFactory.flipTransition((ViewAnimator) viewFlipper, FlipDirection.LEFT_RIGHT);
-	}
-	private void flipFaceUp(final TextView v) {
-
-		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.REVEAL,
-				flipState));
-	}
-
-	private void flipFaceDown(final TextView v) {
-		flip(v, new MemoryAnimationListener(v, MemoryAnimationListener.HIDE,
-				flipState));
-	}
-
-	// applies a flipping animation to a given view
-	private void flip(final View v, AnimationListener animListener) {
 	
-		Animation anim = AnimationUtils.loadAnimation(
-				this, R.animator.flipping);
-		
-		anim.setDuration(1000);
-		anim.setAnimationListener(animListener);
-		//anim.start();
-		v.startAnimation(anim);
-		v.postDelayed(new Runnable() {
-			public void run() {
-				if (flipState.flipExist()) {
-					TextView firstFlipped = flipState.getFirstFlipped();
-					if (matches(flipState.getFirstFlipped(), (TextView) v)) {
-						changeState(firstFlipped, STATE_MATCH_SUCCESS);
-						changeState(v, STATE_MATCH_SUCCESS);
-						v.setEnabled(false);
-						firstFlipped.setEnabled(false);
-						flipState.setFirstFlipped(null);
-				checkOrAdjustGameState();
-						
-						/*
-						 * try { Thread.sleep(1000); } catch
-						 * (InterruptedException e) { }
-						 */
-
-						// firstFlipped.setVisibility(View.INVISIBLE);
-						// v.setVisibility(View.INVISIBLE);
-
-					} else if(firstFlipped != (TextView) v){
-						Log.v("flip", "no success");
-						flipFaceDown(firstFlipped);
-						flipFaceDown((TextView) v);
-						flipState.setFirstFlipped(null);
-					}
-				}
-
-			}
-		}, 1200);
-	}
-
-	@SuppressWarnings("deprecation")
-	private void changeState(View v, int state) {
-		switch (state) {
-			case STATE_INITIAL :
-				v.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.memory_square_grid_item));
-				break;
-			case STATE_MATCH_SUCCESS :
-				v.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.memory_square_grid_item_success));
-				break;
-			case STATE_MATCH_FAIL :
-				break;
-		}
-		v.invalidate();
-	}
-
 
 }
