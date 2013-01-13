@@ -1,17 +1,10 @@
 package com.wordwise.view.game;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 import android.widget.ViewFlipper;
 
-import com.tekle.oss.android.animation.AnimationFactory;
-import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
-import com.wordwise.R;
-import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 
@@ -32,17 +25,17 @@ public class MemoryViewFlipper extends ViewFlipper {
 		TextView face = new TextView(context);
 		TextView bottom = new TextView(context);
 		String text = "";
+		
 		if(isWord == USE_WORD)
 			text = translation.getWord().getWord();
-		else
+		else // Use translation
 			text = translation.getTranslation();
 		
-		bottom.setTag(text);
 		bottom.setText(text);
 		bottom.setTextSize(16);
-		// textView.setSingleLine(false);
 		bottom.setGravity(Gravity.CENTER_VERTICAL
 				| Gravity.CENTER_HORIZONTAL);
+		//arrange the initial states
 		MemoryViewFlipperUtil.changeState(face, MemoryViewFlipperUtil.STATE_INITIAL);
 		MemoryViewFlipperUtil.changeState(bottom, MemoryViewFlipperUtil.STATE_INITIAL);
 		addView(face);

@@ -85,12 +85,6 @@ public class MemoryManager {
 									checkOrAdjustGameState();
 								}
 							}, 500);
-					//checkOrAdjustGameState();
-							
-					
-							
-							// firstFlipped.setVisibility(View.INVISIBLE);
-							// v.setVisibility(View.INVISIBLE);
 
 						} else if(firstFlipped != (MemoryViewFlipper)viewFlipper){
 							turn(firstFlipped);
@@ -106,7 +100,7 @@ public class MemoryManager {
 	
 	private void checkOrAdjustGameState(){
 		if(isFinished()){
-			memoryActivity.onGameFinish();
+			memoryActivity.onGameEnd();
 		}
 	}
 	

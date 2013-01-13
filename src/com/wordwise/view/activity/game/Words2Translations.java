@@ -21,9 +21,6 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.Game;
-import com.wordwise.gameengine.GameManager;
-import com.wordwise.model.GameManagerContainer;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Words2Translations extends WordwiseGameActivity implements Game {
