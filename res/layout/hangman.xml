@@ -78,6 +78,6 @@
         android:layout_gravity="center_horizontal"
         android:onClick="continueNextGame"
         android:text="@string/continueLabel"
-        android:visibility="invisible" />
+        android:enabled="false" />
 
 </RelativeLayout>

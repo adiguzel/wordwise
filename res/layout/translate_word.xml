@@ -48,9 +48,24 @@
         style="@style/wordwiseButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/continueButton"
         android:layout_centerHorizontal="true"
+        android:enabled="true"
+        android:gravity="center_vertical|center_horizontal"
         android:onClick="submitTranslation"
         android:text="@string/translate_word_submit_translation_button" />
+    
+    <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_alignParentBottom="true"
+        android:enabled="false"
+        android:gravity="center_vertical|center_horizontal"
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel" />
+    
 
 </RelativeLayout>

@@ -3,9 +3,12 @@ package com.wordwise.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 
 import com.wordwise.R;
@@ -99,6 +102,15 @@ public class LanguageUtils {
 		int randomLanguageNumber = randomGenerator.nextInt(maxRandomNumber);
 		Language randomLanguage = l.get(randomLanguageNumber);
 		return randomLanguage;
+	}
+	
+	public static void setLocale(Locale locale,String languageCode, Context context) {
+		locale = new Locale(languageCode);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale;
+		context.getResources().updateConfiguration(config,
+				context.getResources().getDisplayMetrics());
 	}
 
 }

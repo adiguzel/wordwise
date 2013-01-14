@@ -10,6 +10,7 @@ import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
+import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.TranslateWord;
 import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 

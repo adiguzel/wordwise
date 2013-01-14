@@ -42,6 +42,7 @@ public interface ServerCommunication {
 	 * @return list of words and its high quality translations
 	 */
 	public List<Word> listWords(Language lang, int difficulty);
+	
 
 	/**
 	 * Retrieves all specified number of words in a given language and for a

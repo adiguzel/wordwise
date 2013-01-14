@@ -1,11 +1,14 @@
 package com.wordwise.view.activity.game;
 
+import java.net.ConnectException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,9 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
+import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.model.Configuration;
+import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Word;
+import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Hangman extends WordwiseGameActivity{
+public class Hangman extends WordwiseGameActivity {
 
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
@@ -29,37 +37,41 @@ public class Hangman extends WordwiseGameActivity{
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
-	private String mysteryWord = "ÜBUNG";
+	private String mysteryWord;
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
 	private Button continueButton;
 
-	private static final String PREFERENCES_MYSTERY_WORD_TEXT_VIEW = "mysteryWordTextView";
+	// Configuration properties
+	private Configuration configuration;
+	private Language learningLanguage;
+	private int difficulty;
+	private Word word;
+	private Locale locale;
+	private RESTfullServerCommunication serverCommunication;
+
+	static final String PREFERENCES_MYSTERY_WORD_TEXT_VIEW = "mysteryWordTextView";
 	private static final String PREFERENCES_MYSTERY_WORD = "mysteryWord";
 	private static final String PREFERENCES_WRONG_LETTERS = "wrongLetters";
 	private static final String PREFERENCES_NUM_WRONG_GUESSES = "numWrongGuesses";
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		// This is the fragment of the code that changes the lanuguage
-		String languageToLoad = "de"; // your language
-		Locale locale = new Locale(languageToLoad);
-		Locale.setDefault(locale);
-		Configuration config = new Configuration();
-		config.locale = locale;
-		getBaseContext().getResources().updateConfiguration(config,
-				getBaseContext().getResources().getDisplayMetrics());
 
 		setContentView(R.layout.hangman);
 		this.onGameInit();
+
+		// This is the fragment of the code that changes the lanuguage
+		String languageToLoad = learningLanguage.getCode();
+		LanguageUtils.setLocale(locale, languageToLoad, this);
+
 		if (Hangman.savedGame == true) {
 			this.loadTheSavedGame();
 		}
 		this.onGameStart();
 	}
-
 
 	public void onStop() {
 		super.onStop();
@@ -81,9 +93,21 @@ public class Hangman extends WordwiseGameActivity{
 		super.onResume();
 		this.openTheSoftKeyboard();
 	}
-
-	// TODO Implement method to read the mysteryWord from the server
-	// TODO Edit checkWin() and checkLose() and link them with GameManager
+	/*
+	 * Uncomment the method below when the server is up and running
+	 * */
+	
+//	private void getMysteryWordFromServer() throws ConnectException {
+//		serverCommunication = new RESTfullServerCommunication();
+//		List<Word> mysteryWordList = serverCommunication.listWords(
+//				learningLanguage, difficulty);
+//		int size = mysteryWordList.size();
+//		Random randomGenerator = new Random();
+//		int randomWordNumber = randomGenerator.nextInt(size);
+//		Word mysteryWordFromServer = mysteryWordList.get(randomWordNumber);
+//		this.word = mysteryWordFromServer;
+//		this.mysteryWord = this.word.getWord();
+//	}
 
 	// This is the method that checks for the unicode characters that are
 	// accessed useing multiple keys or long press
@@ -131,13 +155,13 @@ public class Hangman extends WordwiseGameActivity{
 
 			this.closeTheSoftKeyboard();
 
-			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_LONG);
+			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_SHORT);
 			msg.show();
 
 			this.wonGame = true;
 			continueButton.setVisibility(Button.VISIBLE);
 
-			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
+			this.onGameEnd();
 		}
 	}
 
@@ -147,11 +171,12 @@ public class Hangman extends WordwiseGameActivity{
 			this.closeTheSoftKeyboard();
 
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
-					Toast.LENGTH_LONG);
+					Toast.LENGTH_SHORT);
 			msg.show();
 
 			this.lostGame = true;
-			// IMPLEMENT THE MOVE TO THE OTHER ACTIVITY
+
+			this.onGameEnd();
 		}
 	}
 
@@ -224,7 +249,6 @@ public class Hangman extends WordwiseGameActivity{
 				.findViewById(R.id.hangman_wrong_letters);
 		mysteryWordTextView = (TextView) this
 				.findViewById(R.id.hangman_mystery_word);
-		
 		continueButton = (Button) findViewById(R.id.continueButton);
 
 	}
@@ -259,36 +283,36 @@ public class Hangman extends WordwiseGameActivity{
 	 */
 	private void updateHangmanImage() {
 		switch (numWrongGuesses) {
-			case 0 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img00);
-				break;
-			case 1 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img01);
-				break;
-			case 2 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img02);
-				break;
-			case 3 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img03);
-				break;
-			case 4 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img04);
-				break;
-			case 5 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img05);
-				break;
-			case 6 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img06);
-				break;
-			case 7 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img07);
-				break;
-			case 8 :
-				hangmanImageView.setImageResource(R.drawable.hangman_img08);
-				break;
-			case MAXIMUM_WRONG_GUESSES :
-				hangmanImageView.setImageResource(R.drawable.hangman_img09);
-				break;
+		case 0:
+			hangmanImageView.setImageResource(R.drawable.hangman_img00);
+			break;
+		case 1:
+			hangmanImageView.setImageResource(R.drawable.hangman_img01);
+			break;
+		case 2:
+			hangmanImageView.setImageResource(R.drawable.hangman_img02);
+			break;
+		case 3:
+			hangmanImageView.setImageResource(R.drawable.hangman_img03);
+			break;
+		case 4:
+			hangmanImageView.setImageResource(R.drawable.hangman_img04);
+			break;
+		case 5:
+			hangmanImageView.setImageResource(R.drawable.hangman_img05);
+			break;
+		case 6:
+			hangmanImageView.setImageResource(R.drawable.hangman_img06);
+			break;
+		case 7:
+			hangmanImageView.setImageResource(R.drawable.hangman_img07);
+			break;
+		case 8:
+			hangmanImageView.setImageResource(R.drawable.hangman_img08);
+			break;
+		case MAXIMUM_WRONG_GUESSES:
+			hangmanImageView.setImageResource(R.drawable.hangman_img09);
+			break;
 		}
 	}
 
@@ -306,12 +330,11 @@ public class Hangman extends WordwiseGameActivity{
 	}
 
 	public void onGameStart() {
-		// TODO Auto-generated method stub
-		// TEST to see whether it is working
+
 	}
 
 	public void onGameStop() {
-		// this.closeTheSoftKeyboard();
+		this.closeTheSoftKeyboard();
 	}
 
 	public void onGamePause() {
@@ -339,20 +362,29 @@ public class Hangman extends WordwiseGameActivity{
 		}
 	}
 
+	private void getConfigurationDetails() {
+		configuration = Configuration.getInstance(this);
+		this.learningLanguage = configuration.getLearningLanguage();
+		this.difficulty = configuration.getDifficulty();
+	}
+
 	public void onGameInit() {
 		// Initializes the screen
-		this.linkTheViews();
-		this.initTheHangmanImage();
-		this.initWrongGuesses();
-		this.initMysteriousWord();
-		this.openTheSoftKeyboard();
+//		try {
+			this.getConfigurationDetails();
+//			this.getMysteryWordFromServer();
+			this.linkTheViews();
+			this.initTheHangmanImage();
+			this.initWrongGuesses();
+			this.initMysteriousWord();
+			this.openTheSoftKeyboard();
+//		} catch (ConnectException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void onGameEnd() {
-		// TODO Auto-generated method stub
-		
+		continueButton.setEnabled(true);
 	}
-
-
 
 }
