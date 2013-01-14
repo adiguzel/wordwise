@@ -42,7 +42,6 @@ public abstract class WordwiseGameActivity extends Activity implements IGameView
 
 	public void validate(View v) {
 		// TODO Auto-generated method stub
-
 	}
 
 	protected void onQuitPressed() {

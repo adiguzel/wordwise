@@ -1,5 +1,6 @@
 package com.wordwise.controller.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ClipData;
@@ -7,11 +8,11 @@ import android.content.ClipDescription;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.server.model.Translation;
-import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.activity.game.Words2Translations;
 import com.wordwise.view.game.Word2TranslationsTextView;
 
@@ -25,15 +26,41 @@ public class Words2TranslationsManager implements View.OnDragListener {
 	private Words2Translations activity;
 	private Word2TranslationsTextView dragged;
 	private int droppedCount = 0;
-	private List<Translation> translations;
+	private List<Translation> translations = new ArrayList<Translation>();
+
+	private List<Word2TranslationsTextView> words = new ArrayList<Word2TranslationsTextView>();
 
 	public Words2TranslationsManager(Words2Translations activity) {
 		this.activity = activity;
 	}
 
+	public void setDragged(Word2TranslationsTextView dragged) {
+		this.dragged = dragged;
+	}
+
 	public void initViews() {
+		initTranslations();
+		initWords();
+	}
+	
+	private void initTranslations(){
+		Words2TranslationAdapter adapter = new Words2TranslationAdapter(
+				activity, new TranslationLongClickListener(this));
+		translations = adapter.getTranslations();
+		GridView translationsGrid = (GridView) activity
+				.findViewById(R.id.translationsGrid);
+		translationsGrid.setAdapter(adapter);
+	}
+
+	private void initWords() {
+		for (Translation translation : translations) {
+			Word2TranslationsTextView wordView = new Word2TranslationsTextView(
+					activity, translation, Word2TranslationsTextView.USE_WORD);
+			words.add(wordView);
+		}
 
 	}
+
 	public boolean onDrag(View v, DragEvent event) {
 		// Defines a variable to store the action type for the incoming
 		// event
@@ -120,13 +147,17 @@ public class Words2TranslationsManager implements View.OnDragListener {
 		}
 	}
 
-	public void validate(){
-	//	List<Translation>
+	public void validate() {
+		// List<Translation>
 	}
-	
+
 	public class TranslationLongClickListener
 			implements
 				View.OnLongClickListener {
+		private Words2TranslationsManager manager;
+		public TranslationLongClickListener(Words2TranslationsManager manager) {
+			this.manager = manager;
+		}
 		public boolean onLongClick(View v) {
 			// Create a new ClipData.Item from the ImageView object's tag
 			ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
@@ -140,7 +171,7 @@ public class Words2TranslationsManager implements View.OnDragListener {
 					null, // no need to use local data
 					0 // flags (not currently used, set to 0)
 			);
-			dragged = (Word2TranslationsTextView) v;
+			manager.setDragged((Word2TranslationsTextView) v);
 			return true;
 		}
 	}

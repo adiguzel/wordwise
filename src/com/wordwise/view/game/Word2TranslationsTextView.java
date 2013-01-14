@@ -19,25 +19,33 @@ public class Word2TranslationsTextView extends TextView {
 		super(context);
 	}
 	
-	public Word2TranslationsTextView(Context context,Translation translation, boolean isWord,View.OnLongClickListener longClickListener ){
+	public Word2TranslationsTextView(Context context,Translation translation, boolean isWord){
 		super(context);
 		String text = "";
 		
-		if(isWord == USE_WORD)
+		if(isWord == USE_WORD){
 			text = translation.getWord().getWord();
-		else // Use translation
+			setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.word2translations_word));
+		}	
+		else{ // Use translation
 			text = translation.getTranslation();
+			setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.word2translations_translations));
+		}
 		
 		setText(text);
-		setOnLongClickListener(longClickListener);
 		setTextSize(16);
 		// textView.setSingleLine(false);
 		setGravity(Gravity.CENTER_VERTICAL
 				| Gravity.CENTER_HORIZONTAL);
 		// we are using the deprecated method instead of setBackground
 		// because it is introduced in API level 16
-		setBackgroundDrawable(getResources().getDrawable(
-				R.drawable.word2translations_translations));
+
 		this.translation = translation;
+	}
+
+	public Translation getTranslation() {
+		return translation;
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.util.game.Word2TranslationUtil;
+import com.wordwise.view.game.Word2TranslationsTextView;
 
 import android.content.Context;
 import android.view.View;
@@ -15,13 +17,19 @@ import android.widget.TextView;
 
 public class Words2TranslationAdapter extends BaseAdapter{
 	private Context mContext;
-	private List<TextView> translationViews;
+	private List<Word2TranslationsTextView> translationViews = new ArrayList<Word2TranslationsTextView>();
 	private List<Translation> translations;
 	
-	public Words2TranslationAdapter(Context c) {
+	public Words2TranslationAdapter(Context c, View.OnLongClickListener listener) {
 		super();
 		mContext = c;
 		translations = generateTranslations();
+		List<Translation> mixedTranslations = Word2TranslationUtil.mixTranslations(translations);
+		for(Translation trans : mixedTranslations){
+			Word2TranslationsTextView view = new Word2TranslationsTextView(mContext, trans, Word2TranslationsTextView.USE_TRANSLATION);
+			view.setOnLongClickListener(listener);
+			translationViews.add(view);
+		}
 	}
 	
 	public int getCount() {

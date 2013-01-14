@@ -46,7 +46,7 @@ public class MainActivity extends MenuActivity {
 	}
         
     public void quit(View view) {
-    	WordwiseUtils.makeQuitApplicationDialog(this);
+    	//WordwiseUtils.makeQuitApplicationDialog(this);
     } 
     
     @Override

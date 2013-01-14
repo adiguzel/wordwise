@@ -20,6 +20,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.wordwise.R;
+import com.wordwise.controller.game.Words2TranslationsManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -55,9 +56,11 @@ public class Words2Translations extends WordwiseGameActivity implements Game {
 
 	public void onGameInit() {
 		validateButton = (Button) findViewById(R.id.validateButton);
-		initTranslationPlaceHolders();
-		initWords();
-		initTranslationsGrid();
+		Words2TranslationsManager manager = new Words2TranslationsManager(this);
+		manager.initViews();
+		//initTranslationPlaceHolders();
+		//initWords();
+		//initTranslationsGrid();
 	}
 	
 	public void onGameEnd() {
