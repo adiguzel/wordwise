@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import android.app.AlertDialog;
@@ -20,6 +21,7 @@ import com.wordwise.R;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
+import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -31,7 +33,9 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please enter a word on your preffered language and add the translation...";
 
 	private Configuration configuration;
-	private HashSet<Language> proficientLanguages;
+	private Set<Language> proficientLanguagesSet;
+	private List<Language> proficientLanguagesList = new ArrayList<Language>();
+	
 	private int numberOfProficientLanguages;
 	
 	private TextView translateWordActivityInfo;
@@ -77,18 +81,19 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 		submitTranslation = (Button) this.findViewById(R.id.submitTranslation);
 		
 		
-		Log.d("Dragan","" + chooseARandomProficientLanguage());
+		Log.d("Dragan","" + chooseRandomProficientLanguage());
 		
 	}
 	
-	private String chooseARandomProficientLanguage() {
+	private String chooseRandomProficientLanguage() {
 		
 		configuration = Configuration.getInstance(this);
-		proficientLanguages = (HashSet<Language>) configuration.getProficientLanguages();
-		numberOfProficientLanguages = proficientLanguages.size();
-
+		proficientLanguagesSet = configuration.getProficientLanguages();
+		proficientLanguagesList = LanguageUtils.getProficientLanguages(proficientLanguagesSet);
 		
-		return "Fuck OFF" + " " + proficientLanguages.size();
+		Language randomLanguage = LanguageUtils.getRandomProficientLanguage(proficientLanguagesList);
+		
+		return randomLanguage.getLanguage();
 	}
 
 	public void onGameStart() {

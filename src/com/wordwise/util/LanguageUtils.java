@@ -3,6 +3,7 @@ package com.wordwise.util;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import android.content.res.Resources;
@@ -80,6 +81,24 @@ public class LanguageUtils {
 		}
 
 		return langCodeSet;
+	}
+	
+	public static List<Language> getProficientLanguages(Set<Language> proficientLanguagesSet) {
+		List<Language> proficientLanguagesList  = new ArrayList<Language>();
+		for (Language l : proficientLanguagesSet) {
+			if (l != null) {
+				proficientLanguagesList.add(l);
+			}
+		}
+		return proficientLanguagesList;
+	}
+	
+	public static Language getRandomProficientLanguage(List<Language> l) {
+		Random randomGenerator = new Random();
+		int maxRandomNumber = l.size();
+		int randomLanguageNumber = randomGenerator.nextInt(maxRandomNumber);
+		Language randomLanguage = l.get(randomLanguageNumber);
+		return randomLanguage;
 	}
 
 }
