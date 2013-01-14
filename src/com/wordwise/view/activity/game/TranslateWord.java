@@ -55,8 +55,7 @@ public class TranslateWord extends WordwiseGameActivity {
 
 	}
 
-	// Dialog that explains to the user what he will be asked to do in the next
-	// screen
+	// Dialog that explains to the user what he will be asked to do in the next screen
 	private void infoMessageOnStart() {
 
 		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);

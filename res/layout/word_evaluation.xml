@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:enabled="false"
         android:onClick="submitEvaluation"
         android:text="@string/translate_word_submit_translation_button" />
 
