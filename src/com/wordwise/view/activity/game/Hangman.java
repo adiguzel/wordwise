@@ -37,7 +37,7 @@ public class Hangman extends WordwiseGameActivity {
 	private ImageView hangmanImageView;
 
 	// dummy test initialization for the mystery word
-	private String mysteryWord;
+	private String mysteryWordc = "UGUR";
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
