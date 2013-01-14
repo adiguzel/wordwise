@@ -75,18 +75,17 @@ public class TranslateWord extends WordwiseGameActivity {
 		submitTranslation = (Button) this.findViewById(R.id.submitTranslation);
 		continueButton = (Button) this.findViewById(R.id.continueButton);
 		
+		//Setting English locale on the first EditText
 		this.englishLocale = new Locale("en");
 		this.wordToBeTranslated.setTextLocale(this.englishLocale);
 		
 		randomProficientLanguage = chooseRandomProficientLanguage();
+		//Setting ProfLanguage Locale on the second EditText
 		this.proficientLanguageLocale = new Locale(randomProficientLanguage.getCode());
 		this.wordTranslation.setTextLocale(this.proficientLanguageLocale);
 		
 		String translationEditText = wordTranslation.getHint().toString() + " " + randomProficientLanguage.getLanguage();
 		wordTranslation.setHint(translationEditText);
-		
-		Log.d("Dragan","" + chooseRandomProficientLanguage());
-		
 	}
 	
 	private Language chooseRandomProficientLanguage() {
