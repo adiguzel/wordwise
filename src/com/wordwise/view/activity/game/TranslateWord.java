@@ -1,5 +1,6 @@
 package com.wordwise.view.activity.game;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -9,15 +10,16 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wordwise.R;
+import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -28,6 +30,9 @@ public class TranslateWord extends WordwiseGameActivity {
 	private Configuration configuration;
 	private Set<Language> proficientLanguagesSet;
 	private List<Language> proficientLanguagesList = new ArrayList<Language>();
+	
+	private RESTfullServerCommunication serverCommunication;
+	private Word englishWord;
 	
 	private Language randomProficientLanguage;
 	private Locale englishLocale;
@@ -123,6 +128,14 @@ public class TranslateWord extends WordwiseGameActivity {
 		// TODO Auto-generated method stub
 		continueButton.setEnabled(true);
 	}
+	
+	private void sendDataToServer(String word,String translation) throws ConnectException {
+		this.serverCommunication = new RESTfullServerCommunication();
+		this.englishWord.setWord(word);
+		serverCommunication.addWord(this.englishWord);
+		
+		//TODO Send Translation to the server
+	}
 
 	public void submitTranslation(View v) {
 		wordToBeTranslatedBuffer = wordToBeTranslated.getText().toString();
@@ -141,17 +154,25 @@ public class TranslateWord extends WordwiseGameActivity {
 			
 			//TODO Show feedback while sending ...
 			
-			//TODO Send data to the server
-
-			Toast msg = Toast.makeText(this,
-					"Your translation was submitted successfully!",
-					Toast.LENGTH_SHORT);
-			msg.show();
+//			try {
+//				this.sendDataToServer(wordToBeTranslatedBuffer, wordTranslationBuffer);
+//				Toast msg = Toast.makeText(this,
+//						"Your translation was submitted successfully!",
+//						Toast.LENGTH_SHORT);
+//				msg.show();
+//			} catch (ConnectException e) {
+//				Toast msg = Toast.makeText(this,
+//						e.getLocalizedMessage(),
+//						Toast.LENGTH_SHORT);
+//				msg.show();
+//			}
 			
 			this.submitTranslation.setEnabled(false);
 			//Tell to the game manager that the translation is submitted 
 			this.onGameEnd();
 		}
+		
+		
 	}
 
 	
