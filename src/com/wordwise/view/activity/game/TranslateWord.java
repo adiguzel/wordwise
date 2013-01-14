@@ -1,6 +1,8 @@
 package com.wordwise.view.activity.game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please enter a word on your preffered language and add the translation...";
 
 	private Configuration configuration;
-	private Set<Language> proficientLanguages;
+	private HashSet<Language> proficientLanguages;
 	private int numberOfProficientLanguages;
 	
 	private TextView translateWordActivityInfo;
@@ -74,11 +76,6 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 		wordTranslation = (EditText) this.findViewById(R.id.wordTranslation);
 		submitTranslation = (Button) this.findViewById(R.id.submitTranslation);
 		
-		configuration = Configuration.getInstance(this);
-		proficientLanguages = configuration.getProficientLanguages();
-		numberOfProficientLanguages = proficientLanguages.size();
-		
-		
 		
 		Log.d("Dragan","" + chooseARandomProficientLanguage());
 		
@@ -87,13 +84,11 @@ public class TranslateWord extends WordwiseGameActivity implements Game {
 	private String chooseARandomProficientLanguage() {
 		
 		configuration = Configuration.getInstance(this);
-		proficientLanguages = configuration.getProficientLanguages();
+		proficientLanguages = (HashSet<Language>) configuration.getProficientLanguages();
 		numberOfProficientLanguages = proficientLanguages.size();
 
-		Object[] profLanguagesArray = proficientLanguages.toArray();
-		Object a = profLanguagesArray[0];
 		
-		return "Fuck OFF" + " " + a.toString();
+		return "Fuck OFF" + " " + proficientLanguages.size();
 	}
 
 	public void onGameStart() {
