@@ -1,8 +1,8 @@
 package com.wordwise.view.game;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TextView;
 
 import com.wordwise.R;
@@ -19,8 +19,16 @@ public class Word2TranslationsTextView extends TextView {
 		super(context);
 	}
 	
-	public Word2TranslationsTextView(Context context,Translation translation, boolean isWord){
-		super(context);
+	public Word2TranslationsTextView(Context context, AttributeSet arg1){
+		super(context, arg1);
+	}
+	
+	public Word2TranslationsTextView(Context context, AttributeSet arg1, int arg2){
+		super(context, arg1, arg2);
+	}
+	
+
+	public void init(Context context,Translation translation, boolean isWord){
 		String text = "";
 		
 		if(isWord == USE_WORD){
@@ -43,6 +51,12 @@ public class Word2TranslationsTextView extends TextView {
 		// because it is introduced in API level 16
 
 		this.translation = translation;
+	}
+
+	
+	public Word2TranslationsTextView(Context context,Translation translation, boolean isWord){
+		super(context);
+		init(context, translation, isWord);
 	}
 
 	public Translation getTranslation() {

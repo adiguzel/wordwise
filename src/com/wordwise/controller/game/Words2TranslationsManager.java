@@ -1,13 +1,16 @@
 package com.wordwise.controller.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -27,8 +30,12 @@ public class Words2TranslationsManager implements View.OnDragListener {
 	private Word2TranslationsTextView dragged;
 	private int droppedCount = 0;
 	private List<Translation> translations = new ArrayList<Translation>();
+	private Map<Translation, Word2TranslationsTextView> translationToTranslationView = new HashMap<Translation, Word2TranslationsTextView>();
 
 	private List<Word2TranslationsTextView> words = new ArrayList<Word2TranslationsTextView>();
+	List<Word2TranslationsTextView> translationPlaceHolders;
+	private List<Word2TranslationsTextView> droppedPlaceholders = new ArrayList<Word2TranslationsTextView>();
+	private Words2TranslationAdapter adapter;
 
 	public Words2TranslationsManager(Words2Translations activity) {
 		this.activity = activity;
@@ -41,24 +48,72 @@ public class Words2TranslationsManager implements View.OnDragListener {
 	public void initViews() {
 		initTranslations();
 		initWords();
+		initTranslationPlaceHolders();
 	}
-	
-	private void initTranslations(){
-		Words2TranslationAdapter adapter = new Words2TranslationAdapter(
-				activity, new TranslationLongClickListener(this));
+
+	private void initTranslations() {
+		adapter = new Words2TranslationAdapter(activity,
+				new TranslationLongClickListener(this));
 		translations = adapter.getTranslations();
 		GridView translationsGrid = (GridView) activity
 				.findViewById(R.id.translationsGrid);
 		translationsGrid.setAdapter(adapter);
+		translationToTranslationView = adapter.toTranslationToViewMap();
 	}
 
 	private void initWords() {
-		for (Translation translation : translations) {
-			Word2TranslationsTextView wordView = new Word2TranslationsTextView(
-					activity, translation, Word2TranslationsTextView.USE_WORD);
-			words.add(wordView);
-		}
+		words.add(((Word2TranslationsTextView) activity
+				.findViewById(R.id.word1)));
+		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word2));
+		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word3));
+		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word4));
 
+		int i = 0;
+		for (Translation translation : translations) {
+			words.get(i).init(activity, translation,
+					Word2TranslationsTextView.USE_WORD);
+			i++;
+		}
+	}
+
+	private void initTranslationPlaceHolders() {
+		translationPlaceHolders = new ArrayList<Word2TranslationsTextView>();
+		translationPlaceHolders.add((Word2TranslationsTextView) activity
+				.findViewById(R.id.translation1_placeholder));
+		translationPlaceHolders.add((Word2TranslationsTextView) activity
+				.findViewById(R.id.translation2_placeholder));
+		translationPlaceHolders.add((Word2TranslationsTextView) activity
+				.findViewById(R.id.translation3_placeholder));
+		translationPlaceHolders.add((Word2TranslationsTextView) activity
+				.findViewById(R.id.translation4_placeholder));
+
+		for (Word2TranslationsTextView v : translationPlaceHolders) {
+			v.setTag(null);
+			v.setOnDragListener(this);
+			v.setOnClickListener(new View.OnClickListener() {
+
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Word2TranslationsTextView view = (Word2TranslationsTextView) v;
+					Translation tag = (Translation) view.getTag();
+					if (tag != null) {
+						Log.v("Tag", "not null");
+						Word2TranslationsTextView translationView = translationToTranslationView
+								.get(tag);
+						if (translationView != null) {
+							translationView.setVisibility(View.VISIBLE);
+							view.setText("");
+							droppedCount--;
+							view.setTag(null);
+							droppedPlaceholders.remove(view);
+							if (droppedCount < 4) {
+								activity.switchValidation(false);
+							}
+						}
+					}
+				}
+			});
+		}
 	}
 
 	public boolean onDrag(View v, DragEvent event) {
@@ -71,10 +126,9 @@ public class Words2TranslationsManager implements View.OnDragListener {
 
 			case DragEvent.ACTION_DRAG_STARTED :
 				// Determines if this View can accept the dragged data
-				if (event.getClipDescription().hasMimeType(
-						ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+				Word2TranslationsTextView view = (Word2TranslationsTextView) v;
+				if (!droppedPlaceholders.contains(view)) {
 					changeState(v, TRANSLATION_PLACEHOLDER_DROPPABLE);
-
 					// returns true to indicate that the View can accept the
 					// dragged data.
 					return (true);
@@ -101,18 +155,18 @@ public class Words2TranslationsManager implements View.OnDragListener {
 				v.invalidate();
 				return (true);
 			case DragEvent.ACTION_DROP :
-				// Gets the item containing the dragged data
-				ClipData.Item item = event.getClipData().getItemAt(0);
 				// Gets the text data from the item.
-				String dragData = (String) item.getText();
-				if (v instanceof TextView) {
-					((TextView) v).setText(dragData);
-					((TextView) v).setTag(dragData);
+				if (v instanceof Word2TranslationsTextView) {
+					((Word2TranslationsTextView) v).setText(dragged
+							.getTranslation().getTranslation());
+					// ((TextView) v).setTag(dragData);
 				}
+				v.setTag(dragged.getTranslation());
 				changeState(v, TRANSLATION_PLACEHOLDER_DRAGGED);
 				dragged.setVisibility(View.INVISIBLE);
 				dragged.invalidate();
 				droppedCount++;
+				droppedPlaceholders.add((Word2TranslationsTextView) v);
 				checkOrAdjustGameState();
 				// Returns true. DragEvent.getResult() will return true.
 				return (true);
@@ -126,7 +180,6 @@ public class Words2TranslationsManager implements View.OnDragListener {
 				Log.e("DragDrop Example",
 						"Unknown action type received by OnDragListener.");
 				break;
-
 		}
 		return false;
 	}
@@ -143,21 +196,49 @@ public class Words2TranslationsManager implements View.OnDragListener {
 
 	private void checkOrAdjustGameState() {
 		if (isFinished()) {
-			activity.onGameEnd();
+			activity.switchValidation(true);
 		}
 	}
 
-	public void validate() {
-		// List<Translation>
+	@SuppressWarnings("deprecation")
+	public void validate(View button) {
+
+		for (int i = 0; i < words.size(); i++) {
+			Word2TranslationsTextView t = translationPlaceHolders.get(i);
+			Translation trans = translations.get(i);
+
+			if ((t.getTag()).equals(trans)) {
+				t.setBackgroundDrawable(activity
+						.getResources()
+						.getDrawable(
+								R.drawable.word2translations_translation_placeholder_match_success));
+
+			} else {
+				t.setBackgroundDrawable(activity
+						.getResources()
+						.getDrawable(
+								R.drawable.word2translations_translation_placeholder_match_failed));
+			}
+			t.setOnDragListener(null);
+			t.setOnClickListener(null);
+		}
+		adapter.removeViewListeners();
+		button.setVisibility(Button.INVISIBLE);
+		Button continueButton = (Button) activity
+				.findViewById(R.id.continueButton);
+		continueButton.setVisibility(Button.VISIBLE);
+		activity.onGameEnd();
 	}
 
 	public class TranslationLongClickListener
 			implements
 				View.OnLongClickListener {
 		private Words2TranslationsManager manager;
+
 		public TranslationLongClickListener(Words2TranslationsManager manager) {
 			this.manager = manager;
 		}
+
 		public boolean onLongClick(View v) {
 			// Create a new ClipData.Item from the ImageView object's tag
 			ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
