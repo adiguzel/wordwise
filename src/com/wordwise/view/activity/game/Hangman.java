@@ -1,10 +1,12 @@
 package com.wordwise.view.activity.game;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Button;
 import com.wordwise.R;
 import com.wordwise.controller.game.HangmanManager;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Hangman extends WordwiseGameActivity {
@@ -45,11 +47,7 @@ public class Hangman extends WordwiseGameActivity {
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			// Implement saving of the game state
-			return super.onKeyDown(keyCode, event);
-
-		} else if (hangmanManager.isALetter(keyCode)) {
+		if (hangmanManager.isALetter(keyCode)) {
 			String letter = "" + (char) event.getUnicodeChar();
 			letter = letter.toUpperCase();
 			hangmanManager.validateGuess(letter.charAt(0));
@@ -62,6 +60,7 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGameStop() {
+		hangmanManager.closeTheSoftKeyboard();
 	}
 
 	public void onGamePause() {

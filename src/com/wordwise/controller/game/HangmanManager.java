@@ -154,7 +154,7 @@ public class HangmanManager {
 						InputMethodManager.HIDE_IMPLICIT_ONLY);
 	}
 
-	private void closeTheSoftKeyboard() {
+	public void closeTheSoftKeyboard() {
 		((InputMethodManager) hangmanActivity.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
 						0);
