@@ -1,327 +1,80 @@
 package com.wordwise.view.activity.game;
 
-
-import java.util.Locale;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
-import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Word;
-import com.wordwise.util.LanguageUtils;
+import com.wordwise.controller.game.HangmanManager;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Hangman extends WordwiseGameActivity {
 
-	private final int DOESNT_EXIST = -1;
-	private final int MAXIMUM_WRONG_GUESSES = 9;
-
-	private ImageView hangmanImageView;
-
-	//Initialized with dummy word for practicing
-	private String mysteryWord = "ABSTRACTION";
-
-	private int numWrongGuesses;
-	private TextView wrongLettersTextView;
-	private TextView mysteryWordTextView;
+	private HangmanManager hangmanManager = new HangmanManager(this);
 	private Button continueButton;
-
-	// Configuration properties
-	private Configuration configuration;
-	private Language learningLanguage;
-	private int difficulty;
-	private Word word;
-	private Locale locale;
-	private RESTfullServerCommunication serverCommunication;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-
 		setContentView(R.layout.hangman);
+		
 		this.onGameInit();
-
-		// This is the fragment of the code that changes the lanuguage
-		String languageToLoad = learningLanguage.getCode();
-		LanguageUtils.setLocale(locale, languageToLoad, this);
-
 		this.onGameStart();
 	}
-
+	
 	public void onStop() {
 		super.onStop();
-		this.onGamePause();
 		this.onGameStop();
 	}
 
-	public void onDestroy() {
-		super.onDestroy();
-		this.onGameStop();
-	}
-
-	public void onPause() {
-		super.onPause();
-		this.onGamePause();
-	}
-
-	public void onResume() {
-		super.onResume();
-		this.openTheSoftKeyboard();
-	}
-	/*
-	 * Uncoment the method below when the server is up and running
+	/* This is the method that checks for the uni-code characters that are 
+	 * accessed using multiple keys or long press(non-Javadoc)
+	 * @see android.app.Activity#onKeyMultiple(int, int, android.view.KeyEvent)
 	 */
-	
-//	private void getMysteryWordFromServer() throws ConnectException {
-//		serverCommunication = new RESTfullServerCommunication();
-//		List<Word> mysteryWordList = serverCommunication.listWords(
-//				learningLanguage, difficulty);
-//		int size = mysteryWordList.size();
-//		Random randomGenerator = new Random();
-//		int randomWordNumber = randomGenerator.nextInt(size);
-//		Word mysteryWordFromServer = mysteryWordList.get(randomWordNumber);
-//		this.word = mysteryWordFromServer;
-//		this.mysteryWord = this.word.getWord();
-//	}
-
-	// This is the method that checks for the unicode characters that are
-	// accessed useing multiple keys or long press
 	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_UNKNOWN
 				&& event.getAction() == KeyEvent.ACTION_MULTIPLE
-				&& this.isALetter(keyCode)) {
+				&& hangmanManager.isALetter(keyCode)) {
 			String letter = event.getCharacters();
 			letter = letter.toUpperCase();
-			validateGuess(letter.charAt(0));
+			hangmanManager.validateGuess(letter.charAt(0));
 		}
 		return true;
 	}
 
-	// This method checks for the normal characters accessed with one click (no
-	// long, no several keys)
+	/* This method checks for the normal characters accessed with 
+	 * one click (no long, no several keys)(non-Javadoc)
+	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			// Implement saving of the game state
 			return super.onKeyDown(keyCode, event);
 
-		} else if (this.isALetter(keyCode)) {
+		} else if (hangmanManager.isALetter(keyCode)) {
 			String letter = "" + (char) event.getUnicodeChar();
 			letter = letter.toUpperCase();
-			validateGuess(letter.charAt(0));
+			hangmanManager.validateGuess(letter.charAt(0));
 			return true;
 		}
 		return true;
 	}
 
-	// This method adds constraint about which chars should not be used at all.
-	// For example numbers ...
-	private boolean isALetter(int keyCode) {
-		// Letter ASCII constraints
-		// Only numbers added
-		if (((keyCode < 7) || (keyCode > 16))) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private void checkWin() {
-		if (mysteryWordTextView.getText().toString().indexOf("_ ") == DOESNT_EXIST) {
-
-			this.closeTheSoftKeyboard();
-
-			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_SHORT);
-			msg.show();
-
-			continueButton.setVisibility(Button.VISIBLE);
-
-			this.onGameEnd();
-		}
-	}
-
-	private void checkLose() {
-		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
-
-			this.closeTheSoftKeyboard();
-
-			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
-					Toast.LENGTH_SHORT);
-			msg.show();
-
-			this.onGameEnd();
-		}
-	}
-
-	private void validateGuess(char guess) {
-		if (mysteryWord.indexOf(guess) == DOESNT_EXIST) {
-			String wrongLetters = wrongLettersTextView.getText().toString();
-			if (wrongLetters.indexOf(guess) == DOESNT_EXIST) {
-				if (numWrongGuesses < MAXIMUM_WRONG_GUESSES) {
-					numWrongGuesses++;
-					updateWrongGuesses(guess);
-					updateHangmanImage();
-				}
-				checkLose();
-			}
-		} else {
-			if (numWrongGuesses < MAXIMUM_WRONG_GUESSES) {
-				updateMysteriousWord(guess);
-				checkWin();
-			} else {
-				checkLose();
-			}
-		}
-	}
-
-	private void updateMysteriousWord(char ch) {
-		char[] updatedWord = mysteryWordTextView.getText().toString()
-				.toCharArray();
-		for (int i = 0; i < mysteryWord.length(); i++) {
-			if (ch == mysteryWord.charAt(i)) {
-				updatedWord[i * 2] = mysteryWord.charAt(i);
-			}
-		}
-		mysteryWordTextView.setText(new String(updatedWord));
-	}
-
-	private void openTheSoftKeyboard() {
-		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-						InputMethodManager.HIDE_IMPLICIT_ONLY);
-	}
-
-	private void closeTheSoftKeyboard() {
-		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
-						0);
-
-	}
-
-	private void linkTheViews() {
-		hangmanImageView = (ImageView) this.findViewById(R.id.hangman_img);
-		wrongLettersTextView = (TextView) this
-				.findViewById(R.id.hangman_wrong_letters);
-		mysteryWordTextView = (TextView) this
-				.findViewById(R.id.hangman_mystery_word);
-		continueButton = (Button) findViewById(R.id.continueButton);
-
-	}
-
-	private void initWrongGuesses() {
-		numWrongGuesses = 0;
-	}
-
-	private void updateWrongGuesses(char wrongLetter) {
-		wrongLettersTextView.setText(wrongLettersTextView.getText().toString()
-				+ "  " + Character.toString(wrongLetter));
-	}
-
-	// This method will initialize the mysteryTextView with underscores
-	private String underscoreTheMysteryWord(String mysteryWord) {
-		StringBuffer result = new StringBuffer();
-		for (int i = 0; i < mysteryWord.length(); i++) {
-			result.append("_ ");
-		}
-		return result.toString();
-	}
-
-	/*
-	 * sets the Hangman image to the starting image
-	 */
-	private void initTheHangmanImage() {
-		hangmanImageView.setImageResource(R.drawable.hangman_img00);
-	}
-
-	/*
-	 * updates the Hangman image based on the number of wrong guesses
-	 */
-	private void updateHangmanImage() {
-		switch (numWrongGuesses) {
-		case 0:
-			hangmanImageView.setImageResource(R.drawable.hangman_img00);
-			break;
-		case 1:
-			hangmanImageView.setImageResource(R.drawable.hangman_img01);
-			break;
-		case 2:
-			hangmanImageView.setImageResource(R.drawable.hangman_img02);
-			break;
-		case 3:
-			hangmanImageView.setImageResource(R.drawable.hangman_img03);
-			break;
-		case 4:
-			hangmanImageView.setImageResource(R.drawable.hangman_img04);
-			break;
-		case 5:
-			hangmanImageView.setImageResource(R.drawable.hangman_img05);
-			break;
-		case 6:
-			hangmanImageView.setImageResource(R.drawable.hangman_img06);
-			break;
-		case 7:
-			hangmanImageView.setImageResource(R.drawable.hangman_img07);
-			break;
-		case 8:
-			hangmanImageView.setImageResource(R.drawable.hangman_img08);
-			break;
-		case MAXIMUM_WRONG_GUESSES:
-			hangmanImageView.setImageResource(R.drawable.hangman_img09);
-			break;
-		}
-	}
-
-	/*
-	 * sets the View of Mystery Word to a text view with underscores and spaces
-	 */
-	private void initMysteriousWord() {
-		mysteryWordTextView.setText(underscoreTheMysteryWord(mysteryWord));
-		mysteryWordTextView.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				openTheSoftKeyboard();
-			}
-		});
-	}
-
 	public void onGameStart() {
-
 	}
 
 	public void onGameStop() {
-		this.closeTheSoftKeyboard();
 	}
 
 	public void onGamePause() {
-
-	}
-
-	private void getConfigurationDetails() {
-		configuration = Configuration.getInstance(this);
-		this.learningLanguage = configuration.getLearningLanguage();
-		this.difficulty = configuration.getDifficulty();
+		
 	}
 
 	public void onGameInit() {
-		// Initializes the screen
-//		try {
-			this.getConfigurationDetails();
-//			this.getMysteryWordFromServer();
-			this.linkTheViews();
-			this.initTheHangmanImage();
-			this.initWrongGuesses();
-			this.initMysteriousWord();
-			this.openTheSoftKeyboard();
-//		} catch (ConnectException e) {
-//			e.printStackTrace();
-//		}
+		// TODO Auto-generated method stub
+		continueButton = (Button) findViewById(R.id.continueButton);
+		hangmanManager = new HangmanManager(this);	
+		hangmanManager.init();
 	}
+	
 
 	public void onGameEnd() {
 		continueButton.setEnabled(true);

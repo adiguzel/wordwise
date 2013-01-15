@@ -9,7 +9,7 @@ public class GameManagerContainer {
 		return gameManager;
 	}
 	
-	public static void setGameManager(GameManager manager ){
+	public static void setGameManager(GameManager manager){
 		gameManager = manager;
 	}
 }
