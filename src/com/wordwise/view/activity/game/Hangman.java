@@ -65,18 +65,16 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGamePause() {
-		
 	}
 
 	public void onGameInit() {
-		// TODO Auto-generated method stub
 		continueButton = (Button) findViewById(R.id.continueButton);
 		hangmanManager = new HangmanManager(this);	
 		hangmanManager.init();
 	}
 	
-
 	public void onGameEnd() {
+		//TODO show bye bye information
 		continueButton.setEnabled(true);
 	}
 }
