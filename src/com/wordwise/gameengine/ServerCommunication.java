@@ -3,7 +3,9 @@ package com.wordwise.gameengine;
 import java.util.List;
 
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
+import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 
 public interface ServerCommunication {
@@ -16,23 +18,20 @@ public interface ServerCommunication {
 	public boolean addWord(Word word);
 
 	/**
-	 * @param wordRating
-	 *            the object which contains the word to be rated and user
+	 * @param wordRatings
+	 *            list of the objects which contain the words to be rated and user
 	 *            ratings for it
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateWord(Rate wordRating);
+	public boolean rateWords(List<Rate> wordRatings);
 
 	/**
-	 * @param word
-	 *            of which translations are being rated
-	 * @param translationRatings
-	 *            the object which contains the translation to be rated and user
-	 *            rating for it
+	 * @param translationQualities
+	 *            list of the objects which contain the translations to be rated and user
+	 *            ratings for it
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateTranslations(Word word,
-			List<Rate> translationRatings);
+	public boolean rateTranslations(List<Quality> translationQualities);
 
 	/**
 	 * @param lang
@@ -66,5 +65,19 @@ public interface ServerCommunication {
 	 * @return list of words and its high quality translations
 	 */
 	public List<Word> listWords(Language lang);
+	
+	/**
+	 * Retrieves all specified number of translations in a given language and for a
+	 * given difficulty
+	 * 
+	 * @param lang
+	 *            language code of the desired translations
+	 * @param difficulty
+	 *            expected difficulty of the translations
+	 * @param number
+	 *            number of translations that are to be listed
+	 * @return list of translations and its original words (in English)
+	 */
+	public List<Translation> listTranslations(Language lang, int difficulty, int number);
 
 }
