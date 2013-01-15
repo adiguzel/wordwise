@@ -41,7 +41,7 @@ public class MainActivity extends MenuActivity {
     	
     	//Used by Dragan for testing purpose of TranslateWord activity
     	//To be removed on a later stage ...
-		Intent intent = new Intent(this, TranslateWord.class);
+		Intent intent = new Intent(this, Hangman.class);
 		startActivity(intent);
 	}
         
@@ -51,7 +51,7 @@ public class MainActivity extends MenuActivity {
     
     @Override
 	public void onBackPressed() {
-		//do nothing
+		//TODO show a dialog whether you wanna leave the game or stay
 	}
     
 	private void configure() {

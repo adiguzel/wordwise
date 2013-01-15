@@ -1,14 +1,9 @@
 package com.wordwise.view.activity.game;
 
-import java.net.ConnectException;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
+import java.util.Locale;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
@@ -29,10 +23,6 @@ public class Hangman extends WordwiseGameActivity {
 
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
-
-	private static boolean savedGame = false;
-	private boolean wonGame = false;
-	private boolean lostGame = false;
 
 	private ImageView hangmanImageView;
 
@@ -52,11 +42,6 @@ public class Hangman extends WordwiseGameActivity {
 	private Locale locale;
 	private RESTfullServerCommunication serverCommunication;
 
-	static final String PREFERENCES_MYSTERY_WORD_TEXT_VIEW = "mysteryWordTextView";
-	private static final String PREFERENCES_MYSTERY_WORD = "mysteryWord";
-	private static final String PREFERENCES_WRONG_LETTERS = "wrongLetters";
-	private static final String PREFERENCES_NUM_WRONG_GUESSES = "numWrongGuesses";
-
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 
@@ -67,9 +52,6 @@ public class Hangman extends WordwiseGameActivity {
 		String languageToLoad = learningLanguage.getCode();
 		LanguageUtils.setLocale(locale, languageToLoad, this);
 
-		if (Hangman.savedGame == true) {
-			this.loadTheSavedGame();
-		}
 		this.onGameStart();
 	}
 
@@ -94,8 +76,8 @@ public class Hangman extends WordwiseGameActivity {
 		this.openTheSoftKeyboard();
 	}
 	/*
-	 * Uncomment the method below when the server is up and running
-	 * */
+	 * Uncoment the method below when the server is up and running
+	 */
 	
 //	private void getMysteryWordFromServer() throws ConnectException {
 //		serverCommunication = new RESTfullServerCommunication();
@@ -158,7 +140,6 @@ public class Hangman extends WordwiseGameActivity {
 			Toast msg = Toast.makeText(this, "VERY GOOD!", Toast.LENGTH_SHORT);
 			msg.show();
 
-			this.wonGame = true;
 			continueButton.setVisibility(Button.VISIBLE);
 
 			this.onGameEnd();
@@ -173,8 +154,6 @@ public class Hangman extends WordwiseGameActivity {
 			Toast msg = Toast.makeText(this, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_SHORT);
 			msg.show();
-
-			this.lostGame = true;
 
 			this.onGameEnd();
 		}
@@ -223,24 +202,6 @@ public class Hangman extends WordwiseGameActivity {
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
 						0);
 
-	}
-
-	private void loadTheSavedGame() {
-		this.openTheSoftKeyboard();
-		this.mysteryWord = getPreferences(MODE_PRIVATE).getString(
-				PREFERENCES_MYSTERY_WORD, this.mysteryWord);
-		this.mysteryWordTextView.setText(getPreferences(MODE_PRIVATE)
-				.getString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
-						underscoreTheMysteryWord(this.mysteryWord)));
-		this.wrongLettersTextView.setText(getPreferences(MODE_PRIVATE)
-				.getString(PREFERENCES_WRONG_LETTERS, ""));
-		this.numWrongGuesses = getPreferences(MODE_PRIVATE).getInt(
-				PREFERENCES_NUM_WRONG_GUESSES, 0);
-
-		this.updateHangmanImage();
-
-		// give the information that the saved game is already initialized
-		Hangman.savedGame = false;
 	}
 
 	private void linkTheViews() {
@@ -319,7 +280,6 @@ public class Hangman extends WordwiseGameActivity {
 	/*
 	 * sets the View of Mystery Word to a text view with underscores and spaces
 	 */
-
 	private void initMysteriousWord() {
 		mysteryWordTextView.setText(underscoreTheMysteryWord(mysteryWord));
 		mysteryWordTextView.setOnClickListener(new View.OnClickListener() {
@@ -338,28 +298,7 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGamePause() {
-		if (this.lostGame == true || this.wonGame == true) {
-			this.closeTheSoftKeyboard();
-		} else {
-			this.closeTheSoftKeyboard();
-			// Store values between instances here
-			SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-			SharedPreferences.Editor editor = preferences.edit();
 
-			// values to store
-			editor.putString(PREFERENCES_MYSTERY_WORD, mysteryWord);
-			editor.putString(PREFERENCES_MYSTERY_WORD_TEXT_VIEW,
-					mysteryWordTextView.getText().toString());
-			editor.putString(PREFERENCES_WRONG_LETTERS, wrongLettersTextView
-					.getText().toString());
-			editor.putInt(PREFERENCES_NUM_WRONG_GUESSES, numWrongGuesses);
-
-			// Commit to storage
-			editor.commit();
-
-			// give the signal that the game was saved
-			Hangman.savedGame = true;
-		}
 	}
 
 	private void getConfigurationDetails() {
