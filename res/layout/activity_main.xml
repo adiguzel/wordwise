@@ -20,11 +20,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dip"
-        android:onClick="showAbout"
+        android:onClick="about"
         android:paddingBottom="10dip"
         android:paddingLeft="40dip"
         android:paddingRight="40dip"
         android:paddingTop="10dip"
-        android:text="@string/aboutButtonLabel" />  
+        android:text="@string/about_button_label" />  
 
 </LinearLayout>

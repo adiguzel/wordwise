@@ -8,6 +8,7 @@ import android.view.View;
 import com.wordwise.model.Configuration;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
 import com.wordwise.view.activity.game.Hangman;
@@ -38,9 +39,6 @@ public class MainActivity extends MenuActivity {
 	}
     
     public void showHowToPlay(View view) {
-    	
-    	//Used by Dragan for testing purpose of TranslateWord activity
-    	//To be removed on a later stage ...
 		Intent intent = new Intent(this, Hangman.class);
 		startActivity(intent);
 	}
@@ -51,7 +49,12 @@ public class MainActivity extends MenuActivity {
     
     @Override
 	public void onBackPressed() {
-		//TODO show a dialog whether you wanna leave the game or stay
+    	WordwiseUtils.makeQuitApplicationDialog(this);
+	}
+    
+	public void about(View view) {
+		Intent intent = new Intent(this, AboutActivity.class);
+		startActivity(intent);
 	}
     
 	private void configure() {

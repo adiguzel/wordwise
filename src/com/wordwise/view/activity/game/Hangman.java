@@ -4,6 +4,7 @@ package com.wordwise.view.activity.game;
 import java.util.Locale;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -323,7 +324,12 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGameEnd() {
+		try {
 		continueButton.setEnabled(true);
+		} catch (NullPointerException e) {
+			Log.d("Dragan", e.getLocalizedMessage());
+		e.printStackTrace();
+		}
 	}
 
 }

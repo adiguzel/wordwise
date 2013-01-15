@@ -20,9 +20,9 @@
         style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="startOrContinueGame"
-        android:text="@string/start_continue_game"
-        android:layout_marginBottom="@dimen/button_shape_padding_bottom"/>
+        android:text="@string/start_continue_game" />
 
     <Button
         android:id="@+id/howToPlayButton"
@@ -33,12 +33,13 @@
         android:onClick="showHowToPlay"
         android:text="@string/how_to_play" />
 
-        <Button
-        android:id="@+id/quitButton"
+    <Button
+        android:id="@+id/aboutButton"
         style="@style/wordwiseSmallLightButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
-        android:onClick="quit"
-        android:text="@string/quit" />
+        android:onClick="about"
+        android:text="@string/about_button_label" />
+
 </LinearLayout>

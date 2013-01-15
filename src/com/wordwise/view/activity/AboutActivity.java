@@ -17,15 +17,6 @@ public class AboutActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about_view);
-		
-		howToPlay = (Button) findViewById(R.id.aboutButton);
-	}
-
-	public void showHowToPlay(View view) {
-		//TODO HowToPlay activity should be implemented and 
-		//DRAGAN USES THIS FOR HANGMAN TESTING
-		Intent intent = new Intent(this, Hangman.class);
-		startActivity(intent);
 	}
 	
 }
