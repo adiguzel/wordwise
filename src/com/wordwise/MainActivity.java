@@ -42,10 +42,6 @@ public class MainActivity extends MenuActivity {
 		Intent intent = new Intent(this, Hangman.class);
 		startActivity(intent);
 	}
-        
-    public void quit(View view) {
-    	//WordwiseUtils.makeQuitApplicationDialog(this);
-    } 
     
     @Override
 	public void onBackPressed() {

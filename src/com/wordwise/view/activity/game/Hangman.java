@@ -27,8 +27,8 @@ public class Hangman extends WordwiseGameActivity {
 
 	private ImageView hangmanImageView;
 
-	// dummy test initialization for the mystery word
-	private String mysteryWord = "UGUR";
+	//Initialized with dummy word for practicing
+	private String mysteryWord = "ABSTRACTION";
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
@@ -324,12 +324,6 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGameEnd() {
-		try {
 		continueButton.setEnabled(true);
-		} catch (NullPointerException e) {
-			Log.d("Dragan", e.getLocalizedMessage());
-		e.printStackTrace();
-		}
 	}
-
 }
