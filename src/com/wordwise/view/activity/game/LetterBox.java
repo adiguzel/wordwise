@@ -18,15 +18,12 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.LetterBoxManager;
-import com.wordwise.gameengine.GameManager;
-import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class LetterBox extends WordwiseGameActivity{
 	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
-	private GameManager gameManager;
 	private Button continueButton;
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -55,7 +52,6 @@ public class LetterBox extends WordwiseGameActivity{
 	public void onGameInit() {
 		initWordsGrid();
 		initLettersGrid();
-		gameManager = GameManagerContainer.getGameManager();
 		continueButton = (Button) findViewById(R.id.continueButton);
 	}
 

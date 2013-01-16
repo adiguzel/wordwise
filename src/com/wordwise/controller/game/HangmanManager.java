@@ -1,9 +1,6 @@
 package com.wordwise.controller.game;
 
-import java.net.ConnectException;
-import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import android.content.Context;
 import android.view.View;
