@@ -9,8 +9,11 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.wordwise.R;
+import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.gameengine.ServerCommunication;
+import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
+import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.view.activity.game.LetterBox;
@@ -45,7 +48,11 @@ public class LetterBoxManager
 	
 	private List<Translation> generateTranslations()
 	{
-		// TODO Get Translations from the server
+		ServerCommunication server = new RESTfullServerCommunication();
+		return server.listTranslations(new Language("English", "en"), 0, 6);
+		
+		/*
+		
 		List<Translation> returnList = new ArrayList<Translation>();
 		
 		Translation translation = new Translation();
@@ -90,7 +97,7 @@ public class LetterBoxManager
 		translation.setWord(word);
 		returnList.add(translation);
 		
-		return returnList;
+		return returnList; */
 	}
 	
 	private List<String> generateLetters(int numberOfLetters)

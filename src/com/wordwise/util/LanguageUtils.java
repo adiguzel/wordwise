@@ -28,23 +28,25 @@ public class LanguageUtils {
 			languages.add(new Language(languageNames[i], languageCodes[i]));
 		}
 	}
-
-	public static List<Language> getAllLanguages() throws RuntimeException {
+	
+	private static void isLanguagesInitiated()
+	{
 		if (languages == null) {
 			throw new RuntimeException(
 					"Call method Init() before using other methods!");
 		}
+	}
+
+	public static List<Language> getAllLanguages() throws RuntimeException {
+		isLanguagesInitiated();
 		return languages;
 	}
 
 	public static Language getByCode(String code) {
-		// this check is necessary, otherwise Android throws null pointer
-		// runtime exception
-		if (languages != null) {
-			for (Language language : languages) {
-				if (language.getCode().equalsIgnoreCase(code)) {
-					return language;
-				}
+		isLanguagesInitiated();
+		for (Language language : languages) {
+			if (language.getCode().equalsIgnoreCase(code)) {
+				return language;
 			}
 		}
 		return null;
@@ -54,6 +56,7 @@ public class LanguageUtils {
 	 * Returns the language instance with the given language name
 	 */
 	public static Language getByName(String name) {
+		isLanguagesInitiated();
 		for (Language language : languages) {
 			if (language.getLanguage().equalsIgnoreCase(name)) {
 				return language;
@@ -63,6 +66,7 @@ public class LanguageUtils {
 	}
 
 	public static String[] toLanguageNameArray() {
+		isLanguagesInitiated();
 		List<String> langs = new ArrayList<String>();
 		String[] langNames = new String[1];
 
@@ -73,10 +77,12 @@ public class LanguageUtils {
 	}
 
 	public static Integer getIndex(Language l) {
+		isLanguagesInitiated();
 		return languages.indexOf(l);
 	}
 
 	public static Set<String> languageSetToCodeSet(Set<Language> languages) {
+		isLanguagesInitiated();
 		Set<String> langCodeSet = new HashSet<String>();
 		for (Language l : languages) {
 			if (l != null)

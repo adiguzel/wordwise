@@ -7,6 +7,8 @@ import org.restlet.resource.ClientResource;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.parameter.ListTranslationParameters;
+import com.wordwise.server.model.parameter.ListWordParameters;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
@@ -18,55 +20,49 @@ import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication
 {
-	private static final String BASE_CLIENT_URL = "http://localhost:8080/WordWiseServer/";
-	private static final ClientResource WORD_CLIENT_RESOURCE = new ClientResource(BASE_CLIENT_URL+WordResource.RESOURCE_NAME);
-	private static final ClientResource TRANSLATION_CLIENT_RESOURCE = new ClientResource(BASE_CLIENT_URL+TranslationResource.RESOURCE_NAME);
-	private static final ClientResource RATE_CLIENT_RESOURCE = new ClientResource(BASE_CLIENT_URL+RateResource.RESOURCE_NAME);
-	private static final ClientResource QUALITY_CLIENT_RESOURCE = new ClientResource(BASE_CLIENT_URL+QualityResource.RESOURCE_NAME);
+	private static final String BASE_CLIENT_URL = "http://192.168.112.1:8080/WordWiseServer/";
+	
+	private static final WordResource wordResource = new ClientResource(BASE_CLIENT_URL+WordResource.RESOURCE_NAME).wrap(WordResource.class);
+	private static final TranslationResource translationResource = new ClientResource(BASE_CLIENT_URL+TranslationResource.RESOURCE_NAME).wrap(TranslationResource.class);
+	private static final RateResource rateResource = new ClientResource(BASE_CLIENT_URL+RateResource.RESOURCE_NAME).wrap(RateResource.class);
+	private static final QualityResource qualityResource = new ClientResource(BASE_CLIENT_URL+QualityResource.RESOURCE_NAME).wrap(QualityResource.class);
 
 	public boolean addWord(Word word)
 	{
-		WordResource resource = WORD_CLIENT_RESOURCE.wrap(WordResource.class);
-		resource.add(word);
+		wordResource.add(word);
 		return true;
 	}
 
 	public boolean rateWords(List<Rate> wordRatings)
 	{
-		RateResource resource = RATE_CLIENT_RESOURCE.wrap(RateResource.class);
-		resource.add(wordRatings);
+		rateResource.add(wordRatings);
 		return true;
 	}
 
 	public boolean rateTranslations(List<Quality> translationQualities)
 	{
-		QualityResource resource = QUALITY_CLIENT_RESOURCE.wrap(QualityResource.class);
-		resource.add(translationQualities);
+		qualityResource.add(translationQualities);
 		return true;
 	}
 
 	public List<Word> listWords(Language lang, int difficulty)
 	{
-		WordResource resource = WORD_CLIENT_RESOURCE.wrap(WordResource.class);
-		return resource.list(lang, Difficulty.EASY, 0);
+		return wordResource.list(new ListWordParameters(lang, Difficulty.getByDifficulty(difficulty), 0, null));
 	}
 
 	public List<Word> listWords(Language lang, int difficulty, int number)
 	{
-		WordResource resource = WORD_CLIENT_RESOURCE.wrap(WordResource.class);
-		return resource.list(lang, Difficulty.EASY, number);
+		return wordResource.list(new ListWordParameters(lang, Difficulty.getByDifficulty(difficulty), number, null));
 	}
 
 	public List<Word> listWords(Language lang)
 	{
-		WordResource resource = WORD_CLIENT_RESOURCE.wrap(WordResource.class);
-		return resource.list(lang, null, 0);
+		return wordResource.list(new ListWordParameters(lang, null, 0, null));
 	}
 
 	public List<Translation> listTranslations(Language lang, int difficulty, int number)
 	{
-		TranslationResource resource = TRANSLATION_CLIENT_RESOURCE.wrap(TranslationResource.class);
-		return resource.list(lang, null, number); 	
+		return translationResource.list(new ListTranslationParameters(lang, Difficulty.getByDifficulty(difficulty), number, null)); 	
 	}
 
 }
