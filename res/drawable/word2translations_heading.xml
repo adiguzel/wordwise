@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>        
+        <shape>
+            <gradient
+                android:endColor="@color/wordwise_main_green_disabled_end"
+                android:startColor="@color/wordwise_main_green_disabled_start"
+                android:angle="@integer/button_shape_gradient_angle_main" 
+                />
+            <stroke
+                android:width="@dimen/button_shape_stroke_main"
+                android:color="@color/wordwise_main_gray_start"/>
+            <corners
+                android:radius="@dimen/button_shape_corner_radius" />
+            
+        </shape>
+    </item>
+</selector>

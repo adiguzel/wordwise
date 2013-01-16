@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.TextView;
 
-import com.wordwise.R;
 import com.wordwise.server.model.Translation;
-import com.wordwise.view.game.MemoryViewFlipper;
 
 public class Word2TranslationUtil {
 

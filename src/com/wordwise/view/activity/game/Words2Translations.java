@@ -3,7 +3,6 @@ package com.wordwise.view.activity.game;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;

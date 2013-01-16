@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
@@ -256,14 +254,9 @@ public class Words2TranslationsManager
 	}
 
 	public boolean onLongClick(View v) {
-		// Create a new ClipData.Item from the ImageView object's tag
-		ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
-
-		ClipData dragData = new ClipData((CharSequence) v.getTag(),
-				new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
 		// Instantiates the drag shadow builder.
 		View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
-		v.startDrag(dragData, // the data to be dragged
+		v.startDrag(null, // the data to be dragged
 				myShadow, // the drag shadow builder
 				null, // no need to use local data
 				0 // flags (not currently used, set to 0)

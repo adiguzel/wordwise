@@ -13,7 +13,6 @@ import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
-import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.view.activity.game.LetterBox;

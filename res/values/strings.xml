@@ -54,5 +54,7 @@
     <string name="quitGameNegativeAnswer">No</string>
     <string name="quitAppAlert">Are you sure you want to quit %s?</string>
     <string name="quitAppAlertTopic">Quit %s</string>
+    <string name="translations">Translations</string>
+    <string name="wordwise_translations_heading">@string/translations</string>
 
 </resources>

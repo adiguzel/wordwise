@@ -4,17 +4,21 @@
     android:layout_height="fill_parent"
     android:padding="@dimen/word2translations_padding_main" >
 
-    <include android:id="@+id/topBar" layout="@layout/game_top_bar"/>
+    <include
+        android:id="@+id/topBar"
+        layout="@layout/game_top_bar" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/hangman_main_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/buttons"
         android:layout_below="@id/topBar"
         android:orientation="vertical"
         android:paddingBottom="@dimen/word2translations_padding_main"
-        android:paddingTop="@dimen/word2translations_padding_main" >
+        android:paddingTop="@dimen/word2translations_padding_main"
+        android:weightSum="5" >
 
         <TextView
             android:id="@+id/word2TranslationGameLabel"
@@ -23,179 +27,210 @@
             android:text="@string/word2Translations_game_information"
             android:textSize="@dimen/text_size_small" />
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/word2translations_padding_main"
-            android:paddingTop="@dimen/word2translations_padding_main" >
+            android:layout_height="0dp"
+            android:layout_weight="3" >
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
-                android:paddingTop="@dimen/word2translations_word_margin_top"
-                android:textAlignment="center" >
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/word2translations_padding_main"
+                android:paddingTop="@dimen/word2translations_padding_main" >
 
-                <com.wordwise.view.game.Word2TranslationsTextView     
-                    android:id="@+id/word1"
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                    android:paddingTop="@dimen/word2translations_word_margin_top"
+                    android:textAlignment="center" >
 
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/translation1_placeholder"
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/word1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/translation1_placeholder"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/word2translations_translation_placeholder_initial"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/word2translations_translation_placeholder_initial"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small" />
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                    android:paddingTop="@dimen/word2translations_word_margin_top" >
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/word2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/translation2_placeholder"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/word2translations_translation_placeholder_initial"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                    android:paddingTop="@dimen/word2translations_word_margin_top" >
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/word3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/translation3_placeholder"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/word2translations_translation_placeholder_initial"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/word2translations_word_margin_bottom"
+                    android:paddingTop="@dimen/word2translations_word_margin_top" >
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/word4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <com.wordwise.view.game.Word2TranslationsTextView
+                        android:id="@+id/translation4_placeholder"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/word2translations_word_margin_row"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/word2translations_translation_placeholder_initial"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_size_small" />
+                </LinearLayout>  
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider_color" />
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
-                android:paddingTop="@dimen/word2translations_word_margin_top" >
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/word2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold" />
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/translation2_placeholder"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/word2translations_translation_placeholder_initial"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider_color" />
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
-                android:paddingTop="@dimen/word2translations_word_margin_top" >
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/word3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold" />
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/translation3_placeholder"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/word2translations_translation_placeholder_initial"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider_color" />
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/word2translations_word_margin_bottom"
-                android:paddingTop="@dimen/word2translations_word_margin_top" >
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/word4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold" />
-
-                <com.wordwise.view.game.Word2TranslationsTextView  
-                    android:id="@+id/translation4_placeholder"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/word2translations_word_margin_row"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/word2translations_translation_placeholder_initial"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_small" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <GridView
-            android:id="@+id/translationsGrid"
+        </ScrollView>
+        
+		<TextView 
+		    android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+		    android:layout_marginTop="@dimen/word2translations_word_margin_row"
+		    android:layout_marginBottom="@dimen/word2translations_word_margin_row"
+		    android:textSize="@dimen/text_size_small"
+		    android:text="@string/wordwise_translations_heading"
+		    android:background="@drawable/word2translations_heading"
+		    android:gravity="center"
+		    android:textColor="@color/wordwise_main_gray_dark_start"
+		     android:textStyle="bold"
+		     
+		    />
+		
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:horizontalSpacing="@dimen/word2translations_translations_grid_horizontal_spacing"
-            android:numColumns="auto_fit"
-            android:textSize="@dimen/text_size_small"
-            android:verticalSpacing="@dimen/word2translations_translations_grid_vertical_spacing" >
-        </GridView>
+            android:layout_height="0dp"
+            android:layout_weight="2" >
+
+            <com.wordwise.view.ScrollableGridView
+                android:id="@+id/translationsGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/word2translations_translations_grid_horizontal_spacing"
+                android:numColumns="auto_fit"
+                android:textSize="@dimen/text_size_small"
+                android:verticalSpacing="@dimen/word2translations_translations_grid_vertical_spacing" >
+            </com.wordwise.view.ScrollableGridView>
+        </ScrollView>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/validateButton"
-        style="@style/wordwiseButtonStyle"
+    <RelativeLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:onClick="validate"
-        android:text="@string/check" 
-        android:enabled="false"/>
-    
-      <Button
-        android:id="@+id/continueButton"
-        style="@style/wordwiseButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:onClick="continueNextGame"
-        android:text="@string/continueLabel" 
-        android:visibility="invisible"/>
+        android:layout_alignParentBottom="true" >
+
+        <Button
+            android:id="@+id/validateButton"
+            style="@style/wordwiseButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false"
+            android:onClick="validate"
+            android:text="@string/check" />
+
+        <Button
+            android:id="@+id/continueButton"
+            style="@style/wordwiseButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="continueNextGame"
+            android:text="@string/continueLabel"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
 </RelativeLayout>

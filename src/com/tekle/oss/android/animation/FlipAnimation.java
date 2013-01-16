@@ -21,9 +21,9 @@
  */
 package com.tekle.oss.android.animation;
 
-import android.view.animation.Animation;
 import android.graphics.Camera;
-import android.graphics.Matrix; 
+import android.graphics.Matrix;
+import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**  

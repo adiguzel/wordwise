@@ -8,6 +8,8 @@
     <!-- Wordwise commons -->
     <color name="divider_color">#FFCCCCCC<!--  #FF7FC348--></color>
     
+    <color name="wordwise_main_gray_dark_start">#EE666666</color>
+     
     <color name="wordwise_main_green_start">#FF669900</color>
     <color name="wordwise_main_green_end">#CC669900</color>
     <color name="wordwise_main_green_border">#FFCCCCCC<!--  #FF7FC348--></color>

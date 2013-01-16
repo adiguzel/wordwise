@@ -16,8 +16,6 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.Game;
-import com.wordwise.gameengine.GameConfiguration;
-import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Word;
