@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.ServerCommunication;
+import com.wordwise.model.Configuration;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.game.MemoryViewFlipper;
 
@@ -18,12 +23,15 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	// list of flippers which has word/translation on one side and no text on
 	// the other
 	private List<MemoryViewFlipper> flippers;
+	private Configuration conf;
+	private ServerCommunication serverComm;
 
 	public MemoryWordAndTranslationAdapter(Context c) {
 		super();
 		mContext = c;
 		flippers = MemoryViewFlipperUtil.getRandomViewFlipperList(
 				generateTranslations(), mContext);
+		conf = Configuration.getInstance(mContext);
 	}
 
 	public List<MemoryViewFlipper> getFlippers() {
@@ -44,6 +52,28 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 
 	public View getView(int position, View view, ViewGroup parent) {
 		return flippers.get(position);
+	}
+
+	// it will be used when the server is up and running to get the translations
+	// from the server
+	private List<Translation> getTranslationsFromServer() {
+		return serverComm.listTranslations(conf.getLearningLanguage(),
+				conf.getDifficulty(), translationCount());
+
+	}
+
+	private int translationCount() {
+
+		switch (conf.getDifficulty()) {
+			case Game.EASY :
+				return 6;
+			case Game.MEDIUM :
+				return 6;
+			case Game.HARD :
+				return 6;
+			default :
+				return 6;
+		}
 	}
 
 	private List<Translation> generateTranslations() {

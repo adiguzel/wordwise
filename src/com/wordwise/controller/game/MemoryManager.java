@@ -11,7 +11,9 @@ import com.tekle.oss.android.animation.AnimationFactory;
 import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
 import com.wordwise.model.game.MemoryFlipState;
+import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
+import com.wordwise.util.game.LetterBoxPositionUtils.Way;
 import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.game.MemoryViewFlipper;
 
@@ -21,7 +23,7 @@ public class MemoryManager {
 	private MemoryFlipState flipState = new MemoryFlipState();
 	private List<MemoryViewFlipper> foundFlippers;
 	private List<MemoryViewFlipper> flippers;
-	
+		
 	public MemoryManager(Memory memoryActivity){
 		this.memoryActivity = memoryActivity;
 	}
