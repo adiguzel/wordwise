@@ -38,7 +38,8 @@ public class Words2TranslationsManager
 	private int droppedCount = 0;
 	private List<Translation> translations = new ArrayList<Translation>();
 	private Map<Translation, Word2TranslationsTextView> translationToTranslationView = new HashMap<Translation, Word2TranslationsTextView>();
-
+	// indicates whether a drop happened. used to redraw the dragged view if no drop happened
+	private boolean isDropped = false;
 	// Adapter that provides translations
 	private Words2TranslationAdapter adapter;
 
@@ -47,7 +48,6 @@ public class Words2TranslationsManager
 	private List<Word2TranslationsTextView> translationPlaceHolders;
 	// A list of place holders that are already filled
 	private List<Word2TranslationsTextView> filledPlaceHolders = new ArrayList<Word2TranslationsTextView>();
-
 	// So that it cannot be instantiated that way
 	@SuppressWarnings("unused")
 	private Words2TranslationsManager() {
@@ -167,6 +167,7 @@ public class Words2TranslationsManager
 		switch (action) {
 
 			case DragEvent.ACTION_DRAG_STARTED :
+				isDropped = false;
 				// Determines if this View can accept the dragged data
 				Word2TranslationsTextView view = (Word2TranslationsTextView) v;
 				if (!filledPlaceHolders.contains(view)) {
@@ -201,7 +202,7 @@ public class Words2TranslationsManager
 				if (v instanceof Word2TranslationsTextView) {
 					((Word2TranslationsTextView) v).setText(dragged
 							.getTranslation().getTranslation());
-					// ((TextView) v).setTag(dragData);
+					dragged.setVisibility(View.INVISIBLE);
 				}
 				v.setTag(dragged.getTranslation());
 				changeState(v, TRANSLATION_PLACEHOLDER_DRAGGED);
@@ -210,12 +211,15 @@ public class Words2TranslationsManager
 				droppedCount++;
 				filledPlaceHolders.add((Word2TranslationsTextView) v);
 				checkOrAdjustGameState();
+				isDropped = true;
 				// Returns true. DragEvent.getResult() will return true.
 				return (true);
 
 			case DragEvent.ACTION_DRAG_ENDED :
 				// revert back to initial view state
-				changeState(v, TRANSLATION_PLACEHOLDER_INITIAL_STATE);
+				changeState(v, TRANSLATION_PLACEHOLDER_INITIAL_STATE);	
+				if(!isDropped)
+					dragged.setVisibility(View.VISIBLE);
 				// returns true; the value is ignored.
 				return (true);
 				// An unknown action type was received.
@@ -262,6 +266,7 @@ public class Words2TranslationsManager
 				0 // flags (not currently used, set to 0)
 		);
 		setDragged((Word2TranslationsTextView) v);
+		dragged.setVisibility(View.INVISIBLE);
 		return true;
 	}
 }
