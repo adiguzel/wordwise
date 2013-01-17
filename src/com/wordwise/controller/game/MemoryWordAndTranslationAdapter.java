@@ -58,19 +58,19 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	// from the server
 	private List<Translation> getTranslationsFromServer() {
 		return serverComm.listTranslations(conf.getLearningLanguage(),
-				conf.getDifficulty(), translationCount());
+				conf.getDifficulty(), getPairCount());
 
 	}
 
-	private int translationCount() {
+	private int getPairCount() {
 
 		switch (conf.getDifficulty()) {
 			case Game.EASY :
-				return 6;
+				return 3;
 			case Game.MEDIUM :
 				return 6;
 			case Game.HARD :
-				return 6;
+				return 9;
 			default :
 				return 6;
 		}
@@ -121,7 +121,7 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 		word.setWord("light");
 		translation.setWord(word);
 		returnList.add(translation);
-
+		
 		return returnList;
 	}
 
