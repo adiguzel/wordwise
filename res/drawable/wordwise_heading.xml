@@ -11,9 +11,9 @@
                 />
             <stroke
                 android:width="@dimen/button_shape_stroke_main"
-                android:color="@color/wordwise_main_gray_start"/>
+                android:color="@color/wordwise_main_gray_dark_start"/>
             <corners
-                android:radius="@dimen/button_shape_corner_radius" />
+                android:radius="@dimen/heading_shape_corner_radius" />
             
         </shape>
     </item>

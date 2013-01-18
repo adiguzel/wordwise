@@ -4,6 +4,7 @@
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_medium">18sp</dimen>
     <dimen name="text_size_large">20sp</dimen>
+        <dimen name="text_size_xlarge">22sp</dimen>
     
     <dimen name="background_shape_padding_left">7dp</dimen>
     <dimen name="background_shape_padding_right">7dp</dimen>
@@ -56,5 +57,8 @@
     
     
     <dimen name="translateWord_Spacing">30dip</dimen>
+    <dimen name="wordwise_heading_side_padding">5dip</dimen>
+     
+    <dimen name="heading_shape_corner_radius">1dp</dimen>
     
 </resources>

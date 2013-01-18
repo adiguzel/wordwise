@@ -178,14 +178,11 @@
 		<TextView 
 		    android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-		    android:layout_marginTop="@dimen/word2translations_word_margin_row"
+            style="@style/wordwiseHeading"
 		    android:layout_marginBottom="@dimen/word2translations_word_margin_row"
-		    android:textSize="@dimen/text_size_small"
 		    android:text="@string/wordwise_translations_heading"
-		    android:background="@drawable/word2translations_heading"
 		    android:gravity="center"
-		    android:textColor="@color/wordwise_main_gray_dark_start"
-		     android:textStyle="bold"
+
 		     
 		    />
 		

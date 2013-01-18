@@ -18,6 +18,7 @@ import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
@@ -43,15 +44,11 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.word_evaluation);
+		onGameInit();
+		onGameStart();
+		infoMessageOnStart();
 
-		this.infoMessageOnStart();
-
-		word = retrieveWord();
-		if (word == null) {
-			// TODO show that word could not be retrieved
-		} else {
-			wordToEvaluateText.setText(word.getWord());
-		}
+	
 	}
 	
 	private void initScreen() {
@@ -79,7 +76,6 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	}
 
 	private Language chooseRandomProficientLanguage() {
-
 		configuration = Configuration.getInstance(this);
 		proficientLanguagesSet = configuration.getProficientLanguages();
 		proficientLanguagesList = LanguageUtils
@@ -93,7 +89,9 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 
 	public Word retrieveWord() {
 		// TODO get Word from the server
-		return null;
+		Word word  = new Word();
+		word.setWord("test");
+		return word;
 	}
 
 	public void submitEvaluation(View v) {
@@ -137,6 +135,12 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 
 	public void onGameInit() {
 		this.initScreen();
+		word = retrieveWord();
+		if (word == null) {
+			// TODO show that word could not be retrieved
+		} else {
+			wordToEvaluateText.setText(word.getWord());
+		}
 	}
 
 	public void onGameEnd() {
