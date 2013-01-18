@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.ServerCommunication;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.game.LetterBoxPositionUtils;
@@ -48,7 +49,7 @@ public class LetterBoxManager
 	private List<Translation> generateTranslations()
 	{
 		ServerCommunication server = new RESTfullServerCommunication();
-		return server.listTranslations(new Language("English", "en"), 0, 6);
+		return server.listTranslations(new Language("English", "en"), Difficulty.MEDIUM, 6, null);
 		
 		/*
 		
