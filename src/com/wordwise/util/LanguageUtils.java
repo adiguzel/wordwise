@@ -118,5 +118,6 @@ public class LanguageUtils {
 		context.getResources().updateConfiguration(config,
 				context.getResources().getDisplayMetrics());
 	}
+	
 
 }
