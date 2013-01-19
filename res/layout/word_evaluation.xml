@@ -76,5 +76,16 @@
         android:enabled="false"
         android:onClick="submitEvaluation"
         android:text="@string/translate_word_submit_evaluation_button" />
+    
+       <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel" />
 
 </RelativeLayout>

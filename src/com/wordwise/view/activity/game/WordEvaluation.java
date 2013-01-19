@@ -1,90 +1,78 @@
 package com.wordwise.view.activity.game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.Game;
-import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Word;
-import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
-
-	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please rate a word on your preffered language...";
 
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;
 	private Button continueButton;
-
+	private Button submitTranslation;
 	// word to evaluate
 	private Word word;
 	private RESTfullServerCommunication serverCommunication;
 
-	private Configuration configuration;
-	private Set<Language> proficientLanguagesSet;
-	private List<Language> proficientLanguagesList = new ArrayList<Language>();
-	private int dificulty;
+	private boolean qualityRated, difficultyRated = false;
+	
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.word_evaluation);
 		onGameInit();
 		onGameStart();
-		infoMessageOnStart();
-
-	
 	}
 	
 	private void initScreen() {
 		wordToEvaluateText = (TextView) findViewById(R.id.wordToEvaluate);
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
 		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
-		continueButton = (Button) findViewById(R.id.continueButton);
-	}
-
-	// Dialog that explains to the user what he will be asked to do in the next
-	// screen
-	private void infoMessageOnStart() {
-
-		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-
-		dlgAlert.setMessage(DIALOG_MESSAGE);
-		dlgAlert.setTitle("You can contribute :)");
-		dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// dismiss the dialog
+		continueButton = (Button) findViewById(R.id.continueButton);	
+		submitTranslation = (Button) findViewById(R.id.submitTranslation); 
+		
+		wordDifficultyRating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+					boolean fromUser) {
+				difficultyRated = false;
+				if(rating > 0.0f){
+					difficultyRated = true;
+				}
+				checkSubmitCondition();
 			}
 		});
-		dlgAlert.setCancelable(true);
-		dlgAlert.create().show();
+		
+		wordQualityRating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+					boolean fromUser) {
+				qualityRated = false;
+				if(rating > 0.0f){
+					qualityRated = true;
+				}
+				checkSubmitCondition();
+			}
+		});
 	}
-
-	private Language chooseRandomProficientLanguage() {
-		configuration = Configuration.getInstance(this);
-		proficientLanguagesSet = configuration.getProficientLanguages();
-		proficientLanguagesList = LanguageUtils
-				.getProficientLanguages(proficientLanguagesSet);
-
-		Language randomLanguage = LanguageUtils
-				.getRandomProficientLanguage(proficientLanguagesList);
-
-		return randomLanguage;
+	
+	private void checkSubmitCondition(){
+		if(qualityRated && difficultyRated){
+			submitTranslation.setEnabled(true);
+		}
+		else
+			submitTranslation.setEnabled(false);		
 	}
 
 	public Word retrieveWord() {
@@ -108,6 +96,16 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 				this,
 				"quality : " + qualityRating + " difficulty: "
 						+ difficultyRating, Toast.LENGTH_LONG).show();
+		
+		Quality quality = new Quality();
+		quality.setWord(word);
+		quality.setQuality(qualityRating);
+		
+		Difficulty difficulty = Difficulty.getByDifficulty(difficultyRating);
+		if(difficulty != null){
+			difficulty.setWord(word);
+		}
+		
 
 		// TODO Implement submitting evaluation and showing a toast if it was
 		// not successful
@@ -117,7 +115,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		
 		this.onGameEnd();
 	}
-
+	
 	public void onGameStart() {
 		// TODO Auto-generated method stub
 
@@ -144,7 +142,8 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	}
 
 	public void onGameEnd() {
-		this.continueButton.setEnabled(true);
+		submitTranslation.setVisibility(View.INVISIBLE);
+		continueButton.setVisibility(View.VISIBLE);
 	}
 
 }
