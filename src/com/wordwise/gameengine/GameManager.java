@@ -51,5 +51,5 @@ public abstract class GameManager {
 	public void setConfiguration(GameConfiguration configuration) {
 		this.configuration = configuration;
 	}
-
+	
 }

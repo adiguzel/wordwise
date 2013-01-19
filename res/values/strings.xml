@@ -56,5 +56,7 @@
     <string name="quitAppAlertTopic">Quit %s</string>
     <string name="translations">Translations</string>
     <string name="wordwise_translations_heading">@string/translations</string>
+    <string name="wordEvaluation_game_information"><b>Evaluate</b> the following word in terms of its quality and difficulty</string>
+    <string name="translate_word_submit_evaluation_button">Submit evaluation</string>
 
 </resources>

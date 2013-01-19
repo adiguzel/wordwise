@@ -13,48 +13,56 @@
         android:id="@+id/rating"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/submitTranslation"
         android:layout_below="@id/topBar"
         android:orientation="vertical"
-        android:padding="10dip" >
+        android:paddingBottom="@dimen/word2translations_padding_main"
+        android:paddingTop="@dimen/word2translations_padding_main" >
+
+        <TextView
+            android:id="@+id/wordEvaluationGameLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wordEvaluation_game_information"
+            android:textSize="@dimen/text_size_small" 
+/>
 
         <TextView
             android:id="@+id/wordToEvaluate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dip"
+            android:paddingTop="@dimen/word2translations_padding_main"
             android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="@dimen/text_size_xlarge" />
 
         <TextView
             android:id="@+id/wordQualityText"
+            style="@style/wordwiseHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dip"
-            android:text="@string/wordQualityText"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="@string/wordQualityText" />
 
         <RatingBar
             android:id="@+id/wordQualityRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="2"
-            android:paddingTop="10dip"
+            android:paddingTop="@dimen/word2translations_padding_main"
             android:stepSize="1.0" />
 
         <TextView
             android:id="@+id/wordDifficultyText"
+            style="@style/wordwiseHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dip"
-            android:text="@string/wordDifficultyText"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="@string/wordDifficultyText" />
 
         <RatingBar
             android:id="@+id/wordDifficultyRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="3"
-            android:paddingTop="10dip"
+            android:paddingTop="@dimen/word2translations_padding_main"
             android:stepSize="1.0" />
     </LinearLayout>
 
@@ -67,6 +75,6 @@
         android:layout_centerHorizontal="true"
         android:enabled="false"
         android:onClick="submitEvaluation"
-        android:text="@string/translate_word_submit_translation_button" />
+        android:text="@string/translate_word_submit_evaluation_button" />
 
 </RelativeLayout>
