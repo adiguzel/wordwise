@@ -33,18 +33,6 @@ public class RESTfullServerCommunication implements ServerCommunication
 		return true;
 	}
 
-	public boolean rateWords(List<Rate> wordRatings)
-	{
-		rateResource.add(wordRatings);
-		return true;
-	}
-
-	public boolean rateTranslations(List<Quality> translationQualities)
-	{
-		qualityResource.add(translationQualities);
-		return true;
-	}
-
 	public List<Word> listWords(Language lang, int difficulty)
 	{
 		return wordResource.list(new ListWordParameters(Difficulty.getByDifficulty(difficulty), 0, null));
@@ -63,6 +51,23 @@ public class RESTfullServerCommunication implements ServerCommunication
 	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed)
 	{
 		return translationResource.list(new ListTranslationParameters(lang, difficulty, number, translationsAlreadyUsed)); 	
+	}
+
+	public boolean rateTranslations(List<Rate> translationRatings) {
+		// TODO Auto-generated method stub
+		rateResource.add(translationRatings);
+		return true;
+	}
+
+	public boolean addWordQualities(List<Quality> wordQualities) {
+		// TODO Auto-generated method stub
+		qualityResource.add(wordQualities);
+		return true;
+	}
+
+	public boolean addWordDifficulties(List<Difficulty> wordDifficulties) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -19,20 +19,28 @@ public interface ServerCommunication {
 	public boolean addWord(Word word);
 
 	/**
-	 * @param wordRatings
+	 * @param translationRatings
+	 *            list of the objects which contain the translation to be rated and user
+	 *            ratings for it
+	 * @return true if successful, false otherwise
+	 */
+	public boolean rateTranslations(List<Rate> translationRatings);
+
+	/**
+	 * @param wordQualities
 	 *            list of the objects which contain the words to be rated and user
 	 *            ratings for it
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateWords(List<Rate> wordRatings);
+	public boolean addWordQualities(List<Quality> wordQualities);
+	
 
 	/**
-	 * @param translationQualities
-	 *            list of the objects which contain the translations to be rated and user
-	 *            ratings for it
+	 * @param wordDifficulties
+	 *            list of Difficulties that are provided for a word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateTranslations(List<Quality> translationQualities);
+	public boolean addWordDifficulties(List<Difficulty> wordDifficulties);
 
 	/**
 	 * @param lang
