@@ -21,12 +21,14 @@ import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
 
 	private final String DIALOG_MESSAGE = "In this screen you will be asked to do a small contribution for this application. Please rate a word on your preffered language...";
-
+	private final String DIALOG_TITLE = "You can contribute! :)";
+	
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;
@@ -46,7 +48,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		setContentView(R.layout.word_evaluation);
 		onGameInit();
 		onGameStart();
-		infoMessageOnStart();
+		WordwiseUtils.infoDialogOnStart(DIALOG_TITLE,DIALOG_MESSAGE,this);
 
 	
 	}
@@ -56,23 +58,6 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
 		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
 		continueButton = (Button) findViewById(R.id.continueButton);
-	}
-
-	// Dialog that explains to the user what he will be asked to do in the next
-	// screen
-	private void infoMessageOnStart() {
-
-		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-
-		dlgAlert.setMessage(DIALOG_MESSAGE);
-		dlgAlert.setTitle("You can contribute :)");
-		dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// dismiss the dialog
-			}
-		});
-		dlgAlert.setCancelable(true);
-		dlgAlert.create().show();
 	}
 
 	private Language chooseRandomProficientLanguage() {
