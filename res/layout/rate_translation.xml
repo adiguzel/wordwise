@@ -19,15 +19,36 @@
         android:paddingTop="@dimen/word2translations_padding_main" >
 
         <TextView
-            android:id="@+id/wordEvaluationGameLabel"
+            android:id="@+id/translationRatingGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wordEvaluation_game_information"
-            android:textSize="@dimen/text_size_small" 
-/>
+            android:text="@string/rate_translation_screen_info"
+            android:textSize="@dimen/text_size_small" />
+        
+        <TextView
+            android:id="@+id/englishWordTitle"
+            style="@style/wordwiseHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/english" />
 
         <TextView
-            android:id="@+id/wordToEvaluate"
+            android:id="@+id/wordInEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text=""
+            android:textSize="@dimen/text_size_xlarge" />
+        
+        <TextView
+            android:id="@+id/translationTitle"
+            style="@style/wordwiseHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/translation_title" />
+        
+        <TextView
+            android:id="@+id/translationToRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/word2translations_padding_main"
@@ -35,34 +56,20 @@
             android:textSize="@dimen/text_size_xlarge" />
 
         <TextView
-            android:id="@+id/wordQualityText"
+            android:id="@+id/translationRatingText"
             style="@style/wordwiseHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/wordQualityText" />
+            android:text="@string/translation_rating_bar_text" />
 
         <RatingBar
-            android:id="@+id/wordQualityRating"
+            android:id="@+id/translationRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="2"
+            android:numStars="5"
             android:paddingTop="@dimen/word2translations_padding_main"
             android:stepSize="1.0" />
 
-        <TextView
-            android:id="@+id/wordDifficultyText"
-            style="@style/wordwiseHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wordDifficultyText" />
-
-        <RatingBar
-            android:id="@+id/wordDifficultyRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="3"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:stepSize="1.0" />
     </LinearLayout>
 
     <Button
@@ -73,7 +80,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:enabled="false"
-        android:onClick="submitEvaluation"
-        android:text="@string/translate_word_submit_evaluation_button" />
+        android:onClick="submitRating"
+        android:text="@string/submit_translation_rating" />
 
 </RelativeLayout>
