@@ -2,6 +2,7 @@ package com.wordwise.gameengine;
 
 import java.util.List;
 
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
@@ -76,8 +77,10 @@ public interface ServerCommunication {
 	 *            expected difficulty of the translations
 	 * @param number
 	 *            number of translations that are to be listed
+	 * @param translationsAlreadyUsed
+	 * 			  list of the translations already used and, therefore, should not be in the return list
 	 * @return list of translations and its original words (in English)
 	 */
-	public List<Translation> listTranslations(Language lang, int difficulty, int number);
+	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed);
 
 }

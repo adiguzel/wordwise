@@ -2,6 +2,7 @@ package com.wordwise.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -76,6 +77,23 @@ public class WordwiseUtils {
 	        }
 	     })
 	     .show();
+	}
+	
+	// Dialog that explains to the user what he will be asked to do in the next
+	// screen
+	public static void infoDialogOnStart(String title,String dialog,Context context) {
+
+		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(context);
+
+		dlgAlert.setMessage(dialog);
+		dlgAlert.setTitle(title);
+		dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// dismiss the dialog
+			}
+		});
+		dlgAlert.setCancelable(true);
+		dlgAlert.create().show();
 	}
 	
 	public static void quitApplication(){

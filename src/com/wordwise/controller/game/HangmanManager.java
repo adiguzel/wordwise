@@ -41,7 +41,6 @@ public class HangmanManager {
 	// Configuration properties
 	private Configuration configuration;
 	private Language learningLanguage;
-	private int difficulty;
 	private Word word;
 	private Locale locale;
 	private RESTfullServerCommunication serverCommunication;
@@ -229,7 +228,6 @@ public class HangmanManager {
 	private void getConfigurationDetails() {
 		configuration = Configuration.getInstance(hangmanActivity);
 		this.learningLanguage = configuration.getLearningLanguage();
-		this.difficulty = configuration.getDifficulty();
 	}
 	
 	public void init() {

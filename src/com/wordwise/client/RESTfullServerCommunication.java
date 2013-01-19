@@ -47,22 +47,22 @@ public class RESTfullServerCommunication implements ServerCommunication
 
 	public List<Word> listWords(Language lang, int difficulty)
 	{
-		return wordResource.list(new ListWordParameters(lang, Difficulty.getByDifficulty(difficulty), 0, null));
+		return wordResource.list(new ListWordParameters(Difficulty.getByDifficulty(difficulty), 0, null));
 	}
 
 	public List<Word> listWords(Language lang, int difficulty, int number)
 	{
-		return wordResource.list(new ListWordParameters(lang, Difficulty.getByDifficulty(difficulty), number, null));
+		return wordResource.list(new ListWordParameters(Difficulty.getByDifficulty(difficulty), number, null));
 	}
 
 	public List<Word> listWords(Language lang)
 	{
-		return wordResource.list(new ListWordParameters(lang, null, 0, null));
+		return wordResource.list(new ListWordParameters(null, 0, null));
 	}
 
-	public List<Translation> listTranslations(Language lang, int difficulty, int number)
+	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed)
 	{
-		return translationResource.list(new ListTranslationParameters(lang, Difficulty.getByDifficulty(difficulty), number, null)); 	
+		return translationResource.list(new ListTranslationParameters(lang, difficulty, number, translationsAlreadyUsed)); 	
 	}
 
 }

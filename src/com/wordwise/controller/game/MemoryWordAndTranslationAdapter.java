@@ -8,13 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
-import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.game.MemoryViewFlipper;
 
@@ -58,22 +56,19 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	// from the server
 	private List<Translation> getTranslationsFromServer() {
 		return serverComm.listTranslations(conf.getLearningLanguage(),
-				conf.getDifficulty(), getPairCount());
+				conf.getDifficulty(), getPairCount(), null);
 
 	}
 
-	private int getPairCount() {
-
-		switch (conf.getDifficulty()) {
-			case Game.EASY :
-				return 3;
-			case Game.MEDIUM :
-				return 6;
-			case Game.HARD :
-				return 9;
-			default :
-				return 6;
-		}
+	private int getPairCount()
+	{
+		if (conf.getDifficulty() == Difficulty.EASY)
+			return 3;
+		if (conf.getDifficulty() == Difficulty.MEDIUM)
+			return 6;
+		if (conf.getDifficulty() == Difficulty.HARD)
+			return 9;
+		return 6;
 	}
 
 	private List<Translation> generateTranslations() {

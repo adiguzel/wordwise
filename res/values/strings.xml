@@ -58,5 +58,10 @@
     <string name="wordwise_translations_heading">@string/translations</string>
     <string name="wordEvaluation_game_information"><b>Evaluate</b> the following word in terms of its quality and difficulty</string>
     <string name="translate_word_submit_evaluation_button">Submit evaluation</string>
+    <string name="rate_translation_screen_info">Rate the translation of the word below</string>
+    <string name="submit_translation_rating">Submit Rating</string>
+    <string name="translation_rating_bar_text">Rating</string>
+    <string name="english">English</string>
+    <string name="translation_title">The translation in</string>
 
 </resources>

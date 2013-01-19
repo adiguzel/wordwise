@@ -14,10 +14,13 @@ import com.wordwise.gameengine.Game;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Word;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
 
+	private final String DIALOG_TITLE = "You can contribute! :)";
+	
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private RatingBar wordQualityRating;

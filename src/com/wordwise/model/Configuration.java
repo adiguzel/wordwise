@@ -7,13 +7,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.wordwise.gameengine.Game;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
 	private static Configuration instance = null;
-	private int difficulty;
+	private Difficulty difficulty;
 	private Set<Language> proficientLanguages = new HashSet<Language>();
 	private Language learningLanguage = null;
 	private SharedPreferences SP;
@@ -40,8 +40,8 @@ public class Configuration{
 		return instance;
 	}
 
-	public int loadDifficulty() {
-		return SP.getInt("difficulty", Game.EASY);
+	public Difficulty loadDifficulty() {
+		return Difficulty.getByDifficulty(SP.getInt("difficulty", Difficulty.EASY.getDifficulty()));
 	}
 
 	public Language loadLearningLanguage() {
@@ -59,7 +59,7 @@ public class Configuration{
 	}
 
 	public boolean saveDifficulty() {
-		return SP.edit().putInt("difficulty", difficulty).commit();
+		return SP.edit().putInt("difficulty", difficulty.getDifficulty()).commit();
 	}
 
 	public boolean saveLearningLanguage() {
@@ -74,11 +74,11 @@ public class Configuration{
 		return SP.edit().putStringSet("proficient_languages", profLanguagesCodeSet).commit();
 	}
 
-	public int getDifficulty() {
+	public Difficulty getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(int difficulty) {
+	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 		// persist difficulty
 		saveDifficulty();
