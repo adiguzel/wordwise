@@ -70,4 +70,9 @@ public class RESTfullServerCommunication implements ServerCommunication
 		return false;
 	}
 
+	public List<Translation> listWordSpecificTranslations(Word word,Language language) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

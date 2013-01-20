@@ -14,7 +14,10 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Rate;
+import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
@@ -26,8 +29,11 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private List<Language> proficientLanguagesList = new ArrayList<Language>();
 
 	private List<Word> listOfEnglishWords;
+	private List<Translation> listOfTranslations;
+	private List<Rate> listOfRatings;
+	private Difficulty difficulty;
 
-	private RESTfullServerCommunication serverCommunication;
+	private RESTfullServerCommunication server;
 	private Word englishWord;
 	private Word translation;
 
@@ -65,10 +71,12 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		
 		languageOfTranslation = chooseRandomProficientLanguage();
 		
+		difficulty = configuration.getDifficulty();
+		
 		englishWord = this.retrieveRandomEnglishWord();
-//		translation = 
+//		translation = this.retrieveRandomTranslation(this.englishWord);
 
-		this.setTextViews();
+		this.setChangeableTextViews();
 
 		submitRating.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);
@@ -95,7 +103,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		continueButton.setVisibility(View.VISIBLE);
 	}
 
-	private void setTextViews() {
+	private void setChangeableTextViews() {
 		this.wordInEnglish.setText(this.englishWord.getWord());
 		this.translationToRate.setText(this.translation.getWord());
 		this.translationLanguageTitle.setText(this.translationLanguageTitle.getText() + " " + this.languageOfTranslation.getLanguage());
@@ -103,12 +111,21 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 
 	private Word retrieveRandomEnglishWord() {
 		Word randomEnglishWord = new Word();
-		this.serverCommunication = new RESTfullServerCommunication();
-		//maybe should be this.serverCommunication.listWords(englishLanugage); should be changed by adding difficulty
-		this.listOfEnglishWords = this.serverCommunication.listWords(englishLanugage);
+		this.server = new RESTfullServerCommunication();
+		//maybe should be this.server.listWords(englishLanugage); should be changed by adding difficulty
+		this.listOfEnglishWords = this.server.listWords(englishLanugage,difficulty.getDifficulty());
 		int randomPosition = this.randomNumber(listOfEnglishWords.size());
 		randomEnglishWord = this.listOfEnglishWords.get(randomPosition);
 		return randomEnglishWord;
+	}
+	
+	private Translation retrieveRandomTranslation(Word englishWord) {
+		Translation translation = new Translation();
+		this.server = new RESTfullServerCommunication();
+		this.listOfTranslations = this.server.listWordSpecificTranslations(englishWord, languageOfTranslation);
+		int random = randomNumber(this.listOfTranslations.size());
+		translation = this.listOfTranslations.get(random);
+		return translation;
 	}
 
 	private int randomNumber(int max) {

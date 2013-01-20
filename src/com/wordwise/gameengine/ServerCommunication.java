@@ -90,5 +90,16 @@ public interface ServerCommunication {
 	 * @return list of translations and its original words (in English)
 	 */
 	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed);
+	
+	/**
+	 * Retrieves all the translations for a given word
+	 * 
+	 * @param word
+	 * 			  the word which translations are needed
+	 * @param language
+	 * 			  the language of the translations
+	 * @return list of translations for the specific word on the specified language
+	 */
+	public List<Translation> listWordSpecificTranslations(Word word, Language language);
 
 }
