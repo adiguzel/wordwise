@@ -131,6 +131,7 @@ public class TranslateWord extends WordwiseGameActivity {
 		this.translation.setTranslation(translation);
 	
 		server.addWord(this.englishWord);
+		server.addTranslation(englishWord, randomProficientLanguage, this.translation);
 		
 	}
 
