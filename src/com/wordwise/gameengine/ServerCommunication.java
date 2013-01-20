@@ -105,13 +105,5 @@ public interface ServerCommunication {
 	 * @return list of translations for the specific word on the specified language
 	 */
 	public List<Translation> listWordSpecificTranslations(Word word, Language language);
-	
-	/**
-	 * @param translation
-	 * 			  the translation for which ratings are needed
-	 * @return
-	 * 			  the list of previous ratings for this translation
-	 */
-	public List<Rate> listRatingsForTranslation(Translation translation);
 
 }

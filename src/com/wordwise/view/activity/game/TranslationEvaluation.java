@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 
 import com.wordwise.R;
@@ -32,6 +33,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private List<Word> listOfEnglishWords;
 	private List<Translation> listOfTranslations;
 	private List<Rate> listOfRatings;
+	private Rate currentRating;
 	private Difficulty difficulty;
 
 	private RESTfullServerCommunication server;
@@ -43,7 +45,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private TextView wordInEnglish;
 	private TextView translationLanguageTitle;
 	private TextView translationToRate;
-	private RatingBar translationRating;
+	private RatingBar translationRatingBar;
 	
 	private Boolean translationRated;
 
@@ -65,7 +67,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		wordInEnglish = (TextView) findViewById(R.id.wordInEnglish);
 		translationLanguageTitle = (TextView) findViewById(R.id.translationTitle);
 		translationToRate = (TextView) findViewById(R.id.translationToRate);
-		translationRating = (RatingBar) findViewById(R.id.translationRatingBar);
+		translationRatingBar = (RatingBar) findViewById(R.id.translationRatingBar);
 
 		configuration = Configuration.getInstance(this);
 		proficientLanguagesSet = this.configuration.getProficientLanguages();
@@ -73,17 +75,15 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 				.getProficientLanguages(this.proficientLanguagesSet);
 		
 		languageOfTranslation = chooseRandomProficientLanguage();
-		
 		difficulty = configuration.getDifficulty();
 		
 		englishWord = this.retrieveRandomEnglishWord();
 		translation = this.retrieveRandomTranslation(this.englishWord);
-		listOfRatings = this.server.listRatingsForTranslation(translation);
+		listOfRatings = new ArrayList<Rate>(1);
 
-		
 		this.setChangeableTextViews();
 		
-		translationRating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
+		translationRatingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
 			public void onRatingChanged(RatingBar ratingBar, float rating,
 					boolean fromUser) {
 				translationRated = false;
@@ -116,6 +116,19 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		// TODO Auto-generated method stub
 		submitRating.setVisibility(View.INVISIBLE);
 		continueButton.setVisibility(View.VISIBLE);
+	}
+	
+
+	private void submitRating(View v) {
+		int translationRating = Math.round(translationRatingBar.getRating());
+		this.currentRating = new Rate();
+		this.currentRating.setRate(translationRating);
+		this.listOfRatings.add(currentRating);
+		this.server.rateTranslations(listOfRatings);
+		Toast.makeText(
+				this,
+				"Your rating score: " + translationRating + ", was submitted to successfully!", Toast.LENGTH_SHORT).show();
+		this.onGameEnd();
 	}
 	
 	private void checkSubmitCondition(){
@@ -169,11 +182,6 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 				.getRandomProficientLanguage(this.proficientLanguagesList);
 
 		return randomLanguage;
-	}
-
-	private void submitRating(View v) {
-		//send the rating
-		this.onGameEnd();
 	}
 
 }
