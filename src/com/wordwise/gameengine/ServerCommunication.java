@@ -21,6 +21,18 @@ public interface ServerCommunication {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addWord(Word word);
+	
+	/**
+	 * 
+	 * @param word
+	 * 			  the word for which the translation will be
+	 * @param language
+	 * 			  the language of the translation
+	 * @param translation
+	 * 			  the translation for the word
+	 * @return true if successful, false otherwise
+	 */
+	public boolean addTranslation(Word word,Language language, Translation translation);
 
 	/**
 	 * @param translationRatings

@@ -21,9 +21,8 @@
             android:id="@+id/translateWordActivityInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/translateWord_Spacing"
-            android:text="@string/translate_word_activity_info" 
-            android:textSize="@dimen/text_size_medium"/>
+            style="@style/wordwiseHeading"
+            android:text="@string/translate_word_activity_info" />
         
         <EditText 
             android:id="@+id/wordToBeTranslated"
@@ -48,8 +47,8 @@
         style="@style/wordwiseButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/continueButton"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:enabled="true"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="submitTranslation"
