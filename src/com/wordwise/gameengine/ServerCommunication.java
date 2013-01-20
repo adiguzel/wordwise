@@ -23,16 +23,11 @@ public interface ServerCommunication {
 	public boolean addWord(Word word);
 	
 	/**
-	 * 
-	 * @param word
-	 * 			  the word for which the translation will be
-	 * @param language
-	 * 			  the language of the translation
 	 * @param translation
-	 * 			  the translation for the word
+	 * 			  the translation object
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addTranslation(Word word,Language language, Translation translation);
+	public boolean addTranslation(Translation translation);
 
 	/**
 	 * @param translationRatings

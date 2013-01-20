@@ -75,8 +75,7 @@ public class RESTfullServerCommunication implements ServerCommunication
 		return null;
 	}
 
-	public boolean addTranslation(Word word, Language language,
-			Translation translation) {
+	public boolean addTranslation(Translation translation) {
 		// TODO Auto-generated method stub
 		return false;
 	}
