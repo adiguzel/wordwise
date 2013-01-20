@@ -78,6 +78,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		
 		englishWord = this.retrieveRandomEnglishWord();
 		translation = this.retrieveRandomTranslation(this.englishWord);
+		listOfRatings = this.server.listRatingsForTranslation(translation);
 
 		this.setChangeableTextViews();
 		

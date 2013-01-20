@@ -112,6 +112,6 @@ public interface ServerCommunication {
 	 * @return
 	 * 			  the list of previous ratings for this translation
 	 */
-	public List<Rate> ratingListForTranslation(Translation translation);
+	public List<Rate> listRatingsForTranslation(Translation translation);
 
 }

@@ -75,7 +75,7 @@ public class RESTfullServerCommunication implements ServerCommunication
 		return null;
 	}
 
-	public List<Rate> ratingListForTranslation(Translation translation) {
+	public List<Rate> listRatingsForTranslation(Translation translation) {
 		// TODO Auto-generated method stub
 		return null;
 	}
