@@ -134,7 +134,6 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private Word retrieveRandomEnglishWord() {
 		Word randomEnglishWord = new Word();
 		this.server = new RESTfullServerCommunication();
-		//maybe should be this.server.listWords(englishLanugage); should be changed by adding difficulty
 		this.listOfEnglishWords = this.server.listWords(englishLanugage,difficulty.getDifficulty());
 		int randomPosition = this.randomNumber(listOfEnglishWords.size());
 		randomEnglishWord = this.listOfEnglishWords.get(randomPosition);

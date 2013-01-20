@@ -9,6 +9,10 @@ import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 
+/**
+ * @author dmiles
+ *
+ */
 public interface ServerCommunication {
 
 	/**
@@ -101,5 +105,13 @@ public interface ServerCommunication {
 	 * @return list of translations for the specific word on the specified language
 	 */
 	public List<Translation> listWordSpecificTranslations(Word word, Language language);
+	
+	/**
+	 * @param translation
+	 * 			  the translation for which ratings are needed
+	 * @return
+	 * 			  the list of previous ratings for this translation
+	 */
+	public List<Rate> ratingListForTranslation(Translation translation);
 
 }
