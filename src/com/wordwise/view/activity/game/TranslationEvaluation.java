@@ -80,6 +80,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		translation = this.retrieveRandomTranslation(this.englishWord);
 		listOfRatings = this.server.listRatingsForTranslation(translation);
 
+		
 		this.setChangeableTextViews();
 		
 		translationRating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
@@ -99,7 +100,6 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 
 	public void onGameStart() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameStop() {
