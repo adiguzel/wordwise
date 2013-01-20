@@ -14,13 +14,6 @@ import com.wordwise.server.model.Word;
  *
  */
 public interface ServerCommunication {
-
-	/**
-	 * @param word
-	 *            word to be added
-	 * @return true if successful, false otherwise
-	 */
-	public boolean addWord(Word word);
 	
 	/**
 	 * @param translation
@@ -31,60 +24,25 @@ public interface ServerCommunication {
 
 	/**
 	 * @param translationRatings
-	 *            list of the objects which contain the translation to be rated and user
-	 *            ratings for it
+	 *            a rating for a certain translation
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateTranslations(List<Rate> translationRatings);
+	public boolean rateTranslation(Rate rating);
 
 	/**
 	 * @param wordQualities
-	 *            list of the objects which contain the words to be rated and user
-	 *            ratings for it
+	 *            a quality for a certain word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWordQualities(List<Quality> wordQualities);
+	public boolean addWordQualitiy(Quality quality);
 	
 
 	/**
 	 * @param wordDifficulties
-	 *            list of Difficulties that are provided for a word
+	 *            a difficultiy for a certain word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWordDifficulties(List<Difficulty> wordDifficulties);
-
-	/**
-	 * @param lang
-	 *            language code of the desired words
-	 * @param difficulty
-	 *            difficulty expected difficulty of the words
-	 * @return list of words and its high quality translations
-	 */
-	public List<Word> listWords(Language lang, int difficulty);
-	
-
-	/**
-	 * Retrieves all specified number of words in a given language and for a
-	 * given difficulty
-	 * 
-	 * @param lang
-	 *            language code of the desired words
-	 * @param difficulty
-	 *            expected difficulty of the words
-	 * @param number
-	 *            number of words that are to be listed
-	 * @return list of words and its high quality translations
-	 */
-	public List<Word> listWords(Language lang, int difficulty, int number);
-
-	/**
-	 * Retrieves all the words for a given language
-	 * 
-	 * @param lang
-	 *            language code of the desired words
-	 * @return list of words and its high quality translations
-	 */
-	public List<Word> listWords(Language lang);
+	public boolean addWordDifficulty(Difficulty difficulty);
 	
 	/**
 	 * Retrieves all specified number of translations in a given language and for a
@@ -101,16 +59,5 @@ public interface ServerCommunication {
 	 * @return list of translations and its original words (in English)
 	 */
 	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed);
-	
-	/**
-	 * Retrieves all the translations for a given word
-	 * 
-	 * @param word
-	 * 			  the word which translations are needed
-	 * @param language
-	 * 			  the language of the translations
-	 * @return list of translations for the specific word on the specified language
-	 */
-	public List<Translation> listWordSpecificTranslations(Word word, Language language);
 
 }

@@ -2,7 +2,6 @@ package com.wordwise.view.activity.game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -30,14 +28,10 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private Set<Language> proficientLanguagesSet;
 	private List<Language> proficientLanguagesList = new ArrayList<Language>();
 
-	private List<Word> listOfEnglishWords;
-	private List<Translation> listOfTranslations;
-	private List<Rate> listOfRatings;
 	private Rate currentRating;
 	private Difficulty difficulty;
 
 	private RESTfullServerCommunication server;
-	private Word englishWord;
 	private Translation translation;
 
 	private Button submitRating;
@@ -48,8 +42,6 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private RatingBar translationRatingBar;
 	
 	private Boolean translationRated;
-
-	private Language englishLanugage = new Language("English", "en");
 	private Language languageOfTranslation;
 
 	@Override
@@ -77,9 +69,8 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		languageOfTranslation = chooseRandomProficientLanguage();
 		difficulty = configuration.getDifficulty();
 		
-		englishWord = this.retrieveRandomEnglishWord();
-		translation = this.retrieveRandomTranslation(this.englishWord);
-		listOfRatings = new ArrayList<Rate>(1);
+		translation = this.retrieveRandomTranslation();
+		currentRating = new Rate();
 
 		this.setChangeableTextViews();
 		
@@ -121,10 +112,9 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 
 	private void submitRating(View v) {
 		int translationRating = Math.round(translationRatingBar.getRating());
-		this.currentRating = new Rate();
 		this.currentRating.setRate(translationRating);
-		this.listOfRatings.add(currentRating);
-		this.server.rateTranslations(listOfRatings);
+		this.currentRating.setTranslation(translation);
+		this.server.rateTranslation(currentRating);
 		Toast.makeText(
 				this,
 				"Your rating score: " + translationRating + ", was submitted to successfully!", Toast.LENGTH_SHORT).show();
@@ -140,33 +130,16 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	}
 
 	private void setChangeableTextViews() {
-		this.wordInEnglish.setText(this.englishWord.getWord());
+		this.wordInEnglish.setText(this.translation.getWord().getWord());
 		this.translationToRate.setText(this.translation.getTranslation());
 		this.translationLanguageTitle.setText(this.translationLanguageTitle.getText() + " " + this.languageOfTranslation.getLanguage());
 	}
-
-	private Word retrieveRandomEnglishWord() {
-		Word randomEnglishWord = new Word();
-		this.server = new RESTfullServerCommunication();
-		this.listOfEnglishWords = this.server.listWords(englishLanugage,difficulty.getDifficulty());
-		int randomPosition = this.randomNumber(listOfEnglishWords.size());
-		randomEnglishWord = this.listOfEnglishWords.get(randomPosition);
-		return randomEnglishWord;
-	}
 	
-	private Translation retrieveRandomTranslation(Word englishWord) {
-		Translation translation = new Translation();
+	private Translation retrieveRandomTranslation() {
+		List<Translation> translationList = new ArrayList<Translation>();
 		this.server = new RESTfullServerCommunication();
-		this.listOfTranslations = this.server.listWordSpecificTranslations(englishWord, languageOfTranslation);
-		int random = randomNumber(this.listOfTranslations.size());
-		translation = this.listOfTranslations.get(random);
-		return translation;
-	}
-
-	private int randomNumber(int max) {
-		Random randomGenerator = new Random();
-		int randomNumber = randomGenerator.nextInt(max);
-		return randomNumber;
+		translationList = this.server.listTranslations(languageOfTranslation, difficulty, 1, null);
+		return translationList.get(1);
 	}
 
 	private Language chooseRandomProficientLanguage() {

@@ -19,6 +19,7 @@ import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.game.Hangman;
@@ -44,9 +45,8 @@ public class HangmanManager {
 	// Configuration properties
 	private Configuration configuration;
 	private Language learningLanguage;
-	private Word word;
 	private Locale locale;
-	private RESTfullServerCommunication serverCommunication;
+	private RESTfullServerCommunication server;
 	private Difficulty difficulty;
 
 	public HangmanManager(Hangman hangmanActivity) {
@@ -54,15 +54,9 @@ public class HangmanManager {
 	}
 
 	private void getMysteryWordFromServer() {
-		serverCommunication = new RESTfullServerCommunication();
-		List<Word> mysteryWordList = serverCommunication.listWords(
-				learningLanguage, difficulty.getDifficulty());
-		int size = mysteryWordList.size();
-		Random randomGenerator = new Random();
-		int randomWordNumber = randomGenerator.nextInt(size);
-		Word mysteryWordFromServer = mysteryWordList.get(randomWordNumber);
-		this.word = mysteryWordFromServer;
-		this.mysteryWord = this.word.getWord();
+		server = new RESTfullServerCommunication();
+		List<Translation> translation = server.listTranslations(learningLanguage, this.difficulty, 1, null);
+		this.mysteryWord = translation.get(1).getTranslation();
 	}
 
 	public boolean isALetter(int keyCode) {
