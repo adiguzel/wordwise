@@ -59,7 +59,6 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGameStop() {
-		//hangmanManager.closeTheSoftKeyboard();
 	}
 
 	public void onGamePause() {
