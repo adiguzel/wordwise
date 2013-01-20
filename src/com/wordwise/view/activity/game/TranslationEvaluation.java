@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
@@ -35,7 +36,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 
 	private RESTfullServerCommunication server;
 	private Word englishWord;
-	private Word translation;
+	private Translation translation;
 
 	private Button submitRating;
 	private Button continueButton;
@@ -43,6 +44,8 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	private TextView translationLanguageTitle;
 	private TextView translationToRate;
 	private RatingBar translationRating;
+	
+	private Boolean translationRated;
 
 	private Language englishLanugage = new Language("English", "en");
 	private Language languageOfTranslation;
@@ -74,9 +77,20 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		difficulty = configuration.getDifficulty();
 		
 		englishWord = this.retrieveRandomEnglishWord();
-//		translation = this.retrieveRandomTranslation(this.englishWord);
+		translation = this.retrieveRandomTranslation(this.englishWord);
 
 		this.setChangeableTextViews();
+		
+		translationRating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {	
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+					boolean fromUser) {
+				translationRated = false;
+				if(rating > 0.0f){
+					translationRated = true;
+				}
+				checkSubmitCondition();
+			}
+		});
 
 		submitRating.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);
@@ -102,10 +116,18 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		submitRating.setVisibility(View.INVISIBLE);
 		continueButton.setVisibility(View.VISIBLE);
 	}
+	
+	private void checkSubmitCondition(){
+		if(translationRated){
+			submitRating.setEnabled(true);
+		}
+		else
+			submitRating.setEnabled(false);		
+	}
 
 	private void setChangeableTextViews() {
 		this.wordInEnglish.setText(this.englishWord.getWord());
-		this.translationToRate.setText(this.translation.getWord());
+		this.translationToRate.setText(this.translation.getTranslation());
 		this.translationLanguageTitle.setText(this.translationLanguageTitle.getText() + " " + this.languageOfTranslation.getLanguage());
 	}
 
