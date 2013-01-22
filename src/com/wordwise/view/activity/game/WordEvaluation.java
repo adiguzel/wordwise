@@ -18,8 +18,6 @@ import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
-
-	private final String DIALOG_TITLE = "You can contribute! :)";
 	
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
@@ -28,7 +26,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	private Button submitTranslation;
 	// word to evaluate
 	private Word word;
-	private RESTfullServerCommunication serverCommunication;
+	private RESTfullServerCommunication server;
 
 	private boolean qualityRated, difficultyRated = false;
 	
@@ -43,7 +41,6 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	private void initScreen() {
 		wordToEvaluateText = (TextView) findViewById(R.id.wordToEvaluate);
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
-		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
 		continueButton = (Button) findViewById(R.id.continueButton);	
 		submitTranslation = (Button) findViewById(R.id.submitTranslation); 
 		
