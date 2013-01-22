@@ -63,8 +63,8 @@
     <string name="translation_rating_bar_text">Rating</string>
     <string name="english">English</string>
     <string name="translation_title">The translation in</string>
-    <string name="is_a_word">Is a word?</string>
-    <string name="is_not_a_word">Is not a word?</string>
+    <string name="is_a_word">Is a word</string>
+    <string name="is_not_a_word">Is not a word</string>
     <string name="i_dont_know">I don\'t know</string>
 
 </resources>

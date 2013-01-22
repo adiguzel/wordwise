@@ -38,8 +38,8 @@ public class MainActivity extends MenuActivity {
 	}
     
     public void showHowToPlay(View view) {
-		Intent intent = new Intent(this, WordEvaluation.class);
-		startActivity(intent);
+//		Intent intent = new Intent(this, WordEvaluation.class);
+//		startActivity(intent);
 	}
     
     @Override
