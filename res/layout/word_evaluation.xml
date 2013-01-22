@@ -41,29 +41,29 @@
             android:layout_height="wrap_content"
             android:text="@string/wordQualityText" />
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/checkBoxes"
-            android:layout_width="fill_parent"
+        <CheckBox
+            android:id="@+id/is_a_word"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/word2translations_padding_main"
-            android:paddingTop="@dimen/word2translations_padding_main" >
+            android:onClick="onCheckboxYes"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/is_a_word" />
 
-            <CheckBox
-                android:id="@+id/checkbox_meat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onCheckboxBadClicked"
-                android:text="@string/is_a_word" />
+        <CheckBox
+            android:id="@+id/is_not_a_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxNo"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/is_not_a_word" />
 
-            <CheckBox
-                android:id="@+id/checkbox_cheese"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onCheckboxGoodClicked"
-                android:text="@string/is_not_a_word" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/i_dont_know"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxDontKnow"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/i_dont_know" />
 
         <TextView
             android:id="@+id/wordDifficultyText"
