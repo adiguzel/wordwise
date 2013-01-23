@@ -3,11 +3,7 @@ package com.wordwise.view.activity.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,13 +27,11 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	private RatingBar wordDifficultyRating;
 	private Button continueButton;
 	private Button submitEvaluation;
-	Quality quality;
-	Difficulty difficulty;
 
 	private CheckBox isAWord;
 	private CheckBox isNotWord;
 	private CheckBox iDontKnow;
-
+	
 	private Difficulty difficulty;
 	private Quality quality;
 	private Word word;
@@ -168,10 +162,6 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 			}
 			this.server.addWordQualitiy(this.quality);
 			this.server.addWordDifficulty(this.difficulty);
-	}
-	public void onSubmitSuccessful() {
-		onGameEnd();
-	}
 		} else {
 			this.quality = new Quality();
 			quality.setWord(this.word);
@@ -179,34 +169,5 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 			this.server.addWordQualitiy(this.quality);
 		}
 		this.onGameEnd();
-	}
-	public class WordRatingsSaveTask extends AsyncTask<Void, Void, Void> {
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			// TODO call either onSubmitSuccessful or onSubmitFailed
-			// depending on the connection result
-			// for now only
-			onGameEnd();
-			checkSubmitCondition();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			Log.v("Word Ratings save task", "server conn started");
-
-			List<Difficulty> difficulties = new ArrayList<Difficulty>();
-			difficulties.add(difficulty);
-			serverCommunication.addWordDifficulties(difficulties);
-
-			List<Quality> qualities = new ArrayList<Quality>();
-			qualities.add(quality);
-			serverCommunication.addWordQualities(qualities);
-
-			Log.v("Word Ratings save task", "finished");
-	
-			return null;
-		}
 	}
 }
