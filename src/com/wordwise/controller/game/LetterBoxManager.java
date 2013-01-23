@@ -48,7 +48,7 @@ public class LetterBoxManager
 	
 	private List<Translation> generateTranslations()
 	{
-		ServerCommunication server = new RESTfullServerCommunication();
+		ServerCommunication server = RESTfullServerCommunication.getInstance();
 		return server.listTranslations(new Language("English", "en"), Difficulty.MEDIUM, 6, null);
 		
 		/*

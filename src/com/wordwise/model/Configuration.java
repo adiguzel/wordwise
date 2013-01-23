@@ -75,6 +75,7 @@ public class Configuration{
 	}
 
 	public Difficulty getDifficulty() {
+		loadDifficulty();
 		return difficulty;
 	}
 
@@ -85,6 +86,7 @@ public class Configuration{
 	}
 
 	public Set<Language> getProficientLanguages() {
+		loadProficientLanguages();
 		return proficientLanguages;
 	}
 
@@ -97,6 +99,7 @@ public class Configuration{
 	}
 
 	public Language getLearningLanguage() {
+		loadLearningLanguage();
 		return learningLanguage;
 	}
 

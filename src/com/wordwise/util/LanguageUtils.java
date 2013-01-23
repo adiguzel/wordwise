@@ -10,6 +10,7 @@ import java.util.Set;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.wordwise.R;
 import com.wordwise.server.model.Language;
@@ -105,6 +106,7 @@ public class LanguageUtils {
 	public static Language getRandomProficientLanguage(List<Language> l) {
 		Random randomGenerator = new Random();
 		int maxRandomNumber = l.size();
+		Log.v("size", "prof.  : " + maxRandomNumber);
 		int randomLanguageNumber = randomGenerator.nextInt(maxRandomNumber);
 		Language randomLanguage = l.get(randomLanguageNumber);
 		return randomLanguage;
