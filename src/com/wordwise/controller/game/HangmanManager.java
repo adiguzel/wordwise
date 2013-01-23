@@ -1,6 +1,8 @@
 package com.wordwise.controller.game;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import android.content.Context;
 import android.view.View;
@@ -15,23 +17,25 @@ import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
+import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.game.Hangman;
 
 public class HangmanManager {
-	
+
 	private GameManager gameManager;
 	private Hangman hangmanActivity;
-	
+
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
 
 	private ImageView hangmanImageView;
 
 	// Initialized with dummy word for practicing
-	private String mysteryWord = "ABSTRACTION";
+	private String mysteryWord;
 
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
@@ -41,35 +45,23 @@ public class HangmanManager {
 	// Configuration properties
 	private Configuration configuration;
 	private Language learningLanguage;
-	private Word word;
 	private Locale locale;
-	private RESTfullServerCommunication serverCommunication;
-	
+	private RESTfullServerCommunication server;
+	private Difficulty difficulty;
+
 	public HangmanManager(Hangman hangmanActivity) {
 		this.hangmanActivity = hangmanActivity;
 	}
-	
-	/*
-	 * Uncoment the method below when the server is up and running
-	 */
-	
-	/*
-	private void getMysteryWordFromServer() throws ConnectException {
-		serverCommunication = new RESTfullServerCommunication();
-		List<Word> mysteryWordList = serverCommunication.listWords(
-				learningLanguage, difficulty);
-		int size = mysteryWordList.size();
-		Random randomGenerator = new Random();
-		int randomWordNumber = randomGenerator.nextInt(size);
-		Word mysteryWordFromServer = mysteryWordList.get(randomWordNumber);
-		this.word = mysteryWordFromServer;
-		this.mysteryWord = this.word.getWord();
+
+	private void getMysteryWordFromServer() {
+		server = new RESTfullServerCommunication();
+		List<Translation> translation = server.listTranslations(learningLanguage, this.difficulty, 1, null);
+		this.mysteryWord = translation.get(1).getTranslation();
 	}
-	*/
-	
+
 	public boolean isALetter(int keyCode) {
-		/* Letter ASCII constraints
-		 * Only numbers added
+		/*
+		 * Letter ASCII constraints Only numbers added
 		 */
 		if (((keyCode < 7) || (keyCode > 16))) {
 			return true;
@@ -77,7 +69,7 @@ public class HangmanManager {
 			return false;
 		}
 	}
-	
+
 	public void validateGuess(char guess) {
 		if (mysteryWord.indexOf(guess) == DOESNT_EXIST) {
 			String wrongLetters = wrongLettersTextView.getText().toString();
@@ -98,14 +90,15 @@ public class HangmanManager {
 			}
 		}
 	}
-	
+
 	private void updateWrongGuesses(char wrongLetter) {
 		wrongLettersTextView.setText(wrongLettersTextView.getText().toString()
 				+ "  " + Character.toString(wrongLetter));
 	}
-	
+
 	private void linkTheViews() {
-		hangmanImageView = (ImageView) hangmanActivity.findViewById(R.id.hangman_img);
+		hangmanImageView = (ImageView) hangmanActivity
+				.findViewById(R.id.hangman_img);
 		wrongLettersTextView = (TextView) hangmanActivity
 				.findViewById(R.id.hangman_wrong_letters);
 		mysteryWordTextView = (TextView) hangmanActivity
@@ -122,7 +115,8 @@ public class HangmanManager {
 
 			this.closeTheSoftKeyboard();
 
-			Toast msg = Toast.makeText(hangmanActivity, "VERY GOOD!", Toast.LENGTH_SHORT);
+			Toast msg = Toast.makeText(hangmanActivity, "VERY GOOD!",
+					Toast.LENGTH_SHORT);
 			msg.show();
 
 			continueButton.setVisibility(Button.VISIBLE);
@@ -143,20 +137,22 @@ public class HangmanManager {
 			hangmanActivity.onGameEnd();
 		}
 	}
-	
+
 	private void openTheSoftKeyboard() {
-		((InputMethodManager) hangmanActivity.getSystemService(Context.INPUT_METHOD_SERVICE))
+		((InputMethodManager) hangmanActivity
+				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
 						InputMethodManager.HIDE_IMPLICIT_ONLY);
 	}
 
 	public void closeTheSoftKeyboard() {
-		((InputMethodManager) hangmanActivity.getSystemService(Context.INPUT_METHOD_SERVICE))
+		((InputMethodManager) hangmanActivity
+				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
 						0);
 
 	}
-	
+
 	private void updateHangmanImage() {
 		switch (numWrongGuesses) {
 		case 0:
@@ -191,7 +187,7 @@ public class HangmanManager {
 			break;
 		}
 	}
-	
+
 	private void initMysteriousWord() {
 		mysteryWordTextView.setText(underscoreTheMysteryWord(mysteryWord));
 		mysteryWordTextView.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +196,7 @@ public class HangmanManager {
 			}
 		});
 	}
-	
+
 	// This method will initialize the mysteryTextView with underscores
 	private String underscoreTheMysteryWord(String mysteryWord) {
 		StringBuffer result = new StringBuffer();
@@ -209,7 +205,7 @@ public class HangmanManager {
 		}
 		return result.toString();
 	}
-	
+
 	private void updateMysteriousWord(char ch) {
 		char[] updatedWord = mysteryWordTextView.getText().toString()
 				.toCharArray();
@@ -220,34 +216,30 @@ public class HangmanManager {
 		}
 		mysteryWordTextView.setText(new String(updatedWord));
 	}
-	
+
 	private void initTheHangmanImage() {
 		hangmanImageView.setImageResource(R.drawable.hangman_img00);
 	}
-	
+
 	private void getConfigurationDetails() {
-		configuration = Configuration.getInstance(hangmanActivity);
+		this.configuration = Configuration.getInstance(hangmanActivity);
+		this.difficulty = this.configuration.getDifficulty();
 		this.learningLanguage = configuration.getLearningLanguage();
 	}
-	
+
 	public void init() {
 		gameManager = GameManagerContainer.getGameManager();
-		// Initializes the screen
-		// try {
 		this.getConfigurationDetails();
-		// this.getMysteryWordFromServer();
+		this.getMysteryWordFromServer();
 		this.linkTheViews();
 		this.initTheHangmanImage();
 		this.initWrongGuesses();
 		this.initMysteriousWord();
-		
+
 		String languageToLoad = learningLanguage.getCode();
 		LanguageUtils.setLocale(locale, languageToLoad, hangmanActivity);
-		
+
 		this.openTheSoftKeyboard();
-		// } catch (ConnectException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 }

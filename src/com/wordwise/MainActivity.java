@@ -11,7 +11,7 @@ import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
-import com.wordwise.view.activity.game.TranslationEvaluation;
+import com.wordwise.view.activity.game.WordEvaluation;
 import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
@@ -38,8 +38,8 @@ public class MainActivity extends MenuActivity {
 	}
     
     public void showHowToPlay(View view) {
-		Intent intent = new Intent(this, TranslationEvaluation.class);
-		startActivity(intent);
+//		Intent intent = new Intent(this, WordEvaluation.class);
+//		startActivity(intent);
 	}
     
     @Override

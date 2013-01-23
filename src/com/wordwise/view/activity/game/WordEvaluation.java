@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
@@ -20,26 +21,31 @@ import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.Game;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Quality;
+import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity implements Game {
 
-	private final String DIALOG_TITLE = "You can contribute! :)";
-
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
-	private RatingBar wordQualityRating;
 	private Button continueButton;
-	private Button submitTranslation;
-	// word to evaluate
-	private Word word;
-	private RESTfullServerCommunication serverCommunication;
+	private Button submitEvaluation;
 	Quality quality;
 	Difficulty difficulty;
 
-	private boolean qualityRated, difficultyRated = false;
+	private CheckBox isAWord;
+	private CheckBox isNotWord;
+	private CheckBox iDontKnow;
+
+	private Difficulty difficulty;
+	private Quality quality;
+	private Word word;
+	private List<Translation> translation = new ArrayList<Translation>(1);
+	private RESTfullServerCommunication server;
+
+	private boolean difficultyRated = false;
+	private boolean isWord;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -48,13 +54,41 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		onGameStart();
 	}
 
-	private void initScreen() {
+	public void onGameInit() {
 		wordToEvaluateText = (TextView) findViewById(R.id.wordToEvaluate);
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
-		wordQualityRating = (RatingBar) findViewById(R.id.wordQualityRating);
 		continueButton = (Button) findViewById(R.id.continueButton);
-		submitTranslation = (Button) findViewById(R.id.submitTranslation);
+		submitEvaluation = (Button) findViewById(R.id.submitTranslation);
 
+		isAWord = (CheckBox) findViewById(R.id.is_a_word);
+		isNotWord = (CheckBox) findViewById(R.id.is_not_a_word);
+		iDontKnow = (CheckBox) findViewById(R.id.i_dont_know);
+		
+		wordToEvaluateText.setText(this.retrieveWord().getWord());
+
+		submitEvaluation.setVisibility(View.VISIBLE);
+		continueButton.setVisibility(View.INVISIBLE);
+
+		wordDifficultyRating.setEnabled(false);
+	}
+
+	public void onGameStart() {
+	}
+
+	public void onGameStop() {
+	}
+
+	public void onGamePause() {
+	}
+
+	public void onGameEnd() {
+		wordDifficultyRating.setEnabled(false);
+		submitEvaluation.setVisibility(View.INVISIBLE);
+		continueButton.setVisibility(View.VISIBLE);
+	}
+
+	private void enableRatingBar() {
+		wordDifficultyRating.setEnabled(true);
 		wordDifficultyRating
 				.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 					public void onRatingChanged(RatingBar ratingBar,
@@ -66,104 +100,86 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 						checkSubmitCondition();
 					}
 				});
-
-		wordQualityRating
-				.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-					public void onRatingChanged(RatingBar ratingBar,
-							float rating, boolean fromUser) {
-						qualityRated = false;
-						if (rating > 0.0f) {
-							qualityRated = true;
-						}
-						checkSubmitCondition();
-					}
-				});
 	}
 
 	private void checkSubmitCondition() {
-		if (qualityRated && difficultyRated) {
-			submitTranslation.setEnabled(true);
+		if (difficultyRated) {
+			submitEvaluation.setEnabled(true);
 		} else
-			submitTranslation.setEnabled(false);
+			submitEvaluation.setEnabled(false);
 	}
 
 	public Word retrieveWord() {
-		serverCommunication = new RESTfullServerCommunication();
-		// TODO get Word from the server
-		Word word = new Word();
-		word.setWord("test");
-		return word;
+		this.server = new RESTfullServerCommunication();
+		this.translation = this.server.listTranslations(null, null, 1, null);
+		return this.translation.get(0).getWord();
+	}
+
+	public void onCheckboxYes(View view) {
+		this.isAWord.setEnabled(false);
+		this.isNotWord.setEnabled(false);
+		this.iDontKnow.setEnabled(false);
+		this.isWord = true;
+		this.enableRatingBar();
+	}
+
+	public void onCheckboxNo(View view) {
+		this.isAWord.setEnabled(false);
+		this.isNotWord.setEnabled(false);
+		this.iDontKnow.setEnabled(false);
+		this.isWord = false;
+		this.submitEvaluation.setEnabled(true);
+	}
+
+	public void onCheckboxDontKnow(View view) {
+		this.isAWord.setEnabled(false);
+		this.isNotWord.setEnabled(false);
+		this.iDontKnow.setEnabled(false);
+		this.submitEvaluation.setEnabled(true);
 	}
 
 	public void submitEvaluation(View v) {
-		int qualityRating = Math.round(wordQualityRating.getRating());
-		int difficultyRating = Math.round(wordDifficultyRating.getRating());
-
-		if (difficultyRating == 0) {
-			Toast.makeText(this,
-					R.string.word_evaluation_provide_difficulty_rating_dialog,
+		this.server = new RESTfullServerCommunication();
+		if (!isWord) {
+			this.quality = new Quality();
+			quality.setWord(this.word);
+			quality.setQuality(-1); //setting up a bad quality
+			this.server.addWordQualitiy(this.quality);
+		} else if (isWord) {
+			int difficultyRating = Math.round(wordDifficultyRating.getRating());
+			if (difficultyRating == 0) {
+				Toast.makeText(
+						this,
+						R.string.word_evaluation_provide_difficulty_rating_dialog,
+						Toast.LENGTH_LONG).show();
+				return;
+			}
+			Toast.makeText(this, "Difficulty: " + difficultyRating,
 					Toast.LENGTH_LONG).show();
-			return;
-		}
-		Toast.makeText(
-				this,
-				"quality : " + qualityRating + " difficulty: "
-						+ difficultyRating, Toast.LENGTH_LONG).show();
 
-		quality = new Quality();
-		quality.setWord(word);
-		quality.setQuality(qualityRating);
+			Quality quality = new Quality();
+			quality.setWord(this.word);
+			quality.setQuality(1); //setting up a good quality
 
-		difficulty = Difficulty.getByDifficulty(difficultyRating);
-		if (difficulty != null) {
-			difficulty.setWord(word);
-		}
-		submitTranslation.setEnabled(false);
-		new WordRatingsSaveTask().execute();
+			this.difficulty = Difficulty
+					.getByDifficulty(difficultyRating);
+			if (difficulty != null) {
+				difficulty.setWord(this.word);
+			}
+			this.server.addWordQualitiy(this.quality);
+			this.server.addWordDifficulty(this.difficulty);
 	}
-
 	public void onSubmitSuccessful() {
 		onGameEnd();
 	}
-
-	public void onSubmitFailed() {
-		Toast.makeText(
-				this,
-				"Your evaluation could not be submitted to the server. Please try again.",
-				Toast.LENGTH_LONG).show();
-
-	}
-
-	public void onGameStart() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onGameStop() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onGamePause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onGameInit() {
-		this.initScreen();
-		word = retrieveWord();
-		if (word == null) {
-			// TODO show that word could not be retrieved
 		} else {
-			wordToEvaluateText.setText(word.getWord());
+			this.quality = new Quality();
+			quality.setWord(this.word);
+			quality.setQuality(0); //setting up I don't know
+			this.server.addWordQualitiy(this.quality);
 		}
+		this.onGameEnd();
 	}
-
-	public void onGameEnd() {
-		submitTranslation.setVisibility(View.INVISIBLE);
-		continueButton.setVisibility(View.VISIBLE);
-	}
-
 	public class WordRatingsSaveTask extends AsyncTask<Void, Void, Void> {
 		@Override
 		protected void onPostExecute(Void result) {

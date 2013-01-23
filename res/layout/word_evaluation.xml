@@ -24,8 +24,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/wordEvaluation_game_information"
-            android:textSize="@dimen/text_size_small" 
-/>
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/wordToEvaluate"
@@ -42,13 +41,29 @@
             android:layout_height="wrap_content"
             android:text="@string/wordQualityText" />
 
-        <RatingBar
-            android:id="@+id/wordQualityRating"
+        <CheckBox
+            android:id="@+id/is_a_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="2"
+            android:onClick="onCheckboxYes"
             android:paddingTop="@dimen/word2translations_padding_main"
-            android:stepSize="1.0" />
+            android:text="@string/is_a_word" />
+
+        <CheckBox
+            android:id="@+id/is_not_a_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxNo"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/is_not_a_word" />
+
+        <CheckBox
+            android:id="@+id/i_dont_know"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxDontKnow"
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/i_dont_know" />
 
         <TextView
             android:id="@+id/wordDifficultyText"
@@ -76,16 +91,16 @@
         android:enabled="false"
         android:onClick="submitEvaluation"
         android:text="@string/translate_word_submit_evaluation_button" />
-    
-       <Button
+
+    <Button
         android:id="@+id/continueButton"
         style="@style/wordwiseButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
         android:onClick="continueNextGame"
-        android:text="@string/continueLabel" />
+        android:text="@string/continueLabel"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="@string/rate_translation_screen_info"
             android:textSize="@dimen/text_size_small" />
-        
+
         <TextView
             android:id="@+id/englishWordTitle"
             style="@style/wordwiseHeading"
@@ -39,14 +39,14 @@
             android:paddingTop="@dimen/word2translations_padding_main"
             android:text=""
             android:textSize="@dimen/text_size_xlarge" />
-        
+
         <TextView
             android:id="@+id/translationTitle"
             style="@style/wordwiseHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/translation_title" />
-        
+
         <TextView
             android:id="@+id/translationToRate"
             android:layout_width="wrap_content"
@@ -69,11 +69,10 @@
             android:numStars="5"
             android:paddingTop="@dimen/word2translations_padding_main"
             android:stepSize="1.0" />
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/submitTranslation"
+        android:id="@+id/submitRatingButton"
         style="@style/wordwiseButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -82,5 +81,17 @@
         android:enabled="false"
         android:onClick="submitRating"
         android:text="@string/submit_translation_rating" />
+
+    <Button
+        android:id="@+id/continueButton"
+        style="@style/wordwiseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dip"
+        android:enabled="false"
+        android:gravity="center_vertical|center_horizontal"
+        android:onClick="continueNextGame"
+        android:text="@string/continueLabel" />
 
 </RelativeLayout>
