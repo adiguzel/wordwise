@@ -157,4 +157,14 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 		return randomLanguage;
 	}
 
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

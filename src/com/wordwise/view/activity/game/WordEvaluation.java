@@ -170,4 +170,14 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		}
 		this.onGameEnd();
 	}
+
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

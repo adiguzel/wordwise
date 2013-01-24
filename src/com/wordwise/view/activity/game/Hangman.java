@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.HangmanManager;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Hangman extends WordwiseGameActivity {
@@ -73,5 +74,15 @@ public class Hangman extends WordwiseGameActivity {
 	public void onGameEnd() {
 		//TODO show bye bye information
 		continueButton.setEnabled(true);
+	}
+
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

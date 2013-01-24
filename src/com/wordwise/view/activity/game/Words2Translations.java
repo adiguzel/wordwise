@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
 import com.wordwise.gameengine.Game;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
@@ -96,6 +97,16 @@ public class Words2Translations extends WordwiseGameActivity
 	public void onLoaderReset(Loader<List<Translation>> arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

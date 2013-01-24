@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
@@ -171,6 +172,16 @@ public class TranslateWord extends WordwiseGameActivity {
 
 		}
 
+	}
+
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

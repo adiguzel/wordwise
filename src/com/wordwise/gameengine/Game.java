@@ -1,5 +1,7 @@
 package com.wordwise.gameengine;
 
+import com.wordwise.server.model.Difficulty;
+
 public interface Game {
 
 	/**
@@ -33,4 +35,16 @@ public interface Game {
 	 * button
 	 **/
 	public void onGameEnd();
+
+	/**
+	 * Number of translations that should be present for this game to load and
+	 * be playable with the given difficulty
+	 * */
+	public int numberOfTranslationsNeeded(Difficulty difficulty);
+
+	/**
+	 * Number of words that should be present for this game to load and be
+	 * playable with the given difficulty
+	 * */
+	public int numberOfWordsNeeded(Difficulty difficulty);
 }

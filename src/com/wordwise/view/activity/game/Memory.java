@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.MemoryManager;
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity {
@@ -35,5 +36,15 @@ public class Memory extends WordwiseGameActivity {
 	public void onGameEnd() {
 		// TODO show necessary dialogs about game end
 		continueButton.setEnabled(true);
+	}
+
+	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int numberOfWordsNeeded(Difficulty difficulty) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
