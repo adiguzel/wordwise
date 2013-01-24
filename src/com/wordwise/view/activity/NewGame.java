@@ -22,7 +22,7 @@ public class NewGame extends MenuActivity {
 		setContentView(R.layout.new_game);
 		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
 		GameManagerContainer.setGameManager(gManager);
-		configuration = Configuration.getInstance();
+		configuration = Configuration.getInstance(this);
 	}
 	public void startNewGame(View view) {
 		switch (view.getId()) {
@@ -44,5 +44,4 @@ public class NewGame extends MenuActivity {
 				break;
 		}
 	}
-
 }

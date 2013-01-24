@@ -20,7 +20,7 @@ import com.wordwise.server.resource.RateResource;
 import com.wordwise.server.resource.TranslationResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
-	// 192.168.112.1
+
 	private static final String BASE_CLIENT_URL = "http://192.168.1.100:8080/WordWiseServer/";
 
 	private static final TranslationResource translationResource = getTranslationResource();

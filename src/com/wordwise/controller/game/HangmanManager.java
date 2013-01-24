@@ -2,7 +2,6 @@ package com.wordwise.controller.game;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import android.content.Context;
 import android.view.View;
@@ -20,7 +19,6 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.game.Hangman;
 

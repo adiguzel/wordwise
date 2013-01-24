@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;

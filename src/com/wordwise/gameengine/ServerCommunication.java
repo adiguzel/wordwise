@@ -7,7 +7,6 @@ import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
 
 /**
  * @author dmiles

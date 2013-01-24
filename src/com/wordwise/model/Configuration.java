@@ -36,10 +36,6 @@ public class Configuration{
 		return instance;
 	}
 	
-	public static Configuration getInstance() {
-		return instance;
-	}
-
 	public Difficulty loadDifficulty() {
 		return Difficulty.getByDifficulty(SP.getInt("difficulty", Difficulty.EASY.getDifficulty()));
 	}

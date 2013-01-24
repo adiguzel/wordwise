@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -24,19 +23,15 @@ public class Words2Translations extends WordwiseGameActivity
 			LoaderCallbacks<List<Translation>> {
 	private Button validateButton;
 	private Words2TranslationsManager manager;
-	public ProgressBar progress; // ADDED
+	public ProgressBar progress; 
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-
-		// this.onGameInit();
-		// this.onGameStart();
-		// progress = (ProgressBar) findViewById(R.id.progress_bar); //ADDED
 		getLoaderManager()
 				.initLoader(
 						0,
 						null,
-						(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this);
+						(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this).forceLoad();;
 	}
 
 	public void onGameStart() {
@@ -74,26 +69,28 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		// TODO Auto-generated method stub
-		Log.v("Loader", "created");
-
 		setContentView(R.layout.loading_game);
-		progress = (ProgressBar) findViewById(R.id.progress_bar); // ADDED
+		progress = (ProgressBar) findViewById(R.id.progress_bar); 
 
-		setProgressBarIndeterminateVisibility(true);
-		progress.setVisibility(View.VISIBLE); // ADDED
-		return new Loader<List<Translation>>(this);
+		progress.setVisibility(View.VISIBLE); 
+		return new TranslationLoader(this);
 	}
 
-	public void onLoadFinished(Loader<List<Translation>> arg0,
-			List<Translation> arg1) {
-		Log.v("Loader", "finished");
-		if (arg1 == null) {
-			Toast.makeText(this, "Failed to load bro.", Toast.LENGTH_SHORT)
+	public void onLoadFinished(Loader<List<Translation>> loader,
+			List<Translation> translations) {
+		if (translations == null) {
+			Toast.makeText(this, "Oh snap. Failed to load.", Toast.LENGTH_SHORT)
 					.show();
 		}
-		// TODO Auto-generated method stub
-
+		else if(translations.isEmpty()){
+			Toast.makeText(this, "Server does not have enough translations.", Toast.LENGTH_SHORT)
+			.show();
+		}
+		else{
+			setContentView(R.layout.words2translations);
+		    this.onGameInit();
+		    this.onGameStart();
+		}	
 	}
 
 	public void onLoaderReset(Loader<List<Translation>> arg0) {
