@@ -7,8 +7,6 @@ import org.restlet.Context;
 import org.restlet.data.Protocol;
 import org.restlet.resource.ClientResource;
 
-import android.util.Log;
-
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
@@ -37,11 +35,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		Context context = new Context();
 		context.getParameters().add("socketTimeout", "1000");
 		clientResource.setNext(new Client(context, Protocol.HTTP));
-	/*	clientResource.setRetryOnError(false);
-		Context context = clientResource.getContext();
-		if (context == null)
-			return null;
-		context.getParameters().add("socketTimeout", "1000");*/
+		clientResource.setRetryOnError(false);
+
 		return clientResource.wrap(TranslationResource.class);
 	}
 
@@ -52,12 +47,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		Context context = new Context();
 		context.getParameters().add("socketTimeout", "1000");
 		clientResource.setNext(new Client(context, Protocol.HTTP));
-
-		/*clientResource.setRetryOnError(false);
-		Context context = clientResource.getContext();
-		if (context == null)
-			return null;
-		context.getParameters().add("socketTimeout", "1000");*/
+		clientResource.setRetryOnError(false);
 
 		return clientResource.wrap(RateResource.class);
 	}
@@ -69,12 +59,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		Context context = new Context();
 		context.getParameters().add("socketTimeout", "1000");
 		clientResource.setNext(new Client(context, Protocol.HTTP));
+		clientResource.setRetryOnError(false);
 
-	/*	clientResource.setRetryOnError(false);
-		Context context = clientResource.getContext();
-		if (context == null)
-			return null;
-		context.getParameters().add("socketTimeout", "1000");*/
 		return clientResource.wrap(QualityResource.class);
 	}
 
@@ -85,12 +71,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		Context context = new Context();
 		context.getParameters().add("socketTimeout", "1000");
 		clientResource.setNext(new Client(context, Protocol.HTTP));
-
-	/*	clientResource.setRetryOnError(false);
-		Context context = clientResource.getContext();
-		if (context == null)
-			return null;
-		context.getParameters().add("socketTimeout", "1000");*/
+		clientResource.setRetryOnError(false);
 
 		return clientResource.wrap(DifficultyResource.class);
 	}
@@ -100,29 +81,52 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			translationResource.add(translation);
 			return true;
 		}catch(Exception e){
-			Log.v("ex", e.getClass().toString());
 			e.printStackTrace();
 			return false;
 		}
 	}
 
 	public boolean rateTranslation(Rate rating) {
-		rateResource.add(rating);
-		return true;
+		try{
+			rateResource.add(rating);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public boolean addWordQualitiy(Quality quality) {
-		qualityResource.add(quality);
-		return true;
+		try{
+			qualityResource.add(quality);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public boolean addWordDifficulty(Difficulty difficulty) {
-		difficultyResource.add(difficulty);
-		return true;
+		try{
+			difficultyResource.add(difficulty);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
+	
+	/**
+	 * Clients of this method should check whether null returned or not.
+	 * */
 	public List<Translation> listTranslations(Language language,
 			Difficulty difficulty, int numberOfTranslations,
 			List<Translation> translationsAlreadyUsed) {
-		return translationResource.list(new ListTranslationParameters(language,
-				difficulty, numberOfTranslations, translationsAlreadyUsed));
+		try{
+			return translationResource.list(new ListTranslationParameters(language,
+					difficulty, numberOfTranslations, translationsAlreadyUsed));
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
