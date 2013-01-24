@@ -4,7 +4,6 @@ package com.wordwise.gameengine;
 public abstract class GameManager {
 	protected Game currentGame;
 	protected GameSelector gameSelector;
-	protected GameConfiguration configuration;
 	
 	public GameManager(GameSelector gameSelector){
 		this.gameSelector = gameSelector;
@@ -40,16 +39,27 @@ public abstract class GameManager {
 			System.out.println("Game is null");
 	}
 	
-	public GameConfiguration getConfiguration() {
-		return configuration;
-	}
+	public abstract GameConfiguration getConfiguration() ;
 	
 	public abstract void startGame(Game game);
 	
 	public abstract void endGame(Game game);
 
-	public void setConfiguration(GameConfiguration configuration) {
-		this.configuration = configuration;
+	/**
+	 * Returns how many words the currents game needs to load 
+	 * */
+	public int NumberOfWordsNeeded(){
+		if(currentGame == null)
+			return -1;
+		else return currentGame.numberOfWordsNeeded(getConfiguration().getDifficulty());
 	}
 	
+	/**
+	 * Returns how many translations the currents game needs to load 
+	 * */
+	public int NumberOfTranslationsNeeded(){
+		if(currentGame == null)
+			return -1;
+		else return currentGame.numberOfTranslationsNeeded(getConfiguration().getDifficulty());
+	}
 }

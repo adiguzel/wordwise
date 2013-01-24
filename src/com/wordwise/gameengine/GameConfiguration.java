@@ -2,19 +2,20 @@ package com.wordwise.gameengine;
 
 import java.util.Set;
 
+import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 
 
 public class GameConfiguration {
-	private int difficulty;
+	private Difficulty difficulty;
 	private Set<Language> proficientLanguages;
 	private Language learningLanguage;
 
-	public int getDifficulty() {
+	public Difficulty getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(int difficulty) {
+	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 

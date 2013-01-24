@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
@@ -34,6 +35,14 @@ public class Configuration{
 			instance = new Configuration(context);
 		}
 		return instance;
+	}
+	
+	public GameConfiguration getCurrentGameConfiguration(){
+		GameConfiguration gameConf = new GameConfiguration();
+		gameConf.setDifficulty(getDifficulty());
+		gameConf.setLearningLanguage(getLearningLanguage());
+		gameConf.setProficientLanguage(getProficientLanguages());
+		return gameConf;
 	}
 	
 	public Difficulty loadDifficulty() {
