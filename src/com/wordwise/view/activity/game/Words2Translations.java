@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
 import com.wordwise.gameengine.Game;
+import com.wordwise.loader.TranslationLoader;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;

@@ -1,4 +1,4 @@
-package com.wordwise.view.activity.game;
+package com.wordwise.loader;
 
 import java.util.List;
 
@@ -6,7 +6,9 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Translation;
 
 
@@ -22,7 +24,11 @@ public class TranslationLoader extends AsyncTaskLoader<List<Translation>> {
 
 	@Override
 	public List<Translation> loadInBackground() {
-		return serverComm.listTranslations(configuration.getLearningLanguage(), configuration.getDifficulty(), 1, null);
+		GameManager gManager = GameManagerContainer.getGameManager();
+		int translationsNeeded = gManager.NumberOfTranslationsNeeded();
+		if(translationsNeeded == -1 || translationsNeeded == 0)
+			return null;
+		return serverComm.listTranslations(configuration.getLearningLanguage(), configuration.getDifficulty(), translationsNeeded, null);
 	}
 
 }
