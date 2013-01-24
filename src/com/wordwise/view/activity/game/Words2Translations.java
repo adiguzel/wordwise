@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
-import com.wordwise.gameengine.Game;
 import com.wordwise.loader.TranslationLoader;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
@@ -23,7 +22,6 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Words2Translations extends WordwiseGameActivity
 		implements
-			Game,
 			LoaderCallbacks<List<Translation>> {
 	private Button validateButton;
 	private Words2TranslationsManager manager;

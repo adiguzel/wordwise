@@ -167,6 +167,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	public Word getWord() {
 		// TODO Auto-generated method stub
 		List<Word> words = listWords(1);
+		Log.v("RESTFul - words", ""+words);
 		if(words == null)
 			return null;
 		else if(words.size() == 0)

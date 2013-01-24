@@ -7,6 +7,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
@@ -29,8 +30,9 @@ public class TranslationLoader extends AsyncTaskLoader<List<Translation>> {
 		Log.v("translationsNeed", "" + translationsNeeded);
 		if (translationsNeeded == -1 || translationsNeeded == 0)
 			return null;
-		List<Translation>  translations = serverComm.listTranslations(configuration.getLearningLanguage(),
-				configuration.getDifficulty(), translationsNeeded, null);
+		GameConfiguration gameConf = configuration.getCurrentGameConfiguration();
+		List<Translation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
+				gameConf.getDifficulty(), translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
 		return translations;
 	}
