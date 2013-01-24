@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
+    android:orientation="vertical"
     android:padding="@dimen/word2translations_padding_main" >
-    
-     <include
+
+    <include
         android:id="@+id/topBar"
         layout="@layout/game_top_bar" />
 
@@ -14,31 +14,32 @@
         android:id="@+id/ratings"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/topBar">
+        android:layout_below="@id/topBar"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/translateWordActivityInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/translate_word_activity_info" />
-        
-        <EditText 
+            android:paddingTop="@dimen/word2translations_padding_main"
+            android:text="@string/translate_word_activity_info"
+            android:textSize="@dimen/text_size_small" />
+
+        <EditText
             android:id="@+id/wordToBeTranslated"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:hint="@string/translate_word_add_word"
-            android:paddingTop="@dimen/translateWord_Spacing"
-            android:inputType="text"/>
-        
-        <EditText 
+            android:inputType="text"
+            android:paddingTop="@dimen/word2translations_padding_main" />
+
+        <EditText
             android:id="@+id/wordTranslation"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:hint="@string/translate_word_add_translation"
-            android:paddingTop="@dimen/translateWord_Spacing"
-            android:inputType="text"/>
-
+            android:inputType="text"
+            android:paddingTop="@dimen/translateWord_Spacing" />
     </LinearLayout>
 
     <Button
@@ -46,24 +47,23 @@
         style="@style/wordwiseButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:enabled="true"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="submitTranslation"
         android:text="@string/translate_word_submit_translation_button" />
-    
+
     <Button
         android:id="@+id/continueButton"
         style="@style/wordwiseButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dip"
         android:enabled="false"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="continueNextGame"
         android:text="@string/continueLabel" />
-    
 
 </RelativeLayout>

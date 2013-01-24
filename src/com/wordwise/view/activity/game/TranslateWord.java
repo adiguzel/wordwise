@@ -184,4 +184,9 @@ public class TranslateWord extends WordwiseGameActivity {
 		return 0;
 	}
 
+	public void retry(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

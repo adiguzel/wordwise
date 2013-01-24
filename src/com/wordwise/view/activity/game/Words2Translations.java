@@ -115,4 +115,9 @@ public class Words2Translations extends WordwiseGameActivity
 	public int numberOfWordsNeeded(Difficulty difficulty) {
 		return 0;
 	}
+
+	public void retry(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -11,4 +11,7 @@ public interface IGameView {
 	
 	// called by quit button to quit the game
 	public void validate(View v);
+	
+	//called by retry button in case loading from server fails and user wants to retry
+	public void retry(View v);
 }

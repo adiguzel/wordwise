@@ -202,4 +202,10 @@ public class LetterBox extends WordwiseGameActivity{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	public void retry(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

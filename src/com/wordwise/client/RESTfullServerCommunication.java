@@ -17,6 +17,7 @@ import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
 import com.wordwise.server.model.parameter.ListTranslationParameters;
+import com.wordwise.server.model.parameter.ListWordParameters;
 import com.wordwise.server.resource.DifficultyResource;
 import com.wordwise.server.resource.QualityResource;
 import com.wordwise.server.resource.RateResource;
@@ -33,12 +34,15 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static final DifficultyResource difficultyResource = getDifficultyResource();
 	private static final WordResource wordResource = getWordResource();
 	
+	private static Integer timeout = 1000;
+	private static String timeoutString = timeout.toString();
+	
 	private static TranslationResource getTranslationResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ TranslationResource.RESOURCE_NAME);
 		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
 		clientResource.setRetryOnError(false);
 
@@ -50,7 +54,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 				+ RateResource.RESOURCE_NAME);
 		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
 		clientResource.setRetryOnError(false);
 
@@ -62,7 +66,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 				+ QualityResource.RESOURCE_NAME);
 		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
 		clientResource.setRetryOnError(false);
 
@@ -74,7 +78,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 				+ DifficultyResource.RESOURCE_NAME);
 		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
 		clientResource.setRetryOnError(false);
 
@@ -85,10 +89,10 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ WordResource.RESOURCE_NAME);
 		
-		Context context = new Context();
-		context.getParameters().add("socketTimeout", "1000");
+	/*	Context context = new Context();
+		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
-		clientResource.setRetryOnError(false);
+		clientResource.setRetryOnError(false);*/
 
 		return clientResource.wrap(WordResource.class);
 	}
@@ -139,10 +143,9 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			List<Translation> translationsAlreadyUsed) {
 		Log.v("RESTFul - list trans", "Starting to load translations");
 		try{
-			Log.v("RESTFul - list trans", "Connection problem");
 			List<Translation> translations = translationResource.list(new ListTranslationParameters(language,
 					difficulty, numberOfTranslations, translationsAlreadyUsed));
-			Log.v("RESTFul - list trans", "Translations liaded");
+			Log.v("RESTFul - list trans", ""+translations);
 			return translations;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -153,21 +156,20 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	public List<Word> listWords(int number) {
-		// TODO Auto-generated method stub
 		try{
-			return wordResource.list(number);
+			List<Word> words = wordResource.list(new ListWordParameters(number));
+			Log.v("RESTFul - words", ""+words);
+			return words;
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			Log.v("RESTFul - list trans", "Connection problem");
+			Log.v("RESTFul - list words", "Connection problem");
 			return null;
 		}
 	}
 
 	public Word getWord() {
-		// TODO Auto-generated method stub
 		List<Word> words = listWords(1);
-		Log.v("RESTFul - words", ""+words);
 		if(words == null)
 			return null;
 		else if(words.size() == 0)

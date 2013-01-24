@@ -1,6 +1,7 @@
 package com.wordwise.view.activity.game;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.wordwise.R;
@@ -46,5 +47,10 @@ public class Memory extends WordwiseGameActivity {
 	public int numberOfWordsNeeded(Difficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public void retry(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 }
