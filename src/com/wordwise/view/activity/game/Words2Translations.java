@@ -24,7 +24,7 @@ public class Words2Translations extends WordwiseGameActivity
 			LoaderCallbacks<List<Translation>> {
 	private Button validateButton;
 	private Words2TranslationsManager manager;
-	public ProgressBar progress; 
+	public ProgressBar progress;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -32,7 +32,8 @@ public class Words2Translations extends WordwiseGameActivity
 				.initLoader(
 						0,
 						null,
-						(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this).forceLoad();;
+						(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this)
+				.forceLoad();
 	}
 
 	public void onGameStart() {
@@ -71,9 +72,9 @@ public class Words2Translations extends WordwiseGameActivity
 
 	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
 		setContentView(R.layout.loading_game);
-		progress = (ProgressBar) findViewById(R.id.progress_bar); 
+		progress = (ProgressBar) findViewById(R.id.progress_bar);
 
-		progress.setVisibility(View.VISIBLE); 
+		progress.setVisibility(View.VISIBLE);
 		return new TranslationLoader(this);
 	}
 
@@ -82,16 +83,14 @@ public class Words2Translations extends WordwiseGameActivity
 		if (translations == null) {
 			Toast.makeText(this, "Oh snap. Failed to load.", Toast.LENGTH_SHORT)
 					.show();
-		}
-		else if(translations.isEmpty()){
-			Toast.makeText(this, "Server does not have enough translations.", Toast.LENGTH_SHORT)
-			.show();
-		}
-		else{
+		} else if (translations.isEmpty()) {
+			Toast.makeText(this, "Server does not have enough translations.",
+					Toast.LENGTH_SHORT).show();
+		} else {
 			setContentView(R.layout.words2translations);
-		    this.onGameInit();
-		    this.onGameStart();
-		}	
+			this.onGameInit();
+			this.onGameStart();
+		}
 	}
 
 	public void onLoaderReset(Loader<List<Translation>> arg0) {
@@ -100,12 +99,17 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public int numberOfTranslationsNeeded(Difficulty difficulty) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (difficulty == Difficulty.EASY)
+			return 4;
+		else if (difficulty == Difficulty.MEDIUM)
+			return 6;
+		else if (difficulty == Difficulty.HARD)
+			return 8;
+		else
+			return -1;
 	}
 
 	public int numberOfWordsNeeded(Difficulty difficulty) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
