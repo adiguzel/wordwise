@@ -5,8 +5,10 @@ import android.content.Intent;
 
 import com.wordwise.MainActivity;
 import com.wordwise.gameengine.Game;
+import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
+import com.wordwise.model.Configuration;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
 import com.wordwise.view.activity.game.Memory;
@@ -43,5 +45,12 @@ public class WordwiseGameManager extends GameManager{
 	public void endGame(Game game) {
 		Intent gameIntent = new Intent(context, MainActivity.class);
 		context.startActivity(gameIntent);
+	}
+
+	@Override
+	public GameConfiguration getConfiguration() {
+		// TODO Auto-generated method stub
+		Configuration configuration = Configuration.getInstance(context);
+		return configuration.getCurrentGameConfiguration();
 	}
 }
