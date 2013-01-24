@@ -104,7 +104,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	}
 
 	public Word retrieveWord() {
-		this.server = RESTfullServerCommunication.getInstance();
+		this.server = new RESTfullServerCommunication();
 		this.translation = this.server.listTranslations(null, null, 1, null);
 		return this.translation.get(0).getWord();
 	}
@@ -133,7 +133,7 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 	}
 
 	public void submitEvaluation(View v) {
-		this.server = RESTfullServerCommunication.getInstance();
+		this.server = new RESTfullServerCommunication();
 		if (!isWord) {
 			this.quality = new Quality();
 			quality.setWord(this.word);

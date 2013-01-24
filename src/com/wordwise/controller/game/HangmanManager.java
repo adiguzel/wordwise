@@ -54,7 +54,7 @@ public class HangmanManager {
 	}
 
 	private void getMysteryWordFromServer() {
-		server = RESTfullServerCommunication.getInstance();
+		server = new RESTfullServerCommunication();
 		List<Translation> translation = server.listTranslations(learningLanguage, this.difficulty, 1, null);
 		this.mysteryWord = translation.get(1).getTranslation();
 	}

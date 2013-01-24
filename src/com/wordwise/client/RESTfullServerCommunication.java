@@ -2,8 +2,12 @@ package com.wordwise.client;
 
 import java.util.List;
 
+import org.restlet.Client;
 import org.restlet.Context;
+import org.restlet.data.Protocol;
 import org.restlet.resource.ClientResource;
+
+import android.util.Log;
 
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Difficulty;
@@ -26,41 +30,34 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static final QualityResource qualityResource = getQualityResource();
 	private static final DifficultyResource difficultyResource = getDifficultyResource();
 
-	private RESTfullServerCommunication() {
-
-	}
-	public static RESTfullServerCommunication getInstance(){
-		RESTfullServerCommunication instance = null;
-		if(isConfigured())
-			instance = new RESTfullServerCommunication();
-		return instance;	
-	}
-	public static boolean isConfigured() {
-		return translationResource != null || rateResource != null
-				|| qualityResource != null || difficultyResource != null;
-	}
-
 	private static TranslationResource getTranslationResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ TranslationResource.RESOURCE_NAME);
-
-		clientResource.setRetryOnError(false);
+		
+		Context context = new Context();
+		context.getParameters().add("socketTimeout", "1000");
+		clientResource.setNext(new Client(context, Protocol.HTTP));
+	/*	clientResource.setRetryOnError(false);
 		Context context = clientResource.getContext();
 		if (context == null)
 			return null;
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", "1000");*/
 		return clientResource.wrap(TranslationResource.class);
 	}
 
 	private static RateResource getRateResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ RateResource.RESOURCE_NAME);
+		
+		Context context = new Context();
+		context.getParameters().add("socketTimeout", "1000");
+		clientResource.setNext(new Client(context, Protocol.HTTP));
 
-		clientResource.setRetryOnError(false);
+		/*clientResource.setRetryOnError(false);
 		Context context = clientResource.getContext();
 		if (context == null)
 			return null;
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", "1000");*/
 
 		return clientResource.wrap(RateResource.class);
 	}
@@ -68,32 +65,45 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static QualityResource getQualityResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ QualityResource.RESOURCE_NAME);
+		
+		Context context = new Context();
+		context.getParameters().add("socketTimeout", "1000");
+		clientResource.setNext(new Client(context, Protocol.HTTP));
 
-		clientResource.setRetryOnError(false);
+	/*	clientResource.setRetryOnError(false);
 		Context context = clientResource.getContext();
 		if (context == null)
 			return null;
-		context.getParameters().add("socketTimeout", "1000");
-
+		context.getParameters().add("socketTimeout", "1000");*/
 		return clientResource.wrap(QualityResource.class);
 	}
 
 	private static DifficultyResource getDifficultyResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ DifficultyResource.RESOURCE_NAME);
+		
+		Context context = new Context();
+		context.getParameters().add("socketTimeout", "1000");
+		clientResource.setNext(new Client(context, Protocol.HTTP));
 
-		clientResource.setRetryOnError(false);
+	/*	clientResource.setRetryOnError(false);
 		Context context = clientResource.getContext();
 		if (context == null)
 			return null;
-		context.getParameters().add("socketTimeout", "1000");
+		context.getParameters().add("socketTimeout", "1000");*/
 
 		return clientResource.wrap(DifficultyResource.class);
 	}
 
 	public boolean addTranslation(Translation translation) {
-		translationResource.add(translation);
-		return true;
+		try{
+			translationResource.add(translation);
+			return true;
+		}catch(Exception e){
+			Log.v("ex", e.getClass().toString());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean rateTranslation(Rate rating) {

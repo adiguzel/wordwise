@@ -137,7 +137,7 @@ public class TranslationEvaluation extends WordwiseGameActivity {
 	
 	private Translation retrieveRandomTranslation() {
 		List<Translation> translationList = new ArrayList<Translation>();
-		this.server = RESTfullServerCommunication.getInstance();
+		this.server = new RESTfullServerCommunication();
 		translationList = this.server.listTranslations(languageOfTranslation, difficulty, 1, null);
 		return translationList.get(1);
 	}

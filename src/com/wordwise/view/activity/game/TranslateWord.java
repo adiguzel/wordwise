@@ -128,20 +128,13 @@ public class TranslateWord extends WordwiseGameActivity {
 	}
 
 	private boolean sendDataToServer(String word, String translation) {
-		server = RESTfullServerCommunication.getInstance();
-		
-		if(server == null){
-			return false;
-		}
-		
-		this.englishWord.setWord(word);
+		server = new RESTfullServerCommunication();
+		englishWord.setWord(word);
 		this.translation.setTranslation(translation);
 		this.translation.setWord(englishWord);
 		this.translation.setLanguage(randomProficientLanguage);
 	
-		server.addTranslation(this.translation);
-		return true;
-		
+		return server.addTranslation(this.translation);	
 	}
 
 	public void submitTranslation(View v) {
