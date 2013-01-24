@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -14,6 +15,7 @@ import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
 import com.wordwise.gameengine.Game;
 import com.wordwise.loader.TranslationLoader;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.WordwiseUtils;
@@ -81,13 +83,16 @@ public class Words2Translations extends WordwiseGameActivity
 
 	public void onLoadFinished(Loader<List<Translation>> loader,
 			List<Translation> translations) {
+		Log.v("translations", "" + translations);
+		
 		if (translations == null) {
 			Toast.makeText(this, "Oh snap. Failed to load.", Toast.LENGTH_SHORT)
 					.show();
-		} else if (translations.isEmpty()) {
+		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
 			Toast.makeText(this, "Server does not have enough translations.",
 					Toast.LENGTH_SHORT).show();
-		} else {
+		} 
+		else {
 			setContentView(R.layout.words2translations);
 			this.onGameInit();
 			this.onGameStart();
@@ -95,7 +100,6 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void onLoaderReset(Loader<List<Translation>> arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -113,5 +117,4 @@ public class Words2Translations extends WordwiseGameActivity
 	public int numberOfWordsNeeded(Difficulty difficulty) {
 		return 0;
 	}
-
 }

@@ -57,8 +57,8 @@ public class WordEvaluation extends WordwiseGameActivity implements Game {
 		isAWord = (CheckBox) findViewById(R.id.is_a_word);
 		isNotWord = (CheckBox) findViewById(R.id.is_not_a_word);
 		iDontKnow = (CheckBox) findViewById(R.id.i_dont_know);
-		
-		wordToEvaluateText.setText(this.retrieveWord().getWord());
+		word = retrieveWord();
+		wordToEvaluateText.setText(word.getWord());
 
 		submitEvaluation.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);

@@ -7,17 +7,21 @@ import org.restlet.Context;
 import org.restlet.data.Protocol;
 import org.restlet.resource.ClientResource;
 
+import android.util.Log;
+
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
+import com.wordwise.server.model.Word;
 import com.wordwise.server.model.parameter.ListTranslationParameters;
 import com.wordwise.server.resource.DifficultyResource;
 import com.wordwise.server.resource.QualityResource;
 import com.wordwise.server.resource.RateResource;
 import com.wordwise.server.resource.TranslationResource;
+import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
 
@@ -27,7 +31,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static final RateResource rateResource = getRateResource();
 	private static final QualityResource qualityResource = getQualityResource();
 	private static final DifficultyResource difficultyResource = getDifficultyResource();
-
+	private static final WordResource wordResource = getWordResource();
+	
 	private static TranslationResource getTranslationResource() {
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ TranslationResource.RESOURCE_NAME);
@@ -75,6 +80,18 @@ public class RESTfullServerCommunication implements ServerCommunication {
 
 		return clientResource.wrap(DifficultyResource.class);
 	}
+	
+	private static WordResource getWordResource() {
+		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
+				+ WordResource.RESOURCE_NAME);
+		
+		Context context = new Context();
+		context.getParameters().add("socketTimeout", "1000");
+		clientResource.setNext(new Client(context, Protocol.HTTP));
+		clientResource.setRetryOnError(false);
+
+		return clientResource.wrap(WordResource.class);
+	}
 
 	public boolean addTranslation(Translation translation) {
 		try{
@@ -120,13 +137,42 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	public List<Translation> listTranslations(Language language,
 			Difficulty difficulty, int numberOfTranslations,
 			List<Translation> translationsAlreadyUsed) {
+		Log.v("RESTFul - list trans", "Starting to load translations");
 		try{
-			return translationResource.list(new ListTranslationParameters(language,
+			Log.v("RESTFul - list trans", "Connection problem");
+			List<Translation> translations = translationResource.list(new ListTranslationParameters(language,
 					difficulty, numberOfTranslations, translationsAlreadyUsed));
+			Log.v("RESTFul - list trans", "Translations liaded");
+			return translations;
 		}catch(Exception e){
 			e.printStackTrace();
+			Log.v("RESTFul - list trans", "Connection problem");
 			return null;
 		}
+		
+	}
+
+	public List<Word> listWords(int number) {
+		// TODO Auto-generated method stub
+		try{
+			return wordResource.list(number);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			Log.v("RESTFul - list trans", "Connection problem");
+			return null;
+		}
+	}
+
+	public Word getWord() {
+		// TODO Auto-generated method stub
+		List<Word> words = listWords(1);
+		if(words == null)
+			return null;
+		else if(words.size() == 0)
+		   return null;
+		else
+			return words.get(0);
 	}
 
 }

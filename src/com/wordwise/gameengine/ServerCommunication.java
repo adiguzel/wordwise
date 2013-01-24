@@ -7,9 +7,9 @@ import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Rate;
 import com.wordwise.server.model.Translation;
+import com.wordwise.server.model.Word;
 
 /**
- * @author dmiles
  *
  */
 public interface ServerCommunication {
@@ -38,7 +38,7 @@ public interface ServerCommunication {
 
 	/**
 	 * @param wordDifficulties
-	 *            a difficultiy for a certain word
+	 *            a difficulty for a certain word
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addWordDifficulty(Difficulty difficulty);
@@ -58,5 +58,18 @@ public interface ServerCommunication {
 	 * @return list of translations and its original words (in English)
 	 */
 	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed);
-
+	
+	/**
+	 * Retrieves a random list of specified number of words or less from the server
+	 * 
+	 * @param number
+	 *            number of words to be listed
+	 */
+	public List<Word> listWords(int number);
+	
+	/**
+	 * A convinience method to use to get just one random word from the server
+	 * @ling listWords shold be used for its implementation
+	 * */
+	public Word getWord();
 }
