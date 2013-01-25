@@ -1,35 +1,45 @@
 package com.wordwise.view.activity.game;
 
+import java.util.List;
+
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Loader;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.HangmanManager;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
+import com.wordwise.server.model.Translation;
+import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Hangman extends WordwiseGameActivity {
+public class Hangman extends WordwiseGameActivity
+		implements
+			LoaderCallbacks<List<Translation>> {
 
-	private HangmanManager hangmanManager = new HangmanManager(this);
+	private HangmanManager hangmanManager;
 	private Button continueButton;
+	private List<Translation> translations;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.hangman);
-		
-		this.onGameInit();
-		this.onGameStart();
+		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
-	
+
 	public void onStop() {
 		super.onStop();
 		this.onGameStop();
 	}
 
-	/* This is the method that checks for the uni-code characters that are 
+	/*
+	 * This is the method that checks for the uni-code characters that are
 	 * accessed using multiple keys or long press(non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onKeyMultiple(int, int, android.view.KeyEvent)
 	 */
 	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
@@ -43,8 +53,10 @@ public class Hangman extends WordwiseGameActivity {
 		return true;
 	}
 
-	/* This method checks for the normal characters accessed with 
-	 * one click (no long, no several keys)(non-Javadoc)
+	/*
+	 * This method checks for the normal characters accessed with one click (no
+	 * long, no several keys)(non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -67,19 +79,18 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void onGameInit() {
+		hangmanManager = new HangmanManager(this, translations);
 		continueButton = (Button) findViewById(R.id.continueButton);
-		hangmanManager = new HangmanManager(this);	
 		hangmanManager.init();
 	}
-	
+
 	public void onGameEnd() {
-		//TODO show bye bye information
+		// TODO show bye bye information
 		continueButton.setEnabled(true);
 	}
 
 	public int numberOfTranslationsNeeded(Difficulty difficulty) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	public int numberOfWordsNeeded(Difficulty difficulty) {
@@ -88,7 +99,38 @@ public class Hangman extends WordwiseGameActivity {
 	}
 
 	public void retry(View v) {
-		// TODO Auto-generated method stub
-		
+		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
+
+	public List<Translation> getTranslations() {
+		return translations;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this,
+				LoaderType.TRANSLATION_LOADER);
+	}
+
+	public void onLoadFinished(Loader<List<Translation>> arg0,
+			List<Translation> translations) {
+		Log.v("translations", "" + translations);
+
+		if (translations == null) {
+			loaderHelper.loadFailed("Oh snap. Failed to load!");
+		} else if (translations.size() < GameManagerContainer.getGameManager()
+				.NumberOfTranslationsNeeded()) {
+			loaderHelper.loadFailed("Server does not have enough words!");
+		} else {
+			this.translations = translations;
+			setContentView(R.layout.hangman);
+			this.onGameInit();
+			this.onGameStart();
+		}
+	}
+
+	public void onLoaderReset(Loader<List<Translation>> arg0) {
+		loaderHelper.onLoaderReset(this);
+	}
+
 }

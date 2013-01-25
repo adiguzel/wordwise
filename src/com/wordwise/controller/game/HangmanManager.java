@@ -12,50 +12,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
-import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
-import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.game.Hangman;
 
 public class HangmanManager {
-
-	private GameManager gameManager;
-	private Hangman hangmanActivity;
-
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
 
-	private ImageView hangmanImageView;
+	//Activity to manage
+	private Hangman hangmanActivity;
 
 	// Initialized with dummy word for practicing
 	private String mysteryWord;
 
+	//UI elements
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
 	private Button continueButton;
+	private ImageView hangmanImageView;
 
 	// Configuration properties
 	private Configuration configuration;
 	private Language learningLanguage;
 	private Locale locale;
-	private RESTfullServerCommunication server;
-	private Difficulty difficulty;
 
-	public HangmanManager(Hangman hangmanActivity) {
+	public HangmanManager(Hangman hangmanActivity, List<Translation> translations) {
 		this.hangmanActivity = hangmanActivity;
+		mysteryWord = translations.get(0).getTranslation();
 	}
 
-	private void getMysteryWordFromServer() {
-		server = new RESTfullServerCommunication();
-		List<Translation> translation = server.listTranslations(learningLanguage, this.difficulty, 1, null);
-		this.mysteryWord = translation.get(1).getTranslation();
-	}
 
 	public boolean isALetter(int keyCode) {
 		/*
@@ -221,14 +210,11 @@ public class HangmanManager {
 
 	private void getConfigurationDetails() {
 		this.configuration = Configuration.getInstance(hangmanActivity);
-		this.difficulty = this.configuration.getDifficulty();
 		this.learningLanguage = configuration.getLearningLanguage();
 	}
 
 	public void init() {
-		gameManager = GameManagerContainer.getGameManager();
 		this.getConfigurationDetails();
-		this.getMysteryWordFromServer();
 		this.linkTheViews();
 		this.initTheHangmanImage();
 		this.initWrongGuesses();
