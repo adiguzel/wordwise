@@ -1,5 +1,6 @@
 package com.wordwise.view.activity.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.LoaderManager.LoaderCallbacks;
@@ -72,6 +73,19 @@ public class Hangman extends WordwiseGameActivity
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		//Eliminate some cases where those keys are used for something else
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			onBackPressed();
+			return true;
+		}
+		else if(keyCode == KeyEvent.KEYCODE_MENU){
+			return true;
+		}
+		else if(keyCode == KeyEvent.KEYCODE_SEARCH){
+			return true;
+		}
+
+		
 		if(gameStarted){
 			if (hangmanManager.isALetter(keyCode)) {
 				String letter = "" + (char) event.getUnicodeChar();
