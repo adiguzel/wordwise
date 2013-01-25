@@ -12,11 +12,9 @@ import android.widget.ProgressBar;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
-import com.wordwise.loader.TranslationLoader;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;

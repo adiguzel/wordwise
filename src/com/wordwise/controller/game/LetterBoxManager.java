@@ -9,10 +9,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
-import com.wordwise.gameengine.ServerCommunication;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils.Direction;
@@ -20,7 +16,7 @@ import com.wordwise.view.activity.game.LetterBox;
 
 public class LetterBoxManager
 {
-	private List<Translation> translations = generateTranslations();
+	private List<Translation> translations;
 	private List<String> letters = generateLetters(88);
 	private List<GridItem> currentSelection = new ArrayList<GridItem>(){
 		private static final long serialVersionUID = 1L;
@@ -35,69 +31,21 @@ public class LetterBoxManager
 	private List<Integer> positionsOfFoundWords = new ArrayList<Integer>();
 	private LetterBox letterBoxActivity;
 	
-	public LetterBoxManager(LetterBox letterBoxActivity)
+	//not allowed
+	private LetterBoxManager(){
+		
+	}
+	
+	public LetterBoxManager(LetterBox letterBoxActivity, List<Translation> translations)
 	{
 		this.letterBoxActivity = letterBoxActivity;
+		this.translations = translations;
 	}
 	
 	public boolean isAllTranslationsFound(){
 		Log.v("Letterbox", "found : " + numberOfFoundWords);
 		Log.v("Letterbox", "actual : "+ translations.size());
 		return numberOfFoundWords == translations.size();
-	}
-	
-	private List<Translation> generateTranslations()
-	{
-		ServerCommunication server = new RESTfullServerCommunication();
-		return server.listTranslations(new Language("English", "en"), Difficulty.MEDIUM, 6, null);
-		
-		/*
-		
-		List<Translation> returnList = new ArrayList<Translation>();
-		
-		Translation translation = new Translation();
-		translation.setTranslation("cadeira");
-		Word word = new Word();
-		word.setWord("chair");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		translation = new Translation();
-		translation.setTranslation("porta");
-		word = new Word();
-		word.setWord("door");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		translation = new Translation();
-		translation.setTranslation("mesa");
-		word = new Word();
-		word.setWord("table");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		translation = new Translation();
-		translation.setTranslation("cama");
-		word = new Word();
-		word.setWord("bed");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		translation = new Translation();
-		translation.setTranslation("chão");
-		word = new Word();
-		word.setWord("floor");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		translation = new Translation();
-		translation.setTranslation("luz");
-		word = new Word();
-		word.setWord("light");
-		translation.setWord(word);
-		returnList.add(translation);
-		
-		return returnList; */
 	}
 	
 	private List<String> generateLetters(int numberOfLetters)

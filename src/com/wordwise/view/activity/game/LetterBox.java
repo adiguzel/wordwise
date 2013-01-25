@@ -3,9 +3,12 @@ package com.wordwise.view.activity.game;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
+import android.content.Loader;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +21,21 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.LetterBoxManager;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
+import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class LetterBox extends WordwiseGameActivity{
-	private LetterBoxManager letterBoxManager = new LetterBoxManager(this);
+public class LetterBox extends WordwiseGameActivity implements
+LoaderCallbacks<List<Translation>>{
+	private LetterBoxManager letterBoxManager;
 	private Button continueButton;
+	private List<Translation> translations;
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.letterbox);
-
-		this.onGameInit();
-		this.onGameStart();
+		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 
 	
@@ -51,6 +55,7 @@ public class LetterBox extends WordwiseGameActivity{
 	}
 
 	public void onGameInit() {
+		letterBoxManager = new LetterBoxManager(this, translations);
 		initWordsGrid();
 		initLettersGrid();
 		continueButton = (Button) findViewById(R.id.continueButton);
@@ -191,21 +196,56 @@ public class LetterBox extends WordwiseGameActivity{
 		
 	}
 
-
+    //TODO reconsider numbers
 	public int numberOfTranslationsNeeded(Difficulty difficulty) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (difficulty == Difficulty.EASY)
+			return 6;
+		else if (difficulty == Difficulty.MEDIUM)
+			return 6;
+		else if (difficulty == Difficulty.HARD)
+			return 6;
+		else
+			return -1;
 	}
 
 
 	public int numberOfWordsNeeded(Difficulty difficulty){
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
 	public void retry(View v) {
-		// TODO Auto-generated method stub
+		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
+	}
+	
+	public List<Translation> getTranslations(){
+		return translations;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+	}
+
+	public void onLoadFinished(Loader<List<Translation>> arg0,
+			List<Translation> translations) {
+		Log.v("translations", "" + translations);
 		
+		if (translations == null) {
+			loaderHelper.loadFailed("Oh snap. Failed to load!");
+		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
+			loaderHelper.loadFailed("Server does not have enough words!");
+		} 
+		else {
+			this.translations = translations;
+			setContentView(R.layout.letterbox);
+			this.onGameInit();
+			this.onGameStart();
+		}	
+	}
+
+	public void onLoaderReset(Loader<List<Translation>> arg0) {
+		loaderHelper.onLoaderReset(this);			
 	}
 }

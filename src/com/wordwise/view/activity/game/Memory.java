@@ -65,6 +65,10 @@ LoaderCallbacks<List<Translation>> {
 	public void retry(View v) {
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
+	
+	public List<Translation> getTranslations(){
+		return translations;
+	}
 
 	@SuppressWarnings("unchecked")
 	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
@@ -92,7 +96,4 @@ LoaderCallbacks<List<Translation>> {
 		loaderHelper.onLoaderReset(this);	
 	}
 	
-	public List<Translation> getTranslations(){
-		return translations;
-	}
 }
