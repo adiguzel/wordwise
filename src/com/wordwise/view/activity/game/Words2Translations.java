@@ -25,7 +25,9 @@ public class Words2Translations extends WordwiseGameActivity
 			LoaderCallbacks<List<Translation>> {
 	private Button validateButton;
 	private Words2TranslationsManager manager;
-	public ProgressBar progress;
+	private List<Translation> translations;
+	private ProgressBar progress;
+	
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class Words2Translations extends WordwiseGameActivity
 					Toast.LENGTH_SHORT).show();
 		} 
 		else {
+			this.translations = translations;
 			setContentView(R.layout.words2translations);
 			this.onGameInit();
 			this.onGameStart();
@@ -117,7 +120,12 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void retry(View v) {
-		// TODO Auto-generated method stub
-		
+		getLoaderManager().restartLoader(0, null,
+				(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this)
+				.forceLoad();
+	}
+	
+	public List<Translation> getTranslations(){
+		return translations;
 	}
 }

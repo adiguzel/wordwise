@@ -8,14 +8,17 @@ import android.view.View;
 import com.wordwise.gameengine.Game;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.IGameView;
+import com.wordwise.util.LoaderHelper;
 import com.wordwise.util.WordwiseUtils;
 
 public abstract class WordwiseGameActivity extends Activity implements IGameView, Game {
 
+	protected LoaderHelper loaderHelper;
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//all games have no action bar
+		loaderHelper = new LoaderHelper();
 		getActionBar().hide();
 		//all games are in portrait(vertical) mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

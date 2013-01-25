@@ -26,6 +26,7 @@ import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Quality;
 import com.wordwise.server.model.Translation;
 import com.wordwise.server.model.Word;
+import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity
@@ -49,15 +50,12 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	private boolean difficultyRated = false;
 	private boolean isWord;
+	
+	private ProgressBar progress;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		// setContentView(R.layout.word_evaluation);
-		// onGameInit();
-		// onGameStart();
-		getLoaderManager().initLoader(0, null,
-				(android.app.LoaderManager.LoaderCallbacks<List<Word>>) this)
-				.forceLoad();
+		loaderHelper.initLoader(this, LoaderType.WORD_LOADER);
 	}
 
 	public void onGameInit() {
@@ -191,40 +189,26 @@ public class WordEvaluation extends WordwiseGameActivity
 		return 1;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Loader<List<Word>> onCreateLoader(int id, Bundle args) {
 		// TODO Auto-generated method stub
-		setContentView(R.layout.loading_game);
-		ProgressBar progress = (ProgressBar) findViewById(R.id.progress_bar);
-
-		progress.setVisibility(View.VISIBLE);
-		return new WordLoader(this);
+		return (Loader<List<Word>>) loaderHelper.onLoadCreated(this, LoaderType.WORD_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<Word>> arg0, List<Word> words) {
 		// TODO Auto-generated method stub
 		Log.v("words", "" + words);
 
-		LinearLayout loadingFailed = (LinearLayout) findViewById(R.id.loadingFailed);
-		TextView loadingFailedText = (TextView) findViewById(R.id.loadingFailedText);
-		TextView loadingText = (TextView) findViewById(R.id.loadingText);
-		Button retryButton = (Button) findViewById(R.id.retryButton);
-		LinearLayout loading = (LinearLayout) findViewById(R.id.loading);
 
 		if (words == null) {
-			loading.setVisibility(View.INVISIBLE);
-			loadingFailed.setVisibility(View.VISIBLE);
-			loadingFailedText.setVisibility(View.VISIBLE);
-			retryButton.setVisibility(View.VISIBLE);
-			loadingFailedText.setText("Oh snap. Failed to load.");
+			loaderHelper.loadFailed("Oh snap. Failed to load!");
 			/*
 			 * Toast.makeText(this, "Oh snap. Failed to load.",
 			 * Toast.LENGTH_SHORT) .show();
 			 */
 		} else if (words.size() < GameManagerContainer.getGameManager()
 				.NumberOfTranslationsNeeded()) {
-			loading.setVisibility(View.VISIBLE);
-			loadingFailed.setVisibility(View.VISIBLE);
-			loadingFailedText.setText("Server does not have enough words.");
+			loaderHelper.loadFailed("Server does not have enough words!");
 			/*
 			 * Toast.makeText(this, "Server does not have enough words.",
 			 * Toast.LENGTH_SHORT).show();
@@ -246,7 +230,6 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void retry(View v) {
-		// TODO Auto-generated method stub
 		getLoaderManager().restartLoader(0, null,
 				(android.app.LoaderManager.LoaderCallbacks<List<Word>>) this)
 				.forceLoad();

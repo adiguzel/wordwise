@@ -55,6 +55,7 @@ public class Words2TranslationsManager
 
 	public Words2TranslationsManager(Words2Translations activity) {
 		this.activity = activity;
+		translations = activity.getTranslations();
 	}
 
 	public void initViews() {
@@ -64,8 +65,7 @@ public class Words2TranslationsManager
 	}
 
 	private void initTranslations() {
-		adapter = new Words2TranslationAdapter(activity, this);
-		translations = adapter.getTranslations();
+		adapter = new Words2TranslationAdapter(activity, this, translations);
 		GridView translationsGrid = (GridView) activity
 				.findViewById(R.id.translationsGrid);
 		translationsGrid.setAdapter(adapter);
