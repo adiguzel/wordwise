@@ -3,7 +3,6 @@ package com.wordwise.view.activity.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
-import com.wordwise.loader.WordLoader;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Quality;
@@ -191,7 +188,6 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	@SuppressWarnings("unchecked")
 	public Loader<List<Word>> onCreateLoader(int id, Bundle args) {
-		// TODO Auto-generated method stub
 		return (Loader<List<Word>>) loaderHelper.onLoadCreated(this, LoaderType.WORD_LOADER);
 	}
 
@@ -222,17 +218,11 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onLoaderReset(Loader<List<Word>> arg0) {
-		// TODO Auto-generated method stub
-		setContentView(R.layout.loading_game);
-		ProgressBar progress = (ProgressBar) findViewById(R.id.progress_bar);
-
-		progress.setVisibility(View.VISIBLE);
+		loaderHelper.onLoaderReset(this);
 	}
 
 	public void retry(View v) {
-		getLoaderManager().restartLoader(0, null,
-				(android.app.LoaderManager.LoaderCallbacks<List<Word>>) this)
-				.forceLoad();
+		loaderHelper.restartLoader(this, LoaderType.WORD_LOADER);
 	}
 
 }

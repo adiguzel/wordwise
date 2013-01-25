@@ -42,6 +42,24 @@ public class LoaderHelper {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void restartLoader(Activity activity, LoaderType loaderType){
+		if(loaderType == LoaderType.TRANSLATION_LOADER){
+			activity.getLoaderManager().restartLoader(0, null,
+					(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) activity)
+					.forceLoad();
+		}
+		else if(loaderType == LoaderType.WORD_LOADER){
+			activity.getLoaderManager().restartLoader(0, null,
+					(android.app.LoaderManager.LoaderCallbacks<List<Word>>) activity)
+					.forceLoad();
+		}
+	}
+	
+	public void onLoaderReset(Activity activity){
+		initScreen(activity);
+	}
+	
 	public Loader<?> onLoadCreated(Activity activity, LoaderType loaderType){	
 		if(loaderType == LoaderType.TRANSLATION_LOADER){
 			initScreen(activity);
@@ -71,7 +89,7 @@ public class LoaderHelper {
 		loadingFailed.setVisibility(View.VISIBLE);
 		loadingFailedText.setVisibility(View.VISIBLE);
 		retryButton.setVisibility(View.VISIBLE);
-		loadingFailedText.setText("Oh snap. Failed to load.");
+		loadingFailedText.setText(failureText);
 	}
 	
 

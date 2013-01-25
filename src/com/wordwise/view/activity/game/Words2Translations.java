@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
@@ -17,6 +16,8 @@ import com.wordwise.loader.TranslationLoader;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
+import com.wordwise.server.model.Word;
+import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
@@ -31,12 +32,7 @@ public class Words2Translations extends WordwiseGameActivity
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		getLoaderManager()
-				.initLoader(
-						0,
-						null,
-						(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this)
-				.forceLoad();
+		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onGameStart() {
@@ -73,12 +69,9 @@ public class Words2Translations extends WordwiseGameActivity
 		manager.validate(v);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		setContentView(R.layout.loading_game);
-		progress = (ProgressBar) findViewById(R.id.progress_bar);
-
-		progress.setVisibility(View.VISIBLE);
-		return new TranslationLoader(this);
+		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<Translation>> loader,
@@ -86,11 +79,9 @@ public class Words2Translations extends WordwiseGameActivity
 		Log.v("translations", "" + translations);
 		
 		if (translations == null) {
-			Toast.makeText(this, "Oh snap. Failed to load.", Toast.LENGTH_SHORT)
-					.show();
+			loaderHelper.loadFailed("Oh snap. Failed to load!");
 		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
-			Toast.makeText(this, "Server does not have enough translations.",
-					Toast.LENGTH_SHORT).show();
+			loaderHelper.loadFailed("Server does not have enough words!");
 		} 
 		else {
 			this.translations = translations;
@@ -101,7 +92,7 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void onLoaderReset(Loader<List<Translation>> arg0) {
-
+		loaderHelper.onLoaderReset(this);
 	}
 
 	public int numberOfTranslationsNeeded(Difficulty difficulty) {
@@ -120,9 +111,7 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void retry(View v) {
-		getLoaderManager().restartLoader(0, null,
-				(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) this)
-				.forceLoad();
+		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 	
 	public List<Translation> getTranslations(){
