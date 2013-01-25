@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.wordwise.R;
@@ -16,6 +17,7 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.model.Difficulty;
 import com.wordwise.server.model.Translation;
 import com.wordwise.util.LoaderHelper.LoaderType;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Hangman extends WordwiseGameActivity
@@ -25,6 +27,7 @@ public class Hangman extends WordwiseGameActivity
 	private HangmanManager hangmanManager;
 	private Button continueButton;
 	private List<Translation> translations;
+	private boolean gameStarted = false;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -33,7 +36,13 @@ public class Hangman extends WordwiseGameActivity
 
 	public void onStop() {
 		super.onStop();
-		this.onGameStop();
+	}
+
+	@Override
+	protected void onQuitPressed() {
+		if (gameStarted)
+			hangmanManager.closeTheSoftKeyboard();
+		WordwiseUtils.makeQuitGameDialog(this);
 	}
 
 	/*
@@ -43,14 +52,17 @@ public class Hangman extends WordwiseGameActivity
 	 * @see android.app.Activity#onKeyMultiple(int, int, android.view.KeyEvent)
 	 */
 	public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_UNKNOWN
-				&& event.getAction() == KeyEvent.ACTION_MULTIPLE
-				&& hangmanManager.isALetter(keyCode)) {
-			String letter = event.getCharacters();
-			letter = letter.toUpperCase();
-			hangmanManager.validateGuess(letter.charAt(0));
+		if (gameStarted) {
+			if (keyCode == KeyEvent.KEYCODE_UNKNOWN
+					&& event.getAction() == KeyEvent.ACTION_MULTIPLE
+					&& hangmanManager.isALetter(keyCode)) {
+				String letter = event.getCharacters();
+				letter = letter.toUpperCase();
+				hangmanManager.validateGuess(letter.charAt(0));
+			}
 		}
 		return true;
+
 	}
 
 	/*
@@ -60,13 +72,17 @@ public class Hangman extends WordwiseGameActivity
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (hangmanManager.isALetter(keyCode)) {
-			String letter = "" + (char) event.getUnicodeChar();
-			letter = letter.toUpperCase();
-			hangmanManager.validateGuess(letter.charAt(0));
-			return true;
+		if(gameStarted){
+			if (hangmanManager.isALetter(keyCode)) {
+				String letter = "" + (char) event.getUnicodeChar();
+				letter = letter.toUpperCase();
+				hangmanManager.validateGuess(letter.charAt(0));
+				return true;
+			}
+			
 		}
 		return true;
+	
 	}
 
 	public void onGameStart() {
@@ -82,6 +98,7 @@ public class Hangman extends WordwiseGameActivity
 		hangmanManager = new HangmanManager(this, translations);
 		continueButton = (Button) findViewById(R.id.continueButton);
 		hangmanManager.init();
+		gameStarted = true;
 	}
 
 	public void onGameEnd() {

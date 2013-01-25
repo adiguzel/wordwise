@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,13 +23,13 @@ public class HangmanManager {
 	private final int DOESNT_EXIST = -1;
 	private final int MAXIMUM_WRONG_GUESSES = 9;
 
-	//Activity to manage
+	// Activity to manage
 	private Hangman hangmanActivity;
 
 	// Initialized with dummy word for practicing
 	private String mysteryWord;
 
-	//UI elements
+	// UI elements
 	private int numWrongGuesses;
 	private TextView wrongLettersTextView;
 	private TextView mysteryWordTextView;
@@ -40,11 +41,11 @@ public class HangmanManager {
 	private Language learningLanguage;
 	private Locale locale;
 
-	public HangmanManager(Hangman hangmanActivity, List<Translation> translations) {
+	public HangmanManager(Hangman hangmanActivity,
+			List<Translation> translations) {
 		this.hangmanActivity = hangmanActivity;
 		mysteryWord = translations.get(0).getTranslation().toUpperCase();
 	}
-
 
 	public boolean isALetter(int keyCode) {
 		// Letter ASCII constraints Only numbers added
@@ -88,7 +89,8 @@ public class HangmanManager {
 				.findViewById(R.id.hangman_wrong_letters);
 		mysteryWordTextView = (TextView) hangmanActivity
 				.findViewById(R.id.hangman_mystery_word);
-		continueButton = (Button) hangmanActivity.findViewById(R.id.continueButton);
+		continueButton = (Button) hangmanActivity
+				.findViewById(R.id.continueButton);
 
 	}
 
@@ -126,7 +128,8 @@ public class HangmanManager {
 	}
 
 	private void openTheSoftKeyboard() {
-		continueButton.setVisibility(View.GONE);
+		if (continueButton != null)
+			continueButton.setVisibility(View.GONE);
 		((InputMethodManager) hangmanActivity
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
@@ -134,7 +137,9 @@ public class HangmanManager {
 	}
 
 	public void closeTheSoftKeyboard() {
-		continueButton.setVisibility(View.VISIBLE);
+		if (continueButton != null)
+			continueButton.setVisibility(View.VISIBLE);
+		Log.v("closing the keyboarad", "");
 		((InputMethodManager) hangmanActivity
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
@@ -144,36 +149,36 @@ public class HangmanManager {
 
 	private void updateHangmanImage() {
 		switch (numWrongGuesses) {
-		case 0:
-			hangmanImageView.setImageResource(R.drawable.hangman_img00);
-			break;
-		case 1:
-			hangmanImageView.setImageResource(R.drawable.hangman_img01);
-			break;
-		case 2:
-			hangmanImageView.setImageResource(R.drawable.hangman_img02);
-			break;
-		case 3:
-			hangmanImageView.setImageResource(R.drawable.hangman_img03);
-			break;
-		case 4:
-			hangmanImageView.setImageResource(R.drawable.hangman_img04);
-			break;
-		case 5:
-			hangmanImageView.setImageResource(R.drawable.hangman_img05);
-			break;
-		case 6:
-			hangmanImageView.setImageResource(R.drawable.hangman_img06);
-			break;
-		case 7:
-			hangmanImageView.setImageResource(R.drawable.hangman_img07);
-			break;
-		case 8:
-			hangmanImageView.setImageResource(R.drawable.hangman_img08);
-			break;
-		case MAXIMUM_WRONG_GUESSES:
-			hangmanImageView.setImageResource(R.drawable.hangman_img09);
-			break;
+			case 0 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img00);
+				break;
+			case 1 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img01);
+				break;
+			case 2 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img02);
+				break;
+			case 3 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img03);
+				break;
+			case 4 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img04);
+				break;
+			case 5 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img05);
+				break;
+			case 6 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img06);
+				break;
+			case 7 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img07);
+				break;
+			case 8 :
+				hangmanImageView.setImageResource(R.drawable.hangman_img08);
+				break;
+			case MAXIMUM_WRONG_GUESSES :
+				hangmanImageView.setImageResource(R.drawable.hangman_img09);
+				break;
 		}
 	}
 
