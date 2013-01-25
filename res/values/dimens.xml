@@ -61,4 +61,7 @@
      
     <dimen name="heading_shape_corner_radius">1dp</dimen>
     
+    <dimen name="wordwise_padding_main">10dip</dimen>
+    <dimen name="wordwise_padding_main_half">5dip</dimen>
+    
 </resources>

@@ -42,14 +42,12 @@ public class HangmanManager {
 
 	public HangmanManager(Hangman hangmanActivity, List<Translation> translations) {
 		this.hangmanActivity = hangmanActivity;
-		mysteryWord = translations.get(0).getTranslation();
+		mysteryWord = translations.get(0).getTranslation().toUpperCase();
 	}
 
 
 	public boolean isALetter(int keyCode) {
-		/*
-		 * Letter ASCII constraints Only numbers added
-		 */
+		// Letter ASCII constraints Only numbers added
 		if (((keyCode < 7) || (keyCode > 16))) {
 			return true;
 		} else {
@@ -90,6 +88,7 @@ public class HangmanManager {
 				.findViewById(R.id.hangman_wrong_letters);
 		mysteryWordTextView = (TextView) hangmanActivity
 				.findViewById(R.id.hangman_mystery_word);
+		continueButton = (Button) hangmanActivity.findViewById(R.id.continueButton);
 
 	}
 
@@ -107,7 +106,7 @@ public class HangmanManager {
 			msg.show();
 
 			continueButton.setVisibility(Button.VISIBLE);
-
+			mysteryWordTextView.setOnClickListener(null);
 			hangmanActivity.onGameEnd();
 		}
 	}
@@ -120,12 +119,14 @@ public class HangmanManager {
 			Toast msg = Toast.makeText(hangmanActivity, "MORE LUCK NEXT TIME!",
 					Toast.LENGTH_SHORT);
 			msg.show();
+			mysteryWordTextView.setOnClickListener(null);
 
 			hangmanActivity.onGameEnd();
 		}
 	}
 
 	private void openTheSoftKeyboard() {
+		continueButton.setVisibility(View.GONE);
 		((InputMethodManager) hangmanActivity
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.toggleSoftInput(InputMethodManager.SHOW_FORCED,
@@ -133,6 +134,7 @@ public class HangmanManager {
 	}
 
 	public void closeTheSoftKeyboard() {
+		continueButton.setVisibility(View.VISIBLE);
 		((InputMethodManager) hangmanActivity
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),
@@ -214,16 +216,16 @@ public class HangmanManager {
 	}
 
 	public void init() {
-		this.getConfigurationDetails();
-		this.linkTheViews();
-		this.initTheHangmanImage();
-		this.initWrongGuesses();
-		this.initMysteriousWord();
+		getConfigurationDetails();
+		linkTheViews();
+		initTheHangmanImage();
+		initWrongGuesses();
+		initMysteriousWord();
 
 		String languageToLoad = learningLanguage.getCode();
 		LanguageUtils.setLocale(locale, languageToLoad, hangmanActivity);
 
-		this.openTheSoftKeyboard();
+		openTheSoftKeyboard();
 	}
 
 }

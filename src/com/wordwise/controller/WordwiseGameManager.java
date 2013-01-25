@@ -10,12 +10,6 @@ import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
 import com.wordwise.model.Configuration;
 import com.wordwise.view.activity.game.Hangman;
-import com.wordwise.view.activity.game.LetterBox;
-import com.wordwise.view.activity.game.Memory;
-import com.wordwise.view.activity.game.TranslateWord;
-import com.wordwise.view.activity.game.TranslationEvaluation;
-import com.wordwise.view.activity.game.WordEvaluation;
-import com.wordwise.view.activity.game.Words2Translations;
 
 public class WordwiseGameManager extends GameManager{
 	private Context context;
@@ -23,13 +17,13 @@ public class WordwiseGameManager extends GameManager{
 	public WordwiseGameManager(GameSelector gameSelector, Context context) {
 		super(gameSelector);
 		
-		gameSelector.registerGame(new LetterBox());
+		//gameSelector.registerGame(new LetterBox());
 		gameSelector.registerGame(new Hangman());
-	    gameSelector.registerGame(new Words2Translations());
-		gameSelector.registerGame(new Memory());
-		gameSelector.registerGame(new TranslateWord());
-		gameSelector.registerGame(new WordEvaluation());
-		gameSelector.registerGame(new TranslationEvaluation());
+	     // gameSelector.registerGame(new Words2Translations());
+		//gameSelector.registerGame(new Memory());
+		//gameSelector.registerGame(new TranslateWord());
+		//gameSelector.registerGame(new WordEvaluation());
+		//gameSelector.registerGame(new TranslationEvaluation());
 		
 		this.context = context;
 	}
