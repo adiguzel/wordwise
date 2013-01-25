@@ -11,6 +11,7 @@ import com.tekle.oss.android.animation.AnimationFactory;
 import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
 import com.wordwise.model.game.MemoryFlipState;
+import com.wordwise.server.model.Translation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.game.MemoryViewFlipper;
@@ -21,16 +22,18 @@ public class MemoryManager {
 	private MemoryFlipState flipState = new MemoryFlipState();
 	private List<MemoryViewFlipper> foundFlippers;
 	private List<MemoryViewFlipper> flippers;
-
-	public MemoryManager(Memory memoryActivity) {
+	private List<Translation> translations;
+	
+	public MemoryManager(Memory memoryActivity, List<Translation> translations) {
 		this.memoryActivity = memoryActivity;
+		this.translations = translations;
 	}
 
 	public void initMemoryGrid() {
 		GridView translationsGrid = (GridView) memoryActivity
 				.findViewById(R.id.memoryGrid);
 		MemoryWordAndTranslationAdapter translationAdapter = new MemoryWordAndTranslationAdapter(
-				memoryActivity);
+				memoryActivity, translations);
 		translationsGrid.setAdapter(translationAdapter);
 		foundFlippers = new ArrayList<MemoryViewFlipper>();
 		flippers = translationAdapter.getFlippers();
