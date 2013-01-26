@@ -46,7 +46,7 @@ public abstract class GameManager {
 	public abstract void endGame(Game game);
 
 	/**
-	 * Returns how many words the currents game needs to load 
+	 * Returns how many words the current game needs to load 
 	 * */
 	public int NumberOfWordsNeeded(){
 		if(currentGame == null)
@@ -55,11 +55,15 @@ public abstract class GameManager {
 	}
 	
 	/**
-	 * Returns how many translations the currents game needs to load 
+	 * Returns how many translations the current game needs to load 
 	 * */
 	public int NumberOfTranslationsNeeded(){
 		if(currentGame == null)
 			return -1;
 		else return currentGame.numberOfTranslationsNeeded(getConfiguration().getDifficulty());
+	}
+	
+	public void setCurrentGame(Game game){
+		currentGame = game;
 	}
 }

@@ -11,20 +11,29 @@ import com.wordwise.model.IGameView;
 import com.wordwise.util.LoaderHelper;
 import com.wordwise.util.WordwiseUtils;
 
-public abstract class WordwiseGameActivity extends Activity implements IGameView, Game {
-
+public abstract class WordwiseGameActivity extends Activity
+		implements
+			IGameView,
+			Game {
+	// flag to determine if activity should be ended and go back to the previous
+	// screen
+	protected boolean end = false;
 	protected LoaderHelper loaderHelper;
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//all games have no action bar
+		GameManagerContainer.getGameManager().setCurrentGame(this);
+		// helper class that wraps convenience methods to get the data from
+		// server
 		loaderHelper = new LoaderHelper();
+		// None of the games have an action bar
 		getActionBar().hide();
-		//all games are in portrait(vertical) mode
+		// all games are in portrait(vertical) mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		//let the children decide what else to do onCreate
 		performOnCreate(savedInstanceState);
 	}
-	
+
 	/**
 	 * Contains the necessary implementation to do when this activity is created
 	 * */
@@ -32,6 +41,10 @@ public abstract class WordwiseGameActivity extends Activity implements IGameView
 
 	@Override
 	public final void onBackPressed() {
+		if (end) {
+			super.onBackPressed();
+			return;
+		}
 		onQuitPressed();
 	}
 
@@ -49,6 +62,10 @@ public abstract class WordwiseGameActivity extends Activity implements IGameView
 
 	protected void onQuitPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
+	}
+
+	public void setEndFlag(boolean endFlag) {
+		this.end = endFlag;
 	}
 
 }

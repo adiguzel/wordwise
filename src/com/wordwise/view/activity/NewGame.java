@@ -1,5 +1,6 @@
 package com.wordwise.view.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,6 +20,7 @@ public class NewGame extends MenuActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.new_game);
 		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
 		GameManagerContainer.setGameManager(gManager);

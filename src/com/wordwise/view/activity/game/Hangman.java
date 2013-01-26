@@ -1,6 +1,5 @@
 package com.wordwise.view.activity.game;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.LoaderManager.LoaderCallbacks;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.wordwise.R;
@@ -29,10 +27,11 @@ public class Hangman extends WordwiseGameActivity
 	private Button continueButton;
 	private List<Translation> translations;
 	private boolean gameStarted = false;
-
+	boolean started = false;
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
+		started = true;
 	}
 
 	public void onStop() {
@@ -103,6 +102,8 @@ public class Hangman extends WordwiseGameActivity
 	}
 
 	public void onGameStop() {
+		if(!started)
+			Log.v("Hangman", "Activity has null elements");
 	}
 
 	public void onGamePause() {
