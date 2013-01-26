@@ -7,22 +7,17 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.model.Configuration;
-import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
 import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
-	private Configuration configuration;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        LanguageUtils.init(getResources());
-		configuration = Configuration.getInstance(getApplicationContext());
-		if (!configuration.isConfigured())
-			configure();
         setContentView(R.layout.game_main_screen);
     }
 
@@ -49,9 +44,5 @@ public class MainActivity extends MenuActivity {
 		Intent intent = new Intent(this, AboutActivity.class);
 		startActivity(intent);
 	}
-    
-	private void configure() {
-		Intent intent = new Intent(this, ConfigurationWizardStep1.class);
-		startActivity(intent);
-	}
+
 }
