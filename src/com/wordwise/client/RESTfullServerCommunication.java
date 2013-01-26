@@ -40,6 +40,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static String timeoutString = timeout.toString();
 	
 	private static TranslationResource getTranslationResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ TranslationResource.RESOURCE_NAME);
 		
@@ -52,6 +54,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static RateResource getRateResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ RateResource.RESOURCE_NAME);
 		
@@ -64,6 +68,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static QualityResource getQualityResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ QualityResource.RESOURCE_NAME);
 		
@@ -76,6 +82,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static DifficultyResource getDifficultyResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ DifficultyResource.RESOURCE_NAME);
 		
@@ -88,20 +96,17 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 	
 	private static WordResource getWordResource() {
-		
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ WordResource.RESOURCE_NAME);
 		
-		return clientResource.wrap(WordResource.class);
-		
-	/*	Context context = new Context();
+		Context context = new Context();
 		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
 		clientResource.setRetryOnError(false);
 
-		return clientResource.wrap(WordResource.class); */
+		return clientResource.wrap(WordResource.class);
 	}
 
 	public boolean addTranslation(DTOTranslation translation) {
