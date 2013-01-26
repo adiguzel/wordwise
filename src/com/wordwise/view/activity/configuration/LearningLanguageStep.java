@@ -2,15 +2,15 @@ package com.wordwise.view.activity.configuration;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.ConfigurationStep;
 
@@ -40,14 +40,14 @@ public class LearningLanguageStep extends ConfigurationStep {
 				// TODO Auto-generated method stub
 				CheckedTextView tv = (CheckedTextView) arg1;
 				String langName = tv.getText().toString();
-				Language language = LanguageUtils.getByName(langName);
+				DTOLanguage language = LanguageUtils.getByName(langName);
 				configuration.setLearningLanguage(language);
 				if (!finish.isEnabled())
 					finish.setEnabled(true);
 			}
 
 		});
-		Language learningLanguage = configuration.getLearningLanguage();
+		DTOLanguage learningLanguage = configuration.getLearningLanguage();
 		if(learningLanguage != null){
 			listView.setItemChecked(LanguageUtils.getIndex(learningLanguage), true);
 			finish.setEnabled(true);
