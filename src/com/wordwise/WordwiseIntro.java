@@ -30,7 +30,6 @@ public class WordwiseIntro extends Activity {
 				LanguageUtils.init(getResources());
 				configuration = Configuration
 						.getInstance(getApplicationContext());
-				openMainScreen();
 				if (!configuration.isConfigured())
 					configure();
 				else openMainScreen();
