@@ -5,13 +5,13 @@ import java.util.List;
 
 public abstract class GameSelector
 {
-	protected List<Game> games = new ArrayList<Game>();
+	protected List<Class<? extends Game>> games = new ArrayList<Class<? extends Game>>();
 	
-	public void registerGame(Game game)
+	public void registerGame(Class<? extends Game> gameClass)
 	{
-		games.add(game);
+		games.add(gameClass);
 	}
 			
-	public abstract Game nextGame();
+	public abstract Class<? extends Game> nextGame();
 			
 }

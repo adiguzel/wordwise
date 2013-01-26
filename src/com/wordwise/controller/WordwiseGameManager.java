@@ -23,20 +23,20 @@ public class WordwiseGameManager extends GameManager {
 	public WordwiseGameManager(GameSelector gameSelector, Context context) {
 		super(gameSelector);
 
-		gameSelector.registerGame(new LetterBox());
-		gameSelector.registerGame(new Hangman());
-		gameSelector.registerGame(new Words2Translations());
-		gameSelector.registerGame(new Memory());
-		gameSelector.registerGame(new TranslateWord());
-		gameSelector.registerGame(new WordEvaluation());
-		gameSelector.registerGame(new TranslationEvaluation());
+		gameSelector.registerGame(new LetterBox().getClass());
+		gameSelector.registerGame(new Hangman().getClass());
+		gameSelector.registerGame(new Words2Translations().getClass());
+		gameSelector.registerGame(new Memory().getClass());
+		gameSelector.registerGame(new TranslateWord().getClass());
+		gameSelector.registerGame(new WordEvaluation().getClass());
+		gameSelector.registerGame(new TranslationEvaluation().getClass());
 
 		this.context = context;
 	}
 
 	@Override
-	public void startGame(Game game) {
-		Intent gameIntent = new Intent(context, game.getClass());
+	public void startGame(Class<? extends Game> gameClass) {
+		Intent gameIntent = new Intent(context, gameClass);
 		context.startActivity(gameIntent);
 	}
 

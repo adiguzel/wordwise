@@ -2,6 +2,7 @@ package com.wordwise.gameengine;
 
 
 public abstract class GameManager {
+	protected Class<? extends Game> currentGameClass;
 	protected Game currentGame;
 	protected GameSelector gameSelector;
 	
@@ -29,19 +30,18 @@ public abstract class GameManager {
 	
 	public final void startNextGame()
 	{
-		currentGame = gameSelector.nextGame();
-		if(currentGame != null )
+		currentGameClass = gameSelector.nextGame();
+		if(currentGameClass != null )
 		{
-			currentGame.onGameStart();
-			startGame(currentGame);
+			startGame(currentGameClass);
 		}		
 		else
-			System.out.println("Game is null");
+			System.out.println("Game class is null");
 	}
 	
 	public abstract GameConfiguration getConfiguration() ;
 	
-	public abstract void startGame(Game game);
+	public abstract void startGame(Class<? extends Game> gameClass);
 	
 	public abstract void endGame(Game game);
 
@@ -65,5 +65,6 @@ public abstract class GameManager {
 	
 	public void setCurrentGame(Game game){
 		currentGame = game;
+		currentGame.onGameStart();
 	}
 }
