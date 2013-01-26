@@ -10,7 +10,7 @@ import com.wordwise.controller.WordwiseGameManager;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
+import com.wordwise.server.dto.DTODifficulty;
 
 public class NewGame extends MenuActivity {
 	private GameManager gManager;
@@ -30,16 +30,16 @@ public class NewGame extends MenuActivity {
 		switch (view.getId()) {
 			case R.id.easyNewGameButton :
 				// set the difficulty
-				configuration.setDifficulty(Difficulty.EASY);
+				configuration.setDifficulty(DTODifficulty.EASY);
 				// start the game cycle
 				gManager.startGameCycle();
 				break;
 			case R.id.mediumNewGameButton :
-				configuration.setDifficulty(Difficulty.MEDIUM);
+				configuration.setDifficulty(DTODifficulty.MEDIUM);
 				gManager.startGameCycle();
 				break;
 			case R.id.hardNewGameButton :
-				configuration.setDifficulty(Difficulty.HARD);
+				configuration.setDifficulty(DTODifficulty.HARD);
 				gManager.startGameCycle();
 				break;
 			default :

@@ -2,36 +2,36 @@ package com.wordwise.gameengine;
 
 import java.util.Set;
 
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
 
 
 public class GameConfiguration {
-	private Difficulty difficulty;
-	private Set<Language> proficientLanguages;
-	private Language learningLanguage;
+	private DTODifficulty difficulty;
+	private Set<DTOLanguage> proficientLanguages;
+	private DTOLanguage learningLanguage;
 
-	public Difficulty getDifficulty() {
+	public DTODifficulty getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(Difficulty difficulty) {
+	public void setDifficulty(DTODifficulty difficulty) {
 		this.difficulty = difficulty;
 	}
 
-	public Set<Language> getProficientLanguage() {
+	public Set<DTOLanguage> getProficientLanguage() {
 		return proficientLanguages;
 	}
 
-	public void setProficientLanguage(Set<Language> proficientLanguages) {
+	public void setProficientLanguage(Set<DTOLanguage> proficientLanguages) {
 		this.proficientLanguages = proficientLanguages;
 	}
 
-	public Language getLearningLanguage() {
+	public DTOLanguage getLearningLanguage() {
 		return learningLanguage;
 	}
 
-	public void setLearningLanguage(Language learningLanguage) {
+	public void setLearningLanguage(DTOLanguage learningLanguage) {
 		this.learningLanguage = learningLanguage;
 	}
 

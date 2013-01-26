@@ -14,7 +14,7 @@ import android.widget.ListView;
 import com.wordwise.MainActivity;
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
 public class ConfigurationWizardStep2 extends Activity {
@@ -44,7 +44,7 @@ public class ConfigurationWizardStep2 extends Activity {
 				// TODO Auto-generated method stub
 				CheckedTextView tv = (CheckedTextView) arg1;
 				String langName = tv.getText().toString();
-				Language language = LanguageUtils.getByName(langName);
+				DTOLanguage language = LanguageUtils.getByName(langName);
 				configuration.setLearningLanguage(language);
 				if (!finish.isEnabled())
 					finish.setEnabled(true);

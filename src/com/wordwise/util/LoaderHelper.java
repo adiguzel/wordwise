@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.loader.TranslationLoader;
 import com.wordwise.loader.WordLoader;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
+import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.DTOWord;
 
 public class LoaderHelper {
 	public enum LoaderType{
@@ -32,12 +32,12 @@ public class LoaderHelper {
 	public void initLoader(Activity activity, LoaderType loaderType){
 		if(loaderType == LoaderType.TRANSLATION_LOADER){
 			activity.getLoaderManager().initLoader(0, null,
-					(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) activity)
+					(android.app.LoaderManager.LoaderCallbacks<List<DTOTranslation>>) activity)
 					.forceLoad();
 		}
 		else if(loaderType == LoaderType.WORD_LOADER){
 			activity.getLoaderManager().initLoader(0, null,
-					(android.app.LoaderManager.LoaderCallbacks<List<Word>>) activity)
+					(android.app.LoaderManager.LoaderCallbacks<List<DTOWord>>) activity)
 					.forceLoad();
 		}
 	}
@@ -46,12 +46,12 @@ public class LoaderHelper {
 	public void restartLoader(Activity activity, LoaderType loaderType){
 		if(loaderType == LoaderType.TRANSLATION_LOADER){
 			activity.getLoaderManager().restartLoader(0, null,
-					(android.app.LoaderManager.LoaderCallbacks<List<Translation>>) activity)
+					(android.app.LoaderManager.LoaderCallbacks<List<DTOTranslation>>) activity)
 					.forceLoad();
 		}
 		else if(loaderType == LoaderType.WORD_LOADER){
 			activity.getLoaderManager().restartLoader(0, null,
-					(android.app.LoaderManager.LoaderCallbacks<List<Word>>) activity)
+					(android.app.LoaderManager.LoaderCallbacks<List<DTOWord>>) activity)
 					.forceLoad();
 		}
 	}

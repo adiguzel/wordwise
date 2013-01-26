@@ -12,16 +12,16 @@ import android.widget.Button;
 import com.wordwise.R;
 import com.wordwise.controller.game.MemoryManager;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Memory extends WordwiseGameActivity implements
-LoaderCallbacks<List<Translation>> {
+LoaderCallbacks<List<DTOTranslation>> {
 	
 	private Button continueButton;
-	private List<Translation> translations;
+	private List<DTOTranslation> translations;
 	
 	public void performOnCreate(Bundle savedInstanceState) {
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
@@ -47,18 +47,18 @@ LoaderCallbacks<List<Translation>> {
 		continueButton.setEnabled(true);
 	}
 
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {	
-		if (difficulty == Difficulty.EASY)
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {	
+		if (difficulty == DTODifficulty.EASY)
 			return 3;
-		else if (difficulty == Difficulty.MEDIUM)
+		else if (difficulty == DTODifficulty.MEDIUM)
 			return 6;
-		else if (difficulty == Difficulty.HARD)
+		else if (difficulty == DTODifficulty.HARD)
 			return 9;
 		else
 			return -1;
 	}
 
-	public int numberOfWordsNeeded(Difficulty difficulty) {
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		return 0;
 	}
 
@@ -66,17 +66,17 @@ LoaderCallbacks<List<Translation>> {
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 	
-	public List<Translation> getTranslations(){
+	public List<DTOTranslation> getTranslations(){
 		return translations;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<Translation>> arg0,
-			List<Translation> translations) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
+			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
 		
 		if (translations == null) {
@@ -92,7 +92,7 @@ LoaderCallbacks<List<Translation>> {
 		}
 	}
 
-	public void onLoaderReset(Loader<List<Translation>> arg0) {
+	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);	
 	}
 	

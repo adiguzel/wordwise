@@ -22,17 +22,17 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.controller.game.LetterBoxManager;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class LetterBox extends WordwiseGameActivity implements
-LoaderCallbacks<List<Translation>>{
+LoaderCallbacks<List<DTOTranslation>>{
 	private LetterBoxManager letterBoxManager;
 	private Button continueButton;
-	private List<Translation> translations;
+	private List<DTOTranslation> translations;
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
@@ -74,7 +74,7 @@ LoaderCallbacks<List<Translation>>{
 		});
 	}
 
-	public void markTranslationAsFound(Translation translation) {
+	public void markTranslationAsFound(DTOTranslation translation) {
 		GridView wordsGrid = (GridView) findViewById(R.id.gridViewWords);
 		TextView textView = null;
 		for (int i = 0; i < wordsGrid.getChildCount(); i++) {
@@ -103,7 +103,7 @@ LoaderCallbacks<List<Translation>>{
 		wordsGrid.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				Translation translation = (Translation) wordsGrid.getAdapter()
+				DTOTranslation translation = (DTOTranslation) wordsGrid.getAdapter()
 						.getItem(position);
 				WordwiseUtils.makeCustomToast(activity, translation.getWord()
 						.getWord());
@@ -117,9 +117,9 @@ LoaderCallbacks<List<Translation>>{
 
 	private class WordsAdapter extends BaseAdapter {
 		private Context mContext;
-		List<Translation> translations;
+		List<DTOTranslation> translations;
 
-		public WordsAdapter(Context c, List<Translation> translations) {
+		public WordsAdapter(Context c, List<DTOTranslation> translations) {
 			mContext = c;
 			this.translations = translations;
 		}
@@ -197,19 +197,19 @@ LoaderCallbacks<List<Translation>>{
 	}
 
     //TODO reconsider numbers
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {
-		if (difficulty == Difficulty.EASY)
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
+		if (difficulty == DTODifficulty.EASY)
 			return 6;
-		else if (difficulty == Difficulty.MEDIUM)
+		else if (difficulty == DTODifficulty.MEDIUM)
 			return 6;
-		else if (difficulty == Difficulty.HARD)
+		else if (difficulty == DTODifficulty.HARD)
 			return 6;
 		else
 			return -1;
 	}
 
 
-	public int numberOfWordsNeeded(Difficulty difficulty){
+	public int numberOfWordsNeeded(DTODifficulty difficulty){
 		return 0;
 	}
 
@@ -218,18 +218,18 @@ LoaderCallbacks<List<Translation>>{
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 	
-	public List<Translation> getTranslations(){
+	public List<DTOTranslation> getTranslations(){
 		return translations;
 	}
 
 
 	@SuppressWarnings("unchecked")
-	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<Translation>> arg0,
-			List<Translation> translations) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
+			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
 		
 		if (translations == null) {
@@ -245,7 +245,7 @@ LoaderCallbacks<List<Translation>>{
 		}	
 	}
 
-	public void onLoaderReset(Loader<List<Translation>> arg0) {
+	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);			
 	}
 }

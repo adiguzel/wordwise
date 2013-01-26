@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.game.MemoryViewFlipper;
 
@@ -18,7 +18,7 @@ public class MemoryWordAndTranslationAdapter extends BaseAdapter {
 	private List<MemoryViewFlipper> flippers;
 
 	public MemoryWordAndTranslationAdapter(Context c,
-			List<Translation> translations) {
+			List<DTOTranslation> translations) {
 		super();
 		mContext = c;
 		flippers = MemoryViewFlipperUtil.getRandomViewFlipperList(translations,

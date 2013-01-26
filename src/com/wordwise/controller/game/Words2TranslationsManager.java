@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.GridView;
 
 import com.wordwise.R;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.view.activity.game.Words2Translations;
 import com.wordwise.view.game.Word2TranslationsTextView;
 
@@ -36,8 +36,8 @@ public class Words2TranslationsManager
 	private Word2TranslationsTextView dragged;
 	// Number of views that were dropped into the placeholders
 	private int droppedCount = 0;
-	private List<Translation> translations = new ArrayList<Translation>();
-	private Map<Translation, Word2TranslationsTextView> translationToTranslationView = new HashMap<Translation, Word2TranslationsTextView>();
+	private List<DTOTranslation> translations = new ArrayList<DTOTranslation>();
+	private Map<DTOTranslation, Word2TranslationsTextView> translationToTranslationView = new HashMap<DTOTranslation, Word2TranslationsTextView>();
 	// indicates whether a drop happened. used to redraw the dragged view if no drop happened
 	private boolean isDropped = false;
 	// Adapter that provides translations
@@ -80,7 +80,7 @@ public class Words2TranslationsManager
 		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word4));
 
 		int i = 0;
-		for (Translation translation : translations) {
+		for (DTOTranslation translation : translations) {
 			words.get(i).init(activity, translation,
 					Word2TranslationsTextView.USE_WORD);
 			i++;
@@ -107,7 +107,7 @@ public class Words2TranslationsManager
 
 				public void onClick(View v) {
 					Word2TranslationsTextView view = (Word2TranslationsTextView) v;
-					Translation tag = (Translation) view.getTag();
+					DTOTranslation tag = (DTOTranslation) view.getTag();
 					if (tag != null) {
 						Word2TranslationsTextView translationView = translationToTranslationView
 								.get(tag);
@@ -253,7 +253,7 @@ public class Words2TranslationsManager
 	}
 
 	private boolean pairsMatch(Word2TranslationsTextView placeHolder,
-			Translation trans) {
+			DTOTranslation trans) {
 		return (placeHolder.getTag()).equals(trans);
 	}
 

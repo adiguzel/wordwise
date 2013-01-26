@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
 public class ConfigurationWizardStep1 extends FragmentActivity {
@@ -81,7 +81,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 
 	public void toggle(CheckedTextView v) {
 		String langName = v.getText().toString();
-		Language l = LanguageUtils.getByName(langName);
+		DTOLanguage l = LanguageUtils.getByName(langName);
 		if (v.isChecked()) {
 			v.setChecked(false);
 			configuration.removeLanguage(l);
@@ -111,7 +111,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 
 	public List<Integer> getSelectedIndexes() {
 		List<Integer> selectedIndexes = new ArrayList<Integer>();
-		for (Language l : configuration.getProficientLanguages()) {
+		for (DTOLanguage l : configuration.getProficientLanguages()) {
 			Integer index = LanguageUtils.getIndex(l);
 			if (index >= 0)
 				selectedIndexes.add(index);

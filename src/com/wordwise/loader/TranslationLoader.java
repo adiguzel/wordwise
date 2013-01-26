@@ -11,9 +11,9 @@ import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 
-public class TranslationLoader extends AsyncTaskLoader<List<Translation>> {
+public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 	private RESTfullServerCommunication serverComm;
 	private Configuration configuration;
 
@@ -24,14 +24,14 @@ public class TranslationLoader extends AsyncTaskLoader<List<Translation>> {
 	}
 
 	@Override
-	public List<Translation> loadInBackground() {
+	public List<DTOTranslation> loadInBackground() {
 		GameManager gManager = GameManagerContainer.getGameManager();
 		int translationsNeeded = gManager.NumberOfTranslationsNeeded();
 		Log.v("translationsNeed", "" + translationsNeeded);
 		if (translationsNeeded == -1 || translationsNeeded == 0)
 			return null;
 		GameConfiguration gameConf = configuration.getCurrentGameConfiguration();
-		List<Translation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
+		List<DTOTranslation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
 				gameConf.getDifficulty(), translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
 		return translations;

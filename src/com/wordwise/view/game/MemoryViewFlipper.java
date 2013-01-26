@@ -5,7 +5,7 @@ import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 
 public class MemoryViewFlipper extends ViewFlipper {
@@ -13,14 +13,14 @@ public class MemoryViewFlipper extends ViewFlipper {
 	public static boolean USE_WORD = true;
 	public static boolean USE_TRANSLATION = false;
 
-	private Translation translation;
+	private DTOTranslation translation;
 
 	
 	public MemoryViewFlipper(Context context) {
 		super(context);
 	}
 	
-	public MemoryViewFlipper(Context context,Translation translation, boolean isWord) {
+	public MemoryViewFlipper(Context context, DTOTranslation translation, boolean isWord) {
 		this(context);
 		TextView face = new TextView(context);
 		TextView bottom = new TextView(context);
@@ -43,7 +43,7 @@ public class MemoryViewFlipper extends ViewFlipper {
 		this.translation = translation;
 	}
 
-	public Translation getTranslation() {
+	public DTOTranslation getTranslation() {
 		return translation;
 	}
 	

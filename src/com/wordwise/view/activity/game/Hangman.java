@@ -13,19 +13,19 @@ import android.widget.Button;
 import com.wordwise.R;
 import com.wordwise.controller.game.HangmanManager;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Hangman extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<Translation>> {
+			LoaderCallbacks<List<DTOTranslation>> {
 
 	private HangmanManager hangmanManager;
 	private Button continueButton;
-	private List<Translation> translations;
+	private List<DTOTranslation> translations;
 	private boolean gameStarted = false;
 	boolean started = false;
 	@Override
@@ -119,11 +119,11 @@ public class Hangman extends WordwiseGameActivity
 		continueButton.setEnabled(true);
 	}
 
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		return 1;
 	}
 
-	public int numberOfWordsNeeded(Difficulty difficulty) {
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -132,18 +132,18 @@ public class Hangman extends WordwiseGameActivity
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 
-	public List<Translation> getTranslations() {
+	public List<DTOTranslation> getTranslations() {
 		return translations;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this,
+	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this,
 				LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<Translation>> arg0,
-			List<Translation> translations) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
+			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
 
 		if (translations == null) {
@@ -159,7 +159,7 @@ public class Hangman extends WordwiseGameActivity
 		}
 	}
 
-	public void onLoaderReset(Loader<List<Translation>> arg0) {
+	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);
 	}
 

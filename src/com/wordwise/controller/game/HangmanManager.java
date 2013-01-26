@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.view.activity.game.Hangman;
 
@@ -38,11 +38,11 @@ public class HangmanManager {
 
 	// Configuration properties
 	private Configuration configuration;
-	private Language learningLanguage;
+	private DTOLanguage learningLanguage;
 	private Locale locale;
 
 	public HangmanManager(Hangman hangmanActivity,
-			List<Translation> translations) {
+			List<DTOTranslation> translations) {
 		this.hangmanActivity = hangmanActivity;
 		mysteryWord = translations.get(0).getTranslation().toUpperCase();
 	}
