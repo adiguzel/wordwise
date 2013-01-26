@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:enabled="false"
             android:gravity="center_vertical|center_horizontal"
-            android:onClick="finishStep"
+            android:onClick="next"
             android:text="@string/finish" />
     </LinearLayout>
 

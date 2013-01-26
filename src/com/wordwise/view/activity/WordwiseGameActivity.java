@@ -37,7 +37,7 @@ public abstract class WordwiseGameActivity extends Activity
 	/**
 	 * Contains the necessary implementation to do when this activity is created
 	 * */
-	public abstract void performOnCreate(Bundle savedInstanceState);
+	protected abstract void performOnCreate(Bundle savedInstanceState);
 
 	@Override
 	public final void onBackPressed() {

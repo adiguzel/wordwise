@@ -41,7 +41,7 @@
     <string name="word2Translations_game_information"><b>Match</b> English words with their translations</string>
     <string name="memory_game_information"><b>Remember</b> places of the word - translation pairs and match them </string>
     <string name="initial_conf_proficient_lang_info">Now please choose which languages you speak fluently</string>
-    <string name="initial_conf_learning_lang_info">Finally, choose which languages you want to practice</string>
+    <string name="initial_conf_learning_lang_info">Finally, choose which language you want to practice</string>
     <string name="wrong_letters_title">Wrong Letters:</string>
     <string name="translate_word_activity_info">Please enter a word and a translation</string>
     <string name="translate_word_add_word">Enter a word in English</string>

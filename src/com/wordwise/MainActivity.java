@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import com.wordwise.model.Configuration;
 import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
-import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
 
 public class MainActivity extends MenuActivity {
 

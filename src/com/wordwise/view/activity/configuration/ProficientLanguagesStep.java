@@ -1,11 +1,8 @@
-package com.wordwise.view.activity.setting;
+package com.wordwise.view.activity.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,8 +16,9 @@ import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.view.activity.ConfigurationStep;
 
-public class ConfigurationWizardStep1 extends FragmentActivity {
+public class ProficientLanguagesStep extends ConfigurationStep {
 	private String selectedLanguagesText;
 	private ListView list;
 	private TextView selectedLanguages;
@@ -28,23 +26,24 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 	private Button next;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.configuration_step1);
+	protected void performOnCreate() {
+		setContentView(R.layout.conf_step_proficient_langs);
 
 		configuration = Configuration.getInstance(getApplicationContext());
 		list = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
-		
-		initListView();
-		
-		if (!configuration.getProficientLanguages().isEmpty())
-			next.setEnabled(true);
-		
 
-		selectedLanguagesText = selectedLanguages.getText().toString();
-		setSelectedIndexes();
+		initListView();
+
+		selectedLanguagesText = selectedLanguages.getText().toString();	
+		if (!configuration.getProficientLanguages().isEmpty()){
+			next.setEnabled(true);
+			setSelectedIndexes();
+
+		}
+		
+		
 	}
 
 	@Override
@@ -71,14 +70,6 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 		});
 	}
 
-	public void finishStep(View view) {
-		if (!configuration.getProficientLanguages().isEmpty()) {
-			Intent intent = new Intent(this, ConfigurationWizardStep2.class);
-			startActivity(intent);
-		}
-		// TODO show error
-	}
-
 	public void toggle(CheckedTextView v) {
 		String langName = v.getText().toString();
 		Language l = LanguageUtils.getByName(langName);
@@ -89,6 +80,7 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 			v.setChecked(true);
 			configuration.addLanguage(l);
 		}
+		
 		if (configuration.getProficientLanguages().size() > 0)
 			next.setEnabled(true);
 		else
@@ -117,6 +109,12 @@ public class ConfigurationWizardStep1 extends FragmentActivity {
 				selectedIndexes.add(index);
 		}
 		return selectedIndexes;
+	}
+
+	@Override
+	public boolean isFinished() {
+		// TODO Auto-generated method stub
+		return !configuration.getProficientLanguages().isEmpty();
 	}
 
 }

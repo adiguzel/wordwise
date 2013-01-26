@@ -1,15 +1,15 @@
 package com.wordwise;
 
-import com.tekle.oss.android.animation.AnimationFactory;
-import com.wordwise.model.Configuration;
-import com.wordwise.util.LanguageUtils;
-import com.wordwise.view.activity.setting.ConfigurationWizardStep1;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.tekle.oss.android.animation.AnimationFactory;
+import com.wordwise.controller.ConfigurationProcess;
+import com.wordwise.model.Configuration;
+import com.wordwise.util.LanguageUtils;
 
 public class WordwiseIntro extends Activity {
 	private TextView introText;
@@ -37,7 +37,6 @@ public class WordwiseIntro extends Activity {
 		}, 3000);
 
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 	}
 
 	public void openMainScreen() {
@@ -46,8 +45,7 @@ public class WordwiseIntro extends Activity {
 	}
 
 	private void configure() {
-		Intent intent = new Intent(this, ConfigurationWizardStep1.class);
-		startActivity(intent);
+		ConfigurationProcess.getInstance(this).startProcess(); 
 	}
 
 }

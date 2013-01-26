@@ -1,31 +1,27 @@
-package com.wordwise.view.activity.setting;
+package com.wordwise.view.activity.configuration;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
-import com.wordwise.MainActivity;
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.model.Language;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.view.activity.ConfigurationStep;
 
-public class ConfigurationWizardStep2 extends Activity {
+public class LearningLanguageStep extends ConfigurationStep {
 	private ListView listView;
 	private Configuration configuration;
 	private Button finish;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.configuration_step2);
+	protected void performOnCreate() {
+		setContentView(R.layout.conf_step_learning_lang);
 
 		configuration = Configuration.getInstance(getApplicationContext());
 		listView = (ListView) findViewById(R.id.list);
@@ -51,20 +47,17 @@ public class ConfigurationWizardStep2 extends Activity {
 			}
 
 		});
-	}
-	// Calls to this function is configured in the layout res file
-	public void back(View view) {
-		Intent intent = new Intent(this, ConfigurationWizardStep1.class);
-		startActivity(intent);
+		Language learningLanguage = configuration.getLearningLanguage();
+		if(learningLanguage != null){
+			listView.setItemChecked(LanguageUtils.getIndex(learningLanguage), true);
+			finish.setEnabled(true);
+		}
+
 	}
 
-	// Calls to this function is configured in the layout res file
-	public void finishStep(View view) {
-		// TODO check if a lang is selected
-		boolean confSuccessful = configuration.finishInitialConfiguration();
-		if (confSuccessful) {
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-		}
+	@Override
+	public boolean isFinished() {
+		return configuration.finishInitialConfiguration();
 	}
+
 }

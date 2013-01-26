@@ -3,21 +3,26 @@ package com.wordwise.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.wordwise.MainActivity;
 import com.wordwise.view.activity.ConfigurationStep;
+import com.wordwise.view.activity.configuration.LearningLanguageStep;
+import com.wordwise.view.activity.configuration.ProficientLanguagesStep;
 
 public class ConfigurationProcess {
-	private ConfigurationProcess instance = null;
+	private static ConfigurationProcess instance = null;
 	private Context context;
 
-	private int currentStep = 0;
+	private int currentStepIndex = 0;
 	private List<Class<? extends ConfigurationStep>> steps = new ArrayList<Class<? extends ConfigurationStep>>();
 
 	private Class<? extends ConfigurationStep> initialStep;
 	private Class<? extends ConfigurationStep> finalStep;
-	
+	private Class<? extends Activity> finishTarget = MainActivity.class;
+
 	// not allowed
 	private ConfigurationProcess() {
 	}
@@ -27,46 +32,55 @@ public class ConfigurationProcess {
 		configureSteps();
 	}
 
-	public ConfigurationProcess getInstance(Context context) {
+	public static ConfigurationProcess getInstance(Context context) {
 		if (instance == null) {
 			instance = new ConfigurationProcess(context);
 		}
 		return instance;
 	}
-	
+
 	private void configureSteps() {
 		// initial step first
-		steps.add(initialStep);
+		// steps.add(initialStep);
 		// add the intermidate(real configuration) steps in the middle
 		steps.addAll(getIntermediateSteps());
 		// final step is at the end
-		steps.add(finalStep);
+		// steps.add(finalStep);
 	}
 
 	private List<Class<? extends ConfigurationStep>> getIntermediateSteps() {
 		List<Class<? extends ConfigurationStep>> intermediateSteps = new ArrayList<Class<? extends ConfigurationStep>>();
 
-		// add all the intermediate steps here
+		// add all the intermediate steps here (ordered)
+		intermediateSteps.add(ProficientLanguagesStep.class);
+		intermediateSteps.add(LearningLanguageStep.class);
 
 		return intermediateSteps;
 	}
-	
+
 	public void nextStep() {
-		if (currentStep < steps.size()) {
-			currentStep++;
-			startStep(steps.get(currentStep));
-		}
+		if (currentStepIndex < steps.size() - 1) {
+			currentStepIndex++;
+			startStep(steps.get(currentStepIndex));
+		} else
+			onConfigurationFinish();
+
 	}
-	
-	public void start(){
-		if(steps.size() > 0)
+
+	public void onConfigurationFinish() {
+		Intent intent = new Intent(context, finishTarget);
+		context.startActivity(intent);
+	}
+
+	public void startProcess() {
+		if (steps.size() > 0)
 			startStep(steps.get(0));
 	}
 
 	public void previousStep() {
-		if (currentStep > 0) {
-			currentStep--;
-			startStep(steps.get(currentStep));
+		if (currentStepIndex > 0) {
+			currentStepIndex--;
+			startStep(steps.get(currentStepIndex));
 		}
 	}
 
@@ -74,5 +88,4 @@ public class ConfigurationProcess {
 		Intent intent = new Intent(context, stepClass);
 		context.startActivity(intent);
 	}
-
 }
