@@ -69,4 +69,6 @@
     <color name="wordwise_back_button_focused_end">#CC177BBD</color>
     <color name="wordwise_back_button_focused_border">#FFCCCCCC<!--  #FF7FC348--></color>
     <color name="hangman_wrong_letters_red_color">#FFFF0000</color>
+    
+    <color name="wordwise_darker_gray">#FF666666</color>
 </resources>
