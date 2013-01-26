@@ -10,14 +10,14 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils.Direction;
 import com.wordwise.view.activity.game.LetterBox;
 
 public class LetterBoxManager
 {
-	private List<Translation> translations;
+	private List<DTOTranslation> translations;
 	private List<String> letters = generateLetters(88);
 	private List<GridItem> currentSelection = new ArrayList<GridItem>(){
 		private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class LetterBoxManager
 		
 	}
 	
-	public LetterBoxManager(LetterBox letterBoxActivity, List<Translation> translations)
+	public LetterBoxManager(LetterBox letterBoxActivity, List<DTOTranslation> translations)
 	{
 		this.letterBoxActivity = letterBoxActivity;
 		this.translations = translations;
@@ -78,7 +78,7 @@ public class LetterBoxManager
 	{
 		Random random = new Random();
 		int positionOfFirstLetter = random.nextInt(letters.size());
-		for (Translation translation : translations)
+		for (DTOTranslation translation : translations)
 		{
 			while (!LetterBoxPositionUtils.InsertTranslationIntoPosition(translation.getWord().getWord(), positionOfFirstLetter, letters))
 			{
@@ -87,7 +87,7 @@ public class LetterBoxManager
 		}
 	}
 
-	public List<Translation> getTranslations() {
+	public List<DTOTranslation> getTranslations() {
 		return translations;
 	}
 
@@ -144,9 +144,9 @@ public class LetterBoxManager
 		clearCurrentSelection();
 	}
 
-	private Translation getTranslation(String word)
+	private DTOTranslation getTranslation(String word)
 	{
-		for (Translation translation : translations)
+		for (DTOTranslation translation : translations)
 		{
 			if (translation.getWord().getWord().equalsIgnoreCase(word))
 			{
@@ -163,7 +163,7 @@ public class LetterBoxManager
 
 	private boolean currentSelectionMatchesAWord()
 	{
-		for (Translation word : translations)
+		for (DTOTranslation word : translations)
 		{
 			if (word.getWord().getWord().equalsIgnoreCase(getCurrentSelectionWord()) ||
 				word.getWord().getWord().equalsIgnoreCase(getCurrentSelectionWordReversed()))

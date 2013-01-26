@@ -19,27 +19,27 @@ import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Rate;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTORate;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class TranslationEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<Translation>> {
+			LoaderCallbacks<List<DTOTranslation>> {
 
 	private Configuration configuration;
-	private Set<Language> proficientLanguagesSet;
-	private List<Language> proficientLanguagesList = new ArrayList<Language>();
+	private Set<DTOLanguage> proficientLanguagesSet;
+	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
-	private Rate currentRating;
-	private Difficulty difficulty;
+	private DTORate currentRating;
+	private DTODifficulty difficulty;
 
 	private RESTfullServerCommunication server;
-	private Translation translation;
+	private DTOTranslation translation;
 
 	private Button submitRating;
 	private Button continueButton;
@@ -49,7 +49,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	private RatingBar translationRatingBar;
 
 	private Boolean translationRated;
-	private Language languageOfTranslation;
+	private DTOLanguage languageOfTranslation;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		difficulty = configuration.getDifficulty();
 
 		// translation = this.retrieveRandomTranslation();
-		currentRating = new Rate();
+		currentRating = new DTORate();
 
 		this.setChangeableTextViews();
 
@@ -139,7 +139,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 				.getText() + " " + this.languageOfTranslation.getLanguage());
 	}
 
-	private Language chooseRandomProficientLanguage() {
+	private DTOLanguage chooseRandomProficientLanguage() {
 		// removing English since this is the language from which the words are
 		// being translated
 		if (this.proficientLanguagesList.contains(LanguageUtils
@@ -148,17 +148,17 @@ public class TranslationEvaluation extends WordwiseGameActivity
 					.indexOf(LanguageUtils.getByName("English")));
 		}
 
-		Language randomLanguage = LanguageUtils
+		DTOLanguage randomLanguage = LanguageUtils
 				.getRandomProficientLanguage(this.proficientLanguagesList);
 
 		return randomLanguage;
 	}
 
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		return 1;
 	}
 
-	public int numberOfWordsNeeded(Difficulty difficulty) {
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		return 0;
 	}
 
@@ -167,13 +167,13 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	}
 
 	@SuppressWarnings("unchecked")
-	public Loader<List<Translation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<Translation>>) loaderHelper.onLoadCreated(this,
+	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this,
 				LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<Translation>> arg0,
-			List<Translation> translations) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
+			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
 
 		if (translations == null) {
@@ -190,7 +190,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	}
 
-	public void onLoaderReset(Loader<List<Translation>> arg0) {
+	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);
 
 	}

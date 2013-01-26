@@ -5,19 +5,21 @@ import java.util.List;
 import org.restlet.Client;
 import org.restlet.Context;
 import org.restlet.data.Protocol;
+import org.restlet.engine.Engine;
+import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ClientResource;
 
 import android.util.Log;
 
 import com.wordwise.gameengine.ServerCommunication;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Quality;
-import com.wordwise.server.model.Rate;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
-import com.wordwise.server.model.parameter.ListTranslationParameters;
-import com.wordwise.server.model.parameter.ListWordParameters;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOQuality;
+import com.wordwise.server.dto.DTORate;
+import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.DTOWord;
+import com.wordwise.server.dto.parameter.ListTranslationParameters;
+import com.wordwise.server.dto.parameter.ListWordParameters;
 import com.wordwise.server.resource.DifficultyResource;
 import com.wordwise.server.resource.QualityResource;
 import com.wordwise.server.resource.RateResource;
@@ -26,7 +28,7 @@ import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
 
-	private static final String BASE_CLIENT_URL = "http://192.168.1.100:8080/WordWiseServer/";
+	private static final String BASE_CLIENT_URL = "http://192.168.112.1:8080/WordWiseServer/";
 
 	private static final TranslationResource translationResource = getTranslationResource();
 	private static final RateResource rateResource = getRateResource();
@@ -38,6 +40,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static String timeoutString = timeout.toString();
 	
 	private static TranslationResource getTranslationResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ TranslationResource.RESOURCE_NAME);
 		
@@ -50,6 +54,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static RateResource getRateResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ RateResource.RESOURCE_NAME);
 		
@@ -62,6 +68,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static QualityResource getQualityResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ QualityResource.RESOURCE_NAME);
 		
@@ -74,6 +82,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	private static DifficultyResource getDifficultyResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ DifficultyResource.RESOURCE_NAME);
 		
@@ -86,18 +96,20 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 	
 	private static WordResource getWordResource() {
+		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
+		
 		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
 				+ WordResource.RESOURCE_NAME);
 		
-	/*	Context context = new Context();
+		Context context = new Context();
 		context.getParameters().add("socketTimeout", timeoutString);
 		clientResource.setNext(new Client(context, Protocol.HTTP));
-		clientResource.setRetryOnError(false);*/
+		clientResource.setRetryOnError(false);
 
 		return clientResource.wrap(WordResource.class);
 	}
 
-	public boolean addTranslation(Translation translation) {
+	public boolean addTranslation(DTOTranslation translation) {
 		try{
 			translationResource.add(translation);
 			return true;
@@ -107,7 +119,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		}
 	}
 
-	public boolean rateTranslation(Rate rating) {
+	public boolean rateTranslation(DTORate rating) {
 		try{
 			rateResource.add(rating);
 			return true;
@@ -116,7 +128,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			return false;
 		}
 	}
-	public boolean addWordQualitiy(Quality quality) {
+	public boolean addWordQualitiy(DTOQuality quality) {
 		try{
 			qualityResource.add(quality);
 			return true;
@@ -125,7 +137,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			return false;
 		}
 	}
-	public boolean addWordDifficulty(Difficulty difficulty) {
+	public boolean addWordDifficulty(DTODifficulty difficulty) {
 		try{
 			difficultyResource.add(difficulty);
 			return true;
@@ -138,12 +150,12 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	/**
 	 * Clients of this method should check whether null returned or not.
 	 * */
-	public List<Translation> listTranslations(Language language,
-			Difficulty difficulty, int numberOfTranslations,
-			List<Translation> translationsAlreadyUsed) {
+	public List<DTOTranslation> listTranslations(DTOLanguage language,
+			DTODifficulty difficulty, int numberOfTranslations,
+			List<DTOTranslation> translationsAlreadyUsed) {
 		Log.v("RESTFul - list trans", "Starting to load translations");
 		try{
-			List<Translation> translations = translationResource.list(new ListTranslationParameters(language,
+			List<DTOTranslation> translations = translationResource.list(new ListTranslationParameters(language,
 					difficulty, numberOfTranslations, translationsAlreadyUsed));
 			Log.v("RESTFul - list trans", ""+translations);
 			return translations;
@@ -155,9 +167,9 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		
 	}
 
-	public List<Word> listWords(int number) {
+	public List<DTOWord> listWords(int number) {
 		try{
-			List<Word> words = wordResource.list(new ListWordParameters(number));
+			List<DTOWord> words = wordResource.list(new ListWordParameters(number));
 			Log.v("RESTFul - words", ""+words);
 			return words;
 		}
@@ -168,8 +180,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		}
 	}
 
-	public Word getWord() {
-		List<Word> words = listWords(1);
+	public DTOWord getWord() {
+		List<DTOWord> words = listWords(1);
 		if(words == null)
 			return null;
 		else if(words.size() == 0)

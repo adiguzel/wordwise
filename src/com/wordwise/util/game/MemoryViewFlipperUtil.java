@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.wordwise.R;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.view.game.MemoryViewFlipper;
 
 public class MemoryViewFlipperUtil {
@@ -21,7 +21,7 @@ public class MemoryViewFlipperUtil {
 	 * Generates the randomly ordered flippers using the given translations
 	 * */
 	public static List<MemoryViewFlipper> getRandomViewFlipperList(
-			List<Translation> translations, Context context) {
+			List<DTOTranslation> translations, Context context) {
 		// initial non-random list
 		List<MemoryViewFlipper> initialList = generateViewFlippers(
 				translations, context);
@@ -48,13 +48,13 @@ public class MemoryViewFlipperUtil {
 	 * fashion
 	 * */
 	private static List<MemoryViewFlipper> generateViewFlippers(
-			List<Translation> translations, Context context) {
+			List<DTOTranslation> translations, Context context) {
 		if (translations == null)
 			return null;
 
 		List<MemoryViewFlipper> flippers = new ArrayList<MemoryViewFlipper>();
 
-		for (Translation translation : translations) {
+		for (DTOTranslation translation : translations) {
 			MemoryViewFlipper flipperWord = new MemoryViewFlipper(context,
 					translation, MemoryViewFlipper.USE_WORD);
 			MemoryViewFlipper flipperTranslation = new MemoryViewFlipper(

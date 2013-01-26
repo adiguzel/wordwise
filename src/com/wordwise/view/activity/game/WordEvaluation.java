@@ -19,16 +19,16 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Quality;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOQuality;
+import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.DTOWord;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<Word>> {
+			LoaderCallbacks<List<DTOWord>> {
 
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
@@ -39,10 +39,10 @@ public class WordEvaluation extends WordwiseGameActivity
 	private CheckBox isNotWord;
 	private CheckBox iDontKnow;
 
-	private Difficulty difficulty;
-	private Quality quality;
-	private Word word;
-	private List<Translation> translation = new ArrayList<Translation>(1);
+	private DTODifficulty difficulty;
+	private DTOQuality quality;
+	private DTOWord word;
+	private List<DTOTranslation> translation = new ArrayList<DTOTranslation>(1);
 	private RESTfullServerCommunication server;
 
 	private boolean difficultyRated = false;
@@ -110,7 +110,7 @@ public class WordEvaluation extends WordwiseGameActivity
 			submitEvaluation.setEnabled(false);
 	}
 
-	public Word retrieveWord() {
+	public DTOWord retrieveWord() {
 		this.server = new RESTfullServerCommunication();
 		return server.getWord();
 	}
@@ -141,7 +141,7 @@ public class WordEvaluation extends WordwiseGameActivity
 	public void submitEvaluation(View v) {
 		this.server = new RESTfullServerCommunication();
 		if (!isWord) {
-			this.quality = new Quality();
+			this.quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(-1); // setting up a bad quality
 			this.server.addWordQualitiy(this.quality);
@@ -157,18 +157,18 @@ public class WordEvaluation extends WordwiseGameActivity
 			Toast.makeText(this, "Difficulty: " + difficultyRating,
 					Toast.LENGTH_LONG).show();
 
-			Quality quality = new Quality();
+			DTOQuality quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(1); // setting up a good quality
 
-			this.difficulty = Difficulty.getByDifficulty(difficultyRating);
+			this.difficulty = DTODifficulty.getByDifficulty(difficultyRating);
 			if (difficulty != null) {
 				difficulty.setWord(this.word);
 			}
 			this.server.addWordQualitiy(this.quality);
 			this.server.addWordDifficulty(this.difficulty);
 		} else {
-			this.quality = new Quality();
+			this.quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(0); // setting up I don't know
 			this.server.addWordQualitiy(this.quality);
@@ -176,22 +176,22 @@ public class WordEvaluation extends WordwiseGameActivity
 		this.onGameEnd();
 	}
 
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int numberOfWordsNeeded(Difficulty difficulty) {
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Loader<List<Word>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<Word>>) loaderHelper.onLoadCreated(this, LoaderType.WORD_LOADER);
+	public Loader<List<DTOWord>> onCreateLoader(int id, Bundle args) {
+		return (Loader<List<DTOWord>>) loaderHelper.onLoadCreated(this, LoaderType.WORD_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<Word>> arg0, List<Word> words) {
+	public void onLoadFinished(Loader<List<DTOWord>> arg0, List<DTOWord> words) {
 		// TODO Auto-generated method stub
 		Log.v("words", "" + words);
 
@@ -217,7 +217,7 @@ public class WordEvaluation extends WordwiseGameActivity
 		}
 	}
 
-	public void onLoaderReset(Loader<List<Word>> arg0) {
+	public void onLoaderReset(Loader<List<DTOWord>> arg0) {
 		loaderHelper.onLoaderReset(this);
 	}
 

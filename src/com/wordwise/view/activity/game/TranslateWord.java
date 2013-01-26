@@ -16,10 +16,10 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.DTOWord;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
@@ -27,14 +27,14 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 public class TranslateWord extends WordwiseGameActivity {
 
 	private Configuration configuration;
-	private Set<Language> proficientLanguagesSet;
-	private List<Language> proficientLanguagesList = new ArrayList<Language>();
+	private Set<DTOLanguage> proficientLanguagesSet;
+	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
 	private RESTfullServerCommunication server;
-	private Word englishWord;
-	private Translation translation;
+	private DTOWord englishWord;
+	private DTOTranslation translation;
 
-	private Language randomProficientLanguage;
+	private DTOLanguage randomProficientLanguage;
 	private Locale englishLocale;
 	private Locale proficientLanguageLocale;
 
@@ -83,8 +83,8 @@ public class TranslateWord extends WordwiseGameActivity {
 				+ randomProficientLanguage.getLanguage();
 		wordTranslation.setHint(translationEditText);
 		
-		this.englishWord = new Word();
-		this.translation = new Translation();
+		this.englishWord = new DTOWord();
+		this.translation = new DTOTranslation();
 		
 		this.continueButton.setEnabled(false);
 		this.continueButton.setVisibility(View.INVISIBLE);
@@ -92,7 +92,7 @@ public class TranslateWord extends WordwiseGameActivity {
 		this.submitTranslation.setVisibility(View.VISIBLE);
 	}
 
-	private Language chooseRandomProficientLanguage() {
+	private DTOLanguage chooseRandomProficientLanguage() {
 		// removing English since this is the language from which the words are
 		// being translated
 		/*if (proficientLanguagesList
@@ -101,7 +101,7 @@ public class TranslateWord extends WordwiseGameActivity {
 					.indexOf(LanguageUtils.getByName("English")));
 		}*/
 
-		Language randomLanguage = LanguageUtils
+		DTOLanguage randomLanguage = LanguageUtils
 				.getRandomProficientLanguage(proficientLanguagesList);
 
 		return randomLanguage;
@@ -174,12 +174,12 @@ public class TranslateWord extends WordwiseGameActivity {
 
 	}
 
-	public int numberOfTranslationsNeeded(Difficulty difficulty) {
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int numberOfWordsNeeded(Difficulty difficulty) {
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

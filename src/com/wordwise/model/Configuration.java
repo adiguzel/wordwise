@@ -8,15 +8,15 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.wordwise.gameengine.GameConfiguration;
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
 public class Configuration{
 	private static Configuration instance = null;
-	private Difficulty difficulty;
-	private Set<Language> proficientLanguages = new HashSet<Language>();
-	private Language learningLanguage = null;
+	private DTODifficulty difficulty;
+	private Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage>();
+	private DTOLanguage learningLanguage = null;
 	private SharedPreferences SP;
 
 	private Configuration(Context context) {
@@ -45,18 +45,18 @@ public class Configuration{
 		return gameConf;
 	}
 	
-	public Difficulty loadDifficulty() {
-		return Difficulty.getByDifficulty(SP.getInt("difficulty", Difficulty.EASY.getDifficulty()));
+	public DTODifficulty loadDifficulty() {
+		return DTODifficulty.getByDifficulty(SP.getInt("difficulty", DTODifficulty.EASY.getDifficulty()));
 	}
 
-	public Language loadLearningLanguage() {
+	public DTOLanguage loadLearningLanguage() {
 		String langCode = SP.getString("learning_language", "");
 		return LanguageUtils.getByCode(langCode);
 	}
 
-	public Set<Language> loadProficientLanguages() {
+	public Set<DTOLanguage> loadProficientLanguages() {
 		Set<String> proficientLanguageCodes = SP.getStringSet("proficient_languages", new HashSet<String>());
-		Set<Language> proficientLanguages = new HashSet<Language> ();
+		Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage> ();
 		for(String langCode : proficientLanguageCodes){
 			proficientLanguages.add(LanguageUtils.getByCode(langCode));
 		}
@@ -79,36 +79,36 @@ public class Configuration{
 		return SP.edit().putStringSet("proficient_languages", profLanguagesCodeSet).commit();
 	}
 
-	public Difficulty getDifficulty() {
+	public DTODifficulty getDifficulty() {
 		loadDifficulty();
 		return difficulty;
 	}
 
-	public void setDifficulty(Difficulty difficulty) {
+	public void setDifficulty(DTODifficulty difficulty) {
 		this.difficulty = difficulty;
 		// persist difficulty
 		saveDifficulty();
 	}
 
-	public Set<Language> getProficientLanguages() {
+	public Set<DTOLanguage> getProficientLanguages() {
 		loadProficientLanguages();
 		return proficientLanguages;
 	}
 
-	public void addLanguage(Language language) {
+	public void addLanguage(DTOLanguage language) {
 		proficientLanguages.add(language);
 	}
 
-	public void removeLanguage(Language language) {
+	public void removeLanguage(DTOLanguage language) {
 		proficientLanguages.remove(language);
 	}
 
-	public Language getLearningLanguage() {
+	public DTOLanguage getLearningLanguage() {
 		loadLearningLanguage();
 		return learningLanguage;
 	}
 
-	public void setLearningLanguage(Language language) {
+	public void setLearningLanguage(DTOLanguage language) {
 		this.learningLanguage = language;
 	}
 

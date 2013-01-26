@@ -6,14 +6,14 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.server.model.Translation;
+import com.wordwise.server.dto.DTOTranslation;
 
 public class Word2TranslationsTextView extends TextView {
 	//translation that is associated with that view
 	public static boolean USE_WORD = true;
 	public static boolean USE_TRANSLATION = false;
 
-	private Translation translation; 
+	private DTOTranslation translation; 
 	
 	public Word2TranslationsTextView(Context context) {
 		super(context);
@@ -28,8 +28,7 @@ public class Word2TranslationsTextView extends TextView {
 	}
 	
 
-	@SuppressWarnings("deprecation")
-	public void init(Context context,Translation translation, boolean isWord){
+	public void init(Context context, DTOTranslation translation, boolean isWord){
 		String text = "";
 		
 		if(isWord == USE_WORD){
@@ -55,12 +54,12 @@ public class Word2TranslationsTextView extends TextView {
 	}
 
 	
-	public Word2TranslationsTextView(Context context,Translation translation, boolean isWord){
+	public Word2TranslationsTextView(Context context, DTOTranslation translation, boolean isWord){
 		super(context);
 		init(context, translation, isWord);
 	}
 
-	public Translation getTranslation() {
+	public DTOTranslation getTranslation() {
 		return translation;
 	}
 }

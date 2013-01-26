@@ -7,26 +7,28 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
+import org.restlet.data.Language;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.Log;
 
 import com.wordwise.R;
-import com.wordwise.server.model.Language;
+import com.wordwise.server.dto.DTOLanguage;
 
 public class LanguageUtils {
-	private static List<Language> languages = null;
+	private static List<DTOLanguage> languages = null;
 
 	public static void init(Resources resources) {
-		languages = new ArrayList<Language>();
+		languages = new ArrayList<DTOLanguage>();
 
 		String[] languageCodes = resources
 				.getStringArray(R.array.languageCodes);
 		String[] languageNames = resources.getStringArray(R.array.languages);
 
 		for (int i = 0; ((i < languageCodes.length) && (i < languageNames.length)); i++) {
-			languages.add(new Language(languageNames[i], languageCodes[i]));
+			languages.add(new DTOLanguage(languageNames[i], languageCodes[i]));
 		}
 	}
 	
@@ -38,14 +40,14 @@ public class LanguageUtils {
 		}
 	}
 
-	public static List<Language> getAllLanguages() throws RuntimeException {
+	public static List<DTOLanguage> getAllLanguages() throws RuntimeException {
 		isLanguagesInitiated();
 		return languages;
 	}
 
-	public static Language getByCode(String code) {
+	public static DTOLanguage getByCode(String code) {
 		isLanguagesInitiated();
-		for (Language language : languages) {
+		for (DTOLanguage language : languages) {
 			if (language.getCode().equalsIgnoreCase(code)) {
 				return language;
 			}
@@ -56,9 +58,9 @@ public class LanguageUtils {
 	/*
 	 * Returns the language instance with the given language name
 	 */
-	public static Language getByName(String name) {
+	public static DTOLanguage getByName(String name) {
 		isLanguagesInitiated();
-		for (Language language : languages) {
+		for (DTOLanguage language : languages) {
 			if (language.getLanguage().equalsIgnoreCase(name)) {
 				return language;
 			}
@@ -71,21 +73,21 @@ public class LanguageUtils {
 		List<String> langs = new ArrayList<String>();
 		String[] langNames = new String[1];
 
-		for (Language lang : languages)
+		for (DTOLanguage lang : languages)
 			langs.add(lang.getLanguage());
 
 		return langs.toArray(langNames);
 	}
 
-	public static Integer getIndex(Language l) {
+	public static Integer getIndex(DTOLanguage l) {
 		isLanguagesInitiated();
 		return languages.indexOf(l);
 	}
 
-	public static Set<String> languageSetToCodeSet(Set<Language> languages) {
+	public static Set<String> languageSetToCodeSet(Set<DTOLanguage> languages) {
 		isLanguagesInitiated();
 		Set<String> langCodeSet = new HashSet<String>();
-		for (Language l : languages) {
+		for (DTOLanguage l : languages) {
 			if (l != null)
 				langCodeSet.add(l.getCode());
 		}
@@ -93,9 +95,9 @@ public class LanguageUtils {
 		return langCodeSet;
 	}
 	
-	public static List<Language> getProficientLanguages(Set<Language> proficientLanguagesSet) {
-		List<Language> proficientLanguagesList  = new ArrayList<Language>();
-		for (Language l : proficientLanguagesSet) {
+	public static List<DTOLanguage> getProficientLanguages(Set<DTOLanguage> proficientLanguagesSet) {
+		List<DTOLanguage> proficientLanguagesList  = new ArrayList<DTOLanguage>();
+		for (DTOLanguage l : proficientLanguagesSet) {
 			if (l != null) {
 				proficientLanguagesList.add(l);
 			}
@@ -103,12 +105,12 @@ public class LanguageUtils {
 		return proficientLanguagesList;
 	}
 	
-	public static Language getRandomProficientLanguage(List<Language> l) {
+	public static DTOLanguage getRandomProficientLanguage(List<DTOLanguage> l) {
 		Random randomGenerator = new Random();
 		int maxRandomNumber = l.size();
 		Log.v("size", "prof.  : " + maxRandomNumber);
 		int randomLanguageNumber = randomGenerator.nextInt(maxRandomNumber);
-		Language randomLanguage = l.get(randomLanguageNumber);
+		DTOLanguage randomLanguage = l.get(randomLanguageNumber);
 		return randomLanguage;
 	}
 	

@@ -9,9 +9,9 @@ import android.util.Log;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
-import com.wordwise.server.model.Word;
+import com.wordwise.server.dto.DTOWord;
 
-public class WordLoader extends AsyncTaskLoader<List<Word>> {
+public class WordLoader extends AsyncTaskLoader<List<DTOWord>> {
 	private RESTfullServerCommunication serverComm;
 
 	public WordLoader(Context context) {
@@ -20,13 +20,13 @@ public class WordLoader extends AsyncTaskLoader<List<Word>> {
 	}
 
 	@Override
-	public List<Word> loadInBackground() {
+	public List<DTOWord> loadInBackground() {
 		GameManager gManager = GameManagerContainer.getGameManager();
 		int wordsNeeded = gManager.NumberOfWordsNeeded();
 		Log.v("wordsNeeded", "" + wordsNeeded);
 		if (wordsNeeded == -1 || wordsNeeded == 0)
 			return null;
-		List<Word>  words = serverComm.listWords(wordsNeeded);
+		List<DTOWord>  words = serverComm.listWords(wordsNeeded);
 		Log.v("loadInBackground - words", "" + words);
 		return words;
 	}

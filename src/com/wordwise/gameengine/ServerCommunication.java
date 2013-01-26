@@ -2,12 +2,12 @@ package com.wordwise.gameengine;
 
 import java.util.List;
 
-import com.wordwise.server.model.Difficulty;
-import com.wordwise.server.model.Language;
-import com.wordwise.server.model.Quality;
-import com.wordwise.server.model.Rate;
-import com.wordwise.server.model.Translation;
-import com.wordwise.server.model.Word;
+import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
+import com.wordwise.server.dto.DTOQuality;
+import com.wordwise.server.dto.DTORate;
+import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.server.dto.DTOWord;
 
 /**
  *
@@ -19,21 +19,21 @@ public interface ServerCommunication {
 	 * 			  the translation object
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addTranslation(Translation translation);
+	public boolean addTranslation(DTOTranslation translation);
 
 	/**
 	 * @param translationRatings
 	 *            a rating for a certain translation
 	 * @return true if successful, false otherwise
 	 */
-	public boolean rateTranslation(Rate rating);
+	public boolean rateTranslation(DTORate rating);
 
 	/**
 	 * @param wordQualities
 	 *            a quality for a certain word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWordQualitiy(Quality quality);
+	public boolean addWordQualitiy(DTOQuality quality);
 	
 
 	/**
@@ -41,7 +41,7 @@ public interface ServerCommunication {
 	 *            a difficulty for a certain word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWordDifficulty(Difficulty difficulty);
+	public boolean addWordDifficulty(DTODifficulty difficulty);
 	
 	/**
 	 * Retrieves all specified number of translations in a given language and for a
@@ -57,7 +57,7 @@ public interface ServerCommunication {
 	 * 			  list of the translations already used and, therefore, should not be in the return list
 	 * @return list of translations and its original words (in English)
 	 */
-	public List<Translation> listTranslations(Language lang, Difficulty difficulty, int number, List<Translation> translationsAlreadyUsed);
+	public List<DTOTranslation> listTranslations(DTOLanguage lang, DTODifficulty difficulty, int number, List<DTOTranslation> translationsAlreadyUsed);
 	
 	/**
 	 * Retrieves a random list of specified number of words or less from the server
@@ -65,11 +65,11 @@ public interface ServerCommunication {
 	 * @param number
 	 *            number of words to be listed
 	 */
-	public List<Word> listWords(int number);
+	public List<DTOWord> listWords(int number);
 	
 	/**
 	 * A convinience method to use to get just one random word from the server
 	 * @ling listWords shold be used for its implementation
 	 * */
-	public Word getWord();
+	public DTOWord getWord();
 }
