@@ -17,8 +17,8 @@ public class ConfigurationProcess {
 
 	private Class<? extends ConfigurationStep> initialStep;
 	private Class<? extends ConfigurationStep> finalStep;
+	
 	// not allowed
-	@SuppressWarnings("unused")
 	private ConfigurationProcess() {
 	}
 
