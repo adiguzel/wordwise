@@ -28,6 +28,7 @@ public class Word2TranslationsTextView extends TextView {
 	}
 	
 
+	@SuppressWarnings("deprecation")
 	public void init(Context context,Translation translation, boolean isWord){
 		String text = "";
 		

@@ -4,31 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import android.content.Context;
-import android.widget.TextView;
-
 import com.wordwise.server.model.Translation;
 
 public class Word2TranslationUtil {
 
-	
-	/**
-	 * Generates the flippers using the given translations in a non-random
-	 * fashion
-	 * */
-	private static List<TextView> generateTranslationViews(List<Translation> translations,
-			Context context) {
-		if (translations == null)
-			return null;
-
-		List<TextView> flippers = new ArrayList<TextView>();
-
-		for (Translation translation : translations) {
-			
-		}
-
-		return flippers;
-	}
 
 	public static List<Translation> mixTranslations(final List<Translation> initialList) {
 		List<Translation> copyList = new ArrayList<Translation>();

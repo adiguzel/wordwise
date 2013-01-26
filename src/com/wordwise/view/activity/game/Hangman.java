@@ -102,8 +102,6 @@ public class Hangman extends WordwiseGameActivity
 	}
 
 	public void onGameStop() {
-		if(!started)
-			Log.v("Hangman", "Activity has null elements");
 	}
 
 	public void onGamePause() {
