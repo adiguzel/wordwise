@@ -49,7 +49,7 @@ public class WordEvaluationSubmitTask extends AsyncTask<Void, Void, Boolean> {
 		boolean difficultyResult = true;
 		
 		if(quality != null)
-			qualityResult = server.addWordQualitiy(this.quality);
+			qualityResult = server.addWordQuality(this.quality);
 		if(difficulty != null)
 			difficultyResult = server.addWordDifficulty(this.difficulty);
 		

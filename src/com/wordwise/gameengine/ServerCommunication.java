@@ -33,7 +33,7 @@ public interface ServerCommunication {
 	 *            a quality for a certain word
 	 * @return true if successful, false otherwise
 	 */
-	public boolean addWordQualitiy(DTOQuality quality);
+	public boolean addWordQuality(DTOQuality quality);
 	
 
 	/**

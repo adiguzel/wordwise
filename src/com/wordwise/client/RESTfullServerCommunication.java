@@ -128,7 +128,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			return false;
 		}
 	}
-	public boolean addWordQualitiy(DTOQuality quality) {
+	public boolean addWordQuality(DTOQuality quality) {
 		try{
 			qualityResource.add(quality);
 			return true;
