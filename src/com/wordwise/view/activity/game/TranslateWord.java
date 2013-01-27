@@ -16,15 +16,19 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
+import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
+import com.wordwise.task.game.TranslationSubmitTask;
 import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class TranslateWord extends WordwiseGameActivity {
+public class TranslateWord extends WordwiseGameActivity
+		implements
+			SubmitListener {
 
 	private Configuration configuration;
 	private Set<DTOLanguage> proficientLanguagesSet;
@@ -49,9 +53,8 @@ public class TranslateWord extends WordwiseGameActivity {
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.translate_word);
-
 		this.onGameInit();
-
+		this.onGameStart();
 	}
 
 	@SuppressLint("NewApi")
@@ -64,7 +67,7 @@ public class TranslateWord extends WordwiseGameActivity {
 
 		// Setting English locale on the first EditText
 		this.englishLocale = new Locale("en");
-		//this.wordToBeTranslated.setTextLocale(this.englishLocale);
+		// this.wordToBeTranslated.setTextLocale(this.englishLocale);
 
 		configuration = Configuration.getInstance(this);
 		proficientLanguagesSet = configuration.getProficientLanguages();
@@ -77,15 +80,15 @@ public class TranslateWord extends WordwiseGameActivity {
 		// Setting ProfLanguage Locale on the second EditText
 		this.proficientLanguageLocale = new Locale(
 				randomProficientLanguage.getCode());
-		//this.wordTranslation.setTextLocale(this.proficientLanguageLocale);
+		// this.wordTranslation.setTextLocale(this.proficientLanguageLocale);
 
 		String translationEditText = wordTranslation.getHint().toString() + " "
 				+ randomProficientLanguage.getLanguage();
 		wordTranslation.setHint(translationEditText);
-		
+
 		this.englishWord = new DTOWord();
 		this.translation = new DTOTranslation();
-		
+
 		this.continueButton.setEnabled(false);
 		this.continueButton.setVisibility(View.INVISIBLE);
 		this.submitTranslation.setEnabled(true);
@@ -95,11 +98,12 @@ public class TranslateWord extends WordwiseGameActivity {
 	private DTOLanguage chooseRandomProficientLanguage() {
 		// removing English since this is the language from which the words are
 		// being translated
-		/*if (proficientLanguagesList
-				.contains(LanguageUtils.getByName("English"))) {
-			proficientLanguagesList.remove(proficientLanguagesList
-					.indexOf(LanguageUtils.getByName("English")));
-		}*/
+		/*
+		 * if (proficientLanguagesList
+		 * .contains(LanguageUtils.getByName("English"))) {
+		 * proficientLanguagesList.remove(proficientLanguagesList
+		 * .indexOf(LanguageUtils.getByName("English"))); }
+		 */
 
 		DTOLanguage randomLanguage = LanguageUtils
 				.getRandomProficientLanguage(proficientLanguagesList);
@@ -123,19 +127,23 @@ public class TranslateWord extends WordwiseGameActivity {
 	}
 
 	public void onGameEnd() {
-		// TODO Auto-generated method stub
+		this.submitTranslation.setEnabled(false);
+		this.submitTranslation.setVisibility(View.INVISIBLE);
+		// Tell to the game manager that the translation is submitted
+		this.wordToBeTranslated.setText("");
+		this.wordTranslation.setText("");
+
 		continueButton.setEnabled(true);
 		continueButton.setVisibility(View.VISIBLE);
 	}
 
-	private boolean sendDataToServer(String word, String translation) {
-		server = new RESTfullServerCommunication();
+	private void sendDataToServer(String word, String translation) {
 		englishWord.setWord(word);
 		this.translation.setTranslation(translation);
 		this.translation.setWord(englishWord);
 		this.translation.setLanguage(randomProficientLanguage);
-	
-		return server.addTranslation(this.translation);	
+
+		new TranslationSubmitTask(this, this, this.translation).execute();
 	}
 
 	public void submitTranslation(View v) {
@@ -148,30 +156,8 @@ public class TranslateWord extends WordwiseGameActivity {
 			String message = "Please fill both: The word and the translation!";
 			WordwiseUtils.makeCustomToast(this, message);
 		} else {
-			// Remove the words from the edit fields when the data is submitted
-
-
-			// TODO Show feedback while sending ...
-
-			boolean sendResult = sendDataToServer(wordToBeTranslatedBuffer,
-					wordTranslationBuffer);
-			if(sendResult){
-				String successMessage = "Your translation was submitted successfully!";
-				WordwiseUtils.makeCustomToast(this, successMessage);
-				this.submitTranslation.setEnabled(false);
-				this.submitTranslation.setVisibility(View.INVISIBLE);
-				// Tell to the game manager that the translation is submitted
-				this.wordToBeTranslated.setText("");
-				this.wordTranslation.setText("");
-				this.onGameEnd();
-			}
-			else{
-				String errorMessage = "Your translation could not be submitted. Please try again...";
-				WordwiseUtils.makeCustomToast(this, errorMessage, Toast.LENGTH_LONG);
-			}
-
+			sendDataToServer(wordToBeTranslatedBuffer, wordTranslationBuffer);
 		}
-
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
@@ -186,7 +172,18 @@ public class TranslateWord extends WordwiseGameActivity {
 
 	public void retry(View v) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	public void onSubmitResult(boolean result) {
+		if (result) {
+			String successMessage = "Thank you for your translation.";
+			WordwiseUtils.makeCustomToast(this, successMessage,
+					Toast.LENGTH_LONG);
+			this.onGameEnd();
+		} else {
+			String failMessage = "Your translation could not be submitted. Check your internet connection and please try again later.";
+			WordwiseUtils.makeCustomToast(this, failMessage);
+		}
+	}
 }

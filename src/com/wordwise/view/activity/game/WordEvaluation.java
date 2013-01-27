@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.GameManagerContainer;
+import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOQuality;
 import com.wordwise.server.dto.DTOTranslation;
@@ -30,7 +31,7 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<DTOWord>> {
+			LoaderCallbacks<List<DTOWord>>, SubmitListener {
 
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
@@ -173,7 +174,7 @@ public class WordEvaluation extends WordwiseGameActivity
 			quality.setQuality(0); // setting up I don't know
 			// this.server.addWordQualitiy(this.quality);
 		}
-		new WordEvaluationSubmitTask(this, quality, difficulty).execute();
+		new WordEvaluationSubmitTask(this, this, quality, difficulty).execute();
 		// this.onGameEnd();
 	}
 

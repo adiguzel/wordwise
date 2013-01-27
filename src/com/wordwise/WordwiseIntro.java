@@ -17,8 +17,8 @@ public class WordwiseIntro extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.wordwise_intro);
 		getActionBar().hide();
+		setContentView(R.layout.wordwise_intro);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		introText = (TextView) findViewById(R.id.wordwiseIntroText);
 		introText.startAnimation(AnimationFactory.inFromLeftAnimation(1000,
