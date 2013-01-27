@@ -1,6 +1,5 @@
 package com.wordwise.view.activity.game;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.LoaderManager.LoaderCallbacks;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
@@ -22,7 +20,6 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOQuality;
-import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
 import com.wordwise.task.game.WordEvaluationSubmitTask;
 import com.wordwise.util.LoaderHelper.LoaderType;
@@ -45,13 +42,10 @@ public class WordEvaluation extends WordwiseGameActivity
 	private DTODifficulty difficulty;
 	private DTOQuality quality;
 	private DTOWord word;
-	private List<DTOTranslation> translation = new ArrayList<DTOTranslation>(1);
 	private RESTfullServerCommunication server;
 
 	private boolean difficultyRated = false;
 	private boolean isWord;
-
-	private ProgressBar progress;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -211,17 +205,9 @@ public class WordEvaluation extends WordwiseGameActivity
 
 		if (words == null) {
 			loaderHelper.loadFailed("Oh snap. Failed to load!");
-			/*
-			 * Toast.makeText(this, "Oh snap. Failed to load.",
-			 * Toast.LENGTH_SHORT) .show();
-			 */
 		} else if (words.size() < GameManagerContainer.getGameManager()
 				.NumberOfTranslationsNeeded()) {
 			loaderHelper.loadFailed("Server does not have enough words!");
-			/*
-			 * Toast.makeText(this, "Server does not have enough words.",
-			 * Toast.LENGTH_SHORT).show();
-			 */
 		} else if (words.get(0) != null) {
 			word = words.get(0);
 			Log.v("word", "" + word.getWord());

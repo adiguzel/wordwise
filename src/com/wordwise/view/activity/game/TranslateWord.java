@@ -127,11 +127,11 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
-		this.submitTranslation.setEnabled(false);
-		this.submitTranslation.setVisibility(View.INVISIBLE);
+		submitTranslation.setEnabled(false);
+		submitTranslation.setVisibility(View.INVISIBLE);
 		// Tell to the game manager that the translation is submitted
-		this.wordToBeTranslated.setText("");
-		this.wordTranslation.setText("");
+		wordToBeTranslated.setEnabled(false);
+		wordTranslation.setEnabled(false);
 
 		continueButton.setEnabled(true);
 		continueButton.setVisibility(View.VISIBLE);
