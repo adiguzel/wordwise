@@ -23,7 +23,9 @@ import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOQuality;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
+import com.wordwise.task.game.WordEvaluationSubmitTask;
 import com.wordwise.util.LoaderHelper.LoaderType;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity
@@ -47,7 +49,7 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	private boolean difficultyRated = false;
 	private boolean isWord;
-	
+
 	private ProgressBar progress;
 
 	@Override
@@ -144,7 +146,7 @@ public class WordEvaluation extends WordwiseGameActivity
 			this.quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(-1); // setting up a bad quality
-			this.server.addWordQualitiy(this.quality);
+			// this.server.addWordQualitiy(this.quality);
 		} else if (isWord) {
 			int difficultyRating = Math.round(wordDifficultyRating.getRating());
 			if (difficultyRating == 0) {
@@ -154,8 +156,6 @@ public class WordEvaluation extends WordwiseGameActivity
 						Toast.LENGTH_LONG).show();
 				return;
 			}
-			Toast.makeText(this, "Difficulty: " + difficultyRating,
-					Toast.LENGTH_LONG).show();
 
 			DTOQuality quality = new DTOQuality();
 			quality.setWord(this.word);
@@ -165,15 +165,27 @@ public class WordEvaluation extends WordwiseGameActivity
 			if (difficulty != null) {
 				difficulty.setWord(this.word);
 			}
-			this.server.addWordQualitiy(this.quality);
-			this.server.addWordDifficulty(this.difficulty);
+			// this.server.addWordQualitiy(this.quality);
+			// this.server.addWordDifficulty(this.difficulty);
 		} else {
 			this.quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(0); // setting up I don't know
-			this.server.addWordQualitiy(this.quality);
+			// this.server.addWordQualitiy(this.quality);
 		}
-		this.onGameEnd();
+		new WordEvaluationSubmitTask(this, quality, difficulty).execute();
+		// this.onGameEnd();
+	}
+
+	public void onSubmitResult(boolean submitResult) {
+		if (submitResult) {
+			String successMessage = "Thank you for your feedback.";
+			WordwiseUtils.makeCustomToast(this, successMessage, Toast.LENGTH_LONG);
+			this.onGameEnd();
+		} else {
+			String failMessage = "Your feedback could not be submitted. Check your internet connection and please try again later.";
+			WordwiseUtils.makeCustomToast(this, failMessage);
+		}
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
@@ -188,13 +200,13 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	@SuppressWarnings("unchecked")
 	public Loader<List<DTOWord>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<DTOWord>>) loaderHelper.onLoadCreated(this, LoaderType.WORD_LOADER);
+		return (Loader<List<DTOWord>>) loaderHelper.onLoadCreated(this,
+				LoaderType.WORD_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<DTOWord>> arg0, List<DTOWord> words) {
 		// TODO Auto-generated method stub
 		Log.v("words", "" + words);
-
 
 		if (words == null) {
 			loaderHelper.loadFailed("Oh snap. Failed to load!");
@@ -211,7 +223,8 @@ public class WordEvaluation extends WordwiseGameActivity
 			 */
 		} else if (words.get(0) != null) {
 			word = words.get(0);
-			setContentView(R.layout.words2translations);
+			Log.v("word", "" + word.getWord());
+			setContentView(R.layout.word_evaluation);
 			this.onGameInit();
 			this.onGameStart();
 		}
