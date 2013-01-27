@@ -156,7 +156,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		Log.v("RESTFul - list trans", "Starting to load translations");
 		try{
 			List<DTOTranslation> translations = translationResource.list(new ListTranslationParameters(language,
-					difficulty, numberOfTranslations, translationsAlreadyUsed));
+					difficulty, numberOfTranslations, translationsAlreadyUsed)).getDTOTranslationList();
 			Log.v("RESTFul - list trans", ""+translations);
 			return translations;
 		}catch(Exception e){
@@ -168,8 +168,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 
 	public List<DTOWord> listWords(int number) {
-		try{
-			List<DTOWord> words = wordResource.list(new ListWordParameters(number));
+		try{			
+			List<DTOWord> words = wordResource.list(new ListWordParameters(number)).getDTOWordList();
 			Log.v("RESTFul - words", ""+words);
 			return words;
 		}
