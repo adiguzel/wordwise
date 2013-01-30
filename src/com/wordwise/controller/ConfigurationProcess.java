@@ -64,7 +64,6 @@ public class ConfigurationProcess {
 			startStep(steps.get(currentStepIndex));
 		} else
 			onConfigurationFinish();
-
 	}
 
 	public void onConfigurationFinish() {

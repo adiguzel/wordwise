@@ -45,5 +45,7 @@ public class NewGame extends MenuActivity {
 			default :
 				break;
 		}
+		// makes sure that this activity is not hold on the activity stack
+		finish();
 	}
 }

@@ -17,8 +17,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.wordwise.WordwiseIntro"
-            android:label="@string/title_activity_main"
-            android:noHistory="true" >
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,63 +30,51 @@
         </activity>
         <activity
             android:name="com.wordwise.view.activity.configuration.ProficientLanguagesStep"
-            android:label="@string/title_configuration_step1"
-            android:noHistory="true" >
+            android:label="@string/title_configuration_step1">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.configuration.LearningLanguageStep"
-            android:label="@string/title_configuration_step2"
-            android:noHistory="true" >
+            android:label="@string/title_configuration_step2">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.setting.Settings"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.NewGame"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.Hangman"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.Words2Translations"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.Memory"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.LetterBox"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name">
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.WordEvaluation"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.TranslateWord"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.wordwise.view.activity.game.TranslationEvaluation"
-            android:label="@string/app_name"
-            android:noHistory="true" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.wordwise.view.activity.AboutActivity"
-            android:label="@string/title_activity_about_activity"
-            android:noHistory="true" >
+            android:label="@string/title_activity_about_activity" >
         </activity>
     </application>
 

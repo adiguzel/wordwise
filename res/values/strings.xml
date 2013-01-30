@@ -68,5 +68,6 @@
     <string name="i_dont_know">I don\'t know</string>
     <string name="loading_game">Loading game&#8230;</string>
     <string name="retry">Retry</string>
+    <string name="retryIcon">Retry</string>
 
 </resources>

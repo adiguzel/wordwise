@@ -42,10 +42,11 @@ public class WordwiseIntro extends Activity {
 	public void openMainScreen() {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+		finish();
 	}
 
 	private void configure() {
 		ConfigurationProcess.getInstance(this).startProcess(); 
+		finish();
 	}
-
 }

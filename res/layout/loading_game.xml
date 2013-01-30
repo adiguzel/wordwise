@@ -26,7 +26,9 @@
             android:textSize="@dimen/text_size_medium"
             android:visibility="invisible" />
 
-        <Button
+        <ImageButton
+            android:contentDescription="@string/retryIcon"
+            android:src="@drawable/ic_av_replay"
             android:id="@+id/retryButton"
             style="@style/wordwiseSmallLightBoldButtonStyle"
             android:layout_width="wrap_content"
@@ -35,7 +37,8 @@
             android:layout_marginTop="@dimen/word2translations_padding_main"
             android:onClick="retry"
             android:text="@string/retry"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+             />
     </LinearLayout>
 
     <LinearLayout

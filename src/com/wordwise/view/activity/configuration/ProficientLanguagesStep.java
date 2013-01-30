@@ -3,8 +3,6 @@ package com.wordwise.view.activity.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.restlet.data.Language;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;

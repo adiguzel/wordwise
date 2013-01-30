@@ -18,7 +18,7 @@ import com.wordwise.view.activity.game.LetterBox;
 public class LetterBoxManager
 {
 	private List<DTOTranslation> translations;
-	private List<String> letters = generateLetters(88);
+	private List<String> letters; 
 	private List<GridItem> currentSelection = new ArrayList<GridItem>(){
 		private static final long serialVersionUID = 1L;
 		public boolean add(GridItem item) {
@@ -42,6 +42,7 @@ public class LetterBoxManager
 	{
 		this.letterBoxActivity = letterBoxActivity;
 		this.translations = translations;
+		letters = generateLetters(88);
 	}
 	
 	public boolean isAllTranslationsFound(){
