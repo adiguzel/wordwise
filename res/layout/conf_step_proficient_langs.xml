@@ -18,7 +18,6 @@
             android:id="@+id/word2TranslationGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/wordwise_padding_main"
             android:text="@string/initial_conf_proficient_lang_info"
             android:textSize="@dimen/text_size_large" />
 

@@ -12,6 +12,8 @@ public abstract class ConfigurationStep extends Activity {
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// None of the steps have an action bar
+		getActionBar().hide();
 		process = ConfigurationProcess.getInstance(this);
 		performOnCreate();
 	}

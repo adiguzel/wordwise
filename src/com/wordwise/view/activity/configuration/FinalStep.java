@@ -1,7 +1,5 @@
 package com.wordwise.view.activity.configuration;
 
-import android.view.View;
-
 import com.wordwise.view.activity.ConfigurationStep;
 
 public class FinalStep extends ConfigurationStep{

@@ -6,6 +6,8 @@
     <dimen name="text_size_large">20sp</dimen>
     <dimen name="text_size_xlarge">22sp</dimen>
     <dimen name="text_size_intro_title">40sp</dimen>
+    <dimen name="text_size_welcome_title">26sp</dimen>
+    <dimen name="text_size_welcome_app_name">40sp</dimen>
          
     <dimen name="background_shape_padding_left">7dp</dimen>
     <dimen name="background_shape_padding_right">7dp</dimen>

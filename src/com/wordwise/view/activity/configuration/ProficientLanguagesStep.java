@@ -3,6 +3,7 @@ package com.wordwise.view.activity.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,17 +34,12 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 		list = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
-
 		initListView();
-
 		selectedLanguagesText = selectedLanguages.getText().toString();	
 		if (!configuration.getProficientLanguages().isEmpty()){
 			next.setEnabled(true);
 			setSelectedIndexes();
-
-		}
-		
-		
+		}	
 	}
 
 	@Override
@@ -81,8 +77,10 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 			configuration.addLanguage(l);
 		}
 		
-		if (configuration.getProficientLanguages().size() > 0)
-			next.setEnabled(true);
+		if (configuration.getProficientLanguages().size() > 0){
+				next.setEnabled(true);
+		}
+			
 		else
 			next.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
@@ -116,5 +114,4 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 		// TODO Auto-generated method stub
 		return !configuration.getProficientLanguages().isEmpty();
 	}
-
 }

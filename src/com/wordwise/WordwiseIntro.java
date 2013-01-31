@@ -14,6 +14,7 @@ import com.wordwise.util.LanguageUtils;
 public class WordwiseIntro extends Activity {
 	private TextView introText;
 	private Configuration configuration;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

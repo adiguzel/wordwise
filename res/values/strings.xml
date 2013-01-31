@@ -69,5 +69,9 @@
     <string name="loading_game">Loading game&#8230;</string>
     <string name="retry">Retry</string>
     <string name="retryIcon">Retry</string>
+    <string name="welcomeLabel">Welcome to </string>
+    <string name="getStarted">Get Started</string>
+    <string name="configurationDefinition">Before you start playing Wordwise, you need to do just a three step configuration</string>
+	<string name="title_configuration_initial_step">Initial step</string>
 
 </resources>

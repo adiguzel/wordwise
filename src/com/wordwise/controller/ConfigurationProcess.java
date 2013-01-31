@@ -9,6 +9,8 @@ import android.content.Intent;
 
 import com.wordwise.MainActivity;
 import com.wordwise.view.activity.ConfigurationStep;
+import com.wordwise.view.activity.configuration.FinalStep;
+import com.wordwise.view.activity.configuration.InitialStep;
 import com.wordwise.view.activity.configuration.LearningLanguageStep;
 import com.wordwise.view.activity.configuration.ProficientLanguagesStep;
 
@@ -19,8 +21,8 @@ public class ConfigurationProcess {
 	private int currentStepIndex = 0;
 	private List<Class<? extends ConfigurationStep>> steps = new ArrayList<Class<? extends ConfigurationStep>>();
 
-	private Class<? extends ConfigurationStep> initialStep;
-	private Class<? extends ConfigurationStep> finalStep;
+	private Class<? extends ConfigurationStep> initialStep = InitialStep.class;
+	private Class<? extends ConfigurationStep> finalStep = FinalStep.class;
 	private Class<? extends Activity> finishTarget = MainActivity.class;
 
 	// not allowed
@@ -41,7 +43,7 @@ public class ConfigurationProcess {
 
 	private void configureSteps() {
 		// initial step first
-		// steps.add(initialStep);
+		 steps.add(initialStep);
 		// add the intermidate(real configuration) steps in the middle
 		steps.addAll(getIntermediateSteps());
 		// final step is at the end
