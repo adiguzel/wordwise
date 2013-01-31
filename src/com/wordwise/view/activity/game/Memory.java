@@ -86,7 +86,7 @@ LoaderCallbacks<List<DTOTranslation>> {
 		} 
 		else {
 			this.translations = translations;
-			setContentView(R.layout.memory);
+			setContentView(R.layout.game_memory);
 			this.onGameInit();
 			this.onGameStart();	
 		}

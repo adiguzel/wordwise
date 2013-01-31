@@ -211,7 +211,7 @@ public class WordEvaluation extends WordwiseGameActivity
 		} else if (words.get(0) != null) {
 			word = words.get(0);
 			Log.v("word", "" + word.getWord());
-			setContentView(R.layout.word_evaluation);
+			setContentView(R.layout.game_word_evaluation);
 			this.onGameInit();
 			this.onGameStart();
 		}

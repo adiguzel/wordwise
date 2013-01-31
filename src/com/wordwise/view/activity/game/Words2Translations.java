@@ -83,7 +83,7 @@ public class Words2Translations extends WordwiseGameActivity
 		} 
 		else {
 			this.translations = translations;
-			setContentView(R.layout.words2translations);
+			setContentView(R.layout.game_words2translations);
 			this.onGameInit();
 			this.onGameStart();
 		}

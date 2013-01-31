@@ -34,7 +34,6 @@ public class TranslateWord extends WordwiseGameActivity
 	private Set<DTOLanguage> proficientLanguagesSet;
 	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
-	private RESTfullServerCommunication server;
 	private DTOWord englishWord;
 	private DTOTranslation translation;
 
@@ -52,7 +51,7 @@ public class TranslateWord extends WordwiseGameActivity
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.translate_word);
+		setContentView(R.layout.game_translate_word);
 		this.onGameInit();
 		this.onGameStart();
 	}

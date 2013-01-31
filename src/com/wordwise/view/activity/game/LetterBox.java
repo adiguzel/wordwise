@@ -239,7 +239,7 @@ LoaderCallbacks<List<DTOTranslation>>{
 		} 
 		else {
 			this.translations = translations;
-			setContentView(R.layout.letterbox);
+			setContentView(R.layout.game_letterbox);
 			this.onGameInit();
 			this.onGameStart();
 		}	

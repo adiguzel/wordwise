@@ -36,8 +36,6 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
 	private DTORate currentRating;
-	private DTODifficulty difficulty;
-
 	private RESTfullServerCommunication server;
 	private DTOTranslation translation;
 
@@ -70,9 +68,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 				.getProficientLanguages(this.proficientLanguagesSet);
 
 		languageOfTranslation = chooseRandomProficientLanguage();
-		difficulty = configuration.getDifficulty();
 
-		// translation = this.retrieveRandomTranslation();
 		currentRating = new DTORate();
 
 		this.setChangeableTextViews();
@@ -183,7 +179,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 			loaderHelper.loadFailed("Server does not have enough words!");
 		} else {
 			this.translation = translations.get(0);
-			setContentView(R.layout.rate_translation);
+			setContentView(R.layout.game_rate_translation);
 			onGameInit();
 			onGameStart();
 		}
