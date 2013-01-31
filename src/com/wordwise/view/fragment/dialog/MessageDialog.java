@@ -10,7 +10,7 @@ import com.wordwise.R;
 
 public class MessageDialog extends DialogFragment {
 	// Default message value
-	String message = "";
+	private String message = "";
 
 	public static MessageDialog newInstance(String message) {
 		// Supply num input as an argument.

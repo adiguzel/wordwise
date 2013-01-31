@@ -26,9 +26,9 @@
             android:textSize="@dimen/text_size_medium"
             android:visibility="invisible" />
 
-        <ImageButton
+        <Button
             android:contentDescription="@string/retryIcon"
-            android:src="@drawable/ic_av_replay"
+            android:drawableLeft="@drawable/ic_navigation_refresh"
             android:id="@+id/retryButton"
             style="@style/wordwiseSmallLightBoldButtonStyle"
             android:layout_width="wrap_content"

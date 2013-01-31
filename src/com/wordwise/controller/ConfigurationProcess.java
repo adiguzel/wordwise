@@ -43,11 +43,11 @@ public class ConfigurationProcess {
 
 	private void configureSteps() {
 		// initial step first
-		 steps.add(initialStep);
+		steps.add(initialStep);
 		// add the intermidate(real configuration) steps in the middle
 		steps.addAll(getIntermediateSteps());
 		// final step is at the end
-		// steps.add(finalStep);
+		steps.add(finalStep);
 	}
 
 	private List<Class<? extends ConfigurationStep>> getIntermediateSteps() {

@@ -7,8 +7,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
-import org.restlet.data.Language;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;

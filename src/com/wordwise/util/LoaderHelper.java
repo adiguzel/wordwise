@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Loader;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,7 +24,7 @@ public class LoaderHelper {
 	
 	private LinearLayout loadingFailed;
 	private TextView loadingFailedText;
-	private ImageButton retryButton;
+	private Button retryButton;
 	private LinearLayout loading;
 	private ProgressBar progress;
 	
@@ -79,7 +78,7 @@ public class LoaderHelper {
 	    progress = (ProgressBar) activity.findViewById(R.id.progress_bar);		
 	    loadingFailed = (LinearLayout) activity.findViewById(R.id.loadingFailed);
 	    loadingFailedText = (TextView) activity.findViewById(R.id.loadingFailedText);
-	    retryButton = (ImageButton) activity.findViewById(R.id.retryButton);
+	    retryButton = (Button) activity.findViewById(R.id.retryButton);
 	    loading = (LinearLayout) activity.findViewById(R.id.loading);
 		
 		progress.setVisibility(View.VISIBLE);

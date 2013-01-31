@@ -73,5 +73,7 @@
     <string name="getStarted">Get Started</string>
     <string name="configurationDefinition">Before you start playing Wordwise, you need to do just a three step configuration</string>
 	<string name="title_configuration_initial_step">Initial step</string>
-
+	<string name="configurationFinishButtonLabel">Let\'s Rock!</string>
+	<string name="configurationFinishedText">Congratulations, you have successfully configured Wordwise! Are you ready to learn new languages?</string>
+	<string name="title_configuration_final_step">Final step</string>
 </resources>
