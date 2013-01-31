@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="@dimen/word2translations_padding_main" >
-
-    <include
-        android:id="@+id/topBar"
-        layout="@layout/game_top_bar" />
+    android:layout_height="fill_parent">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +9,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/submitTranslation"
-        android:layout_below="@id/topBar"
         android:orientation="vertical"
         android:paddingBottom="@dimen/word2translations_padding_main"
         android:paddingTop="@dimen/word2translations_padding_main" >

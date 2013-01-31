@@ -179,8 +179,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 			loaderHelper.loadFailed("Server does not have enough words!");
 		} else {
 			this.translation = translations.get(0);
-			setContentView(R.layout.game_rate_translation);
-			onGameInit();
+			initLayout();
 			onGameStart();
 		}
 
@@ -189,6 +188,21 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);
 
+	}
+
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_translation_evaluation, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return false;
+	}
+
+	@Override
+	public List<DTOTranslation> getTranslations() {
+		return null;
 	}
 
 }

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
@@ -25,7 +24,6 @@ public class Words2Translations extends WordwiseGameActivity
 	private Button validateButton;
 	private Words2TranslationsManager manager;
 	private List<DTOTranslation> translations;
-	private ProgressBar progress;
 	
 
 	@Override
@@ -83,8 +81,7 @@ public class Words2Translations extends WordwiseGameActivity
 		} 
 		else {
 			this.translations = translations;
-			setContentView(R.layout.game_words2translations);
-			this.onGameInit();
+			initLayout();
 			this.onGameStart();
 		}
 	}
@@ -114,5 +111,15 @@ public class Words2Translations extends WordwiseGameActivity
 	
 	public List<DTOTranslation> getTranslations(){
 		return translations;
+	}
+	
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_words2translations, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return true;
 	}
 }

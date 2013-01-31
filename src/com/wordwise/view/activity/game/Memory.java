@@ -17,12 +17,13 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class Memory extends WordwiseGameActivity implements
-LoaderCallbacks<List<DTOTranslation>> {
-	
+public class Memory extends WordwiseGameActivity
+		implements
+			LoaderCallbacks<List<DTOTranslation>> {
+
 	private Button continueButton;
 	private List<DTOTranslation> translations;
-	
+
 	public void performOnCreate(Bundle savedInstanceState) {
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
@@ -47,7 +48,7 @@ LoaderCallbacks<List<DTOTranslation>> {
 		continueButton.setEnabled(true);
 	}
 
-	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {	
+	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		if (difficulty == DTODifficulty.EASY)
 			return 3;
 		else if (difficulty == DTODifficulty.MEDIUM)
@@ -65,35 +66,45 @@ LoaderCallbacks<List<DTOTranslation>> {
 	public void retry(View v) {
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
-	
-	public List<DTOTranslation> getTranslations(){
+
+	public List<DTOTranslation> getTranslations() {
 		return translations;
 	}
 
 	@SuppressWarnings("unchecked")
 	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this,
+				LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
-		
+
 		if (translations == null) {
 			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
+		} else if (translations.size() < GameManagerContainer.getGameManager()
+				.NumberOfTranslationsNeeded()) {
 			loaderHelper.loadFailed("Server does not have enough words!");
-		} 
-		else {
+		} else {
 			this.translations = translations;
-			setContentView(R.layout.game_memory);
-			this.onGameInit();
-			this.onGameStart();	
+			initLayout();
+			this.onGameStart();
 		}
 	}
 
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
-		loaderHelper.onLoaderReset(this);	
+		loaderHelper.onLoaderReset(this);
 	}
-	
+
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_memory, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return true;
+	}
+
 }

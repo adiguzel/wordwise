@@ -11,13 +11,13 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.game.MemoryViewFlipper;
 
-public class MemoryWordAndTranslationAdapter extends BaseAdapter {
+public class MemoryFlipperAdapter extends BaseAdapter {
 	private Context mContext;
 	// list of flippers which has word/translation on one side and no text on
 	// the other
 	private List<MemoryViewFlipper> flippers;
 
-	public MemoryWordAndTranslationAdapter(Context c,
+	public MemoryFlipperAdapter(Context c,
 			List<DTOTranslation> translations) {
 		super();
 		mContext = c;

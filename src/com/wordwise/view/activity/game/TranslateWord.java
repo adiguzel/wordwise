@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
@@ -51,9 +50,8 @@ public class TranslateWord extends WordwiseGameActivity
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.game_translate_word);
-		this.onGameInit();
-		this.onGameStart();
+		initLayout();
+		onGameStart();
 	}
 
 	@SuppressLint("NewApi")
@@ -184,5 +182,20 @@ public class TranslateWord extends WordwiseGameActivity
 			String failMessage = "Your translation could not be submitted. Check your internet connection and please try again later.";
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
+	}
+
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_translate_word, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return false;
+	}
+
+	@Override
+	public List<DTOTranslation> getTranslations() {
+		return null;
 	}
 }

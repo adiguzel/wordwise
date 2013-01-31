@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="@dimen/word2translations_padding_main" >
-
-    <include
-        android:id="@+id/topBar"
-        layout="@layout/game_top_bar" />
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/hangman_main_vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_above="@id/buttons"
-        android:layout_below="@id/topBar"
         android:orientation="vertical"
         android:paddingBottom="@dimen/word2translations_padding_main"
-        android:paddingTop="@dimen/word2translations_padding_main"
         android:weightSum="5" >
 
         <TextView
@@ -25,7 +18,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/word2Translations_game_information"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_small" 
+            android:paddingBottom="@dimen/word2translations_padding_main"/>
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -37,8 +31,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/word2translations_padding_main"
-                android:paddingTop="@dimen/word2translations_padding_main" >
+                android:paddingBottom="@dimen/word2translations_padding_main">
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -171,21 +164,18 @@
                         android:background="@drawable/word2translations_translation_placeholder_initial"
                         android:gravity="center"
                         android:textSize="@dimen/text_size_small" />
-                </LinearLayout>  
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
-        
-		<TextView 
-		    android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-            style="@style/wordwiseHeading"
-		    android:layout_marginBottom="@dimen/word2translations_word_margin_row"
-		    android:text="@string/wordwise_translations_heading"
-		    android:gravity="center"
 
-		     
-		    />
-		
+        <TextView
+            style="@style/wordwiseHeading"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/word2translations_word_margin_row"
+            android:gravity="center"
+            android:text="@string/wordwise_translations_heading" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -225,8 +215,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:onClick="continueNextGame"
-            android:text="@string/continueLabel"
+            android:onClick="review"
+            android:text="@string/review_game_label"
             android:visibility="invisible" />
     </RelativeLayout>
 

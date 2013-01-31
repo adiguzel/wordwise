@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/wordwise_padding_main" >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/topPanel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/wordwise_padding_main">
+
+        <Button
+            android:id="@+id/quit"
+            style="@style/wordwiseSmallLightBoldButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/light_button"
+            android:onClick="quit"
+            android:text="@string/quit" />
+    </RelativeLayout>
+
+    <ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/topPanel" >
+
+        <!--
+        This flipper is configured programmatically. It composes of two children,
+        one being the game content, other being the review content.
+        -->
+
+    </ViewFlipper>
+
+</RelativeLayout>

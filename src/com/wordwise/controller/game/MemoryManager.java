@@ -32,7 +32,7 @@ public class MemoryManager {
 	public void initMemoryGrid() {
 		GridView translationsGrid = (GridView) memoryActivity
 				.findViewById(R.id.memoryGrid);
-		MemoryWordAndTranslationAdapter translationAdapter = new MemoryWordAndTranslationAdapter(
+		MemoryFlipperAdapter translationAdapter = new MemoryFlipperAdapter(
 				memoryActivity, translations);
 		translationsGrid.setAdapter(translationAdapter);
 		foundFlippers = new ArrayList<MemoryViewFlipper>();

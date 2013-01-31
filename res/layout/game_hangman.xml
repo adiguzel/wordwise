@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="@dimen/word2translations_padding_main" >
-
-    <include
-        android:id="@+id/topBar"
-        layout="@layout/game_top_bar" />
+    android:layout_height="fill_parent">
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/continueButton"
-        android:layout_below="@id/topBar"
-        android:paddingTop="@dimen/word2translations_padding_main" >
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/continueButton">
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -86,7 +79,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:enabled="false"
-        android:onClick="continueNextGame"
-        android:text="@string/continueLabel" />
+        android:onClick="review"
+        android:text="@string/review_game_label" />
 
 </RelativeLayout>

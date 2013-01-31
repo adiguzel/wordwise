@@ -28,8 +28,9 @@ import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
-public class LetterBox extends WordwiseGameActivity implements
-LoaderCallbacks<List<DTOTranslation>>{
+public class LetterBox extends WordwiseGameActivity
+		implements
+			LoaderCallbacks<List<DTOTranslation>> {
 	private LetterBoxManager letterBoxManager;
 	private Button continueButton;
 	private List<DTOTranslation> translations;
@@ -38,7 +39,6 @@ LoaderCallbacks<List<DTOTranslation>>{
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 
-	
 	public void onGameStart() {
 		// TODO Auto-generated method stub
 
@@ -103,8 +103,8 @@ LoaderCallbacks<List<DTOTranslation>>{
 		wordsGrid.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				DTOTranslation translation = (DTOTranslation) wordsGrid.getAdapter()
-						.getItem(position);
+				DTOTranslation translation = (DTOTranslation) wordsGrid
+						.getAdapter().getItem(position);
 				WordwiseUtils.makeCustomToast(activity, translation.getWord()
 						.getWord());
 				/*
@@ -193,10 +193,10 @@ LoaderCallbacks<List<DTOTranslation>>{
 
 	public void onGameEnd() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-    //TODO reconsider numbers
+	// TODO reconsider numbers
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		if (difficulty == DTODifficulty.EASY)
 			return 6;
@@ -208,44 +208,51 @@ LoaderCallbacks<List<DTOTranslation>>{
 			return -1;
 	}
 
-
-	public int numberOfWordsNeeded(DTODifficulty difficulty){
+	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		return 0;
 	}
-
 
 	public void retry(View v) {
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
-	
-	public List<DTOTranslation> getTranslations(){
+
+	public List<DTOTranslation> getTranslations() {
 		return translations;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this,
+				LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
-		
+
 		if (translations == null) {
 			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
+		} else if (translations.size() < GameManagerContainer.getGameManager()
+				.NumberOfTranslationsNeeded()) {
 			loaderHelper.loadFailed("Server does not have enough words!");
-		} 
-		else {
+		} else {
 			this.translations = translations;
-			setContentView(R.layout.game_letterbox);
-			this.onGameInit();
+			initLayout();
 			this.onGameStart();
-		}	
+		}
 	}
 
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
-		loaderHelper.onLoaderReset(this);			
+		loaderHelper.onLoaderReset(this);
+	}
+
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_letterbox, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return true;
 	}
 }

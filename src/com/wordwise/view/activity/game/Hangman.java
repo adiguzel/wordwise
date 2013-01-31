@@ -153,14 +153,23 @@ public class Hangman extends WordwiseGameActivity
 			loaderHelper.loadFailed("Server does not have enough words!");
 		} else {
 			this.translations = translations;
-			setContentView(R.layout.game_hangman);
-			this.onGameInit();
+			initLayout();
 			this.onGameStart();
 		}
 	}
 
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
 		loaderHelper.onLoaderReset(this);
+	}
+
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_hangman, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return true;
 	}
 
 }

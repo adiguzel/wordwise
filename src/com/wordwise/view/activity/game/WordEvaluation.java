@@ -20,6 +20,7 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOQuality;
+import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
 import com.wordwise.task.game.WordEvaluationSubmitTask;
 import com.wordwise.util.LoaderHelper.LoaderType;
@@ -28,7 +29,8 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class WordEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<DTOWord>>, SubmitListener {
+			LoaderCallbacks<List<DTOWord>>,
+			SubmitListener {
 
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
@@ -175,7 +177,8 @@ public class WordEvaluation extends WordwiseGameActivity
 	public void onSubmitResult(boolean submitResult) {
 		if (submitResult) {
 			String successMessage = "Thank you for your feedback.";
-			WordwiseUtils.makeCustomToast(this, successMessage, Toast.LENGTH_LONG);
+			WordwiseUtils.makeCustomToast(this, successMessage,
+					Toast.LENGTH_LONG);
 			this.onGameEnd();
 		} else {
 			String failMessage = "Your feedback could not be submitted. Check your internet connection and please try again later.";
@@ -210,9 +213,7 @@ public class WordEvaluation extends WordwiseGameActivity
 			loaderHelper.loadFailed("Server does not have enough words!");
 		} else if (words.get(0) != null) {
 			word = words.get(0);
-			Log.v("word", "" + word.getWord());
-			setContentView(R.layout.game_word_evaluation);
-			this.onGameInit();
+			initLayout();
 			this.onGameStart();
 		}
 	}
@@ -225,4 +226,18 @@ public class WordEvaluation extends WordwiseGameActivity
 		loaderHelper.restartLoader(this, LoaderType.WORD_LOADER);
 	}
 
+	@Override
+	protected View gameContent() {
+		return getLayoutInflater().inflate(R.layout.game_word_evaluation, null);
+	}
+
+	@Override
+	protected boolean isRealGame() {
+		return false;
+	}
+
+	@Override
+	public List<DTOTranslation> getTranslations() {
+		return null;
+	}
 }
