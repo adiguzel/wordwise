@@ -77,5 +77,5 @@
 	<string name="configurationFinishedText">Congratulations, you have successfully configured Wordwise! Are you ready to learn new languages?</string>
 	<string name="title_configuration_final_step">Final step</string>
 	<string name="review_game_label">Review</string>
-	<string name="reviewInfoLabel"><b>Review</b> the words you have just practised</string>
+	<string name="reviewInfoLabel"><b>Review</b> the words you have just practiced</string>
 </resources>

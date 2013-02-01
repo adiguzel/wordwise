@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:paddingTop="@dimen/wordwise_padding_main_half"
+    android:paddingBottom="@dimen/wordwise_padding_main_half">
 
     <TextView
         android:layout_width="fill_parent"

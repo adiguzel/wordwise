@@ -8,8 +8,8 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/content"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/next"
         android:orientation="vertical"
         android:paddingBottom="@dimen/wordwise_padding_main" >
@@ -19,7 +19,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/initial_conf_proficient_lang_info"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_large" 
+            android:paddingBottom="@dimen/wordwise_padding_main"/>
 
         <TextView
             android:id="@+id/numberOfSelectedLanguages"

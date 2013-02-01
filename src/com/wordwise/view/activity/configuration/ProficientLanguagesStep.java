@@ -3,6 +3,7 @@ package com.wordwise.view.activity.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -55,7 +56,6 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 				LanguageUtils.toLanguageNameArray());
 		list.setAdapter(adapter);
 		list.setItemsCanFocus(false);
-		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -68,18 +68,30 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	public void toggle(CheckedTextView v) {
 		String langName = v.getText().toString();
 		DTOLanguage l = LanguageUtils.getByName(langName);
-		if (v.isChecked()) {
-			v.setChecked(false);
+		
+		if(configuration.getProficientLanguages().contains(l)){
 			configuration.removeLanguage(l);
-		} else {
-			v.setChecked(true);
+		}
+		else{
 			configuration.addLanguage(l);
 		}
+		/*	
+		if (v.isChecked()) {
+			Log.v("","Checked");
+			v.setSelected(false);
+		
+			configuration.addLanguage(l);
+			
+		} else {
+			Log.v("","Unchecked");
+			v.setSelected(true);
+			//v.setChecked(true);
+			configuration.removeLanguage(l);
+		}*/
 		
 		if (configuration.getProficientLanguages().size() > 0){
 				next.setEnabled(true);
-		}
-			
+		}		
 		else
 			next.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
