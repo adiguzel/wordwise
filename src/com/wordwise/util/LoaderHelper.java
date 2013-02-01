@@ -74,6 +74,8 @@ public class LoaderHelper {
 	
 	private void initScreen(Activity activity){
 		activity.setContentView(R.layout.loading_game);
+		//update the panel first
+		WordwiseUtils.updateGameTopPanel(activity);
 		
 	    progress = (ProgressBar) activity.findViewById(R.id.progress_bar);		
 	    loadingFailed = (LinearLayout) activity.findViewById(R.id.loadingFailed);

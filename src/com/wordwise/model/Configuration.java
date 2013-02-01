@@ -18,7 +18,8 @@ public class Configuration{
 	private Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage>();
 	private DTOLanguage learningLanguage = null;
 	private SharedPreferences SP;
-
+	final String POINTS_PREFIX = "points_";
+	
 	private Configuration(Context context) {
 		init(context);
 	}
@@ -45,6 +46,11 @@ public class Configuration{
 		return gameConf;
 	}
 	
+	public int loadPoints() {
+		String pointsQueryStr = POINTS_PREFIX + learningLanguage.getCode();
+		return SP.getInt(pointsQueryStr, 0);
+	}
+
 	public DTODifficulty loadDifficulty() {
 		return DTODifficulty.getByDifficulty(SP.getInt("difficulty", DTODifficulty.EASY.getDifficulty()));
 	}
@@ -78,7 +84,20 @@ public class Configuration{
 		Set<String> profLanguagesCodeSet = LanguageUtils.languageSetToCodeSet(proficientLanguages);
 		return SP.edit().putStringSet("proficient_languages", profLanguagesCodeSet).commit();
 	}
+	
+	public boolean savePoints(int points) {	
+		String pointsQueryStr = POINTS_PREFIX + learningLanguage.getCode();
+		return SP.edit().putInt(pointsQueryStr, points).commit();
+	}
 
+	public int getPoints() {
+		return loadPoints();
+	}
+	
+	public void setPoints(int points) {
+		savePoints(points);
+	}
+	
 	public DTODifficulty getDifficulty() {
 		loadDifficulty();
 		return difficulty;

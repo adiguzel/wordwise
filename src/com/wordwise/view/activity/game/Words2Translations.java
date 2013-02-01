@@ -54,8 +54,7 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
-		// as a dummy game end text
-		WordwiseUtils.makeCustomToast(this, "Game ended");
+		super.onGameEnd();
 	}
 
 	public void switchValidation(boolean state) {

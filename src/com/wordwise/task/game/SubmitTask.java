@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.model.SubmitListener;
 
-public abstract class SubmitTask  extends AsyncTask<Void, Void, Boolean> {
+public abstract class SubmitTask extends AsyncTask<Void, Void, Boolean> {
 	private Activity activity;
 	private SubmitListener submitListener;
 	private ProgressDialog dialog;

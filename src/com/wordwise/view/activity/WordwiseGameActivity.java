@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 import android.widget.ViewFlipper;
 
@@ -69,6 +70,16 @@ public abstract class WordwiseGameActivity extends Activity
 	 * or only a review/input game
 	 * */
 	protected abstract boolean isRealGame();
+	
+	public void onGameEnd(){
+		Configuration configuration = Configuration.getInstance(this);
+		int pointsEarned = getPromotion().getPoints(configuration.getDifficulty()) ;
+		int newPoints = configuration.getPoints() + pointsEarned;
+		configuration.setPoints(newPoints);
+		WordwiseUtils.updateGameTopPanel(this);
+		// as a dummy game end text
+		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "+ newPoints + " more points.", Toast.LENGTH_LONG);
+	}
 
 	protected void initLayout() {
 		setContentView(R.layout.game_wrapper);
@@ -80,6 +91,7 @@ public abstract class WordwiseGameActivity extends Activity
 					null));
 			initReview();
 		}
+		WordwiseUtils.updateGameTopPanel(this);
 		this.onGameInit();
 	}
 

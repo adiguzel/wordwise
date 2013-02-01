@@ -46,7 +46,7 @@ public class Memory extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
-		// TODO show necessary dialogs about game end
+		super.onGameEnd();
 		continueButton.setEnabled(true);
 	}
 

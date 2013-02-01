@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.gameengine.GameManager;
+import com.wordwise.gameengine.level.Level;
+import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 
 public class WordwiseUtils {
@@ -114,5 +116,19 @@ public class WordwiseUtils {
          * starts the app again.
          */
         System.exit(0);
+	}
+	
+	public static void updateGameTopPanel(Activity activity){
+		Configuration configuration = Configuration.getInstance(activity);
+		TextView pointsView = (TextView) activity.findViewById(R.id.points);
+		TextView levelView = (TextView) activity.findViewById(R.id.level);
+		
+		String levelString = activity.getResources().getString(R.string.levelLabel);
+		int points = configuration.getPoints();
+		Level level = Level.getByPoint(points);
+		if(pointsView != null && levelView != null ){
+			pointsView.setText(""+configuration.getPoints());
+			levelView.setText(levelString + " "+ level.getLevel());
+		}
 	}
 }

@@ -4,55 +4,15 @@
     android:layout_height="fill_parent"
     android:padding="@dimen/wordwise_padding_main" >
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/topPanel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/wordwise_padding_main" >
-
-        <Button
-            android:id="@+id/quit"
-            style="@style/wordwiseSmallLightBoldButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:background="@drawable/light_button"
-            android:onClick="quit"
-            android:text="@string/quit" />
-
-        <TextView
-            android:id="@+id/points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/quit"
-            android:layout_toLeftOf="@+id/level"
-            android:drawableLeft="@drawable/circle_green_light"
-            android:gravity="center"
-            android:onClick="quit"
-            android:paddingLeft="@dimen/wordwise_padding_main"
-            android:text="12312"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:drawableLeft="@drawable/square_blue_light"
-            android:gravity="center"
-            android:onClick="quit"
-            android:paddingLeft="@dimen/wordwise_padding_main"
-            android:text="Level 21"
-            android:textStyle="bold" />
-    </RelativeLayout>
+    <include
+        android:id="@+id/topBar"
+        layout="@layout/game_top_bar" />
 
     <ViewFlipper
         android:id="@+id/flipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/topPanel" >
+        android:layout_below="@id/topBar" >
 
         <!--
         This flipper is configured programmatically. It composes of two children,

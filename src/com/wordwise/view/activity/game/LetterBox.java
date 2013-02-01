@@ -195,7 +195,7 @@ public class LetterBox extends WordwiseGameActivity
 
 	public void onGameEnd() {
 		// TODO Auto-generated method stub
-
+		super.onGameEnd();
 	}
 
 	// TODO reconsider numbers

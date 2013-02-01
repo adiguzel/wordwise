@@ -84,6 +84,7 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
+		super.onGameEnd();
 		wordDifficultyRating.setEnabled(false);
 		submitEvaluation.setVisibility(View.INVISIBLE);
 		continueButton.setVisibility(View.VISIBLE);

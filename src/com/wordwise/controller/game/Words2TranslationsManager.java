@@ -82,8 +82,10 @@ public class Words2TranslationsManager
 
 		int i = 0;
 		for (DTOTranslation translation : translations) {
-			words.get(i).init(activity, translation,
-					Word2TranslationsTextView.USE_WORD);
+			if(i < words.size()){
+				words.get(i).init(activity, translation,
+						Word2TranslationsTextView.USE_WORD);
+			}
 			i++;
 		}
 	}

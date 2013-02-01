@@ -126,6 +126,7 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
+		super.onGameEnd();
 		submitTranslation.setEnabled(false);
 		submitTranslation.setVisibility(View.INVISIBLE);
 		// Tell to the game manager that the translation is submitted

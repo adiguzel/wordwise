@@ -118,6 +118,7 @@ public class Hangman extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
+		super.onGameEnd();
 		// TODO show bye bye information
 		continueButton.setEnabled(true);
 	}

@@ -106,6 +106,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
+		super.onGameEnd();
 		submitRating.setVisibility(View.INVISIBLE);
 		continueButton.setVisibility(View.VISIBLE);
 	}
@@ -115,11 +116,6 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		this.currentRating.setRate(translationRating);
 		this.currentRating.setTranslation(translation);
 		this.server.rateTranslation(currentRating);
-		Toast.makeText(
-				this,
-				"Your rating score: " + translationRating
-						+ ", was submitted to successfully!",
-				Toast.LENGTH_SHORT).show();
 		this.onGameEnd();
 	}
 
