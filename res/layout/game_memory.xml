@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:horizontalSpacing="@dimen/word2translations_translations_grid_horizontal_spacing"
-                android:numColumns="3"
+                android:numColumns="2"
                 android:paddingBottom="@dimen/word2translations_padding_main"
                 android:paddingTop="@dimen/word2translations_padding_main"
                 android:textSize="@dimen/text_size_small"
