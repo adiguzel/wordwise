@@ -1,5 +1,6 @@
 package com.wordwise.gameengine;
 
+import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.server.dto.DTODifficulty;
 
 public interface Game {
@@ -47,4 +48,10 @@ public interface Game {
 	 * playable with the given difficulty
 	 * */
 	public int numberOfWordsNeeded(DTODifficulty difficulty);
+	
+	/**
+	 * The promotion that the game provides when the game finishes
+	 * */
+	public Promotion getPromotion();
+		
 }

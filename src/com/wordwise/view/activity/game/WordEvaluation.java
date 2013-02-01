@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.gameengine.level.EvaluationPromotion;
+import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
@@ -239,5 +241,11 @@ public class WordEvaluation extends WordwiseGameActivity
 	@Override
 	public List<DTOTranslation> getTranslations() {
 		return null;
+	}
+
+	@Override
+	public Promotion getPromotion() {
+		// TODO Auto-generated method stub
+		return new EvaluationPromotion();
 	}
 }

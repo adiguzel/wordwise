@@ -23,7 +23,6 @@ public class WordwiseUtils {
 
 	public static void makeCustomToast(Activity activity, String text,
 			int duration) {
-
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View layout = inflater.inflate(R.layout.custom_toast,
 				(ViewGroup) activity.findViewById(R.id.toast_layout_root));

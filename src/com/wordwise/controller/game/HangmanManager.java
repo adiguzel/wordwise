@@ -40,6 +40,8 @@ public class HangmanManager {
 	private Configuration configuration;
 	private DTOLanguage learningLanguage;
 	private Locale locale;
+	
+	private int isFound = 0;
 
 	public HangmanManager(Hangman hangmanActivity,
 			List<DTOTranslation> translations) {
@@ -110,6 +112,8 @@ public class HangmanManager {
 			continueButton.setVisibility(Button.VISIBLE);
 			mysteryWordTextView.setOnClickListener(null);
 			hangmanActivity.onGameEnd();
+			
+			isFound = 1;
 		}
 	}
 
@@ -232,5 +236,10 @@ public class HangmanManager {
 
 		openTheSoftKeyboard();
 	}
+	
+	public int isFound(){
+		return isFound;
+	}
+	
 
 }

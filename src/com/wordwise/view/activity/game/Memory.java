@@ -11,6 +11,8 @@ import android.widget.Button;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.MemoryManager;
+import com.wordwise.gameengine.level.GameFinishPromotion;
+import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
@@ -105,6 +107,11 @@ public class Memory extends WordwiseGameActivity
 	@Override
 	protected boolean isRealGame() {
 		return true;
+	}
+	
+	@Override
+	public Promotion getPromotion() {
+		return new GameFinishPromotion();
 	}
 
 }

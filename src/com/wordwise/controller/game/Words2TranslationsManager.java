@@ -30,6 +30,7 @@ public class Words2TranslationsManager
 	private final int PAIR_MATCH_FAIL_STATE = R.drawable.word2translations_translation_placeholder_match_failed;
 
 	private final int NUM_PAIRS = 4;
+	private int numMatchedPairs = 0;
 	// Word2Translations game instance that it manages
 	private Words2Translations activity;
 	// The view that is being dragged
@@ -133,6 +134,7 @@ public class Words2TranslationsManager
 			Word2TranslationsTextView p = translationPlaceHolders.get(i);
 
 			if (pairsMatch(p, translations.get(i))) {
+				numMatchedPairs++;
 				setBackground(p, PAIR_MATCH_SUCCESS_STATE);
 
 			} else {
@@ -268,5 +270,13 @@ public class Words2TranslationsManager
 		setDragged((Word2TranslationsTextView) v);
 		dragged.setVisibility(View.INVISIBLE);
 		return true;
+	}
+	
+	public int getNumMatchedPairs(){
+		return numMatchedPairs;
+	}
+	
+	public int getNumTotalPairs(){
+		return NUM_PAIRS;
 	}
 }

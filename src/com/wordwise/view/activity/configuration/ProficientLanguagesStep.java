@@ -75,20 +75,8 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 		else{
 			configuration.addLanguage(l);
 		}
-		/*	
-		if (v.isChecked()) {
-			Log.v("","Checked");
-			v.setSelected(false);
 		
-			configuration.addLanguage(l);
-			
-		} else {
-			Log.v("","Unchecked");
-			v.setSelected(true);
-			//v.setChecked(true);
-			configuration.removeLanguage(l);
-		}*/
-		
+		//check the state of the next button
 		if (configuration.getProficientLanguages().size() > 0){
 				next.setEnabled(true);
 		}		
