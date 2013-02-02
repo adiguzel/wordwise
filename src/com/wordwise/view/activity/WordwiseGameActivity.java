@@ -75,7 +75,6 @@ public abstract class WordwiseGameActivity extends Activity
 	protected abstract boolean isRealGame();
 	
 	public void onGameEnd(){
-		Configuration configuration = Configuration.getInstance(this);
 		int pointsEarned = getPromotion().getPoints(configuration.getDifficulty()) ;
 		int newPoints = configuration.getPoints() + pointsEarned;
 		configuration.setPoints(newPoints);

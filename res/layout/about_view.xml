@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    android:paddingLeft="@dimen/wordwise_padding_main"
+    android:paddingRight="@dimen/wordwise_padding_main" >
 
     <TextView
         android:id="@+id/aboutText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="10dp"
+        android:padding="@dimen/wordwise_padding_main"
         android:text="@string/about_application_text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

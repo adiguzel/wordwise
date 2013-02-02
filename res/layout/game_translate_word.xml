@@ -15,7 +15,6 @@
             android:id="@+id/translateWordActivityInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/word2translations_padding_main"
             android:text="@string/translate_word_activity_info"
             android:textSize="@dimen/text_size_small" />
 
@@ -25,7 +24,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/translate_word_add_word"
             android:inputType="text"
-            android:paddingTop="@dimen/word2translations_padding_main" />
+            android:paddingTop="@dimen/wordwise_padding_main" />
 
         <EditText
             android:id="@+id/wordTranslation"

@@ -29,7 +29,7 @@ public abstract class SubmitTask extends AsyncTask<Void, Void, Boolean> {
 		dialog.setMessage("Submitting...");
 		dialog.setIndeterminate(true);
 		dialog.setCancelable(false);
-		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCanceledOnTouchOutside(true);
 		// show the progress bar
 		dialog.show();
 	}

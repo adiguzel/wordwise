@@ -12,7 +12,7 @@ public class Level {
 		if(currentPoints <= 0 )
 			return new Level(1);
 		else{
-			int level = (int) Math.ceil(currentPoints / ONE_LEVEL_POINT);
+			int level = ((int) Math.ceil(currentPoints / ONE_LEVEL_POINT)) + 1;
 			return new Level(level);
 		}
 	}

@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" >
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rating"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/submitTranslation"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/word2translations_padding_main"
-        android:paddingTop="@dimen/word2translations_padding_main" >
+        android:paddingBottom="@dimen/wordwise_padding_main" 
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:id="@+id/wordEvaluationGameLabel"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rating"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wordEvaluation_game_information"
-            android:textSize="@dimen/text_size_small" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/wordToEvaluate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:text=""
-            android:textSize="@dimen/text_size_xlarge" />
+            <TextView
+                android:id="@+id/wordEvaluationGameLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wordEvaluation_game_information"
+                android:textSize="@dimen/text_size_small" />
 
-        <TextView
-            android:id="@+id/wordQualityText"
-            style="@style/wordwiseHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wordQualityText" />
+            <TextView
+                android:id="@+id/wordToEvaluate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/wordwise_padding_main"
+                android:text=""
+                android:textSize="@dimen/text_size_xlarge" />
 
-        <CheckBox
-            android:id="@+id/is_a_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxYes"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:text="@string/is_a_word" />
+            <TextView
+                android:id="@+id/wordQualityText"
+                style="@style/wordwiseHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wordQualityText" />
 
-        <CheckBox
-            android:id="@+id/is_not_a_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxNo"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:text="@string/is_not_a_word" />
+            <RadioGroup
+                android:id="@+id/qualityGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-        <CheckBox
-            android:id="@+id/i_dont_know"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxDontKnow"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:text="@string/i_dont_know" />
+                <RadioButton
+                    android:id="@+id/is_a_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_a_word" />
 
-        <TextView
-            android:id="@+id/wordDifficultyText"
-            style="@style/wordwiseHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wordDifficultyText" />
+                <RadioButton
+                    android:id="@+id/is_not_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_not_a_word" />
 
-        <RatingBar
-            android:id="@+id/wordDifficultyRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="3"
-            android:paddingTop="@dimen/word2translations_padding_main"
-            android:stepSize="1.0" />
-    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/i_dont_know"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i_dont_know" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/wordDifficultyText"
+                style="@style/wordwiseHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wordDifficultyText" />
+
+            <RatingBar
+                android:id="@+id/wordDifficultyRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:paddingTop="@dimen/wordwise_padding_main"
+                android:stepSize="1.0" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/submitTranslation"

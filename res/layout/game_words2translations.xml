@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/buttons"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/word2translations_padding_main"
+        android:paddingBottom="@dimen/wordwise_padding_main"
         android:weightSum="5" >
 
         <TextView
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/word2Translations_game_information"
             android:textSize="@dimen/text_size_small" 
-            android:paddingBottom="@dimen/word2translations_padding_main"/>
+            android:paddingBottom="@dimen/wordwise_padding_main"/>
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -31,7 +31,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/word2translations_padding_main">
+                android:paddingBottom="@dimen/wordwise_padding_main">
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"

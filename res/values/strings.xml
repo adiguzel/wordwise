@@ -47,7 +47,7 @@
     <string name="translate_word_add_word">Enter a word in English</string>
     <string name="translate_word_add_translation">Enter the translation in </string>
     <string name="translate_word_submit_translation_button">Submit translation</string>
-    <string name="selectDifficultyLevel">Select a difficulty level</string>
+    <string name="selectDifficultyLevel">Select a difficulty level :</string>
     <string name="quitGameAlert">Are you sure you want to exit to main menu?</string>
     <string name="quitGameAlertTopic">Quit game</string>
     <string name="quitGamePositiveAnswer">Yes</string>

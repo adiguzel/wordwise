@@ -58,28 +58,7 @@ public class WordwiseUtils {
 	     })
 	     .show();
 	}
-	
-	public static void makeQuitApplicationDialog(Activity activity) {
-		String appName = activity.getString(R.string.app_name);
-		String quitAlert = activity.getString(R.string.quitAppAlertTopic);
-		String quitAppAlert = activity.getString(R.string.quitAppAlert);
-		new AlertDialog.Builder(activity)
-	    .setTitle(String.format(quitAlert, appName))
-	    .setMessage(String.format(quitAppAlert, appName))
-	    .setPositiveButton(activity.getString(R.string.quitGamePositiveAnswer), new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	            // continue with exit
-	        	quitApplication();
-	        }
-	     })
-	    .setNegativeButton(activity.getString(R.string.quitGameNegativeAnswer), new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	            // do nothing
-	        }
-	     })
-	     .show();
-	}
-	
+		
 	// Dialog that explains to the user what he will be asked to do in the next
 	// screen
 	public static void infoDialogOnStart(String title,String dialog,Context context) {
@@ -95,27 +74,6 @@ public class WordwiseUtils {
 		});
 		dlgAlert.setCancelable(true);
 		dlgAlert.create().show();
-	}
-	
-	@SuppressWarnings("deprecation")
-	public static void quitApplication(){
-	   	/*
-         * Notify the system to finalize and collect all objects of the app
-         * on exit so that the virtual machine running the app can be killed
-         * by the system without causing issues. NOTE: If this is set to
-         * true then the virtual machine will not be killed until all of its
-         * threads have closed.
-         */
-        System.runFinalizersOnExit(true);
-
-        /*
-         * Force the system to close the app down completely instead of
-         * retaining it in the background. The virtual machine that runs the
-         * app will be killed. The app will be completely created as a new
-         * app in a new virtual machine running in a new process if the user
-         * starts the app again.
-         */
-        System.exit(0);
 	}
 	
 	public static void updateGameTopPanel(Activity activity){

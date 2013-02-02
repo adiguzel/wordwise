@@ -9,8 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/word2translations_padding_main"
-        android:paddingTop="@dimen/word2translations_padding_main" >
+        android:paddingBottom="@dimen/wordwise_padding_main"
+        android:paddingTop="@dimen/wordwise_padding_main" >
 
         <TextView
             android:id="@+id/translationRatingGameLabel"
@@ -30,7 +30,7 @@
             android:id="@+id/wordInEnglish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/word2translations_padding_main"
+            android:paddingTop="@dimen/wordwise_padding_main"
             android:text=""
             android:textSize="@dimen/text_size_xlarge" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/translationToRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/word2translations_padding_main"
+            android:paddingTop="@dimen/wordwise_padding_main"
             android:text=""
             android:textSize="@dimen/text_size_xlarge" />
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:paddingTop="@dimen/word2translations_padding_main"
+            android:paddingTop="@dimen/wordwise_padding_main"
             android:stepSize="1.0" />
     </LinearLayout>
 

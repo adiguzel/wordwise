@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/continueButton"
-        android:layout_marginBottom="@dimen/word2translations_padding_main"
-        android:layout_marginTop="@dimen/word2translations_padding_main" >
+        android:layout_marginBottom="@dimen/wordwise_padding_main"
+        android:layout_marginTop="@dimen/wordwise_padding_main" >
 
         <RelativeLayout
             android:id="@+id/grids"
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/gridViewLetters"
-                android:layout_marginTop="@dimen/word2translations_padding_main"
+                android:layout_marginTop="@dimen/wordwise_padding_main"
                 android:numColumns="3" >
             </com.wordwise.view.ScrollableGridView>
         </RelativeLayout>

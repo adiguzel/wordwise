@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.level.EvaluationPromotion;
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.model.GameManagerContainer;
@@ -33,20 +33,16 @@ public class WordEvaluation extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOWord>>,
 			SubmitListener {
-
+	//UI elements
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private Button continueButton;
 	private Button submitEvaluation;
-
-	private CheckBox isAWord;
-	private CheckBox isNotWord;
-	private CheckBox iDontKnow;
+	private RadioGroup qualityGroup;
 
 	private DTODifficulty difficulty;
 	private DTOQuality quality;
 	private DTOWord word;
-	private RESTfullServerCommunication server;
 
 	private boolean difficultyRated = false;
 	private boolean isWord;
@@ -61,17 +57,26 @@ public class WordEvaluation extends WordwiseGameActivity
 		wordDifficultyRating = (RatingBar) findViewById(R.id.wordDifficultyRating);
 		continueButton = (Button) findViewById(R.id.continueButton);
 		submitEvaluation = (Button) findViewById(R.id.submitTranslation);
+		qualityGroup = (RadioGroup) findViewById(R.id.qualityGroup);
 
-		isAWord = (CheckBox) findViewById(R.id.is_a_word);
-		isNotWord = (CheckBox) findViewById(R.id.is_not_a_word);
-		iDontKnow = (CheckBox) findViewById(R.id.i_dont_know);
-		word = retrieveWord();
 		wordToEvaluateText.setText(word.getWord());
 
 		submitEvaluation.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);
 
 		wordDifficultyRating.setEnabled(false);
+		
+		qualityGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				if(checkedId == R.id.is_a_word )
+					onYesSelected();
+				else if(checkedId == R.id.is_not_word)
+					onNoSelected();
+				else if(checkedId == R.id.i_dont_know)
+					onDontKnowSelected();
+			}
+		});
 	}
 
 	public void onGameStart() {
@@ -85,11 +90,16 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	public void onGameEnd() {
 		String successMessage = "Thank you for your feedback.";
-		WordwiseUtils.makeCustomToast(this, successMessage,
-				Toast.LENGTH_LONG);
+		WordwiseUtils.makeCustomToast(this, successMessage, Toast.LENGTH_LONG);
 		super.onGameEnd();
+		//disable the UI elements
+		qualityGroup.setEnabled(false);
+		//disable the children of radio group too
+		for(int i = 0; i < qualityGroup.getChildCount(); i++){
+            qualityGroup.getChildAt(i).setEnabled(false);
+        }
 		wordDifficultyRating.setEnabled(false);
-		submitEvaluation.setVisibility(View.INVISIBLE);
+		submitEvaluation.setVisibility(View.GONE);
 		continueButton.setVisibility(View.VISIBLE);
 	}
 
@@ -115,36 +125,27 @@ public class WordEvaluation extends WordwiseGameActivity
 			submitEvaluation.setEnabled(false);
 	}
 
-	public DTOWord retrieveWord() {
-		this.server = new RESTfullServerCommunication();
-		return server.getWord();
-	}
-
-	public void onCheckboxYes(View view) {
-		this.isAWord.setEnabled(false);
-		this.isNotWord.setEnabled(false);
-		this.iDontKnow.setEnabled(false);
+	public void onYesSelected() {
 		this.isWord = true;
 		this.enableRatingBar();
 	}
 
-	public void onCheckboxNo(View view) {
-		this.isAWord.setEnabled(false);
-		this.isNotWord.setEnabled(false);
-		this.iDontKnow.setEnabled(false);
+	public void onNoSelected() {
+		//reset the rating bar
+		wordDifficultyRating.setRating(0.0f);
+		wordDifficultyRating.setEnabled(false);
 		this.isWord = false;
 		this.submitEvaluation.setEnabled(true);
 	}
 
-	public void onCheckboxDontKnow(View view) {
-		this.isAWord.setEnabled(false);
-		this.isNotWord.setEnabled(false);
-		this.iDontKnow.setEnabled(false);
+	public void onDontKnowSelected() {
+		//reset the rating bar
+		wordDifficultyRating.setRating(0.0f);
+		wordDifficultyRating.setEnabled(false);
 		this.submitEvaluation.setEnabled(true);
 	}
 
 	public void submitEvaluation(View v) {
-		this.server = new RESTfullServerCommunication();
 		if (!isWord) {
 			this.quality = new DTOQuality();
 			quality.setWord(this.word);
@@ -168,34 +169,31 @@ public class WordEvaluation extends WordwiseGameActivity
 			if (difficulty != null) {
 				difficulty.setWord(this.word);
 			}
-			// this.server.addWordQualitiy(this.quality);
-			// this.server.addWordDifficulty(this.difficulty);
 		} else {
 			this.quality = new DTOQuality();
 			quality.setWord(this.word);
 			quality.setQuality(0); // setting up I don't know
-			// this.server.addWordQualitiy(this.quality);
 		}
 		new WordEvaluationSubmitTask(this, this, quality, difficulty).execute();
-		// this.onGameEnd();
 	}
 
 	public void onSubmitResult(boolean submitResult) {
 		if (submitResult) {
-			this.onGameEnd();
-		} else {		
-			String failMessage =  getResources().getString(R.string.fail_feedback_submit);
+			onGameEnd();
+		} else {
+			String failMessage = getResources().getString(
+					R.string.fail_feedback_submit);
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	public int numberOfWordsNeeded(DTODifficulty difficulty) {
-		// TODO Auto-generated method stub
+
 		return 1;
 	}
 
@@ -206,7 +204,6 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onLoadFinished(Loader<List<DTOWord>> arg0, List<DTOWord> words) {
-		// TODO Auto-generated method stub
 		Log.v("words", "" + words);
 
 		if (words == null) {
@@ -246,7 +243,6 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	@Override
 	public Promotion getPromotion() {
-		// TODO Auto-generated method stub
 		return new EvaluationPromotion();
 	}
 }

@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:background="#DAAA"
     android:orientation="horizontal"
-    android:padding="8dp" >
+    android:padding="@dimen/wordwise_padding_main" >
 
     <TextView
         android:id="@+id/text"
