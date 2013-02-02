@@ -6,6 +6,8 @@ public class GameFinishPartialPromotion extends GameFinishPromotion{
 	private int successfulNumber;
 	private int totalNumber;
 	
+	//not allowed
+	@SuppressWarnings("unused")
 	private GameFinishPartialPromotion(){}
 	
 	public GameFinishPartialPromotion(int successfulNumber, int totalNumber){
