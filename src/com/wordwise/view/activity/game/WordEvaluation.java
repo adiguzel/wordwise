@@ -84,6 +84,9 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
+		String successMessage = "Thank you for your feedback.";
+		WordwiseUtils.makeCustomToast(this, successMessage,
+				Toast.LENGTH_LONG);
 		super.onGameEnd();
 		wordDifficultyRating.setEnabled(false);
 		submitEvaluation.setVisibility(View.INVISIBLE);
@@ -179,12 +182,9 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	public void onSubmitResult(boolean submitResult) {
 		if (submitResult) {
-			String successMessage = "Thank you for your feedback.";
-			WordwiseUtils.makeCustomToast(this, successMessage,
-					Toast.LENGTH_LONG);
 			this.onGameEnd();
 		} else {
-			String failMessage = "Your feedback could not be submitted. Check your internet connection and please try again later.";
+			String failMessage = "Your feedback could not be submitted. Please check your internet connection and try again";
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 	}

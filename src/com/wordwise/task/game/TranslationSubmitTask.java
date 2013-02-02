@@ -7,21 +7,20 @@ import com.wordwise.server.dto.DTOTranslation;
 
 public class TranslationSubmitTask extends SubmitTask {
 	private DTOTranslation translation;
-	
-	public TranslationSubmitTask(Activity activity, SubmitListener submitListener, DTOTranslation translation){
+
+	public TranslationSubmitTask(Activity activity,
+			SubmitListener submitListener, DTOTranslation translation) {
 		super(activity, submitListener);
 		this.translation = translation;
 	}
-	
+
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		boolean result = true;
-		
-		if(translation != null){
-			result = serverComm.addTranslation(this.translation);	
-		}	
+
+		if (translation != null)
+			result = serverComm.addTranslation(this.translation);
 		return result;
 	}
 
 }
-

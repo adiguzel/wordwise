@@ -21,23 +21,26 @@ import com.wordwise.gameengine.level.EvaluationPromotion;
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
+import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTORate;
 import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.task.game.RatingSubmitTask;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class TranslationEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<DTOTranslation>> {
+			LoaderCallbacks<List<DTOTranslation>>, SubmitListener {
 
 	private Configuration configuration;
 	private Set<DTOLanguage> proficientLanguagesSet;
 	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
-	private DTORate currentRating;
+	private DTORate rating;
 	private RESTfullServerCommunication server;
 	private DTOTranslation translation;
 
@@ -71,7 +74,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 		languageOfTranslation = chooseRandomProficientLanguage();
 
-		currentRating = new DTORate();
+		rating = new DTORate();
 
 		this.setChangeableTextViews();
 
@@ -113,10 +116,10 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	public void submitRating(View v) {
 		int translationRating = Math.round(translationRatingBar.getRating());
-		this.currentRating.setRate(translationRating);
-		this.currentRating.setTranslation(translation);
-		this.server.rateTranslation(currentRating);
-		this.onGameEnd();
+		this.rating.setRate(translationRating);
+		this.rating.setTranslation(translation);
+		//let the submission be handled in the background
+		new RatingSubmitTask(this, this, rating).execute();
 	}
 
 	private void checkSubmitCondition() {
@@ -206,6 +209,18 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	@Override
 	public Promotion getPromotion() {
 		return new EvaluationPromotion();
+	}
+
+	@Override
+	public void onSubmitResult(boolean result) {
+		if(result)
+			onGameEnd();
+		else{
+			String failMessage = "Your feedback could not be submitted. Please check your internet connection and try again";
+			WordwiseUtils.makeCustomToast(this, failMessage);
+		}
+			
+		
 	}
 
 }

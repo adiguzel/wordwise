@@ -78,7 +78,7 @@ public abstract class WordwiseGameActivity extends Activity
 		configuration.setPoints(newPoints);
 		WordwiseUtils.updateGameTopPanel(this);
 		// as a dummy game end text
-		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "+ newPoints + " more points.", Toast.LENGTH_LONG);
+		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "+ pointsEarned + " more points.", Toast.LENGTH_LONG);
 	}
 
 	protected void initLayout() {
