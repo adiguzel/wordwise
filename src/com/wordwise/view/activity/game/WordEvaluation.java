@@ -183,8 +183,8 @@ public class WordEvaluation extends WordwiseGameActivity
 	public void onSubmitResult(boolean submitResult) {
 		if (submitResult) {
 			this.onGameEnd();
-		} else {
-			String failMessage = "Your feedback could not be submitted. Please check your internet connection and try again";
+		} else {		
+			String failMessage =  getResources().getString(R.string.fail_feedback_submit);
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 	}

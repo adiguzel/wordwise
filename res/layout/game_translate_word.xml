@@ -43,10 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:enabled="true"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="submitTranslation"
-        android:text="@string/translate_word_submit_translation_button" />
+        android:text="@string/translate_word_submit_translation_button" 
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/continueButton"
@@ -55,9 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dip"
-        android:enabled="false"
+        android:enabled="true"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="continueNextGame"
-        android:text="@string/continueLabel" />
+        android:text="@string/continueLabel" 
+        android:visibility="gone"/>
 
 </RelativeLayout>

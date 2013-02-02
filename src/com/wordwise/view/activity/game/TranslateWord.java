@@ -1,13 +1,11 @@
 package com.wordwise.view.activity.game;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 import com.wordwise.R;
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.gameengine.level.TranslationPromotion;
-import com.wordwise.model.Configuration;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
@@ -29,17 +26,14 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class TranslateWord extends WordwiseGameActivity
 		implements
-			SubmitListener {
-	private Set<DTOLanguage> proficientLanguagesSet;
-	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
-
-	private DTOWord englishWord;
-	private DTOTranslation translation;
-
+			SubmitListener, TextWatcher {
+	// a random language among proficient languages in which translation will be
+	// made
 	private DTOLanguage randomProficientLanguage;
+
 	private Locale englishLocale;
 	private Locale proficientLanguageLocale;
-
+	// UI elements
 	private EditText wordToBeTranslated;
 	private EditText wordTranslation;
 	private Button submitTranslation;
@@ -54,7 +48,6 @@ public class TranslateWord extends WordwiseGameActivity
 		onGameStart();
 	}
 
-	@SuppressLint("NewApi")
 	public void onGameInit() {
 		wordToBeTranslated = (EditText) this
 				.findViewById(R.id.wordToBeTranslated);
@@ -62,14 +55,14 @@ public class TranslateWord extends WordwiseGameActivity
 		submitTranslation = (Button) this.findViewById(R.id.submitTranslation);
 		continueButton = (Button) this.findViewById(R.id.continueButton);
 
+		wordToBeTranslated.addTextChangedListener(this);
+		wordTranslation.addTextChangedListener(this);
+	
+			
 		// Setting English locale on the first EditText
 		this.englishLocale = new Locale("en");
 		// this.wordToBeTranslated.setTextLocale(this.englishLocale);
-		proficientLanguagesSet = configuration.getProficientLanguages();
-		Log.v("set", "prof.  : " + proficientLanguagesSet);
-		proficientLanguagesList = LanguageUtils
-				.getProficientLanguages(proficientLanguagesSet);
-		Log.v("set", "prof. list  : " + proficientLanguagesList);
+
 		randomProficientLanguage = chooseRandomProficientLanguage();
 
 		// Setting ProfLanguage Locale on the second EditText
@@ -81,13 +74,7 @@ public class TranslateWord extends WordwiseGameActivity
 				+ randomProficientLanguage.getLanguage();
 		wordTranslation.setHint(translationEditText);
 
-		this.englishWord = new DTOWord();
-		this.translation = new DTOTranslation();
-
 		this.continueButton.setEnabled(false);
-		this.continueButton.setVisibility(View.INVISIBLE);
-		this.submitTranslation.setEnabled(true);
-		this.submitTranslation.setVisibility(View.VISIBLE);
 	}
 
 	private DTOLanguage chooseRandomProficientLanguage() {
@@ -99,6 +86,8 @@ public class TranslateWord extends WordwiseGameActivity
 		 * proficientLanguagesList.remove(proficientLanguagesList
 		 * .indexOf(LanguageUtils.getByName("English"))); }
 		 */
+		List<DTOLanguage> proficientLanguagesList = LanguageUtils
+				.getProficientLanguages(configuration.getProficientLanguages());
 
 		DTOLanguage randomLanguage = LanguageUtils
 				.getRandomProficientLanguage(proficientLanguagesList);
@@ -124,7 +113,7 @@ public class TranslateWord extends WordwiseGameActivity
 	public void onGameEnd() {
 		super.onGameEnd();
 		submitTranslation.setEnabled(false);
-		submitTranslation.setVisibility(View.INVISIBLE);
+		submitTranslation.setVisibility(View.GONE);
 		// Tell to the game manager that the translation is submitted
 		wordToBeTranslated.setEnabled(false);
 		wordTranslation.setEnabled(false);
@@ -132,14 +121,16 @@ public class TranslateWord extends WordwiseGameActivity
 		continueButton.setEnabled(true);
 		continueButton.setVisibility(View.VISIBLE);
 	}
+	//sends the translation to the server
+	private void submit(String word, String translation) {
+		DTOWord englishWordDTO = new DTOWord();
+		DTOTranslation translationDTO = new DTOTranslation();
+		englishWordDTO.setWord(word);
+		translationDTO.setTranslation(translation);
+		translationDTO.setWord(englishWordDTO);
+		translationDTO.setLanguage(randomProficientLanguage);
 
-	private void sendDataToServer(String word, String translation) {
-		englishWord.setWord(word);
-		this.translation.setTranslation(translation);
-		this.translation.setWord(englishWord);
-		this.translation.setLanguage(randomProficientLanguage);
-
-		new TranslationSubmitTask(this, this, this.translation).execute();
+		new TranslationSubmitTask(this, this, translationDTO).execute();
 	}
 
 	public void submitTranslation(View v) {
@@ -152,7 +143,7 @@ public class TranslateWord extends WordwiseGameActivity
 			String message = "Please fill both: The word and the translation!";
 			WordwiseUtils.makeCustomToast(this, message);
 		} else {
-			sendDataToServer(wordToBeTranslatedBuffer, wordTranslationBuffer);
+			submit(wordToBeTranslatedBuffer, wordTranslationBuffer);
 		}
 	}
 
@@ -173,12 +164,12 @@ public class TranslateWord extends WordwiseGameActivity
 
 	public void onSubmitResult(boolean result) {
 		if (result) {
-			String successMessage = "Thank you for your translation.";
+			String successMessage = getResources().getString(R.string.success_translation_submit); 
 			WordwiseUtils.makeCustomToast(this, successMessage,
 					Toast.LENGTH_LONG);
 			this.onGameEnd();
 		} else {
-			String failMessage = "Your translation could not be submitted. Check your internet connection and please try again later.";
+			String failMessage = getResources().getString(R.string.fail_translation_submit);
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 	}
@@ -203,4 +194,23 @@ public class TranslateWord extends WordwiseGameActivity
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void afterTextChanged(Editable arg0) {
+		String word = wordToBeTranslated.getText().toString();
+		String translation = wordTranslation.getText().toString();
+		submitTranslation.setEnabled(true);
+		if(word.isEmpty() && translation.isEmpty())
+			submitTranslation.setEnabled(false);	
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence s, int start, int count,
+			int after) {
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+	}
+
 }
