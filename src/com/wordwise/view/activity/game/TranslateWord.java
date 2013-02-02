@@ -30,8 +30,6 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 public class TranslateWord extends WordwiseGameActivity
 		implements
 			SubmitListener {
-
-	private Configuration configuration;
 	private Set<DTOLanguage> proficientLanguagesSet;
 	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 
@@ -67,8 +65,6 @@ public class TranslateWord extends WordwiseGameActivity
 		// Setting English locale on the first EditText
 		this.englishLocale = new Locale("en");
 		// this.wordToBeTranslated.setTextLocale(this.englishLocale);
-
-		configuration = Configuration.getInstance(this);
 		proficientLanguagesSet = configuration.getProficientLanguages();
 		Log.v("set", "prof.  : " + proficientLanguagesSet);
 		proficientLanguagesList = LanguageUtils

@@ -36,6 +36,8 @@ public abstract class WordwiseGameActivity extends Activity
 		implements
 			IGameView,
 			Game {
+	
+	protected Configuration configuration;
 	// flag to determine if activity should be ended and go back to the previous
 	// screen
 	protected boolean end = false;
@@ -54,6 +56,7 @@ public abstract class WordwiseGameActivity extends Activity
 		getActionBar().hide();
 		// all games are in portrait(vertical) mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		configuration = Configuration.getInstance(this);
 		// let the children decide what else to do onCreate
 		performOnCreate(savedInstanceState);
 	}

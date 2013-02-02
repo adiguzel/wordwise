@@ -1,8 +1,6 @@
 package com.wordwise.view.activity.game;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
@@ -13,13 +11,10 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wordwise.R;
-import com.wordwise.client.RESTfullServerCommunication;
 import com.wordwise.gameengine.level.EvaluationPromotion;
 import com.wordwise.gameengine.level.Promotion;
-import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
@@ -28,31 +23,28 @@ import com.wordwise.server.dto.DTORate;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.task.game.RatingSubmitTask;
 import com.wordwise.util.LanguageUtils;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.util.LoaderHelper.LoaderType;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class TranslationEvaluation extends WordwiseGameActivity
 		implements
-			LoaderCallbacks<List<DTOTranslation>>, SubmitListener {
-
-	private Configuration configuration;
-	private Set<DTOLanguage> proficientLanguagesSet;
-	private List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
-
-	private DTORate rating;
-	private RESTfullServerCommunication server;
+			LoaderCallbacks<List<DTOTranslation>>,
+			SubmitListener {
+	//the translation to be made by user
 	private DTOTranslation translation;
+	//language in which user is asked to make a translation
+	private DTOLanguage languageOfTranslation;
+	//a flag to check rating state and submit button's state 
+	private Boolean translationRated;
 
+	// UI elements
 	private Button submitRating;
 	private Button continueButton;
 	private TextView wordInEnglish;
 	private TextView translationLanguageTitle;
 	private TextView translationToRate;
 	private RatingBar translationRatingBar;
-
-	private Boolean translationRated;
-	private DTOLanguage languageOfTranslation;
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -67,14 +59,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		translationToRate = (TextView) findViewById(R.id.translationToRate);
 		translationRatingBar = (RatingBar) findViewById(R.id.translationRatingBar);
 
-		configuration = Configuration.getInstance(this);
-		proficientLanguagesSet = this.configuration.getProficientLanguages();
-		proficientLanguagesList = LanguageUtils
-				.getProficientLanguages(this.proficientLanguagesSet);
-
 		languageOfTranslation = chooseRandomProficientLanguage();
-
-		rating = new DTORate();
 
 		this.setChangeableTextViews();
 
@@ -116,9 +101,10 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	public void submitRating(View v) {
 		int translationRating = Math.round(translationRatingBar.getRating());
-		this.rating.setRate(translationRating);
-		this.rating.setTranslation(translation);
-		//let the submission be handled in the background
+		DTORate rating = new DTORate();
+		rating.setRate(translationRating);
+		rating.setTranslation(translation);
+		// let the submission be handled in the background
 		new RatingSubmitTask(this, this, rating).execute();
 	}
 
@@ -137,16 +123,18 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	}
 
 	private DTOLanguage chooseRandomProficientLanguage() {
+		List<DTOLanguage> proficientLanguagesList = LanguageUtils
+				.getProficientLanguages(configuration.getProficientLanguages());
 		// removing English since this is the language from which the words are
 		// being translated
-		if (this.proficientLanguagesList.contains(LanguageUtils
+		if (proficientLanguagesList.contains(LanguageUtils
 				.getByName("English"))) {
-			this.proficientLanguagesList.remove(this.proficientLanguagesList
+			proficientLanguagesList.remove(proficientLanguagesList
 					.indexOf(LanguageUtils.getByName("English")));
 		}
 
 		DTOLanguage randomLanguage = LanguageUtils
-				.getRandomProficientLanguage(this.proficientLanguagesList);
+				.getRandomProficientLanguage(proficientLanguagesList);
 
 		return randomLanguage;
 	}
@@ -193,7 +181,8 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	@Override
 	protected View gameContent() {
-		return getLayoutInflater().inflate(R.layout.game_translation_evaluation, null);
+		return getLayoutInflater().inflate(
+				R.layout.game_translation_evaluation, null);
 	}
 
 	@Override
@@ -205,7 +194,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 	public List<DTOTranslation> getTranslations() {
 		return null;
 	}
-	
+
 	@Override
 	public Promotion getPromotion() {
 		return new EvaluationPromotion();
@@ -213,14 +202,13 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	@Override
 	public void onSubmitResult(boolean result) {
-		if(result)
+		if (result)
 			onGameEnd();
-		else{
+		else {
 			String failMessage = "Your feedback could not be submitted. Please check your internet connection and try again";
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
-			
-		
+
 	}
 
 }
