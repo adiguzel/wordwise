@@ -8,11 +8,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/dashboard_background"
-        android:orientation="vertical" 
         android:layout_above="@+id/buttons"
-        android:layout_marginBottom="@dimen/wordwise_padding_main">
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/wordwise_padding_main"
+        android:background="@drawable/dashboard_background"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/username"
@@ -21,72 +21,81 @@
             android:drawableLeft="@drawable/ic_social_person"
             android:gravity="center_vertical"
             android:paddingBottom="@dimen/wordwise_padding_main"
+            android:textSize="@dimen/text_size_small"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/language"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="@dimen/wordwise_padding_main"
-            android:textSize="@dimen/text_size_medium"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/wordwise_padding_main" >
+            android:layout_marginBottom="@dimen/wordwise_padding_main"
+            android:background="@drawable/dashboard_info_background"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/currentLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/circle_green_light"
-                android:drawable="@drawable/circle_green_light"
-                android:gravity="center"
-                android:paddingRight="@dimen/wordwise_padding_main_half"
-                android:textStyle="bold" />
-
-            <ProgressBar
-                android:id="@+id/levelProgress"
-                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:id="@+id/language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/nextLevel"
-                android:layout_toRightOf="@+id/currentLevel"
-                android:gravity="center"
-                android:max="100"/>
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="@dimen/wordwise_padding_main"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/wordwise_padding_main" >
+
+                <TextView
+                    android:id="@+id/currentLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/circle_green_light"
+                    android:drawable="@drawable/circle_green_light"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/wordwise_padding_main_half"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/levelProgress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/nextLevel"
+                    android:layout_toRightOf="@+id/currentLevel"
+                    android:gravity="center"
+                    android:max="100" />
+
+                <TextView
+                    android:id="@+id/nextLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/circle_green_light"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/wordwise_padding_main_half"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/nextLevel"
-                android:layout_width="wrap_content"
+                android:id="@+id/progressInfo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/circle_green_light"
                 android:gravity="center"
-                android:paddingLeft="@dimen/wordwise_padding_main_half"
+                android:paddingBottom="@dimen/wordwise_padding_main"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/circle_green_light"
+                android:paddingBottom="@dimen/wordwise_padding_main"
+                android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/progressInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:paddingBottom="@dimen/wordwise_padding_main" />
-
-        <TextView
-            android:id="@+id/points"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/wordwise_padding_main"
-            android:textSize="@dimen/text_size_medium"
-            android:textStyle="bold" 
-            android:drawableLeft="@drawable/circle_green_light"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

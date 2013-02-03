@@ -43,9 +43,12 @@ public class Dashboard extends Activity {
 		String name = configuration.getName();
 		DTOLanguage lang = configuration.getLearningLanguage();
 		Level level = Level.getByPoint(currentPoints);
-		int progress = level.getLevelProgress(currentPoints);
-		int progressPercentage = (int) ((progress / level.getMax()) * levelProgress
-				.getMax());
+		float progress = level.getLevelProgress(currentPoints);
+		Log.v("", "progress" + progress);
+		Log.v("", "max " + level.getMax());
+		float progressRatio = (float) (progress / (float) level.getMax());
+		Log.v("", "as " + progressRatio);
+		float progressPercentage = (progressRatio * levelProgress.getMax());
 
 		String levelInfoPrefixProgress = String.format(getResources()
 				.getString(R.string.level_info_prefix1), "" + progress);
@@ -65,7 +68,7 @@ public class Dashboard extends Activity {
 		nextLevel.setText("" + (level.getLevel() + 1));
 		progressInfo.setText(progressString);
 		Log.v("", "progress" + progressPercentage);
-		levelProgress.setProgress(progressPercentage);
+		levelProgress.setProgress((int)progressPercentage);
 		points.setText("" + currentPoints);
 	}
 
