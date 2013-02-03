@@ -2,16 +2,19 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light" />
-
-    <style name="wordwiseButtonStyle">
+    
+    <style name="wordwiseButtonMainStyle" >
         <item name="android:textColor">@color/wordwise_button_text_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/wordwise_button</item>
         <item name="android:paddingLeft">@dimen/button_text_padding_left</item>
         <item name="android:paddingRight">@dimen/button_text_padding_right</item>
         <item name="android:paddingBottom">@dimen/button_text_padding_bottom</item>
         <item name="android:paddingTop">@dimen/button_text_padding_top</item>
+    </style>
+
+    <style name="wordwiseButtonStyle" parent="wordwiseButtonMainStyle">
+        <item name="android:background">@drawable/wordwise_button</item>
     </style>
 
     <style name="wordwiseBackButtonStyle" parent="wordwiseButtonStyle">

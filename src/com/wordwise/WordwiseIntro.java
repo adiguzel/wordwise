@@ -33,15 +33,15 @@ public class WordwiseIntro extends Activity {
 						.getInstance(getApplicationContext());
 				if (!configuration.isConfigured())
 					configure();
-				else openMainScreen();
+				else openDashboard();
 			}
 		}, 3000);
 
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
-	public void openMainScreen() {
-		Intent intent = new Intent(this, MainActivity.class);
+	public void openDashboard() {
+		Intent intent = new Intent(this, Dashboard.class);
 		startActivity(intent);
 		finish();
 	}

@@ -25,6 +25,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.wordwise.Dashboard"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
             android:name="com.wordwise.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>

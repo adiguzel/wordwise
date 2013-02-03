@@ -1,5 +1,6 @@
 package com.wordwise;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -7,10 +8,9 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wordwise.view.activity.AboutActivity;
-import com.wordwise.view.activity.MenuActivity;
 import com.wordwise.view.activity.NewGame;
 
-public class MainActivity extends MenuActivity {
+public class MainActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

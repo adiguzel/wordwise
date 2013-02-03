@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
         android:onClick="startOrContinueGame"
-        android:text="@string/start_continue_game" />
+        android:text="@string/start_game" />
 
     <Button
         android:id="@+id/howToPlayButton"

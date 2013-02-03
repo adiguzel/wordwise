@@ -1,5 +1,6 @@
 package com.wordwise.view.activity;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 
-public class NewGame extends MenuActivity {
+public class NewGame extends Activity {
 	private GameManager gManager;
 	private Configuration configuration;
 

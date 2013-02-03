@@ -1,8 +1,8 @@
 package com.wordwise.gameengine.level;
 
 public class Level {
-	final static int ONE_LEVEL_POINT = 200;
-	int level;
+	private final static int ONE_LEVEL_POINT = 200;
+	private int level;
 	
 	private Level(int level){
 		this.level = level;
@@ -16,7 +16,16 @@ public class Level {
 			return new Level(level);
 		}
 	}
+		
 	public int getLevel(){
 		return level;
+	}
+	
+	public int getLevelProgress(int currentPoints){
+		return currentPoints - (ONE_LEVEL_POINT * (level - 1));
+	}
+	
+	public int getMax(){
+		return ONE_LEVEL_POINT;
 	}
 }
