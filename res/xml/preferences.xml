@@ -9,7 +9,8 @@
             android:dialogTitle="@string/title_preferences_dialog_name"
             android:key="name"
             android:summary="@string/title_preferences_summary_name"
-            android:title="@string/title_preferences_dialog_name" />
+            android:title="@string/title_preferences_dialog_name"
+             android:persistent="true" />
     </PreferenceCategory>
     
     <PreferenceCategory
@@ -21,7 +22,8 @@
             android:entryValues="@array/languageCodes"
             android:key="proficient_languages"
             android:summary="@string/summary_preferences_proficient_languages"
-            android:title="@string/title_preferences_proficient_languages" />
+            android:title="@string/title_preferences_proficient_languages" 
+            android:persistent="true"/>
         
          <ListPreference
             android:defaultValue="@array/empty_array"
@@ -29,6 +31,7 @@
             android:entryValues="@array/languageCodes"
             android:key="learning_language"
             android:summary="@string/summary_preferences_learning_language"
-            android:title="@string/title_preferences_learning_language" />
+            android:title="@string/title_preferences_learning_language"
+             android:persistent="true" />
     </PreferenceCategory>
 </PreferenceScreen>

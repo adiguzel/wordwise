@@ -29,6 +29,13 @@ public class Dashboard extends Activity {
 		setContentView(R.layout.dashboard);
 		initUI();
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		updateUIElements();
+	}
+	
 	private void initUI() {
 		username = (TextView) findViewById(R.id.username);
 		language = (TextView) findViewById(R.id.language);
@@ -37,17 +44,18 @@ public class Dashboard extends Activity {
 		progressInfo = (TextView) findViewById(R.id.progressInfo);
 		points = (TextView) findViewById(R.id.points);
 		levelProgress = (ProgressBar) findViewById(R.id.levelProgress);
+		//update all the elements
+		updateUIElements();
+	}
 
+	public void updateUIElements(){
 		Configuration configuration = Configuration.getInstance(this);
 		int currentPoints = configuration.getPoints();
 		String name = configuration.getName();
 		DTOLanguage lang = configuration.getLearningLanguage();
 		Level level = Level.getByPoint(currentPoints);
 		float progress = level.getLevelProgress(currentPoints);
-		Log.v("", "progress" + progress);
-		Log.v("", "max " + level.getMax());
 		float progressRatio = (float) (progress / (float) level.getMax());
-		Log.v("", "as " + progressRatio);
 		float progressPercentage = (progressRatio * levelProgress.getMax());
 
 		String levelInfoPrefixProgress = String.format(getResources()
@@ -67,11 +75,9 @@ public class Dashboard extends Activity {
 		currentLevel.setText("" + level.getLevel());
 		nextLevel.setText("" + (level.getLevel() + 1));
 		progressInfo.setText(progressString);
-		Log.v("", "progress" + progressPercentage);
 		levelProgress.setProgress((int)progressPercentage);
 		points.setText("" + currentPoints);
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/main_background"
     android:padding="@dimen/wordwise_padding_main" >
 
     <include
@@ -16,7 +17,8 @@
 
         <!--
         This flipper is configured programmatically. It composes of two children,
-        one being the game content, other being the review content.-->
+        one being the game content, other being the review content.
+        -->
 
     </ViewFlipper>
 

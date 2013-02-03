@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/main_background"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
-
-    <TextView
+    android:paddingLeft="@dimen/wordwise_padding_main"
+    android:paddingRight="@dimen/wordwise_padding_main" >
+    <TextView
         android:id="@+id/word2TranslationGameLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -29,22 +29,22 @@
 
     <Button
         android:id="@+id/mediumNewGameButton"
-        android:background="@drawable/level_medium_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:background="@drawable/level_medium_button"
         android:onClick="startNewGame"
         android:text="@string/medium"
-        android:textStyle="bold"  />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/hardNewGameButton"
-        android:background="@drawable/level_hard_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/button_shape_padding_bottom"
+        android:background="@drawable/level_hard_button"
         android:onClick="startNewGame"
         android:text="@string/hard"
-        android:textStyle="bold"  />
+        android:textStyle="bold" />
 
 </LinearLayout>

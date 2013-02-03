@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/main_background"
     android:orientation="vertical"
     android:padding="@dimen/wordwise_padding_main" >
 
@@ -15,27 +16,27 @@
         android:paddingBottom="@dimen/wordwise_padding_main" >
 
         <TextView
-            android:id="@+id/word2TranslationGameLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/gray_info_background"
+            android:paddingBottom="@dimen/wordwise_padding_main"
             android:text="@string/initial_conf_proficient_lang_info"
-            android:textSize="@dimen/text_size_large" 
-            android:paddingBottom="@dimen/wordwise_padding_main"/>
+            android:textSize="@dimen/text_size_large" />
 
         <TextView
             android:id="@+id/numberOfSelectedLanguages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/wordwise_padding_main"
             android:text="@string/numberOfSelectedLanguages"
-            android:textColor="@color/wordwise_main_gray_start"
-            android:paddingBottom="@dimen/wordwise_padding_main" />
+            android:textColor="@color/wordwise_main_gray_start" />
 
         <ListView
             android:id="@+id/list"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/buttons"

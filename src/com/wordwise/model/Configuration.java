@@ -17,20 +17,23 @@ public class Configuration{
 	private DTODifficulty difficulty;
 	private Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage>();
 	private DTOLanguage learningLanguage = null;
-	private String name;
 	private SharedPreferences SP;
+	
 	final String POINTS_PREFIX = "points_";
+	final String nameKey = "name";
+	final String proficientLangsKey = "proficient_languages";
+	final String learningLangKey = "learning_language";
+	final String difficultyKey = "difficulty";
 	
 	private Configuration(Context context) {
 		init(context);
 	}
 	
 	private void init(Context context){
-		SP = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+		SP = PreferenceManager.getDefaultSharedPreferences(context) ;
 		difficulty = loadDifficulty();
 		learningLanguage = loadLearningLanguage();
 		proficientLanguages = loadProficientLanguages();
-		name = loadName();
 	}
 
 	public static Configuration getInstance(Context context) {
@@ -49,7 +52,7 @@ public class Configuration{
 	}
 	
 	public String loadName() {
-		return SP.getString("name", "");
+		return SP.getString(nameKey, "");
 	}
 	
 	public int loadPoints() {
@@ -58,16 +61,16 @@ public class Configuration{
 	}
 
 	public DTODifficulty loadDifficulty() {
-		return DTODifficulty.getByDifficulty(SP.getInt("difficulty", DTODifficulty.EASY.getDifficulty()));
+		return DTODifficulty.getByDifficulty(SP.getInt(difficultyKey, DTODifficulty.EASY.getDifficulty()));
 	}
 
 	public DTOLanguage loadLearningLanguage() {
-		String langCode = SP.getString("learning_language", "");
+		String langCode = SP.getString(learningLangKey, "");
 		return LanguageUtils.getByCode(langCode);
 	}
 
 	public Set<DTOLanguage> loadProficientLanguages() {
-		Set<String> proficientLanguageCodes = SP.getStringSet("proficient_languages", new HashSet<String>());
+		Set<String> proficientLanguageCodes = SP.getStringSet(proficientLangsKey, new HashSet<String>());
 		Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage> ();
 		for(String langCode : proficientLanguageCodes){
 			proficientLanguages.add(LanguageUtils.getByCode(langCode));
@@ -76,36 +79,28 @@ public class Configuration{
 	}
 	
 	public boolean saveName(String name) {
-		return SP.edit().putString("name", name).commit();
+		return SP.edit().putString(nameKey, name).commit();
 	}
 
 	public boolean saveDifficulty() {
-		return SP.edit().putInt("difficulty", difficulty.getDifficulty()).commit();
+		return SP.edit().putInt(difficultyKey, difficulty.getDifficulty()).commit();
 	}
 
 	public boolean saveLearningLanguage() {
 		//do nothing if null
 		if(learningLanguage == null)
 			return false;
-		return SP.edit().putString("learning_language", learningLanguage.getCode()).commit();
+		return SP.edit().putString(learningLangKey, learningLanguage.getCode()).commit();
 	}
 
 	public boolean saveProficientLanguages() {
 		Set<String> profLanguagesCodeSet = LanguageUtils.languageSetToCodeSet(proficientLanguages);
-		return SP.edit().putStringSet("proficient_languages", profLanguagesCodeSet).commit();
+		return SP.edit().putStringSet(proficientLangsKey, profLanguagesCodeSet).commit();
 	}
 	
 	public boolean savePoints(int points) {	
 		String pointsQueryStr = POINTS_PREFIX + learningLanguage.getCode();
 		return SP.edit().putInt(pointsQueryStr, points).commit();
-	}
-	
-	public String getName() {
-		return loadName();
-	}
-
-	public int getPoints() {
-		return loadPoints();
 	}
 	
 	public void setName(String name) {
@@ -116,20 +111,26 @@ public class Configuration{
 		savePoints(points);
 	}
 	
-	public DTODifficulty getDifficulty() {
-		loadDifficulty();
-		return difficulty;
-	}
-
 	public void setDifficulty(DTODifficulty difficulty) {
 		this.difficulty = difficulty;
 		// persist difficulty
 		saveDifficulty();
 	}
+	
+	public String getName() {
+		return loadName();
+	}
+		
+	public int getPoints() {
+		return loadPoints();
+	}
+	
+	public DTODifficulty getDifficulty() {
+		return loadDifficulty();
+	}
 
 	public Set<DTOLanguage> getProficientLanguages() {
-		loadProficientLanguages();
-		return proficientLanguages;
+		return loadProficientLanguages();
 	}
 
 	public void addLanguage(DTOLanguage language) {
@@ -141,8 +142,7 @@ public class Configuration{
 	}
 
 	public DTOLanguage getLearningLanguage() {
-		loadLearningLanguage();
-		return learningLanguage;
+		return loadLearningLanguage();
 	}
 
 	public void setLearningLanguage(DTOLanguage language) {
@@ -150,7 +150,7 @@ public class Configuration{
 	}
 
 	public boolean isConfigured() {
-		return learningLanguage != null && !proficientLanguages.isEmpty();
+		return learningLanguage != null && !proficientLanguages.isEmpty() && !getName().isEmpty();
 	}
 
 	public boolean finishInitialConfiguration() {

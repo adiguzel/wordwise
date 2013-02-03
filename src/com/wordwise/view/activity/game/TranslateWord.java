@@ -26,7 +26,8 @@ import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class TranslateWord extends WordwiseGameActivity
 		implements
-			SubmitListener, TextWatcher {
+			SubmitListener,
+			TextWatcher {
 	// a random language among proficient languages in which translation will be
 	// made
 	private DTOLanguage randomProficientLanguage;
@@ -57,8 +58,7 @@ public class TranslateWord extends WordwiseGameActivity
 
 		wordToBeTranslated.addTextChangedListener(this);
 		wordTranslation.addTextChangedListener(this);
-	
-			
+
 		// Setting English locale on the first EditText
 		this.englishLocale = new Locale("en");
 		// this.wordToBeTranslated.setTextLocale(this.englishLocale);
@@ -121,7 +121,8 @@ public class TranslateWord extends WordwiseGameActivity
 		continueButton.setEnabled(true);
 		continueButton.setVisibility(View.VISIBLE);
 	}
-	//sends the translation to the server
+	
+	// sends the translation to the server
 	private void submit(String word, String translation) {
 		DTOWord englishWordDTO = new DTOWord();
 		DTOTranslation translationDTO = new DTOTranslation();
@@ -137,14 +138,8 @@ public class TranslateWord extends WordwiseGameActivity
 		wordToBeTranslatedBuffer = wordToBeTranslated.getText().toString();
 		wordTranslationBuffer = wordTranslation.getText().toString();
 
-		// check whether the fields are not empty
-		if (wordToBeTranslatedBuffer.equalsIgnoreCase("")
-				|| wordTranslationBuffer.equalsIgnoreCase("")) {
-			String message = "Please fill both: The word and the translation!";
-			WordwiseUtils.makeCustomToast(this, message);
-		} else {
-			submit(wordToBeTranslatedBuffer, wordTranslationBuffer);
-		}
+		submit(wordToBeTranslatedBuffer, wordTranslationBuffer);
+
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
@@ -164,12 +159,14 @@ public class TranslateWord extends WordwiseGameActivity
 
 	public void onSubmitResult(boolean result) {
 		if (result) {
-			String successMessage = getResources().getString(R.string.success_translation_submit); 
+			String successMessage = getResources().getString(
+					R.string.success_translation_submit);
 			WordwiseUtils.makeCustomToast(this, successMessage,
 					Toast.LENGTH_LONG);
 			this.onGameEnd();
 		} else {
-			String failMessage = getResources().getString(R.string.fail_translation_submit);
+			String failMessage = getResources().getString(
+					R.string.fail_translation_submit);
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 	}
@@ -200,8 +197,8 @@ public class TranslateWord extends WordwiseGameActivity
 		String word = wordToBeTranslated.getText().toString();
 		String translation = wordTranslation.getText().toString();
 		submitTranslation.setEnabled(true);
-		if(word.isEmpty() && translation.isEmpty())
-			submitTranslation.setEnabled(false);	
+		if (word.isEmpty() && translation.isEmpty())
+			submitTranslation.setEnabled(false);
 	}
 
 	@Override

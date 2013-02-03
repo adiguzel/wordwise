@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background"
     android:orientation="vertical"
     android:padding="@dimen/word2translations_padding_main" >
 
@@ -27,19 +28,18 @@
             android:visibility="invisible" />
 
         <Button
-            android:contentDescription="@string/retryIcon"
-            android:drawableLeft="@drawable/ic_navigation_refresh_dark"
             android:id="@+id/retryButton"
             style="@style/wordwiseSmallLightBoldButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/word2translations_padding_main"
-            android:paddingRight="@dimen/wordwise_padding_main_half"
+            android:contentDescription="@string/retryIcon"
+            android:drawableLeft="@drawable/ic_navigation_refresh_dark"
             android:onClick="retry"
+            android:paddingRight="@dimen/wordwise_padding_main_half"
             android:text="@string/retry"
-            android:visibility="invisible"
-             />
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
