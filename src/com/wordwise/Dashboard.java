@@ -1,11 +1,10 @@
 package com.wordwise;
 
-import org.restlet.data.Language;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,8 @@ import com.wordwise.view.activity.NewGame;
 import com.wordwise.view.activity.setting.Settings;
 
 public class Dashboard extends Activity {
-	private TextView username, language, currentLevel, nextLevel, progressInfo;
+	private TextView username, language, currentLevel, nextLevel, progressInfo,
+			points;
 	private ProgressBar levelProgress;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,18 +35,18 @@ public class Dashboard extends Activity {
 		currentLevel = (TextView) findViewById(R.id.currentLevel);
 		nextLevel = (TextView) findViewById(R.id.nextLevel);
 		progressInfo = (TextView) findViewById(R.id.progressInfo);
+		points = (TextView) findViewById(R.id.points);
 		levelProgress = (ProgressBar) findViewById(R.id.levelProgress);
 
 		Configuration configuration = Configuration.getInstance(this);
-		int points = configuration.getPoints();
+		int currentPoints = configuration.getPoints();
 		String name = configuration.getName();
 		DTOLanguage lang = configuration.getLearningLanguage();
-		Level level = Level.getByPoint(points);
-		int progress = level.getLevelProgress(points);
+		Level level = Level.getByPoint(currentPoints);
+		int progress = level.getLevelProgress(currentPoints);
 		int progressPercentage = (int) ((progress / level.getMax()) * levelProgress
 				.getMax());
 
-		;
 		String levelInfoPrefixProgress = String.format(getResources()
 				.getString(R.string.level_info_prefix1), "" + progress);
 		String levelInfoPrefixTotal = String.format(
@@ -64,7 +64,9 @@ public class Dashboard extends Activity {
 		currentLevel.setText("" + level.getLevel());
 		nextLevel.setText("" + (level.getLevel() + 1));
 		progressInfo.setText(progressString);
+		Log.v("", "progress" + progressPercentage);
 		levelProgress.setProgress(progressPercentage);
+		points.setText("" + currentPoints);
 	}
 
 	@Override
