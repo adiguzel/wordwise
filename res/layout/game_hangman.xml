@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/hangmanGameLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="@dimen/wordwise_padding_main"
+        android:text="@string/hangman_game_information"
+        android:textSize="@dimen/text_size_small" />
 
     <ScrollView
+        android:id="@+id/hangmanScroll"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/continueButton">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/continueButton" 
+        android:layout_below="@+id/hangmanGameLabel">
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,9 +75,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:paddingTop="@dimen/wordwise_padding_main_half"
                 android:textColor="#000000"
-                android:textSize="10pt"
-                android:paddingTop="@dimen/wordwise_padding_main_half" >
+                android:textSize="10pt" >
             </TextView>
         </LinearLayout>
     </ScrollView>

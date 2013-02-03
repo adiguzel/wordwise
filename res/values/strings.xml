@@ -91,4 +91,6 @@
     <string name="level_info_postfix">in level %s</string>
     <string name="name_input">Name</string>
     <string name="memory_same_flip_error">Flip something else!</string>
+    <string name="letterbox_game_information"><b>Find</b> the words hidden in the grid </string>
+    <string name="hangman_game_information"><b>Reveal</b> the word by guessing letters</string>
 </resources>

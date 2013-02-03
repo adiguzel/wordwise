@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/letterboxGameLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="@dimen/wordwise_padding_main"
+        android:text="@string/letterbox_game_information"
+        android:textSize="@dimen/text_size_small" />
 
     <ScrollView
+        android:id="@+id/letterboxScroll"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/continueButton"
+        android:layout_below="@+id/letterboxGameLabel"
         android:layout_marginBottom="@dimen/wordwise_padding_main"
         android:layout_marginTop="@dimen/wordwise_padding_main" >
 
