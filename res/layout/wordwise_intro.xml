@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:background="@color/wordwise_main_green_disabled_start">
+    android:background="@color/wordwise_background_gray">
 
     <TextView
         android:id="@+id/wordwiseIntroText"
