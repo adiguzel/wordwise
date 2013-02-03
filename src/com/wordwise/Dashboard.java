@@ -51,7 +51,7 @@ public class Dashboard extends Activity {
 		float progressPercentage = (progressRatio * levelProgress.getMax());
 
 		String levelInfoPrefixProgress = String.format(getResources()
-				.getString(R.string.level_info_prefix1), "" + progress);
+				.getString(R.string.level_info_prefix1), "" + level.getLevelProgress(currentPoints));
 		String levelInfoPrefixTotal = String.format(
 				getResources().getString(R.string.level_info_prefix2), ""
 						+ level.getMax());

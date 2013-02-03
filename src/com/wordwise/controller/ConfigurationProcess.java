@@ -8,7 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.wordwise.MainActivity;
-import com.wordwise.view.activity.ConfigurationStep;
+import com.wordwise.WordwiseApplication;
+import com.wordwise.view.activity.configuration.ConfigurationStep;
 import com.wordwise.view.activity.configuration.FinalStep;
 import com.wordwise.view.activity.configuration.InitialStep;
 import com.wordwise.view.activity.configuration.LearningLanguageStep;
@@ -23,7 +24,7 @@ public class ConfigurationProcess {
 
 	private Class<? extends ConfigurationStep> initialStep = InitialStep.class;
 	private Class<? extends ConfigurationStep> finalStep = FinalStep.class;
-	private Class<? extends Activity> finishTarget = MainActivity.class;
+	private Class<? extends Activity> finishTarget = WordwiseApplication.getMainActivity().getClass();
 
 	// not allowed
 	private ConfigurationProcess() {
@@ -61,7 +62,7 @@ public class ConfigurationProcess {
 	}
 
 	public void nextStep() {
-		if (currentStepIndex < steps.size() - 1) {
+		if (hasNext()) {
 			currentStepIndex++;
 			startStep(steps.get(currentStepIndex));
 		} else
@@ -79,10 +80,18 @@ public class ConfigurationProcess {
 	}
 
 	public void previousStep() {
-		if (currentStepIndex > 0) {
+		if (hasPrevious()) {
 			currentStepIndex--;
 			startStep(steps.get(currentStepIndex));
 		}
+	}
+	
+	public boolean hasPrevious(){
+		return currentStepIndex > 0;
+	}
+	
+	public boolean hasNext(){
+		return currentStepIndex < steps.size() - 1;
 	}
 
 	private void startStep(Class<? extends ConfigurationStep> stepClass) {

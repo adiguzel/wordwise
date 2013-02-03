@@ -17,7 +17,6 @@ import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
-import com.wordwise.view.activity.ConfigurationStep;
 
 public class ProficientLanguagesStep extends ConfigurationStep {
 	private String selectedLanguagesText;

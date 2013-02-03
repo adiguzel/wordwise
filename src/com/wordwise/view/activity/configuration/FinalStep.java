@@ -1,7 +1,6 @@
 package com.wordwise.view.activity.configuration;
 
 import com.wordwise.R;
-import com.wordwise.view.activity.ConfigurationStep;
 
 public class FinalStep extends ConfigurationStep{
 
