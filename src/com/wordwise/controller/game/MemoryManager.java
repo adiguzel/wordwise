@@ -3,6 +3,7 @@ package com.wordwise.controller.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ViewAnimator;
@@ -12,6 +13,7 @@ import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
 import com.wordwise.model.game.MemoryFlipState;
 import com.wordwise.server.dto.DTOTranslation;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 import com.wordwise.view.activity.game.Memory;
 import com.wordwise.view.game.MemoryViewFlipper;
@@ -23,8 +25,9 @@ public class MemoryManager {
 	private List<MemoryViewFlipper> foundFlippers;
 	private List<MemoryViewFlipper> flippers;
 	private List<DTOTranslation> translations;
-	
-	public MemoryManager(Memory memoryActivity, List<DTOTranslation> translations) {
+
+	public MemoryManager(Memory memoryActivity,
+			List<DTOTranslation> translations) {
 		this.memoryActivity = memoryActivity;
 		this.translations = translations;
 	}
@@ -43,8 +46,17 @@ public class MemoryManager {
 	private void injectOnClickListeners() {
 		for (MemoryViewFlipper flipper : flippers) {
 			flipper.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					flip(v);
+				public void onClick(View flipper) {
+					MemoryViewFlipper viewFlipper = (MemoryViewFlipper) flipper;
+					if (viewFlipper.equals((MemoryViewFlipper) flipState
+							.getFirstFlipped())) {
+						WordwiseUtils.makeCustomToast(
+								memoryActivity,
+								memoryActivity.getResources().getString(
+										R.string.memory_same_flip_error));
+						return;
+					}
+					flip(flipper);
 				}
 			});
 		}
@@ -78,16 +90,15 @@ public class MemoryManager {
 		final int matchObservationDur = 1000;
 		// time to see the colors
 		final int colorChangeDur = 500;
-		//final int
+		// final int
 		// remove all onclick listeners until we finish all the flip and
 		// disappear animations
 		removeOnClickListeners();
 		final MemoryViewFlipper viewFlipper = (MemoryViewFlipper) flipper;
-		//perform the flip for the current view
+		// perform the flip for the current view
 		AnimationFactory.flipTransition((ViewAnimator) flipper,
 				FlipDirection.LEFT_RIGHT);
-		
-		//set a delayed run op. to run after the flip ends
+		// set a delayed run op. to run after the flip ends
 		viewFlipper.postDelayed(new Runnable() {
 			public void run() {
 				if (!flipState.flipExist()) {
@@ -143,7 +154,7 @@ public class MemoryManager {
 				}
 
 			}
-		}, flipDuration);//flip anim. end
+		}, flipDuration);// flip anim. end
 	}
 
 	private void checkOrAdjustGameState() {

@@ -90,4 +90,5 @@
     <string name="level_info_prefix2"><b>/ %s</b></string>
     <string name="level_info_postfix">in level %s</string>
     <string name="name_input">Name</string>
+    <string name="memory_same_flip_error">Flip something else!</string>
 </resources>
