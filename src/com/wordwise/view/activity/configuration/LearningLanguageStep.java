@@ -16,7 +16,7 @@ import com.wordwise.util.LanguageUtils;
 public class LearningLanguageStep extends ConfigurationStep {
 	private ListView listView;
 	private Configuration configuration;
-	private Button finish;
+	private Button next;
 
 	@Override
 	protected void performOnCreate() {
@@ -24,7 +24,7 @@ public class LearningLanguageStep extends ConfigurationStep {
 
 		configuration = Configuration.getInstance(getApplicationContext());
 		listView = (ListView) findViewById(R.id.list);
-		finish = (Button) findViewById(R.id.finish);
+		next = (Button) findViewById(R.id.next);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_single_choice,
@@ -41,22 +41,22 @@ public class LearningLanguageStep extends ConfigurationStep {
 				String langName = tv.getText().toString();
 				DTOLanguage language = LanguageUtils.getByName(langName);
 				configuration.setLearningLanguage(language);
-				if (!finish.isEnabled())
-					finish.setEnabled(true);
+				if (!next.isEnabled())
+					next.setEnabled(true);
 			}
 
 		});
 		DTOLanguage learningLanguage = configuration.getLearningLanguage();
 		if(learningLanguage != null){
 			listView.setItemChecked(LanguageUtils.getIndex(learningLanguage), true);
-			finish.setEnabled(true);
+			next.setEnabled(true);
 		}
 
 	}
 
 	@Override
 	public boolean isFinished() {
-		return configuration.finishInitialConfiguration();
+		return true;
 	}
 
 }

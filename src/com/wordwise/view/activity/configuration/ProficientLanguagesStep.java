@@ -23,7 +23,7 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	private ListView list;
 	private TextView selectedLanguages;
 	private Configuration configuration;
-	private Button next;
+	private Button finish;
 
 	@Override
 	protected void performOnCreate() {
@@ -31,12 +31,12 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 
 		configuration = Configuration.getInstance(getApplicationContext());
 		list = (ListView) findViewById(R.id.list);
-		next = (Button) findViewById(R.id.next);
+		finish = (Button) findViewById(R.id.finish);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		initListView();
 		selectedLanguagesText = selectedLanguages.getText().toString();	
 		if (!configuration.getProficientLanguages().isEmpty()){
-			next.setEnabled(true);
+			finish.setEnabled(true);
 			setSelectedIndexes();
 		}	
 	}
@@ -77,10 +77,10 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 		
 		//check the state of the next button
 		if (configuration.getProficientLanguages().size() > 0){
-				next.setEnabled(true);
+			finish.setEnabled(true);
 		}		
 		else
-			next.setEnabled(false);
+			finish.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
 				.size());
 	}
@@ -110,6 +110,9 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	@Override
 	public boolean isFinished() {
 		// TODO Auto-generated method stub
-		return !configuration.getProficientLanguages().isEmpty();
+		if(!configuration.getProficientLanguages().isEmpty()){
+			return configuration.finishInitialConfiguration();
+		}
+		return false;
 	}
 }

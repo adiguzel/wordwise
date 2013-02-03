@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="@dimen/word2translations_padding_main" >
+    android:padding="@dimen/wordwise_padding_main" >
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/word2translations_padding_main"
             android:text="@string/initial_conf_learning_lang_info"
-            android:textSize="@dimen/text_size_large" 
-            />
+            android:textSize="@dimen/text_size_large" />
 
         <ListView
             android:id="@+id/list"
@@ -48,16 +47,15 @@
             android:text="@string/back" />
 
         <Button
-            android:id="@+id/finish"
+            android:id="@+id/next"
             style="@style/wordwiseButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/word2translations_word_margin_row"
             android:layout_weight="1"
             android:enabled="false"
             android:gravity="center_vertical|center_horizontal"
             android:onClick="next"
-            android:text="@string/finish" />
+            android:text="@string/next" />
     </LinearLayout>
 
 </RelativeLayout>

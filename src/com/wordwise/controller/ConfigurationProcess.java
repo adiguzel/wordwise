@@ -7,12 +7,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.wordwise.MainActivity;
 import com.wordwise.WordwiseApplication;
 import com.wordwise.view.activity.configuration.ConfigurationStep;
 import com.wordwise.view.activity.configuration.FinalStep;
 import com.wordwise.view.activity.configuration.InitialStep;
 import com.wordwise.view.activity.configuration.LearningLanguageStep;
+import com.wordwise.view.activity.configuration.NameStep;
 import com.wordwise.view.activity.configuration.ProficientLanguagesStep;
 
 public class ConfigurationProcess {
@@ -55,9 +55,10 @@ public class ConfigurationProcess {
 		List<Class<? extends ConfigurationStep>> intermediateSteps = new ArrayList<Class<? extends ConfigurationStep>>();
 
 		// add all the intermediate steps here (ordered)
-		intermediateSteps.add(ProficientLanguagesStep.class);
+		intermediateSteps.add(NameStep.class);
 		intermediateSteps.add(LearningLanguageStep.class);
-
+		intermediateSteps.add(ProficientLanguagesStep.class);
+		
 		return intermediateSteps;
 	}
 

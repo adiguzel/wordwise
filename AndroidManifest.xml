@@ -36,13 +36,11 @@
             android:name="com.wordwise.view.activity.configuration.InitialStep"
             android:label="@string/title_configuration_initial_step" >
         </activity>
-        <activity
-            android:name="com.wordwise.view.activity.configuration.ProficientLanguagesStep"
-            android:label="@string/title_configuration_step1" >
+        <activity android:name="com.wordwise.view.activity.configuration.NameStep" >
         </activity>
-        <activity
-            android:name="com.wordwise.view.activity.configuration.LearningLanguageStep"
-            android:label="@string/title_configuration_step2" >
+        <activity android:name="com.wordwise.view.activity.configuration.LearningLanguageStep" >
+        </activity>
+        <activity android:name="com.wordwise.view.activity.configuration.ProficientLanguagesStep" >
         </activity>
         <activity
             android:name="com.wordwise.view.activity.configuration.FinalStep"

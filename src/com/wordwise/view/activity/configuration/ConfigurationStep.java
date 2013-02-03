@@ -2,6 +2,7 @@ package com.wordwise.view.activity.configuration;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.wordwise.controller.ConfigurationProcess;
@@ -43,6 +44,7 @@ public abstract class ConfigurationStep extends Activity {
 	public final void next(View view) {
 		if (isFinished()) {
 			process.nextStep();
+			Log.v("", "finishing");
 			// make sure the activity is not kept in the activity stack
 			finish();
 		}
