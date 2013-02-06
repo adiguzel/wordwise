@@ -60,7 +60,7 @@ public class HangmanManager {
 	public void validateGuess(char guess) {
 		if (guess == ' ')
 			return;// ignore the space character
-		
+
 		if (mysteryWord.indexOf(guess) == DOESNT_EXIST) {
 			String wrongLetters = wrongLettersTextView.getText().toString();
 			if (wrongLetters.indexOf(guess) == DOESNT_EXIST) {
@@ -117,6 +117,7 @@ public class HangmanManager {
 	private void checkLose() {
 		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
 			closeTheSoftKeyboard();
+			revealTheWord();
 			WordwiseUtils.makeCustomToast(hangmanActivity, hangmanActivity
 					.getResources().getString(R.string.hangman_lose));
 
@@ -210,6 +211,16 @@ public class HangmanManager {
 			}
 		}
 		mysteryWordTextView.setText(new String(updatedWord));
+	}
+
+	private void revealTheWord() {
+		StringBuffer result = new StringBuffer();
+		for (int i = 0; i < mysteryWord.length(); i++) {
+			result.append(mysteryWord.charAt(i) + "  ");
+
+		}
+		mysteryWordTextView.setTextColor(hangmanActivity.getResources().getColor(R.color.wordwise_main_fail_red));
+		mysteryWordTextView.setText(result.toString());
 	}
 
 	private void initTheHangmanImage() {
