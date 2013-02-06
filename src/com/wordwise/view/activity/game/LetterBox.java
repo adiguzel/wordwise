@@ -28,6 +28,7 @@ import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class LetterBox extends WordwiseGameActivity
@@ -209,6 +210,16 @@ public class LetterBox extends WordwiseGameActivity
 		else
 			return -1;
 	}
+	
+	public boolean canUse(DTOTranslation translation)
+	{
+		if (translation.getTranslation().trim().contains(" ") || 
+				(translation.getTranslation().length() > LetterBoxPositionUtils.getGridSize()))
+		{
+			return false;
+		}
+		return true;
+	}
 
 	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		return 0;
@@ -228,8 +239,8 @@ public class LetterBox extends WordwiseGameActivity
 				LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
-			List<DTOTranslation> translations) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0, List<DTOTranslation> translations)
+	{
 		Log.v("translations", "" + translations);
 
 		if (translations == null) {

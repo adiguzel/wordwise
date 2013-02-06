@@ -1,5 +1,6 @@
 package com.wordwise.loader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.AsyncTaskLoader;
@@ -34,6 +35,28 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 		List<DTOTranslation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
 				gameConf.getDifficulty(), translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
+		
+		List<DTOTranslation> uselessTranslations = new ArrayList<DTOTranslation>();
+		uselessTranslations.addAll(translations);
+		
+		while (uselessTranslations.size() > 0)
+		{
+			for (DTOTranslation dtoTranslation : translations)
+			{
+				if (gManager.getCurrentGame().canUse(dtoTranslation))
+				{
+					uselessTranslations.remove(dtoTranslation);
+				}
+			}
+			if (uselessTranslations.size() > 0)
+			{
+				translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
+						gameConf.getDifficulty(), translationsNeeded, uselessTranslations);
+				uselessTranslations.clear();
+				uselessTranslations.addAll(translations);
+			}
+		}
+		
 		return translations;
 	}
 }

@@ -41,6 +41,10 @@ public class LetterBoxPositionUtils
 	}
 	
 	private static int gridNumberOfColumns = 8;
+	public static int getGridSize()
+	{
+		return gridNumberOfColumns;
+	}
 	    
 	public static boolean ArePositionsAdjacent(int position1, int position2)
 	{

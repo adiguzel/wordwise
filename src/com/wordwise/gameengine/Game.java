@@ -2,6 +2,7 @@ package com.wordwise.gameengine;
 
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOTranslation;
 
 public interface Game {
 
@@ -42,6 +43,11 @@ public interface Game {
 	 * be playable with the given difficulty
 	 * */
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty);
+	
+	/**
+	 * Determines if the game can use the given translation in its logic or not 
+	 * */
+	public boolean canUse(DTOTranslation translation);
 
 	/**
 	 * Number of words that should be present for this game to load and be
