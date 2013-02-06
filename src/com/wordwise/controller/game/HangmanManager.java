@@ -143,7 +143,6 @@ public class HangmanManager {
 	public void closeTheSoftKeyboard() {
 		if (continueButton != null)
 			continueButton.setVisibility(View.VISIBLE);
-		Log.v("closing the keyboarad", "");
 		((InputMethodManager) hangmanActivity
 				.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(mysteryWordTextView.getWindowToken(),

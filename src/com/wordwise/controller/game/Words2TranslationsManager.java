@@ -32,14 +32,15 @@ public class Words2TranslationsManager
 	private final int NUM_PAIRS = 4;
 	private int numMatchedPairs = 0;
 	// Word2Translations game instance that it manages
-	private Words2Translations activity;
+	private Words2Translations game;
 	// The view that is being dragged
 	private Word2TranslationsTextView dragged;
 	// Number of views that were dropped into the placeholders
 	private int droppedCount = 0;
 	private List<DTOTranslation> translations = new ArrayList<DTOTranslation>();
 	private Map<DTOTranslation, Word2TranslationsTextView> translationToTranslationView = new HashMap<DTOTranslation, Word2TranslationsTextView>();
-	// indicates whether a drop happened. used to redraw the dragged view if no drop happened
+	// indicates whether a drop happened. used to redraw the dragged view if no
+	// drop happened
 	private boolean isDropped = false;
 	// Adapter that provides translations
 	private Words2TranslationAdapter adapter;
@@ -54,9 +55,9 @@ public class Words2TranslationsManager
 	private Words2TranslationsManager() {
 	}
 
-	public Words2TranslationsManager(Words2Translations activity) {
-		this.activity = activity;
-		translations = activity.getTranslations();
+	public Words2TranslationsManager(Words2Translations game) {
+		this.game = game;
+		translations = game.getTranslations();
 	}
 
 	public void initViews() {
@@ -66,24 +67,23 @@ public class Words2TranslationsManager
 	}
 
 	private void initTranslations() {
-		adapter = new Words2TranslationAdapter(activity, this, translations);
-		GridView translationsGrid = (GridView) activity
+		adapter = new Words2TranslationAdapter(game, this, translations);
+		GridView translationsGrid = (GridView) game
 				.findViewById(R.id.translationsGrid);
 		translationsGrid.setAdapter(adapter);
 		translationToTranslationView = adapter.toTranslationToViewMap();
 	}
 
 	private void initWords() {
-		words.add(((Word2TranslationsTextView) activity
-				.findViewById(R.id.word1)));
-		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word2));
-		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word3));
-		words.add((Word2TranslationsTextView) activity.findViewById(R.id.word4));
+		words.add(((Word2TranslationsTextView) game.findViewById(R.id.word1)));
+		words.add((Word2TranslationsTextView) game.findViewById(R.id.word2));
+		words.add((Word2TranslationsTextView) game.findViewById(R.id.word3));
+		words.add((Word2TranslationsTextView) game.findViewById(R.id.word4));
 
 		int i = 0;
 		for (DTOTranslation translation : translations) {
-			if(i < words.size()){
-				words.get(i).init(activity, translation,
+			if (i < words.size()) {
+				words.get(i).init(game, translation,
 						Word2TranslationsTextView.USE_WORD);
 			}
 			i++;
@@ -93,13 +93,13 @@ public class Words2TranslationsManager
 	private void initTranslationPlaceHolders() {
 		translationPlaceHolders = new ArrayList<Word2TranslationsTextView>();
 
-		translationPlaceHolders.add((Word2TranslationsTextView) activity
+		translationPlaceHolders.add((Word2TranslationsTextView) game
 				.findViewById(R.id.translation1_placeholder));
-		translationPlaceHolders.add((Word2TranslationsTextView) activity
+		translationPlaceHolders.add((Word2TranslationsTextView) game
 				.findViewById(R.id.translation2_placeholder));
-		translationPlaceHolders.add((Word2TranslationsTextView) activity
+		translationPlaceHolders.add((Word2TranslationsTextView) game
 				.findViewById(R.id.translation3_placeholder));
-		translationPlaceHolders.add((Word2TranslationsTextView) activity
+		translationPlaceHolders.add((Word2TranslationsTextView) game
 				.findViewById(R.id.translation4_placeholder));
 
 		for (Word2TranslationsTextView v : translationPlaceHolders) {
@@ -121,7 +121,7 @@ public class Words2TranslationsManager
 							view.setTag(null);
 							filledPlaceHolders.remove(view);
 							if (droppedCount < NUM_PAIRS) {
-								activity.switchValidation(false);
+								game.switchValidation(false);
 							}
 						}
 					}
@@ -129,7 +129,7 @@ public class Words2TranslationsManager
 			});
 		}
 	}
-	
+
 	public void validate(View button) {
 
 		for (int i = 0; i < words.size(); i++) {
@@ -150,12 +150,11 @@ public class Words2TranslationsManager
 		adapter.removeViewListeners();
 		// check button is removed
 		button.setVisibility(Button.INVISIBLE);
-		Button continueButton = (Button) activity
-				.findViewById(R.id.continueButton);
+		Button continueButton = (Button) game.findViewById(R.id.continueButton);
 		// continue button fills the place of check button
 		continueButton.setVisibility(Button.VISIBLE);
-		// let the activity to operate its on end func.
-		activity.onGameEnd();
+		// let the game to operate its on end func.
+		game.onGameEnd();
 	}
 
 	public void setDragged(Word2TranslationsTextView dragged) {
@@ -221,8 +220,8 @@ public class Words2TranslationsManager
 
 			case DragEvent.ACTION_DRAG_ENDED :
 				// revert back to initial view state
-				changeState(v, TRANSLATION_PLACEHOLDER_INITIAL_STATE);	
-				if(!isDropped)
+				changeState(v, TRANSLATION_PLACEHOLDER_INITIAL_STATE);
+				if (!isDropped)
 					dragged.setVisibility(View.VISIBLE);
 				// returns true; the value is ignored.
 				return (true);
@@ -237,7 +236,8 @@ public class Words2TranslationsManager
 
 	@SuppressWarnings("deprecation")
 	public void changeState(View v, int newState) {
-		v.setBackgroundDrawable(activity.getResources().getDrawable(newState));
+		//using the deprecated method to support lower API versions
+		v.setBackgroundDrawable(game.getResources().getDrawable(newState));
 		v.invalidate();
 	}
 
@@ -247,18 +247,24 @@ public class Words2TranslationsManager
 
 	private void checkOrAdjustGameState() {
 		if (isFinished()) {
-			activity.switchValidation(true);
+			//make the validation available 
+			game.switchValidation(true);
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	private void setBackground(View v, int drawableId) {
-		v.setBackgroundDrawable(activity.getResources().getDrawable(drawableId));
+		v.setBackgroundDrawable(game.getResources().getDrawable(drawableId));
 	}
 
 	private boolean pairsMatch(Word2TranslationsTextView placeHolder,
 			DTOTranslation trans) {
-		return (placeHolder.getTag()).equals(trans);
+		DTOTranslation placeHolderTrans = (DTOTranslation) (placeHolder
+				.getTag());
+		// some other translation objects can have the same string, so condition
+		// of pairs matching should depend on the match in translation strings
+		return (placeHolderTrans.getTranslation()).equalsIgnoreCase(trans
+				.getTranslation());
 	}
 
 	public boolean onLongClick(View v) {
@@ -273,12 +279,12 @@ public class Words2TranslationsManager
 		dragged.setVisibility(View.INVISIBLE);
 		return true;
 	}
-	
-	public int getNumMatchedPairs(){
+
+	public int getNumMatchedPairs() {
 		return numMatchedPairs;
 	}
-	
-	public int getNumTotalPairs(){
+
+	public int getNumTotalPairs() {
 		return NUM_PAIRS;
 	}
 }
