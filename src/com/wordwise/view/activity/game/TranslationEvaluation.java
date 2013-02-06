@@ -173,7 +173,6 @@ public class TranslationEvaluation extends WordwiseGameActivity
 			initLayout();
 			onGameStart();
 		}
-
 	}
 
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {

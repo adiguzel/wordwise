@@ -4,19 +4,18 @@ import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wordwise.R;
 import com.wordwise.model.Configuration;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LanguageUtils;
+import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.game.Hangman;
 
 public class HangmanManager {
@@ -40,7 +39,7 @@ public class HangmanManager {
 	private Configuration configuration;
 	private DTOLanguage learningLanguage;
 	private Locale locale;
-	
+
 	private int isFound = 0;
 
 	public HangmanManager(Hangman hangmanActivity,
@@ -59,6 +58,9 @@ public class HangmanManager {
 	}
 
 	public void validateGuess(char guess) {
+		if (guess == ' ')
+			return;// ignore the space character
+		
 		if (mysteryWord.indexOf(guess) == DOESNT_EXIST) {
 			String wrongLetters = wrongLettersTextView.getText().toString();
 			if (wrongLetters.indexOf(guess) == DOESNT_EXIST) {
@@ -78,7 +80,6 @@ public class HangmanManager {
 			}
 		}
 	}
-
 	private void updateWrongGuesses(char wrongLetter) {
 		wrongLettersTextView.setText(wrongLettersTextView.getText().toString()
 				+ "  " + Character.toString(wrongLetter));
@@ -102,29 +103,23 @@ public class HangmanManager {
 
 	private void checkWin() {
 		if (mysteryWordTextView.getText().toString().indexOf("_ ") == DOESNT_EXIST) {
+			closeTheSoftKeyboard();
+			WordwiseUtils.makeCustomToast(hangmanActivity, hangmanActivity
+					.getResources().getString(R.string.hangman_win));
 
-			this.closeTheSoftKeyboard();
-
-			Toast msg = Toast.makeText(hangmanActivity, "VERY GOOD!",
-					Toast.LENGTH_SHORT);
-			msg.show();
-
-			continueButton.setVisibility(Button.VISIBLE);
 			mysteryWordTextView.setOnClickListener(null);
 			hangmanActivity.onGameEnd();
-			
+
 			isFound = 1;
 		}
 	}
 
 	private void checkLose() {
 		if (numWrongGuesses == MAXIMUM_WRONG_GUESSES) {
+			closeTheSoftKeyboard();
+			WordwiseUtils.makeCustomToast(hangmanActivity, hangmanActivity
+					.getResources().getString(R.string.hangman_lose));
 
-			this.closeTheSoftKeyboard();
-
-			Toast msg = Toast.makeText(hangmanActivity, "MORE LUCK NEXT TIME!",
-					Toast.LENGTH_SHORT);
-			msg.show();
 			mysteryWordTextView.setOnClickListener(null);
 
 			hangmanActivity.onGameEnd();
@@ -198,7 +193,10 @@ public class HangmanManager {
 	private String underscoreTheMysteryWord(String mysteryWord) {
 		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < mysteryWord.length(); i++) {
-			result.append("_ ");
+			if (mysteryWord.charAt(i) == ' ')
+				result.append("  ");
+			else
+				result.append("_ ");
 		}
 		return result.toString();
 	}
@@ -235,10 +233,9 @@ public class HangmanManager {
 
 		openTheSoftKeyboard();
 	}
-	
-	public int isFound(){
+
+	public int isFound() {
 		return isFound;
 	}
-	
 
 }

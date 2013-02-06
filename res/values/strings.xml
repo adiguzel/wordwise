@@ -93,4 +93,6 @@
     <string name="memory_same_flip_error">Flip something else!</string>
     <string name="letterbox_game_information"><b>Find</b> the words hidden in the grid </string>
     <string name="hangman_game_information"><b>Reveal</b> the word by guessing letters</string>
+    <string name="hangman_win">Congratulations, you won!</string>
+    <string name="hangman_lose">You lost!</string>
 </resources>
