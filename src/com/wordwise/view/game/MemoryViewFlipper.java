@@ -12,8 +12,9 @@ public class MemoryViewFlipper extends ViewFlipper {
 	// translation that is associated with that view
 	public static boolean USE_WORD = true;
 	public static boolean USE_TRANSLATION = false;
-	//translation that is matched with that flipper
+	// translation that is matched with that flipper
 	private DTOTranslation translation;
+	private boolean isWord;
 
 	public MemoryViewFlipper(Context context) {
 		super(context);
@@ -22,6 +23,7 @@ public class MemoryViewFlipper extends ViewFlipper {
 	public MemoryViewFlipper(Context context, DTOTranslation translation,
 			boolean isWord) {
 		this(context);
+		this.isWord = isWord;
 		TextView face = new TextView(context);
 		TextView bottom = new TextView(context);
 		String text = "";
@@ -53,8 +55,16 @@ public class MemoryViewFlipper extends ViewFlipper {
 	public boolean matches(MemoryViewFlipper aFlipper) {
 		// different objects, sharing the same translation means a memory game
 		// match
+		// the same object
 		return (!this.equals(aFlipper))
-				&& (translation.equals(aFlipper.getTranslation()));
+		// one is different and the other is a translation(xor operation)
+				&& ((isWord && !aFlipper.isWord) || (!isWord && aFlipper.isWord))
+				// and translations match as well
+				&& (translation.getTranslation().equalsIgnoreCase(aFlipper
+						.getTranslation().getTranslation()));
 	}
 
+	public boolean isWord() {
+		return isWord;
+	}
 }

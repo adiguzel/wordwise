@@ -166,5 +166,4 @@ public class MemoryManager {
 	private boolean isFinished() {
 		return foundFlippers.size() == flippers.size();
 	}
-
 }
