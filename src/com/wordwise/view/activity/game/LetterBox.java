@@ -231,12 +231,14 @@ public class LetterBox extends WordwiseGameActivity
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
 		Log.v("translations", "" + translations);
-
+		String gameLoadFailText;
 		if (translations == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
+			gameLoadFailText = getResources().getString(R.string.fail_game_load);
+			loaderHelper.loadFailed(gameLoadFailText);
 		} else if (translations.size() < GameManagerContainer.getGameManager()
 				.NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
+			gameLoadFailText = getResources().getString(R.string.fail_insufficient_translations_on_server);
+			loaderHelper.loadFailed(gameLoadFailText);
 		} else {
 			this.translations = translations;
 			initLayout();

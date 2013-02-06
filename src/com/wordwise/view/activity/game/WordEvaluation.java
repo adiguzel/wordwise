@@ -206,11 +206,14 @@ public class WordEvaluation extends WordwiseGameActivity
 	public void onLoadFinished(Loader<List<DTOWord>> arg0, List<DTOWord> words) {
 		Log.v("words", "" + words);
 
+		String gameLoadFailText;
 		if (words == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
+			gameLoadFailText = getResources().getString(R.string.fail_game_load);
+			loaderHelper.loadFailed(gameLoadFailText);
 		} else if (words.size() < GameManagerContainer.getGameManager()
-				.NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
+				.NumberOfWordsNeeded()) {
+			gameLoadFailText = getResources().getString(R.string.fail_insufficient_words_on_server);
+			loaderHelper.loadFailed(gameLoadFailText);
 		} else if (words.get(0) != null) {
 			word = words.get(0);
 			initLayout();
