@@ -5,21 +5,16 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.wordwise.R;
 import com.wordwise.controller.game.Words2TranslationsManager;
 import com.wordwise.gameengine.level.GameFinishPartialPromotion;
-import com.wordwise.gameengine.level.GameFinishPromotion;
 import com.wordwise.gameengine.level.Promotion;
-import com.wordwise.gameengine.level.TranslationPromotion;
-import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
-import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class Words2Translations extends WordwiseGameActivity
@@ -28,7 +23,6 @@ public class Words2Translations extends WordwiseGameActivity
 	private Button validateButton;
 	private Words2TranslationsManager manager;
 	private List<DTOTranslation> translations;
-	
 
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
@@ -70,19 +64,14 @@ public class Words2Translations extends WordwiseGameActivity
 
 	@SuppressWarnings("unchecked")
 	public Loader<List<DTOTranslation>> onCreateLoader(int id, Bundle args) {
-		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this, LoaderType.TRANSLATION_LOADER);
+		return (Loader<List<DTOTranslation>>) loaderHelper.onLoadCreated(this,
+				LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> loader,
 			List<DTOTranslation> translations) {
-		Log.v("translations", "" + translations);
-		
-		if (translations == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (translations.size() < GameManagerContainer.getGameManager().NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
-		} 
-		else {
+		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
+				translations)) {
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();
@@ -111,23 +100,25 @@ public class Words2Translations extends WordwiseGameActivity
 	public void retry(View v) {
 		loaderHelper.restartLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
-	
-	public List<DTOTranslation> getTranslations(){
+
+	public List<DTOTranslation> getTranslations() {
 		return translations;
 	}
-	
+
 	@Override
 	protected View gameContent() {
-		return getLayoutInflater().inflate(R.layout.game_words2translations, null);
+		return getLayoutInflater().inflate(R.layout.game_words2translations,
+				null);
 	}
 
 	@Override
 	protected boolean isRealGame() {
 		return true;
 	}
-	
+
 	@Override
 	public Promotion getPromotion() {
-		return new GameFinishPartialPromotion(manager.getNumMatchedPairs(), manager.getNumTotalPairs());
+		return new GameFinishPartialPromotion(manager.getNumMatchedPairs(),
+				manager.getNumTotalPairs());
 	}
 }
