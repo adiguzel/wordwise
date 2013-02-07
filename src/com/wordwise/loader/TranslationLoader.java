@@ -40,7 +40,7 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 
 		List<DTOTranslation> finalTranslations = new ArrayList<DTOTranslation>();
 
-		if (translations != null) {
+		if (translations == null) {
 			//let the game know that the translations returned null
 			return translations;
 		}
