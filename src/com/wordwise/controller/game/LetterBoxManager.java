@@ -159,7 +159,7 @@ public class LetterBoxManager
 
 	private void gameOver()
 	{
-		letterBoxActivity.onGameOver();
+		letterBoxActivity.onGameEnd();
 	}
 
 	private boolean currentSelectionMatchesAWord()

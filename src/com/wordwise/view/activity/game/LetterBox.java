@@ -91,10 +91,9 @@ public class LetterBox extends WordwiseGameActivity
 				| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
 
-	public void onGameOver() {
-		// TODO show information screen that the game is over
-
-		// set the continue button enabled
+	public void onGameEnd()
+	{
+		super.onGameEnd();
 		continueButton.setEnabled(true);
 	}
 
@@ -192,10 +191,6 @@ public class LetterBox extends WordwiseGameActivity
 			textView.setGravity(Gravity.CENTER);
 			return textView;
 		}
-	}
-
-	public void onGameEnd() {
-		super.onGameEnd();
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {

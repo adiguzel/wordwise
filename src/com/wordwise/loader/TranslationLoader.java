@@ -36,27 +36,25 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 				gameConf.getDifficulty(), translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
 		
-		List<DTOTranslation> uselessTranslations = new ArrayList<DTOTranslation>();
-		uselessTranslations.addAll(translations);
+		List<DTOTranslation> finalTranslations = new ArrayList<DTOTranslation>();
 		
-		while (uselessTranslations.size() > 0)
+		while (finalTranslations.size() < translationsNeeded)
 		{
 			for (DTOTranslation dtoTranslation : translations)
 			{
 				if (gManager.getCurrentGame().canUse(dtoTranslation))
 				{
-					uselessTranslations.remove(dtoTranslation);
+					finalTranslations.add(dtoTranslation);
 				}
 			}
-			if (uselessTranslations.size() > 0)
+			translations.removeAll(finalTranslations);
+			if (translations.size() > 0)
 			{
 				translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
-						gameConf.getDifficulty(), translationsNeeded, uselessTranslations);
-				uselessTranslations.clear();
-				uselessTranslations.addAll(translations);
+						gameConf.getDifficulty(), translations.size(), translations);
 			}
 		}
 		
-		return translations;
+		return finalTranslations;
 	}
 }
