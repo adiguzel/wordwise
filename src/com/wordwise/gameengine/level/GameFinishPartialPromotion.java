@@ -20,7 +20,7 @@ public class GameFinishPartialPromotion extends GameFinishPromotion{
 	@Override
 	public int getPoints(DTODifficulty difficulty) {
 		int points = super.getPoints(difficulty);
-		float successRatio = successfulNumber /  totalNumber;
+		float successRatio = (float)successfulNumber /  (float)totalNumber;
 		//return the partially applied points depending on success ratio
 		return (int) (points * successRatio);	
 	}
