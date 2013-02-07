@@ -28,21 +28,22 @@ import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
 
-	private static final String BASE_CLIENT_URL = "http://192.168.1.101:8080/WordWiseServer/";
+	private static final String BASE_CLIENT_URL = "http://192.168.112.1:8080/WordWiseServer/";
 	
-	private static Integer timeout = 1000;
+	private static Integer timeout = 5000;
 	private static String timeoutString = timeout.toString();
 	
 	private static TranslationResource getTranslationResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
-		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
-				+ TranslationResource.RESOURCE_NAME);
-		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", timeoutString);
-		clientResource.setNext(new Client(context, Protocol.HTTP));
+        context.getParameters().add("controllerSleepTimeMs", timeoutString);
+        context.getParameters().add("maxIoIdleTimeMs", timeoutString);
+        context.getParameters().add("socketTimeout", timeoutString);
+        Client client = new Client(context, Protocol.HTTP);
+        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + TranslationResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
+		clientResource.setNext(client);
 
 		return clientResource.wrap(TranslationResource.class);
 	}
@@ -50,13 +51,14 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static RateResource getRateResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
-		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
-				+ RateResource.RESOURCE_NAME);
-		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", timeoutString);
-		clientResource.setNext(new Client(context, Protocol.HTTP));
+        context.getParameters().add("controllerSleepTimeMs", timeoutString);
+        context.getParameters().add("maxIoIdleTimeMs", timeoutString);
+        context.getParameters().add("socketTimeout", timeoutString);
+        Client client = new Client(context, Protocol.HTTP);
+        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + RateResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
+		clientResource.setNext(client);
 
 		return clientResource.wrap(RateResource.class);
 	}
@@ -64,13 +66,14 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static QualityResource getQualityResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
-		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
-				+ QualityResource.RESOURCE_NAME);
-		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", timeoutString);
-		clientResource.setNext(new Client(context, Protocol.HTTP));
+        context.getParameters().add("controllerSleepTimeMs", timeoutString);
+        context.getParameters().add("maxIoIdleTimeMs", timeoutString);
+        context.getParameters().add("socketTimeout", timeoutString);
+        Client client = new Client(context, Protocol.HTTP);
+        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + QualityResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
+		clientResource.setNext(client);
 
 		return clientResource.wrap(QualityResource.class);
 	}
@@ -78,13 +81,14 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static DifficultyResource getDifficultyResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
-		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
-				+ DifficultyResource.RESOURCE_NAME);
-		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", timeoutString);
-		clientResource.setNext(new Client(context, Protocol.HTTP));
+        context.getParameters().add("controllerSleepTimeMs", timeoutString);
+        context.getParameters().add("maxIoIdleTimeMs", timeoutString);
+        context.getParameters().add("socketTimeout", timeoutString);
+        Client client = new Client(context, Protocol.HTTP);
+        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + DifficultyResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
+		clientResource.setNext(client);
 
 		return clientResource.wrap(DifficultyResource.class);
 	}
@@ -92,13 +96,14 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	private static WordResource getWordResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
-		ClientResource clientResource = new ClientResource(BASE_CLIENT_URL
-				+ WordResource.RESOURCE_NAME);
-		
 		Context context = new Context();
-		context.getParameters().add("socketTimeout", timeoutString);
-		clientResource.setNext(new Client(context, Protocol.HTTP));
+        context.getParameters().add("controllerSleepTimeMs", timeoutString);
+        context.getParameters().add("maxIoIdleTimeMs", timeoutString);
+        context.getParameters().add("socketTimeout", timeoutString);
+        Client client = new Client(context, Protocol.HTTP);
+        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + WordResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
+		clientResource.setNext(client);
 
 		return clientResource.wrap(WordResource.class);
 	}
