@@ -22,7 +22,7 @@ public class GameFinishPartialPromotion extends GameFinishPromotion{
 		int points = super.getPoints(difficulty);
 		float successRatio = (float)successfulNumber /  (float)totalNumber;
 		//return the partially applied points depending on success ratio
-		return (int) (points * successRatio);	
+		return (int) Math.ceil(points * successRatio);	
 	}
 
 }
