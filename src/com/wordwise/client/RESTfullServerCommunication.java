@@ -28,13 +28,7 @@ import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
 
-	private static final String BASE_CLIENT_URL = "http://192.168.1.101:8080/WordWiseServer/";
-
-	private static final TranslationResource translationResource = getTranslationResource();
-	private static final RateResource rateResource = getRateResource();
-	private static final QualityResource qualityResource = getQualityResource();
-	private static final DifficultyResource difficultyResource = getDifficultyResource();
-	private static final WordResource wordResource = getWordResource();
+	private static final String BASE_CLIENT_URL = "http://192.168.112.1:8080/WordWiseServer/";
 	
 	private static Integer timeout = 1000;
 	private static String timeoutString = timeout.toString();
@@ -111,7 +105,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 
 	public boolean addTranslation(DTOTranslation translation) {
 		try{
-			translationResource.add(translation);
+			getTranslationResource().add(translation);
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -121,7 +115,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 
 	public boolean rateTranslation(DTORate rating) {
 		try{
-			rateResource.add(rating);
+			getRateResource().add(rating);
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -130,7 +124,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 	public boolean addWordQuality(DTOQuality quality) {
 		try{
-			qualityResource.add(quality);
+			getQualityResource().add(quality);
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -139,7 +133,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	}
 	public boolean addWordDifficulty(DTODifficulty difficulty) {
 		try{
-			difficultyResource.add(difficulty);
+			getDifficultyResource().add(difficulty);
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -155,7 +149,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 			List<DTOTranslation> translationsAlreadyUsed) {
 		Log.v("RESTFul - list trans", "Starting to load translations");
 		try{
-			List<DTOTranslation> translations = translationResource.list(new ListTranslationParameters(language,
+			List<DTOTranslation> translations = getTranslationResource().list(new ListTranslationParameters(language,
 					difficulty, numberOfTranslations, translationsAlreadyUsed)).getDTOTranslationList();
 			Log.v("RESTFul - list trans", ""+translations);
 			return translations;
@@ -169,7 +163,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 
 	public List<DTOWord> listWords(int number) {
 		try{			
-			List<DTOWord> words = wordResource.list(new ListWordParameters(number)).getDTOWordList();
+			List<DTOWord> words = getWordResource().list(new ListWordParameters(number)).getDTOWordList();
 			Log.v("RESTFul - words", ""+words);
 			return words;
 		}

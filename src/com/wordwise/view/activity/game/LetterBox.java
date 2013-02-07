@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,12 @@ import com.wordwise.R;
 import com.wordwise.controller.game.LetterBoxManager;
 import com.wordwise.gameengine.level.GameFinishPromotion;
 import com.wordwise.gameengine.level.Promotion;
+import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
+import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
 public class LetterBox extends WordwiseGameActivity
@@ -205,6 +208,16 @@ public class LetterBox extends WordwiseGameActivity
 		else
 			return -1;
 	}
+	
+	public boolean canUse(DTOTranslation translation)
+	{
+		if (translation.getTranslation().trim().contains(" ") || 
+				(translation.getTranslation().length() > LetterBoxPositionUtils.getGridSize()))
+		{
+			return false;
+		}
+		return true;
+	}
 
 	public int numberOfWordsNeeded(DTODifficulty difficulty) {
 		return 0;
@@ -224,10 +237,16 @@ public class LetterBox extends WordwiseGameActivity
 				LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
-			List<DTOTranslation> translations) {
-		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
-				translations)) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0, List<DTOTranslation> translations)
+	{
+		Log.v("translations", "" + translations);
+
+		if (translations == null) {
+			loaderHelper.loadFailed("Oh snap. Failed to load!");
+		} else if (translations.size() < GameManagerContainer.getGameManager()
+				.NumberOfTranslationsNeeded()) {
+			loaderHelper.loadFailed("Server does not have enough words!");
+		} else {
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();
@@ -247,7 +266,7 @@ public class LetterBox extends WordwiseGameActivity
 	protected boolean isRealGame() {
 		return true;
 	}
-
+	
 	@Override
 	public Promotion getPromotion() {
 		return new GameFinishPromotion();

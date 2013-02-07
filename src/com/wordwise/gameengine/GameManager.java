@@ -67,4 +67,9 @@ public abstract class GameManager {
 		currentGame = game;
 		currentGame.onGameStart();
 	}
+	
+	public Game getCurrentGame()
+	{
+		return currentGame;
+	}
 }

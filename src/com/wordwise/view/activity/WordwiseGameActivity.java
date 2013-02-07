@@ -5,16 +5,11 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
@@ -98,6 +93,12 @@ public abstract class WordwiseGameActivity extends Activity
 	}
 
 	public abstract List<DTOTranslation> getTranslations();
+	
+	public boolean canUse(DTOTranslation translation)
+	{
+		//by default, every game can use any given translation
+		return true;
+	}
 
 	private void initReview() {
 		reviewTable = (ListView) findViewById(R.id.review_table);
