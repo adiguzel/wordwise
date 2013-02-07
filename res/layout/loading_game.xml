@@ -27,19 +27,39 @@
             android:textSize="@dimen/text_size_medium"
             android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/retryButton"
-            style="@style/wordwiseSmallLightBoldButtonStyle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/word2translations_padding_main"
-            android:contentDescription="@string/retryIcon"
-            android:drawableLeft="@drawable/ic_navigation_refresh_dark"
-            android:onClick="retry"
-            android:paddingRight="@dimen/wordwise_padding_main_half"
-            android:text="@string/retry"
-            android:visibility="invisible" />
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <Button
+                android:id="@+id/retryButton"
+                style="@style/wordwiseSmallLightBoldButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/word2translations_padding_main"
+                android:contentDescription="@string/retryIcon"
+                android:drawableLeft="@drawable/ic_navigation_refresh_dark"
+                android:onClick="retry"
+                android:paddingRight="@dimen/wordwise_padding_main_half"
+                android:text="@string/retry"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/nextGameButton"
+                style="@style/wordwiseSmallLightBoldButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/word2translations_padding_main"
+                android:contentDescription="@string/retryIcon"
+                android:onClick="nextGame"
+                android:paddingRight="@dimen/wordwise_padding_main_half"
+                android:text="@string/retry"
+                android:visibility="invisible" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -70,6 +90,9 @@
             android:text="@string/loading_game"
             android:textColor="@color/wordwise_darker_gray"
             android:textSize="@dimen/text_size_medium" />
+    </LinearLayout>
+
+    <LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
