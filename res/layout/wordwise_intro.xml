@@ -6,17 +6,16 @@
     android:orientation="vertical"
     android:background="@color/wordwise_background_gray">
 
-    <TextView
-        android:id="@+id/wordwiseIntroText"
+    <ImageView
+        android:contentDescription="@string/wordwise_logo"
+        android:id="@+id/wordwiseLogo"
         android:layout_width="fill_parent"
+        android:src="@drawable/wordwise_logo"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/app_name"
-        android:textSize="@dimen/text_size_intro_title" 
         android:layout_centerInParent="true"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textColor="@color/wordwise_darker_gray"
+        android:paddingLeft="@dimen/wordwise_padding_main"
+        android:paddingRight="@dimen/wordwise_padding_main"
         />
 
 </RelativeLayout>
