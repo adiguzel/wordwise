@@ -99,6 +99,12 @@ public abstract class WordwiseGameActivity extends Activity
 		//by default, every game can use any given translation
 		return true;
 	}
+	
+	public DTOLanguage getLanguage()
+	{
+		//by default, every game needs the language being learned
+		return configuration.getCurrentGameConfiguration().getLearningLanguage();
+	}
 
 	private void initReview() {
 		reviewTable = (ListView) findViewById(R.id.review_table);

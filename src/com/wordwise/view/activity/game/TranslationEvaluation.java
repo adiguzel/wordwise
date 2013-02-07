@@ -76,6 +76,12 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		submitRating.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);
 	}
+	
+	public DTOLanguage getLanguage()
+	{
+		return chooseRandomProficientLanguage();
+	}
+
 
 	public void onGameStart() {
 		// TODO Auto-generated method stub
