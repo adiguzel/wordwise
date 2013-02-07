@@ -75,30 +75,27 @@ public class Hangman extends WordwiseGameActivity
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		//Eliminate some cases where those keys are used for something else
-		if(keyCode == KeyEvent.KEYCODE_BACK){
+		// Eliminate some cases where those keys are used for something else
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			onBackPressed();
 			return true;
-		}
-		else if(keyCode == KeyEvent.KEYCODE_MENU){
+		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
 			return true;
-		}
-		else if(keyCode == KeyEvent.KEYCODE_SEARCH){
+		} else if (keyCode == KeyEvent.KEYCODE_SEARCH) {
 			return true;
 		}
 
-		
-		if(gameStarted){
+		if (gameStarted) {
 			if (hangmanManager.isALetter(keyCode)) {
 				String letter = "" + (char) event.getUnicodeChar();
 				letter = letter.toUpperCase();
 				hangmanManager.validateGuess(letter.charAt(0));
 				return true;
 			}
-			
+
 		}
 		return true;
-	
+
 	}
 
 	public void onGameStart() {
@@ -119,7 +116,6 @@ public class Hangman extends WordwiseGameActivity
 
 	public void onGameEnd() {
 		super.onGameEnd();
-		// TODO show bye bye information
 		continueButton.setEnabled(true);
 	}
 
@@ -148,14 +144,8 @@ public class Hangman extends WordwiseGameActivity
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
-		Log.v("translations", "" + translations);
-
-		if (translations == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (translations.size() < GameManagerContainer.getGameManager()
-				.NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
-		} else {
+		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
+				translations)) {
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();
@@ -178,7 +168,7 @@ public class Hangman extends WordwiseGameActivity
 
 	@Override
 	public Promotion getPromotion() {
-		return new GameFinishPartialPromotion( hangmanManager.isFound(),1);
+		return new GameFinishPartialPromotion(hangmanManager.isFound(), 1);
 	}
 
 }

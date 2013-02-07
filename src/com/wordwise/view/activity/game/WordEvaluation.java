@@ -33,7 +33,7 @@ public class WordEvaluation extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOWord>>,
 			SubmitListener {
-	//UI elements
+	// UI elements
 	private TextView wordToEvaluateText;
 	private RatingBar wordDifficultyRating;
 	private Button continueButton;
@@ -65,15 +65,15 @@ public class WordEvaluation extends WordwiseGameActivity
 		continueButton.setVisibility(View.INVISIBLE);
 
 		wordDifficultyRating.setEnabled(false);
-		
+
 		qualityGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if(checkedId == R.id.is_a_word )
+				if (checkedId == R.id.is_a_word)
 					onYesSelected();
-				else if(checkedId == R.id.is_not_word)
+				else if (checkedId == R.id.is_not_word)
 					onNoSelected();
-				else if(checkedId == R.id.i_dont_know)
+				else if (checkedId == R.id.i_dont_know)
 					onDontKnowSelected();
 			}
 		});
@@ -92,12 +92,12 @@ public class WordEvaluation extends WordwiseGameActivity
 		String successMessage = "Thank you for your feedback.";
 		WordwiseUtils.makeCustomToast(this, successMessage, Toast.LENGTH_LONG);
 		super.onGameEnd();
-		//disable the UI elements
+		// disable the UI elements
 		qualityGroup.setEnabled(false);
-		//disable the children of radio group too
-		for(int i = 0; i < qualityGroup.getChildCount(); i++){
-            qualityGroup.getChildAt(i).setEnabled(false);
-        }
+		// disable the children of radio group too
+		for (int i = 0; i < qualityGroup.getChildCount(); i++) {
+			qualityGroup.getChildAt(i).setEnabled(false);
+		}
 		wordDifficultyRating.setEnabled(false);
 		submitEvaluation.setVisibility(View.GONE);
 		continueButton.setVisibility(View.VISIBLE);
@@ -131,7 +131,7 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onNoSelected() {
-		//reset the rating bar
+		// reset the rating bar
 		wordDifficultyRating.setRating(0.0f);
 		wordDifficultyRating.setEnabled(false);
 		this.isWord = false;
@@ -139,7 +139,7 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onDontKnowSelected() {
-		//reset the rating bar
+		// reset the rating bar
 		wordDifficultyRating.setRating(0.0f);
 		wordDifficultyRating.setEnabled(false);
 		this.submitEvaluation.setEnabled(true);
@@ -204,20 +204,14 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onLoadFinished(Loader<List<DTOWord>> arg0, List<DTOWord> words) {
-		Log.v("words", "" + words);
-
-		if (words == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (words.size() < GameManagerContainer.getGameManager()
-				.NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
-		} else if (words.get(0) != null) {
-			word = words.get(0);
-			initLayout();
-			this.onGameStart();
+		if (loaderHelper.wordLoadSuccessfulOrShowError(this, words)) {
+			if (words.get(0) != null) {
+				word = words.get(0);
+				initLayout();
+				this.onGameStart();
+			}
 		}
 	}
-
 	public void onLoaderReset(Loader<List<DTOWord>> arg0) {
 		loaderHelper.onLoaderReset(this);
 	}

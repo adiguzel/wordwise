@@ -78,14 +78,6 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	private DTOLanguage chooseRandomProficientLanguage() {
-		// removing English since this is the language from which the words are
-		// being translated
-		/*
-		 * if (proficientLanguagesList
-		 * .contains(LanguageUtils.getByName("English"))) {
-		 * proficientLanguagesList.remove(proficientLanguagesList
-		 * .indexOf(LanguageUtils.getByName("English"))); }
-		 */
 		List<DTOLanguage> proficientLanguagesList = LanguageUtils
 				.getProficientLanguages(configuration.getProficientLanguages());
 

@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,7 +12,6 @@ import com.wordwise.R;
 import com.wordwise.controller.game.MemoryManager;
 import com.wordwise.gameengine.level.GameFinishPromotion;
 import com.wordwise.gameengine.level.Promotion;
-import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
@@ -81,14 +79,8 @@ public class Memory extends WordwiseGameActivity
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
-		Log.v("translations", "" + translations);
-
-		if (translations == null) {
-			loaderHelper.loadFailed("Oh snap. Failed to load!");
-		} else if (translations.size() < GameManagerContainer.getGameManager()
-				.NumberOfTranslationsNeeded()) {
-			loaderHelper.loadFailed("Server does not have enough words!");
-		} else {
+		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
+				translations)) {
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();
@@ -108,7 +100,7 @@ public class Memory extends WordwiseGameActivity
 	protected boolean isRealGame() {
 		return true;
 	}
-	
+
 	@Override
 	public Promotion getPromotion() {
 		return new GameFinishPromotion();

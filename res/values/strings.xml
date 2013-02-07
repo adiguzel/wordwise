@@ -81,11 +81,12 @@
     <string name="review_game_label">Review</string>
     <string name="reviewInfoLabel"><b>Review</b> the words you have just practiced</string>
     <string name="levelLabel">Level</string>
-    <string name="fail_translation_submit">Your translation could not be submitted. Check your internet connection and please try again later.</string>
+    <string name="fail_translation_submit">Your translation could not be submitted. Check your internet connection and please try again later</string>
     <string name="success_translation_submit">Thank you for your translation</string>
     <string name="fail_feedback_submit">Your evaluation could not be submitted. Please check your internet connection and try again</string>
     <string name="fail_game_load">The game could not be loaded. Please check your internet connection</string>
-    <string name="fail_insufficient_translations_on_server">The game could not be loaded. Please check your internet connection</string>
+    <string name="fail_insufficient_translations_on_server">The game could not be loaded. We don\'t have enough translations in the system yet</string>
+    <string name="fail_insufficient_words_on_server">The game could not be loaded. We don\'t have enough words in the system yet</string>
     <string name="level_info_prefix1"><b>%s</b></string>
     <string name="level_info_prefix2"><b>/ %s</b></string>
     <string name="level_info_postfix">in level %s</string>
@@ -93,4 +94,7 @@
     <string name="memory_same_flip_error">Flip something else!</string>
     <string name="letterbox_game_information"><b>Find</b> the words hidden in the grid </string>
     <string name="hangman_game_information"><b>Reveal</b> the word by guessing letters</string>
+    <string name="hangman_win">Congratulations, you won!</string>
+    <string name="hangman_lose">You lost!</string>
+    <string name="wordwise_logo">Wordwise logo</string>
 </resources>

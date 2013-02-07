@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import com.wordwise.R;
 import com.wordwise.gameengine.level.EvaluationPromotion;
 import com.wordwise.gameengine.level.Promotion;
-import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
@@ -31,11 +29,11 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>>,
 			SubmitListener {
-	//the translation to be made by user
+	// the translation to be made by user
 	private DTOTranslation translation;
-	//language in which user is asked to make a translation
+	// language in which user is asked to make a translation
 	private DTOLanguage languageOfTranslation;
-	//a flag to check rating state and submit button's state 
+	// a flag to check rating state and submit button's state
 	private Boolean translationRated;
 
 	// UI elements
@@ -127,8 +125,8 @@ public class TranslationEvaluation extends WordwiseGameActivity
 				.getProficientLanguages(configuration.getProficientLanguages());
 		// removing English since this is the language from which the words are
 		// being translated
-		if (proficientLanguagesList.contains(LanguageUtils
-				.getByName("English"))) {
+		if (proficientLanguagesList
+				.contains(LanguageUtils.getByName("English"))) {
 			proficientLanguagesList.remove(proficientLanguagesList
 					.indexOf(LanguageUtils.getByName("English")));
 		}
@@ -159,21 +157,12 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
 			List<DTOTranslation> translations) {
-		Log.v("translations", "" + translations);
-		String gameLoadFailText;
-		if (translations == null) {
-			gameLoadFailText = getResources().getString(R.string.fail_game_load);
-			loaderHelper.loadFailed(gameLoadFailText);
-		} else if (translations.size() < GameManagerContainer.getGameManager()
-				.NumberOfTranslationsNeeded()) {
-			gameLoadFailText = getResources().getString(R.string.fail_insufficient_translations_on_server);
-			loaderHelper.loadFailed(gameLoadFailText);
-		} else {
+		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
+				translations)) {
 			this.translation = translations.get(0);
 			initLayout();
 			onGameStart();
 		}
-
 	}
 
 	public void onLoaderReset(Loader<List<DTOTranslation>> arg0) {
@@ -207,7 +196,8 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		if (result)
 			onGameEnd();
 		else {
-			String failMessage = getResources().getString(R.string.fail_feedback_submit);
+			String failMessage = getResources().getString(
+					R.string.fail_feedback_submit);
 			WordwiseUtils.makeCustomToast(this, failMessage);
 		}
 
