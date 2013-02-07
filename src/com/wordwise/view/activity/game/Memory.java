@@ -52,9 +52,9 @@ public class Memory extends WordwiseGameActivity
 		if (difficulty == DTODifficulty.EASY)
 			return 3;
 		else if (difficulty == DTODifficulty.MEDIUM)
-			return 6;
+			return 5;
 		else if (difficulty == DTODifficulty.HARD)
-			return 9;
+			return 7;
 		else
 			return -1;
 	}

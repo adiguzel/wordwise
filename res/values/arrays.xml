@@ -7,7 +7,7 @@
         <item name="de">German</item>
         <item name="es">Spanish</item>
         <item name="tr">Turkish</item>
-        <item name="pt">Brasilian Portugese</item>
+        <item name="pt-BR">Brasilian Portugese</item>
     </string-array>
     
     <string-array name="languageCodes">
@@ -15,7 +15,7 @@
         <item name="de">de</item>
         <item name="es">es</item>
         <item name="tr">tr</item>
-        <item name="pt">pt</item>
+        <item name="pt-BR">pt-BR</item>
     </string-array>
     
     <string-array name="empty_array"/>

@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/gridViewLetters"
                 android:layout_marginTop="@dimen/wordwise_padding_main"
-                android:numColumns="3" >
+                android:numColumns="2" >
             </com.wordwise.view.ScrollableGridView>
         </RelativeLayout>
     </ScrollView>

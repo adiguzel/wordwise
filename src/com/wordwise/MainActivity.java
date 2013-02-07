@@ -32,11 +32,6 @@ public class MainActivity extends Activity {
     
     public void showHowToPlay(View view) {
 	}
-  /*  
-    @Override
-	public void onBackPressed() {
-    	WordwiseUtils.makeQuitApplicationDialog(this);
-	}*/
     
 	public void about(View view) {
 		Intent intent = new Intent(this, AboutActivity.class);

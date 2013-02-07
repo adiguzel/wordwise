@@ -192,11 +192,9 @@ public class LetterBox extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
-		// TODO Auto-generated method stub
 		super.onGameEnd();
 	}
 
-	// TODO reconsider numbers
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
 		if (difficulty == DTODifficulty.EASY)
 			return 6;
