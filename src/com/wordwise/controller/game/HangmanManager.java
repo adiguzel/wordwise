@@ -108,9 +108,8 @@ public class HangmanManager {
 					.getResources().getString(R.string.hangman_win));
 
 			mysteryWordTextView.setOnClickListener(null);
-			hangmanActivity.onGameEnd();
-
 			isFound = 1;
+			hangmanActivity.onGameEnd();
 		}
 	}
 
@@ -219,7 +218,8 @@ public class HangmanManager {
 			result.append(mysteryWord.charAt(i) + "  ");
 
 		}
-		mysteryWordTextView.setTextColor(hangmanActivity.getResources().getColor(R.color.wordwise_main_fail_red));
+		mysteryWordTextView.setTextColor(hangmanActivity.getResources()
+				.getColor(R.color.wordwise_main_fail_red));
 		mysteryWordTextView.setText(result.toString());
 	}
 
