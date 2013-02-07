@@ -1,6 +1,9 @@
 package com.wordwise.client;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 import org.restlet.Client;
 import org.restlet.Context;
@@ -9,8 +12,10 @@ import org.restlet.engine.Engine;
 import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ClientResource;
 
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.wordwise.R;
 import com.wordwise.gameengine.ServerCommunication;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
@@ -27,13 +32,36 @@ import com.wordwise.server.resource.TranslationResource;
 import com.wordwise.server.resource.WordResource;
 
 public class RESTfullServerCommunication implements ServerCommunication {
-
-	private static final String BASE_CLIENT_URL = "http://192.168.1.101:8080/WordWiseServer/";
 	
-	private static Integer timeout = 5000;
-	private static String timeoutString = timeout.toString();
+	private String BASE_CLIENT_URL;
 	
-	private static TranslationResource getTranslationResource() {
+	private Integer timeout = 5000;
+	private String timeoutString = timeout.toString();
+	
+	public RESTfullServerCommunication(android.content.Context context){
+		BASE_CLIENT_URL = baseClientURL(context);
+	}
+	
+	public String baseClientURL(android.content.Context context){
+		Resources resources = context.getResources();
+		InputStream rawResource = resources.openRawResource(R.raw.wordwise_server);
+		Properties prop = new Properties();        
+		try {
+		    prop.load(rawResource);
+			String protocol = prop.getProperty("protocol", "http");
+			String serverBaseAddress = prop.getProperty("server-base-address", "");
+			String appName = prop.getProperty("appName", "WordWiseServer");
+			
+			return protocol + "://" + serverBaseAddress + "/" + appName + "/";
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private TranslationResource getTranslationResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		Context context = new Context();
@@ -48,7 +76,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		return clientResource.wrap(TranslationResource.class);
 	}
 
-	private static RateResource getRateResource() {
+	private RateResource getRateResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		Context context = new Context();
@@ -63,7 +91,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		return clientResource.wrap(RateResource.class);
 	}
 
-	private static QualityResource getQualityResource() {
+	private QualityResource getQualityResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		Context context = new Context();
@@ -78,7 +106,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		return clientResource.wrap(QualityResource.class);
 	}
 
-	private static DifficultyResource getDifficultyResource() {
+	private DifficultyResource getDifficultyResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		Context context = new Context();
@@ -93,7 +121,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 		return clientResource.wrap(DifficultyResource.class);
 	}
 	
-	private static WordResource getWordResource() {
+	private WordResource getWordResource() {
 		Engine.getInstance().getRegisteredConverters().add(new JacksonConverter());
 		
 		Context context = new Context();

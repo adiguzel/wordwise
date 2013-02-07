@@ -16,7 +16,7 @@ public class WordLoader extends AsyncTaskLoader<List<DTOWord>> {
 
 	public WordLoader(Context context) {
 		super(context);
-		serverComm = new RESTfullServerCommunication();
+		serverComm = new RESTfullServerCommunication(context);
 	}
 
 	@Override

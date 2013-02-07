@@ -20,7 +20,7 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 
 	public TranslationLoader(Context context) {
 		super(context);
-		serverComm = new RESTfullServerCommunication();
+		serverComm = new RESTfullServerCommunication(context);
 		configuration = Configuration.getInstance(context);
 	}
 

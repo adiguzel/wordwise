@@ -12,9 +12,10 @@ public abstract class SubmitTask extends AsyncTask<Void, Void, Boolean> {
 	private Activity activity;
 	private SubmitListener submitListener;
 	private ProgressDialog dialog;
-	protected RESTfullServerCommunication serverComm = new RESTfullServerCommunication();
+	protected RESTfullServerCommunication serverComm;
 	
 	public SubmitTask(Activity activity, SubmitListener submitListener){
+		serverComm = new RESTfullServerCommunication(activity);
 		this.activity = activity;
 		this.submitListener = submitListener;
 	}
