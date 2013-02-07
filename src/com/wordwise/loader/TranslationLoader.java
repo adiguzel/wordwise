@@ -32,7 +32,7 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 		if (translationsNeeded == -1 || translationsNeeded == 0)
 			return null;
 		GameConfiguration gameConf = configuration.getCurrentGameConfiguration();
-		List<DTOTranslation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
+		List<DTOTranslation>  translations = serverComm.listTranslations(gManager.getCurrentGame().getLanguage(),
 				gameConf.getDifficulty(), translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
 		
