@@ -31,33 +31,35 @@ public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 		Log.v("translationsNeed", "" + translationsNeeded);
 		if (translationsNeeded == -1 || translationsNeeded == 0)
 			return null;
-		GameConfiguration gameConf = configuration.getCurrentGameConfiguration();
-		List<DTOTranslation>  translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
-				gameConf.getDifficulty(), translationsNeeded, null);
+		GameConfiguration gameConf = configuration
+				.getCurrentGameConfiguration();
+		List<DTOTranslation> translations = serverComm.listTranslations(
+				gameConf.getLearningLanguage(), gameConf.getDifficulty(),
+				translationsNeeded, null);
 		Log.v("loadInBackground - trans", "" + translations);
-		
+
 		List<DTOTranslation> finalTranslations = new ArrayList<DTOTranslation>();
-		
-		if (translations != null)
-		{
-			while (finalTranslations.size() < translationsNeeded)
-			{
-				for (DTOTranslation dtoTranslation : translations)
-				{
-					if (gManager.getCurrentGame().canUse(dtoTranslation))
-					{
-						finalTranslations.add(dtoTranslation);
-					}
-				}
-				translations.removeAll(finalTranslations);
-				if (translations.size() > 0)
-				{
-					translations = serverComm.listTranslations(gameConf.getLearningLanguage(),
-							gameConf.getDifficulty(), translations.size(), translations);
+
+		if (translations != null) {
+			//let client know that nothing is loaded as they expect null in that case
+			return translations;
+		}
+
+		while (finalTranslations.size() < translationsNeeded) {
+			for (DTOTranslation dtoTranslation : translations) {
+				if (gManager.getCurrentGame().canUse(dtoTranslation)) {
+					finalTranslations.add(dtoTranslation);
 				}
 			}
+			translations.removeAll(finalTranslations);
+			if (translations.size() > 0) {
+				translations = serverComm.listTranslations(
+						gameConf.getLearningLanguage(),
+						gameConf.getDifficulty(), translations.size(),
+						translations);
+			}
 		}
-		
+
 		return finalTranslations;
 	}
 }
