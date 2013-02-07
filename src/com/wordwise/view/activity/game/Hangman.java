@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +12,7 @@ import android.widget.Button;
 import com.wordwise.R;
 import com.wordwise.controller.game.HangmanManager;
 import com.wordwise.gameengine.level.GameFinishPartialPromotion;
-import com.wordwise.gameengine.level.GameFinishPromotion;
 import com.wordwise.gameengine.level.Promotion;
-import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
@@ -170,5 +167,4 @@ public class Hangman extends WordwiseGameActivity
 	public Promotion getPromotion() {
 		return new GameFinishPartialPromotion(hangmanManager.isFound(), 1);
 	}
-
 }

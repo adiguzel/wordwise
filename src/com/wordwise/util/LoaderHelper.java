@@ -25,7 +25,7 @@ public class LoaderHelper {
 
 	private LinearLayout loadingFailed;
 	private TextView loadingFailedText;
-	private Button retryButton;
+	private Button retryButton, nextGameButton;
 	private LinearLayout loading;
 	private ProgressBar progress;
 
@@ -93,16 +93,18 @@ public class LoaderHelper {
 		loadingFailedText = (TextView) activity
 				.findViewById(R.id.loadingFailedText);
 		retryButton = (Button) activity.findViewById(R.id.retryButton);
+		nextGameButton = (Button) activity.findViewById(R.id.nextGameButton);
 		loading = (LinearLayout) activity.findViewById(R.id.loading);
 
 		progress.setVisibility(View.VISIBLE);
 	}
 
 	public void loadFailed(String failureText) {
-		loading.setVisibility(View.INVISIBLE);
+		loading.setVisibility(View.GONE);
 		loadingFailed.setVisibility(View.VISIBLE);
 		loadingFailedText.setVisibility(View.VISIBLE);
 		retryButton.setVisibility(View.VISIBLE);
+		nextGameButton.setVisibility(View.VISIBLE);
 		loadingFailedText.setText(failureText);
 	}
 

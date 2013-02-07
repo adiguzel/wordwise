@@ -105,5 +105,4 @@ public class Memory extends WordwiseGameActivity
 	public Promotion getPromotion() {
 		return new GameFinishPromotion();
 	}
-
 }

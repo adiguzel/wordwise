@@ -2,8 +2,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light" />
-    
-    <style name="wordwiseButtonMainStyle" >
+
+    <style name="wordwiseButtonMainStyle">
         <item name="android:textColor">@color/wordwise_button_text_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
@@ -33,8 +33,8 @@
     <style name="wordwiseSmallLightBoldButtonStyle" parent="wordwiseSmallLightButtonStyle">
         <item name="android:textStyle">bold</item>
     </style>
-    
-   <style name="wordwiseHeading">
+
+    <style name="wordwiseHeading">
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textColor">@color/wordwise_main_gray_dark_start</item>
         <item name="android:textStyle">bold</item>

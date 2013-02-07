@@ -208,5 +208,4 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		}
 
 	}
-
 }

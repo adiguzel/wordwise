@@ -3,7 +3,6 @@ package com.wordwise.view.activity;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -114,7 +113,7 @@ public abstract class WordwiseGameActivity extends Activity
 				.getLearningLanguage();
 		headerWord.setText("English");
 		headerTranslation.setText(lang.getLanguage());
-		reviewTable.setAdapter(new TableListAdapter(this, getTranslations()));		
+		reviewTable.setAdapter(new TableListAdapter(getTranslations()));		
 	}
 
 	@Override
@@ -140,9 +139,9 @@ public abstract class WordwiseGameActivity extends Activity
 	}
 
 	public void validate(View v) {
-		// TODO Auto-generated method stub
+		//empty implementation by default
 	}
-
+	
 	protected void onQuitPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
 	}
@@ -152,11 +151,9 @@ public abstract class WordwiseGameActivity extends Activity
 	}
 	
 	public class TableListAdapter extends BaseAdapter{
-		private Context context;
 		private List<DTOTranslation> translations;
 		
-		public TableListAdapter(Context context, List<DTOTranslation> translations){
-			this.context = context;
+		public TableListAdapter(List<DTOTranslation> translations){
 			this.translations = translations;
 		}
 		

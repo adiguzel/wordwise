@@ -12,7 +12,13 @@
                 android:width="@dimen/button_shape_stroke_pressed"
                 android:color="@color/light_button_shape_pressed_border" />
             <corners
-                android:radius="@dimen/button_shape_corner_radius" />         
+                android:radius="@dimen/button_shape_corner_radius" /> 
+                
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
         </shape>
     </item>
 
@@ -26,7 +32,13 @@
                 android:width="@dimen/button_shape_stroke_focused"
                 android:color="@color/light_button_shape_focused_border" />
             <corners
-                android:radius="@dimen/button_shape_corner_radius" />    
+                android:radius="@dimen/button_shape_corner_radius" />  
+                
+           <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" /> 
         </shape>
     </item>
 
@@ -42,6 +54,12 @@
                 android:color="@color/light_button_shape_border" />
             <corners
                 android:radius="@dimen/button_shape_corner_radius" />
+            
+            <padding
+                android:left="@dimen/background_shape_padding_left"
+                android:top="@dimen/background_shape_padding_top"
+                android:right="@dimen/background_shape_padding_right"
+                android:bottom="@dimen/background_shape_padding_bottom" />
             
         </shape>
     </item>

@@ -30,7 +30,6 @@ public class Words2Translations extends WordwiseGameActivity
 	}
 
 	public void onGameStart() {
-		// TODO Auto-generated method stub
 	}
 
 	public void onGameStop() {

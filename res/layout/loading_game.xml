@@ -29,22 +29,22 @@
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="invisible" >
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/word2translations_padding_main"
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/retryButton"
                 style="@style/wordwiseSmallLightBoldButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/word2translations_padding_main"
+                android:layout_marginRight="@dimen/wordwise_padding_main"
                 android:contentDescription="@string/retryIcon"
                 android:drawableLeft="@drawable/ic_navigation_refresh_dark"
+                android:gravity="center_vertical|center_horizontal"
                 android:onClick="retry"
-                android:paddingRight="@dimen/wordwise_padding_main_half"
                 android:text="@string/retry"
                 android:visibility="invisible" />
 
@@ -53,11 +53,11 @@
                 style="@style/wordwiseSmallLightBoldButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/word2translations_padding_main"
                 android:contentDescription="@string/retryIcon"
-                android:onClick="nextGame"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="continueNextGame"
                 android:paddingRight="@dimen/wordwise_padding_main_half"
-                android:text="@string/retry"
+                android:text="@string/try_next_game"
                 android:visibility="invisible" />
         </LinearLayout>
     </LinearLayout>
@@ -90,9 +90,6 @@
             android:text="@string/loading_game"
             android:textColor="@color/wordwise_darker_gray"
             android:textSize="@dimen/text_size_medium" />
-    </LinearLayout>
-
-    <LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

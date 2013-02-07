@@ -97,4 +97,5 @@
     <string name="hangman_win">Congratulations, you won!</string>
     <string name="hangman_lose">You lost!</string>
     <string name="wordwise_logo">Wordwise logo</string>
+    <string name="try_next_game">Next game</string>
 </resources>
