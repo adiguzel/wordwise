@@ -17,8 +17,8 @@ import android.widget.ViewFlipper;
 import com.tekle.oss.android.animation.AnimationFactory;
 import com.tekle.oss.android.animation.AnimationFactory.FlipDirection;
 import com.wordwise.R;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.gameengine.Game;
-import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.model.IGameView;
 import com.wordwise.server.dto.DTOLanguage;
@@ -31,7 +31,7 @@ public abstract class WordwiseGameActivity extends Activity
 			IGameView,
 			Game {
 	
-	protected Configuration configuration;
+	protected PreferencesIOManager prefIOManager;
 	// flag to determine if activity should be ended and go back to the previous
 	// screen
 	protected boolean end = false;
@@ -50,7 +50,7 @@ public abstract class WordwiseGameActivity extends Activity
 		getActionBar().hide();
 		// all games are in portrait(vertical) mode
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		configuration = Configuration.getInstance(this);
+		prefIOManager = PreferencesIOManager.getInstance(this);
 		// let the children decide what else to do onCreate
 		performOnCreate(savedInstanceState);
 	}
@@ -69,9 +69,9 @@ public abstract class WordwiseGameActivity extends Activity
 	protected abstract boolean isRealGame();
 	
 	public void onGameEnd(){
-		int pointsEarned = getPromotion().getPoints(configuration.getDifficulty()) ;
-		int newPoints = configuration.getPoints() + pointsEarned;
-		configuration.setPoints(newPoints);
+		int pointsEarned = getPromotion().getPoints(prefIOManager.getDifficulty()) ;
+		int newPoints = prefIOManager.getPoints() + pointsEarned;
+		prefIOManager.setPoints(newPoints);
 		WordwiseUtils.updateGameTopPanel(this);
 		// as a dummy game end text
 		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "+ pointsEarned + " more points.", Toast.LENGTH_LONG);
@@ -102,14 +102,14 @@ public abstract class WordwiseGameActivity extends Activity
 	public DTOLanguage getLanguage()
 	{
 		//by default, every game needs the language being learned
-		return configuration.getCurrentGameConfiguration().getLearningLanguage();
+		return prefIOManager.getCurrentGameConfiguration().getLearningLanguage();
 	}
 
 	private void initReview() {
 		reviewTable = (ListView) findViewById(R.id.review_table);
 		TextView headerWord = (TextView) findViewById(R.id.header_word);
 		TextView headerTranslation = (TextView) findViewById(R.id.header_translation);
-		DTOLanguage lang = Configuration.getInstance(this)
+		DTOLanguage lang = PreferencesIOManager.getInstance(this)
 				.getLearningLanguage();
 		headerWord.setText("English");
 		headerTranslation.setText(lang.getLanguage());
