@@ -1,6 +1,7 @@
 package com.wordwise.view.activity.game;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
@@ -14,6 +15,7 @@ import com.wordwise.controller.game.HangmanManager;
 import com.wordwise.gameengine.level.GameFinishPartialPromotion;
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.server.dto.DTODifficulty;
+import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
@@ -57,7 +59,8 @@ public class Hangman extends WordwiseGameActivity
 					&& event.getAction() == KeyEvent.ACTION_MULTIPLE
 					&& hangmanManager.isALetter(keyCode)) {
 				String letter = event.getCharacters();
-				letter = letter.toUpperCase();
+				String langCode = prefIOManager.getLearningLanguage().getCode();
+				letter = letter.toUpperCase(new Locale(langCode));
 				hangmanManager.validateGuess(letter.charAt(0));
 			}
 		}
@@ -121,7 +124,6 @@ public class Hangman extends WordwiseGameActivity
 	}
 
 	public int numberOfWordsNeeded(DTODifficulty difficulty) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

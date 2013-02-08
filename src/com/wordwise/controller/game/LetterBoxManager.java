@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -52,7 +51,6 @@ public class LetterBoxManager
 		return numberOfFoundWords == translations.size();
 	}
 	
-	@SuppressLint("DefaultLocale")
 	private List<String> generateLetters(int numberOfLetters)
 	{
 		List<String> returnList = new ArrayList<String>();
