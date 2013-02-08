@@ -3,6 +3,7 @@ package com.wordwise.controller.game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import android.annotation.SuppressLint;
@@ -69,7 +70,7 @@ public class LetterBoxManager
 		
 		for (int i = 0; i < returnList.size(); i++)
 		{
-			returnList.set(i, returnList.get(i).toUpperCase());
+			returnList.set(i, returnList.get(i).toUpperCase(Locale.US));
 		}
 		
 		return returnList;
