@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,7 @@ public class Dashboard extends Activity {
 		float progress = level.getLevelProgress(currentPoints);
 		float progressRatio = (float) (progress / (float) level.getMax());
 		float progressPercentage = (progressRatio * levelProgress.getMax());
+		Log.v("lang", ""+ lang.getLanguage() + " : " + lang.getCode() );
 
 		String levelInfoPrefixProgress = String.format(getResources()
 				.getString(R.string.level_info_prefix1), "" + level.getLevelProgress(currentPoints));
