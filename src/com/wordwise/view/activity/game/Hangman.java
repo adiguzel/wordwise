@@ -15,7 +15,6 @@ import com.wordwise.controller.game.HangmanManager;
 import com.wordwise.gameengine.level.GameFinishPartialPromotion;
 import com.wordwise.gameengine.level.Promotion;
 import com.wordwise.server.dto.DTODifficulty;
-import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
@@ -88,7 +87,8 @@ public class Hangman extends WordwiseGameActivity
 		if (gameStarted) {
 			if (hangmanManager.isALetter(keyCode)) {
 				String letter = "" + (char) event.getUnicodeChar();
-				letter = letter.toUpperCase();
+				String langCode = prefIOManager.getLearningLanguage().getCode();
+				letter = letter.toUpperCase(new Locale(langCode));
 				hangmanManager.validateGuess(letter.charAt(0));
 				return true;
 			}
