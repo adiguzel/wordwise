@@ -3,7 +3,6 @@
 <resources>
 
     <string-array name="languages">
-        <item name="en">English</item>
         <item name="de">German</item>
         <item name="es">Spanish</item>
         <item name="tr">Turkish</item>
@@ -11,7 +10,6 @@
     </string-array>
     
     <string-array name="languageCodes">
-        <item name="en">en</item>
         <item name="de">de</item>
         <item name="es">es</item>
         <item name="tr">tr</item>
