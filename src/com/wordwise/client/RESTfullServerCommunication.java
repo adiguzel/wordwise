@@ -5,9 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-import org.restlet.Client;
 import org.restlet.Context;
-import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
 import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ClientResource;
@@ -68,10 +66,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
         context.getParameters().add("controllerSleepTimeMs", timeoutString);
         context.getParameters().add("maxIoIdleTimeMs", timeoutString);
         context.getParameters().add("socketTimeout", timeoutString);
-        Client client = new Client(context, Protocol.HTTP);
-        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + TranslationResource.RESOURCE_NAME);
+        ClientResource clientResource = new ClientResource(context, BASE_CLIENT_URL + TranslationResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
-		clientResource.setNext(client);
 
 		return clientResource.wrap(TranslationResource.class);
 	}
@@ -83,10 +79,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
         context.getParameters().add("controllerSleepTimeMs", timeoutString);
         context.getParameters().add("maxIoIdleTimeMs", timeoutString);
         context.getParameters().add("socketTimeout", timeoutString);
-        Client client = new Client(context, Protocol.HTTP);
-        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + RateResource.RESOURCE_NAME);
+        ClientResource clientResource = new ClientResource(context, BASE_CLIENT_URL + RateResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
-		clientResource.setNext(client);
 
 		return clientResource.wrap(RateResource.class);
 	}
@@ -98,10 +92,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
         context.getParameters().add("controllerSleepTimeMs", timeoutString);
         context.getParameters().add("maxIoIdleTimeMs", timeoutString);
         context.getParameters().add("socketTimeout", timeoutString);
-        Client client = new Client(context, Protocol.HTTP);
-        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + QualityResource.RESOURCE_NAME);
+        ClientResource clientResource = new ClientResource(context, BASE_CLIENT_URL + QualityResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
-		clientResource.setNext(client);
 
 		return clientResource.wrap(QualityResource.class);
 	}
@@ -113,10 +105,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
         context.getParameters().add("controllerSleepTimeMs", timeoutString);
         context.getParameters().add("maxIoIdleTimeMs", timeoutString);
         context.getParameters().add("socketTimeout", timeoutString);
-        Client client = new Client(context, Protocol.HTTP);
-        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + DifficultyResource.RESOURCE_NAME);
+        ClientResource clientResource = new ClientResource(context, BASE_CLIENT_URL + DifficultyResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
-		clientResource.setNext(client);
 
 		return clientResource.wrap(DifficultyResource.class);
 	}
@@ -128,10 +118,8 @@ public class RESTfullServerCommunication implements ServerCommunication {
         context.getParameters().add("controllerSleepTimeMs", timeoutString);
         context.getParameters().add("maxIoIdleTimeMs", timeoutString);
         context.getParameters().add("socketTimeout", timeoutString);
-        Client client = new Client(context, Protocol.HTTP);
-        ClientResource clientResource = new ClientResource(BASE_CLIENT_URL + WordResource.RESOURCE_NAME);
+        ClientResource clientResource = new ClientResource(context, BASE_CLIENT_URL + WordResource.RESOURCE_NAME);
 		clientResource.setRetryOnError(false);
-		clientResource.setNext(client);
 
 		return clientResource.wrap(WordResource.class);
 	}
