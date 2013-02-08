@@ -1,4 +1,4 @@
-package com.wordwise.model;
+package com.wordwise.controller;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,14 +6,15 @@ import java.util.Set;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.server.dto.DTODifficulty;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
-public class Configuration {
-	private static Configuration instance = null;
+public class PreferencesIOManager {
+	private static PreferencesIOManager instance = null;
 	private SharedPreferences SP;
 	private Set<DTOLanguage> proficientLanguages = null;
 	
@@ -23,7 +24,7 @@ public class Configuration {
 	final String learningLangKey = "learning_language";
 	final String difficultyKey = "difficulty";
 
-	private Configuration(Context context) {
+	private PreferencesIOManager(Context context) {
 		init(context);
 	}
 
@@ -32,9 +33,9 @@ public class Configuration {
 		proficientLanguages = getProficientLanguages();
 	}
 
-	public static Configuration getInstance(Context context) {
+	public static PreferencesIOManager getInstance(Context context) {
 		if (instance == null) {
-			instance = new Configuration(context);
+			instance = new PreferencesIOManager(context);
 		}
 		return instance;
 	}
@@ -69,6 +70,7 @@ public class Configuration {
 	public Set<DTOLanguage> getProficientLanguages() {
 		Set<String> proficientLanguageCodes = SP.getStringSet(
 				proficientLangsKey, new HashSet<String>());
+		Log.v("", " profs code: "+ proficientLanguageCodes);
 		Set<DTOLanguage> proficientLanguages = new HashSet<DTOLanguage>();
 		for (String langCode : proficientLanguageCodes) {
 			proficientLanguages.add(LanguageUtils.getByCode(langCode));

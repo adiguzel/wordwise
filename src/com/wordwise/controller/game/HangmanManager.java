@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.model.Configuration;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LanguageUtils;
@@ -36,7 +36,7 @@ public class HangmanManager {
 	private ImageView hangmanImageView;
 
 	// Configuration properties
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 	private DTOLanguage learningLanguage;
 	private Locale locale;
 
@@ -228,7 +228,7 @@ public class HangmanManager {
 	}
 
 	private void getConfigurationDetails() {
-		this.configuration = Configuration.getInstance(hangmanActivity);
+		this.configuration = PreferencesIOManager.getInstance(hangmanActivity);
 		this.learningLanguage = configuration.getLearningLanguage();
 	}
 

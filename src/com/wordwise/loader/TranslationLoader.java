@@ -8,20 +8,20 @@ import android.content.Context;
 import android.util.Log;
 
 import com.wordwise.client.RESTfullServerCommunication;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.GameManager;
-import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTOTranslation;
 
 public class TranslationLoader extends AsyncTaskLoader<List<DTOTranslation>> {
 	private RESTfullServerCommunication serverComm;
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 
 	public TranslationLoader(Context context) {
 		super(context);
 		serverComm = new RESTfullServerCommunication(context);
-		configuration = Configuration.getInstance(context);
+		configuration = PreferencesIOManager.getInstance(context);
 	}
 
 	@Override

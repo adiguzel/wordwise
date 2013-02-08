@@ -6,6 +6,7 @@ import java.util.Locale;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,8 +79,10 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	private DTOLanguage chooseRandomProficientLanguage() {
+		Log.v("", "randomda lang" + prefIOManager.getProficientLanguages().size());
+		prefIOManager.getProficientLanguages();
 		List<DTOLanguage> proficientLanguagesList = LanguageUtils
-				.getProficientLanguages(configuration.getProficientLanguages());
+				.getProficientLanguages(prefIOManager.getProficientLanguages());
 
 		DTOLanguage randomLanguage = LanguageUtils
 				.getRandomProficientLanguage(proficientLanguagesList);

@@ -8,12 +8,12 @@ import android.widget.ImageView;
 
 import com.tekle.oss.android.animation.AnimationFactory;
 import com.wordwise.controller.ConfigurationProcess;
-import com.wordwise.model.Configuration;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.util.LanguageUtils;
 
 public class WordwiseIntro extends Activity {
 	private ImageView wordwiseLogo;
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class WordwiseIntro extends Activity {
 
 			public void run() {
 				LanguageUtils.init(getResources());
-				configuration = Configuration
+				configuration = PreferencesIOManager
 						.getInstance(getApplicationContext());
 				if (!configuration.isConfigured())
 					configure();

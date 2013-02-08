@@ -12,9 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordwise.R;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.level.Level;
-import com.wordwise.model.Configuration;
 import com.wordwise.model.GameManagerContainer;
 
 public class WordwiseUtils {
@@ -77,7 +77,7 @@ public class WordwiseUtils {
 	}
 	
 	public static void updateGameTopPanel(Activity activity){
-		Configuration configuration = Configuration.getInstance(activity);
+		PreferencesIOManager configuration = PreferencesIOManager.getInstance(activity);
 		TextView pointsView = (TextView) activity.findViewById(R.id.points);
 		TextView levelView = (TextView) activity.findViewById(R.id.level);
 		

@@ -9,20 +9,20 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.wordwise.R;
-import com.wordwise.model.Configuration;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
 public class LearningLanguageStep extends ConfigurationStep {
 	private ListView listView;
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 	private Button next;
 
 	@Override
 	protected void performOnCreate() {
 		setContentView(R.layout.conf_step_learning_lang);
 
-		configuration = Configuration.getInstance(getApplicationContext());
+		configuration = PreferencesIOManager.getInstance(getApplicationContext());
 		listView = (ListView) findViewById(R.id.list);
 		next = (Button) findViewById(R.id.next);
 

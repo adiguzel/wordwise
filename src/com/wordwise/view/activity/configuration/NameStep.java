@@ -6,18 +6,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.wordwise.R;
-import com.wordwise.model.Configuration;
+import com.wordwise.controller.PreferencesIOManager;
 
 public class NameStep extends ConfigurationStep implements TextWatcher {
 	private EditText name;
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 	private Button next;
 
 	@Override
 	protected void performOnCreate() {
 		setContentView(R.layout.conf_step_name);
 
-		configuration = Configuration.getInstance(getApplicationContext());
+		configuration = PreferencesIOManager.getInstance(getApplicationContext());
 		name = (EditText) findViewById(R.id.name);
 		next = (Button) findViewById(R.id.next);
 		

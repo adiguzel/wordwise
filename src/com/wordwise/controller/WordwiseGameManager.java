@@ -7,7 +7,6 @@ import com.wordwise.gameengine.Game;
 import com.wordwise.gameengine.GameConfiguration;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.gameengine.GameSelector;
-import com.wordwise.model.Configuration;
 import com.wordwise.view.activity.WordwiseGameActivity;
 import com.wordwise.view.activity.game.Hangman;
 import com.wordwise.view.activity.game.LetterBox;
@@ -55,7 +54,7 @@ public class WordwiseGameManager extends GameManager {
 
 	@Override
 	public GameConfiguration getConfiguration() {
-		Configuration configuration = Configuration.getInstance(context);
-		return configuration.getCurrentGameConfiguration();
+		PreferencesIOManager prefIOManager = PreferencesIOManager.getInstance(context);
+		return prefIOManager.getCurrentGameConfiguration();
 	}
 }

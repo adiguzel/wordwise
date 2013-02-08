@@ -128,7 +128,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	private DTOLanguage chooseRandomProficientLanguage() {
 		List<DTOLanguage> proficientLanguagesList = LanguageUtils
-				.getProficientLanguages(configuration.getProficientLanguages());
+				.getProficientLanguages(prefIOManager.getProficientLanguages());
 		// removing English since this is the language from which the words are
 		// being translated
 		if (proficientLanguagesList

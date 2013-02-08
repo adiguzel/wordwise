@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.gameengine.level.Level;
-import com.wordwise.model.Configuration;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.view.activity.AboutActivity;
 import com.wordwise.view.activity.NewGame;
@@ -49,7 +49,7 @@ public class Dashboard extends Activity {
 	}
 
 	public void updateUIElements(){
-		Configuration configuration = Configuration.getInstance(this);
+		PreferencesIOManager configuration = PreferencesIOManager.getInstance(this);
 		int currentPoints = configuration.getPoints();
 		String name = configuration.getName();
 		DTOLanguage lang = configuration.getLearningLanguage();

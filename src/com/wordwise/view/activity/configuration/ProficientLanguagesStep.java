@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wordwise.R;
-import com.wordwise.model.Configuration;
+import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
@@ -22,14 +22,14 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	private String selectedLanguagesText;
 	private ListView list;
 	private TextView selectedLanguages;
-	private Configuration configuration;
+	private PreferencesIOManager configuration;
 	private Button finish;
 
 	@Override
 	protected void performOnCreate() {
 		setContentView(R.layout.conf_step_proficient_langs);
 
-		configuration = Configuration.getInstance(getApplicationContext());
+		configuration = PreferencesIOManager.getInstance(getApplicationContext());
 		list = (ListView) findViewById(R.id.list);
 		finish = (Button) findViewById(R.id.finish);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
