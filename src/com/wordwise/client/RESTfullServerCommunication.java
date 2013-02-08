@@ -33,7 +33,7 @@ public class RESTfullServerCommunication implements ServerCommunication {
 	
 	private String BASE_CLIENT_URL;
 	
-	private Integer timeout = 5000;
+	private Integer timeout = 15000;
 	private String timeoutString = timeout.toString();
 	
 	public RESTfullServerCommunication(android.content.Context context){
