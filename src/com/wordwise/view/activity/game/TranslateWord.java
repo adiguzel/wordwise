@@ -1,7 +1,6 @@
 package com.wordwise.view.activity.game;
 
 import java.util.List;
-import java.util.Locale;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,9 +31,6 @@ public class TranslateWord extends WordwiseGameActivity
 	// a random language among proficient languages in which translation will be
 	// made
 	private DTOLanguage randomProficientLanguage;
-
-	private Locale englishLocale;
-	private Locale proficientLanguageLocale;
 	// UI elements
 	private EditText wordToBeTranslated;
 	private EditText wordTranslation;
@@ -60,16 +56,7 @@ public class TranslateWord extends WordwiseGameActivity
 		wordToBeTranslated.addTextChangedListener(this);
 		wordTranslation.addTextChangedListener(this);
 
-		// Setting English locale on the first EditText
-		this.englishLocale = new Locale("en");
-		// this.wordToBeTranslated.setTextLocale(this.englishLocale);
-
 		randomProficientLanguage = chooseRandomProficientLanguage();
-
-		// Setting ProfLanguage Locale on the second EditText
-		this.proficientLanguageLocale = new Locale(
-				randomProficientLanguage.getCode());
-		// this.wordTranslation.setTextLocale(this.proficientLanguageLocale);
 
 		String translationEditText = wordTranslation.getHint().toString() + " "
 				+ randomProficientLanguage.getLanguage();

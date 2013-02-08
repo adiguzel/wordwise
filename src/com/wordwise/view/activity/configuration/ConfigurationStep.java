@@ -2,7 +2,6 @@ package com.wordwise.view.activity.configuration;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.wordwise.controller.ConfigurationProcess;
