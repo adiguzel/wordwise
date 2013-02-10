@@ -43,17 +43,19 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/wordwise_padding_main" >
+                android:gravity="center"
+                android:paddingBottom="@dimen/wordwise_padding_main"
+                android:paddingTop="@dimen/wordwise_padding_main" >
 
                 <TextView
                     android:id="@+id/currentLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:background="@drawable/circle_green_light"
-                    android:drawable="@drawable/circle_green_light"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/wordwise_padding_main_half"
+                    android:background="@drawable/level"
                     android:gravity="center"
-                    android:paddingRight="@dimen/wordwise_padding_main_half"
                     android:textStyle="bold" />
 
                 <ProgressBar
@@ -61,6 +63,7 @@
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/nextLevel"
                     android:layout_toRightOf="@+id/currentLevel"
                     android:gravity="center"
@@ -71,10 +74,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/circle_green_light"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/wordwise_padding_main_half"
+                    android:background="@drawable/level"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/wordwise_padding_main_half"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -85,7 +88,8 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:paddingBottom="@dimen/wordwise_padding_main"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_small" 
+                android:textColor="@color/wordwise_main_gray_dark_start"/>
 
             <TextView
                 android:id="@+id/points"

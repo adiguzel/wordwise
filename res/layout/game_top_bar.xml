@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:drawableLeft="@drawable/square_blue_light"
+            android:drawableLeft="@drawable/level"
             android:gravity="center"
             android:onClick="quit"
             android:paddingLeft="@dimen/wordwise_padding_main"
