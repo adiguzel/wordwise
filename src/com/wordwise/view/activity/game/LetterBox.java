@@ -81,7 +81,7 @@ public class LetterBox extends WordwiseGameActivity
 		for (int i = 0; i < wordsGrid.getChildCount(); i++) {
 			textView = (TextView) wordsGrid.getChildAt(i);
 			if (textView.getText().toString()
-					.equalsIgnoreCase(translation.getTranslation())) {
+					.equalsIgnoreCase(translation.getWord().getWord())) {
 				break;
 			}
 		}
@@ -105,8 +105,7 @@ public class LetterBox extends WordwiseGameActivity
 					int position, long id) {
 				DTOTranslation translation = (DTOTranslation) wordsGrid
 						.getAdapter().getItem(position);
-				WordwiseUtils.makeCustomToast(activity, translation.getWord()
-						.getWord());
+				WordwiseUtils.makeCustomToast(activity, translation.getTranslation());
 				/*
 				 * Toast.makeText(LetterBox.this,
 				 * translation.getWord().getWord(), Toast.LENGTH_SHORT).show();
@@ -146,7 +145,7 @@ public class LetterBox extends WordwiseGameActivity
 				textView = (TextView) convertView;
 			}
 
-			textView.setText(translations.get(position).getTranslation());
+			textView.setText(translations.get(position).getWord().getWord());
 			textView.setTextSize(18);
 			textView.setGravity(Gravity.CENTER);
 			return textView;

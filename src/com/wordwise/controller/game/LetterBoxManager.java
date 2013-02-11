@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.LocaleData;
+import com.ibm.icu.util.ULocale;
 import com.wordwise.R;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.LetterBoxPositionUtils;
@@ -45,11 +49,18 @@ public class LetterBoxManager
 		return numberOfFoundWords == translations.size();
 	}
 	
+	@SuppressLint("DefaultLocale")
 	private List<String> generateLetters(int numberOfLetters)
 	{
 		List<String> returnList = new ArrayList<String>();
 		
-		String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+		String[] alphabet = UnicodeSet.toArray(LocaleData.getExemplarSet(new ULocale(translations.get(0).getLanguage().getCode()), UnicodeSet.ADD_CASE_MAPPINGS));
+		
+		for (int i = 0; i < alphabet.length; i++) {
+			alphabet[i] = alphabet[i].toUpperCase(getLocale());
+		}
+		
+		//String[] alphabet = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
 		Random random = new Random();
 		
@@ -74,7 +85,7 @@ public class LetterBoxManager
 		int positionOfFirstLetter = random.nextInt(letters.size());
 		for (DTOTranslation translation : translations)
 		{
-			while (!LetterBoxPositionUtils.InsertTranslationIntoPosition(translation.getWord().getWord(), positionOfFirstLetter, letters))
+			while (!LetterBoxPositionUtils.InsertTranslationIntoPosition(translation.getTranslation(), positionOfFirstLetter, letters))
 			{
 				positionOfFirstLetter = random.nextInt(letters.size());
 			}
@@ -87,6 +98,19 @@ public class LetterBoxManager
 
 	public List<String> getLetters() {
 		return letters;
+	}
+	
+	private Locale getLocale()
+	{
+		if (translations != null)
+		{
+			Locale locale = new Locale(translations.get(0).getLanguage().getCode());
+			if (locale != null)
+			{
+				return locale;
+			}
+		}
+		return Locale.US;
 	}
 
 	public void onLetterClick(TextView v, int position)
@@ -142,7 +166,7 @@ public class LetterBoxManager
 	{
 		for (DTOTranslation translation : translations)
 		{
-			if (translation.getWord().getWord().equalsIgnoreCase(word))
+			if (translation.getTranslation().toUpperCase(getLocale()).equalsIgnoreCase(word))
 			{
 				return translation;
 			}
@@ -159,8 +183,8 @@ public class LetterBoxManager
 	{
 		for (DTOTranslation word : translations)
 		{
-			if (word.getWord().getWord().equalsIgnoreCase(getCurrentSelectionWord()) ||
-				word.getWord().getWord().equalsIgnoreCase(getCurrentSelectionWordReversed()))
+			if (word.getTranslation().toUpperCase(getLocale()).equalsIgnoreCase(getCurrentSelectionWord()) ||
+				word.getTranslation().toUpperCase(getLocale()).equalsIgnoreCase(getCurrentSelectionWordReversed()))
 			{
 				return true;
 			}
@@ -183,7 +207,7 @@ public class LetterBoxManager
 		StringBuffer currentSelectionWord = new StringBuffer();
 		for (int i = 0; i < currentSelection.size(); i++)
 		{
-			currentSelectionWord.append(currentSelection.get(i).textView.getText());
+			currentSelectionWord.append(currentSelection.get(i).textView.getText().toString());
 		}
 		return currentSelectionWord.toString();
 	}
