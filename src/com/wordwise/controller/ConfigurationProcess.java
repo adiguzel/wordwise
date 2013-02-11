@@ -26,10 +26,6 @@ public class ConfigurationProcess {
 	private Class<? extends ConfigurationStep> finalStep = FinalStep.class;
 	private Class<? extends Activity> finishTarget = WordwiseApplication.getMainActivity().getClass();
 
-	// not allowed
-	private ConfigurationProcess() {
-	}
-
 	private ConfigurationProcess(Context context) {
 		this.context = context;
 		configureSteps();

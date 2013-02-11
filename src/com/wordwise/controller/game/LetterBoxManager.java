@@ -31,13 +31,7 @@ public class LetterBoxManager
 	private int numberOfFoundWords = 0;
 	private List<Integer> positionsOfFoundWords = new ArrayList<Integer>();
 	private LetterBox letterBoxActivity;
-	
-	//not allowed
-	@SuppressWarnings("unused")
-	private LetterBoxManager(){
 		
-	}
-	
 	public LetterBoxManager(LetterBox letterBoxActivity, List<DTOTranslation> translations)
 	{
 		this.letterBoxActivity = letterBoxActivity;

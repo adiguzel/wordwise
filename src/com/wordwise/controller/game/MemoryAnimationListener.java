@@ -15,12 +15,6 @@ public class MemoryAnimationListener implements AnimationListener {
 	private TextView view;
 	private MemoryFlipState flipState;
 
-	// so that it can't be initiated with that constructor
-	@SuppressWarnings("unused")
-	private MemoryAnimationListener() {
-
-	}
-
 	public MemoryAnimationListener(TextView view, boolean action,
 			MemoryFlipState flipState) {
 		this.view = view;
