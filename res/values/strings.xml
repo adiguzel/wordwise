@@ -98,4 +98,6 @@
     <string name="hangman_lose">You lost!</string>
     <string name="wordwise_logo">Wordwise logo</string>
     <string name="try_next_game">Next game</string>
+    <string name="tts_button">Text to speech button</string>
+    <string name="tts_not_available">Text to speech is not available for %s</string>
 </resources>

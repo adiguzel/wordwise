@@ -1,13 +1,19 @@
 package com.wordwise.view.activity;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +35,9 @@ import com.wordwise.util.WordwiseUtils;
 public abstract class WordwiseGameActivity extends Activity
 		implements
 			IGameView,
-			Game {
-	
+			Game,
+			OnInitListener {
+
 	protected PreferencesIOManager prefIOManager;
 	// flag to determine if activity should be ended and go back to the previous
 	// screen
@@ -38,11 +45,14 @@ public abstract class WordwiseGameActivity extends Activity
 	protected LoaderHelper loaderHelper;
 	protected ViewFlipper flipper;
 	protected ListView reviewTable;
+	protected TextToSpeech tts;
+	protected boolean ttsSuccessful = false;
 
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		GameManagerContainer.getGameManager().setCurrentGame(this);
+		tts = new TextToSpeech(this, this);
 		// helper class that wraps convenience methods to get the data from
 		// server
 		loaderHelper = new LoaderHelper();
@@ -53,6 +63,45 @@ public abstract class WordwiseGameActivity extends Activity
 		prefIOManager = PreferencesIOManager.getInstance(this);
 		// let the children decide what else to do onCreate
 		performOnCreate(savedInstanceState);
+	}
+
+	@Override
+	public void onDestroy() {
+		// Don't forget to shutdown tts!
+		if (tts != null) {
+			tts.stop();
+			tts.shutdown();
+		}
+		super.onDestroy();
+	}
+
+	@Override
+	public void onInit(int status) {
+
+		if (status == TextToSpeech.SUCCESS) {
+			Locale locale = new Locale(prefIOManager.getLearningLanguage()
+					.getCode());
+			int result = tts.setLanguage(locale);
+
+			if (result == TextToSpeech.LANG_MISSING_DATA
+					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
+				Log.v("TTS", "This Language is not supported");
+			} else {
+				ttsSuccessful = true;
+				Log.v("TTS", "It is supported baby");
+			}
+
+		} else {
+			Log.v("TTS", "Initilization Failed!");
+		}
+	}
+
+	protected void speakOut(String text) {
+		if (ttsSuccessful)
+			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		else
+			WordwiseUtils.makeCustomToast(this,
+					"Text to speech is not available");
 	}
 
 	/**
@@ -67,14 +116,16 @@ public abstract class WordwiseGameActivity extends Activity
 	 * or only a review/input game
 	 * */
 	protected abstract boolean isRealGame();
-	
-	public void onGameEnd(){
-		int pointsEarned = getPromotion().getPoints(prefIOManager.getDifficulty()) ;
+
+	public void onGameEnd() {
+		int pointsEarned = getPromotion().getPoints(
+				prefIOManager.getDifficulty());
 		int newPoints = prefIOManager.getPoints() + pointsEarned;
 		prefIOManager.setPoints(newPoints);
 		WordwiseUtils.updateGameTopPanel(this);
 		// as a dummy game end text
-		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "+ pointsEarned + " more points.", Toast.LENGTH_LONG);
+		WordwiseUtils.makeCustomToast(this, "Game ended. You have just earned "
+				+ pointsEarned + " more points.", Toast.LENGTH_LONG);
 	}
 
 	protected void initLayout() {
@@ -92,17 +143,16 @@ public abstract class WordwiseGameActivity extends Activity
 	}
 
 	public abstract List<DTOTranslation> getTranslations();
-	
-	public boolean canUse(DTOTranslation translation)
-	{
-		//by default, every game can use any given translation
+
+	public boolean canUse(DTOTranslation translation) {
+		// by default, every game can use any given translation
 		return true;
 	}
-	
-	public DTOLanguage getLanguage()
-	{
-		//by default, every game needs the language being learned
-		return prefIOManager.getCurrentGameConfiguration().getLearningLanguage();
+
+	public DTOLanguage getLanguage() {
+		// by default, every game needs the language being learned
+		return prefIOManager.getCurrentGameConfiguration()
+				.getLearningLanguage();
 	}
 
 	private void initReview() {
@@ -113,7 +163,7 @@ public abstract class WordwiseGameActivity extends Activity
 				.getLearningLanguage();
 		headerWord.setText("English");
 		headerTranslation.setText(lang.getLanguage());
-		reviewTable.setAdapter(new TableListAdapter(getTranslations()));		
+		reviewTable.setAdapter(new TableListAdapter(getTranslations()));
 	}
 
 	@Override
@@ -139,9 +189,9 @@ public abstract class WordwiseGameActivity extends Activity
 	}
 
 	public void validate(View v) {
-		//empty implementation by default
+		// empty implementation by default
 	}
-	
+
 	protected void onQuitPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
 	}
@@ -149,36 +199,52 @@ public abstract class WordwiseGameActivity extends Activity
 	public void setEndFlag(boolean endFlag) {
 		this.end = endFlag;
 	}
-	
-	public class TableListAdapter extends BaseAdapter{
+
+	public class TableListAdapter extends BaseAdapter {
 		private List<DTOTranslation> translations;
-		
-		public TableListAdapter(List<DTOTranslation> translations){
+
+		public TableListAdapter(List<DTOTranslation> translations) {
 			this.translations = translations;
 		}
-		
+
 		@Override
 		public int getCount() {
 			return translations.size();
 		}
 
-
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {			
-			DTOTranslation translation = translations.get(position);
-			
+		public View getView(int position, View convertView, ViewGroup parent) {
+
 			View row = getLayoutInflater().inflate(R.layout.game_table_row,
 					null);
-			
-			for(int i=0; i<((ViewGroup)row).getChildCount(); ++i) {
-				TextView nextChild = (TextView) ((ViewGroup)row).getChildAt(i);
-				if(i == 0){
-					nextChild.setText(translation.getWord().getWord());
-				}
-				else if(i == 1){
-					nextChild.setText(translation.getTranslation());
+
+			final DTOTranslation translation = translations.get(position);
+			for (int i = 0; i < ((ViewGroup) row).getChildCount(); ++i) {
+				if (i == 0) {
+					TextView child = (TextView) ((ViewGroup) row).getChildAt(i);
+					child.setText(translation.getWord().getWord());
+				} else if (i == 1) {
+					TextView child = (TextView) ((ViewGroup) row).getChildAt(i);
+					child.setText(translation.getTranslation());
+				} else if (i == 2) {
+					if (!ttsSuccessful) {
+						((ViewGroup) row).removeViewAt(i);
+					} else {
+						ImageButton ttsButton = (ImageButton) ((ViewGroup) row)
+								.getChildAt(i);
+
+						ttsButton.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								speakOut(translation.getTranslation());
+							}
+						});
+
+					}
+
 				}
 			}
+
 			return row;
 		}
 
@@ -193,7 +259,7 @@ public abstract class WordwiseGameActivity extends Activity
 			// TODO Auto-generated method stub
 			return 0;
 		}
-	
+
 	}
 
 }

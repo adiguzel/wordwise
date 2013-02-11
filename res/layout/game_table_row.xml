@@ -2,20 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" 
-    android:paddingTop="@dimen/wordwise_padding_main_half"
-    android:paddingBottom="@dimen/wordwise_padding_main_half">
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/wordwise_padding_main_half"
+    android:paddingTop="@dimen/wordwise_padding_main_half" 
+    android:layout_gravity="center">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_small" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_small" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/tts_button"
+        android:src="@drawable/ic_device_access_volume_on" 
+        android:background="@drawable/light_button"/>
 
 </LinearLayout>
