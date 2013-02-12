@@ -10,13 +10,16 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
 
 /**
- *
+ * This class defines the abstract interface that classes that get the
+ * translations and words from the server should conform
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
  */
 public interface ServerCommunication {
-	
+
 	/**
 	 * @param translation
-	 * 			  the translation object
+	 *            the translation object
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addTranslation(DTOTranslation translation);
@@ -34,7 +37,6 @@ public interface ServerCommunication {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addWordQuality(DTOQuality quality);
-	
 
 	/**
 	 * @param wordDifficulties
@@ -42,10 +44,10 @@ public interface ServerCommunication {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addWordDifficulty(DTODifficulty difficulty);
-	
+
 	/**
-	 * Retrieves all specified number of translations in a given language and for a
-	 * given difficulty
+	 * Retrieves all specified number of translations in a given language and
+	 * for a given difficulty
 	 * 
 	 * @param lang
 	 *            language code of the desired translations
@@ -54,22 +56,27 @@ public interface ServerCommunication {
 	 * @param number
 	 *            number of translations that are to be listed
 	 * @param translationsAlreadyUsed
-	 * 			  list of the translations already used and, therefore, should not be in the return list
+	 *            list of the translations already used and, therefore, should
+	 *            not be in the return list
 	 * @return list of translations and its original words (in English)
 	 */
-	public List<DTOTranslation> listTranslations(DTOLanguage lang, DTODifficulty difficulty, int number, List<DTOTranslation> translationsAlreadyUsed);
-	
+	public List<DTOTranslation> listTranslations(DTOLanguage lang,
+			DTODifficulty difficulty, int number,
+			List<DTOTranslation> translationsAlreadyUsed);
+
 	/**
-	 * Retrieves a random list of specified number of words or less from the server
+	 * Retrieves a random list of specified number of words or less from the
+	 * server
 	 * 
 	 * @param number
 	 *            number of words to be listed
 	 */
 	public List<DTOWord> listWords(int number);
-	
+
 	/**
-	 * A convinience method to use to get just one random word from the server
-	 * @ling listWords shold be used for its implementation
+	 * A convenience method to use to get just one random word from the server
+	 * 
+	 * @link listWords should be used for its implementation
 	 * */
 	public DTOWord getWord();
 }

@@ -11,10 +11,16 @@ import com.wordwise.controller.ConfigurationProcess;
 import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.util.LanguageUtils;
 
+/**
+ * This activity class represents the introduction screen in the user interface
+ * which appears as the first thing when Wordwise is opened. 
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class WordwiseIntro extends Activity {
 	private ImageView wordwiseLogo;
 	private PreferencesIOManager configuration;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +38,8 @@ public class WordwiseIntro extends Activity {
 						.getInstance(getApplicationContext());
 				if (!configuration.isConfigured())
 					configure();
-				else openMainActivity();
+				else
+					openMainActivity();
 			}
 		}, 3000);
 
@@ -40,13 +47,14 @@ public class WordwiseIntro extends Activity {
 	}
 
 	public void openMainActivity() {
-		Intent intent = new Intent(this, WordwiseApplication.getMainActivity().getClass());
+		Intent intent = new Intent(this, WordwiseApplication.getMainActivity()
+				.getClass());
 		startActivity(intent);
 		finish();
 	}
 
 	private void configure() {
-		ConfigurationProcess.getInstance(this).startProcess(); 
+		ConfigurationProcess.getInstance(this).startProcess();
 		finish();
 	}
 }
