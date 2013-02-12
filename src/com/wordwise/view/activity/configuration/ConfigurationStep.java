@@ -6,6 +6,12 @@ import android.view.View;
 
 import com.wordwise.controller.ConfigurationProcess;
 
+/**
+ * This class defines the interface for the configuration steps that users go
+ * through
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public abstract class ConfigurationStep extends Activity {
 	protected ConfigurationProcess process;
 

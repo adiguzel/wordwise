@@ -15,6 +15,12 @@ import android.util.Log;
 import com.wordwise.R;
 import com.wordwise.server.dto.DTOLanguage;
 
+/**
+ * This utility class is used to the list of languages from an xml file. It
+ * provides the methods on language instances.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class LanguageUtils {
 	private static List<DTOLanguage> languages = null;
 
@@ -29,9 +35,8 @@ public class LanguageUtils {
 			languages.add(new DTOLanguage(languageNames[i], languageCodes[i]));
 		}
 	}
-	
-	private static void isLanguagesInitiated()
-	{
+
+	private static void isLanguagesInitiated() {
 		if (languages == null) {
 			throw new RuntimeException(
 					"Call method Init() before using other methods!");
@@ -92,9 +97,10 @@ public class LanguageUtils {
 
 		return langCodeSet;
 	}
-	
-	public static List<DTOLanguage> getProficientLanguages(Set<DTOLanguage> proficientLanguagesSet) {
-		List<DTOLanguage> proficientLanguagesList  = new ArrayList<DTOLanguage>();
+
+	public static List<DTOLanguage> getProficientLanguages(
+			Set<DTOLanguage> proficientLanguagesSet) {
+		List<DTOLanguage> proficientLanguagesList = new ArrayList<DTOLanguage>();
 		for (DTOLanguage l : proficientLanguagesSet) {
 			if (l != null) {
 				proficientLanguagesList.add(l);
@@ -102,7 +108,7 @@ public class LanguageUtils {
 		}
 		return proficientLanguagesList;
 	}
-	
+
 	public static DTOLanguage getRandomProficientLanguage(List<DTOLanguage> l) {
 		Random randomGenerator = new Random();
 		int maxRandomNumber = l.size();
@@ -111,8 +117,9 @@ public class LanguageUtils {
 		DTOLanguage randomLanguage = l.get(randomLanguageNumber);
 		return randomLanguage;
 	}
-	
-	public static void setLocale(Locale locale,String languageCode, Context context) {
+
+	public static void setLocale(Locale locale, String languageCode,
+			Context context) {
 		locale = new Locale(languageCode);
 		Locale.setDefault(locale);
 		Configuration config = new Configuration();
@@ -120,6 +127,5 @@ public class LanguageUtils {
 		context.getResources().updateConfiguration(config,
 				context.getResources().getDisplayMetrics());
 	}
-	
 
 }

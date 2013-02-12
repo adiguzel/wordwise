@@ -5,6 +5,11 @@ import android.app.Activity;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTOTranslation;
 
+/**
+ * This class is used to submit translations asynchronously to server
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class TranslationSubmitTask extends SubmitTask {
 	private DTOTranslation translation;
 

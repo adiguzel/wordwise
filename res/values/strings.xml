@@ -100,4 +100,7 @@
     <string name="try_next_game">Next game</string>
     <string name="tts_button">Text to speech button</string>
     <string name="tts_not_available">Text to speech is not available for %s</string>
+    <string name="submit_in_progress">Submitting&#8230;</string>
+    <string name="feedback_successful_text">Thank you for your feedback.</string>
+
 </resources>

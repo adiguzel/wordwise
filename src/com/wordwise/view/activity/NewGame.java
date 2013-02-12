@@ -13,6 +13,12 @@ import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTODifficulty;
 
+/**
+ * This activity class represents the new game screen where user chooses the
+ * difficulty of the game in the user interface. 
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class NewGame extends Activity {
 	private GameManager gManager;
 	private PreferencesIOManager configuration;

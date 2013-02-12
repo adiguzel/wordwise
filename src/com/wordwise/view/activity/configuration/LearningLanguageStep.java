@@ -13,6 +13,11 @@ import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
+/**
+ * This class represents the final step where user is asked for the language he/she wants to learn
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class LearningLanguageStep extends ConfigurationStep {
 	private ListView listView;
 	private PreferencesIOManager configuration;

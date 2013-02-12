@@ -1,5 +1,11 @@
 package com.wordwise.model;
 
+/**
+ * This interface defines the contract for games that submits data and listens
+ * for a result
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public interface SubmitListener {
 
 	/**

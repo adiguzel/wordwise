@@ -8,7 +8,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -32,6 +31,13 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper;
 import com.wordwise.util.WordwiseUtils;
 
+/**
+ * This activity class represent the main interface for the games that can be
+ * displayed as seperate screen in Android. It conforms to {@link Game}
+ * interface and defines the default implementation for the most of the games
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public abstract class WordwiseGameActivity extends Activity
 		implements
 			IGameView,
@@ -48,6 +54,11 @@ public abstract class WordwiseGameActivity extends Activity
 	protected TextToSpeech tts;
 	protected boolean ttsSuccessful = false;
 
+	/*
+	 * onCreate is final, containing general adjustments for all games but still
+	 * provides a hook for all the games to be able to do whatever setting they
+	 * need to on activity create
+	 */
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,14 +96,10 @@ public abstract class WordwiseGameActivity extends Activity
 
 			if (result == TextToSpeech.LANG_MISSING_DATA
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
-				Log.v("TTS", "This Language is not supported");
 			} else {
 				ttsSuccessful = true;
-				Log.v("TTS", "It is supported baby");
 			}
 
-		} else {
-			Log.v("TTS", "Initilization Failed!");
 		}
 	}
 
@@ -142,6 +149,9 @@ public abstract class WordwiseGameActivity extends Activity
 		this.onGameInit();
 	}
 
+	/**
+	 * translations that the game uses/used
+	 * */
 	public abstract List<DTOTranslation> getTranslations();
 
 	public boolean canUse(DTOTranslation translation) {
@@ -155,6 +165,9 @@ public abstract class WordwiseGameActivity extends Activity
 				.getLearningLanguage();
 	}
 
+	/**
+	 * Initializes the review screen with its content
+	 * */
 	private void initReview() {
 		reviewTable = (ListView) findViewById(R.id.review_table);
 		TextView headerWord = (TextView) findViewById(R.id.header_word);
@@ -175,15 +188,25 @@ public abstract class WordwiseGameActivity extends Activity
 		onQuitPressed();
 	}
 
+	/**
+	 * Creates a game quit request
+	 * */
 	public final void quit(View v) {
 		onQuitPressed();
 	}
 
+	/**
+	 * Opens the review screen
+	 * */
 	public final void review(View v) {
 		AnimationFactory.flipTransition((ViewAnimator) flipper,
 				FlipDirection.LEFT_RIGHT);
 	}
 
+	/**
+	 * Notifies the game manager that this game is finished and a new game
+	 * should be opened
+	 */
 	public final void continueNextGame(View v) {
 		GameManagerContainer.getGameManager().endGame();
 	}
@@ -192,6 +215,9 @@ public abstract class WordwiseGameActivity extends Activity
 		// empty implementation by default
 	}
 
+	/**
+	 * Makes a dialog asking if the user wants to exit the game
+	 */
 	protected void onQuitPressed() {
 		WordwiseUtils.makeQuitGameDialog(this);
 	}
@@ -200,6 +226,10 @@ public abstract class WordwiseGameActivity extends Activity
 		this.end = endFlag;
 	}
 
+	/**
+	 * This inner class programmatically fills in the table list on review
+	 * screen
+	 */
 	public class TableListAdapter extends BaseAdapter {
 		private List<DTOTranslation> translations;
 
@@ -236,10 +266,10 @@ public abstract class WordwiseGameActivity extends Activity
 						ttsButton.setOnClickListener(new OnClickListener() {
 							@Override
 							public void onClick(View v) {
+								// speak the translation out when pressed
 								speakOut(translation.getTranslation());
 							}
 						});
-
 					}
 
 				}

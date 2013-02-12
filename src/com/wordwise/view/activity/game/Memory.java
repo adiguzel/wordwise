@@ -17,6 +17,11 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for Memory game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class Memory extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>> {

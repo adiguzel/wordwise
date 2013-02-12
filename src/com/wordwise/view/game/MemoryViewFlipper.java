@@ -8,6 +8,12 @@ import android.widget.ViewFlipper;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.game.MemoryViewFlipperUtil;
 
+/**
+ * This class represents a flipper which has two sides, one side being an
+ * English word and other side being its translation.
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class MemoryViewFlipper extends ViewFlipper {
 	// translation that is associated with that view
 	public static boolean USE_WORD = true;

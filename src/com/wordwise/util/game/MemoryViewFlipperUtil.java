@@ -11,6 +11,12 @@ import com.wordwise.R;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.view.game.MemoryViewFlipper;
 
+/**
+ * This is a utility class provides the common operations used in the Memory
+ * game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class MemoryViewFlipperUtil {
 
 	public static final int STATE_INITIAL = 0;
@@ -42,7 +48,7 @@ public class MemoryViewFlipperUtil {
 
 		return randomList;
 	}
-	
+
 	/**
 	 * Generates the flippers using the given translations in a non-random
 	 * fashion
@@ -73,6 +79,7 @@ public class MemoryViewFlipperUtil {
 	public static void changeState(View v, int state) {
 		switch (state) {
 			case STATE_INITIAL :
+				// deprecated method is being used because of minimum API level
 				v.setBackgroundDrawable(v.getResources().getDrawable(
 						R.drawable.memory_square_grid_item));
 				break;

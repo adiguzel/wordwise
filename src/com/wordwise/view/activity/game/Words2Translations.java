@@ -17,6 +17,11 @@ import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for Words2Translations game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class Words2Translations extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>> {
@@ -71,6 +76,7 @@ public class Words2Translations extends WordwiseGameActivity
 			List<DTOTranslation> translations) {
 		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
 				translations)) {
+			// translation load successful, game can start
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();

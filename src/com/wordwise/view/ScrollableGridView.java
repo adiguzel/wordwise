@@ -5,9 +5,11 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.GridView;
 /**
- * Used as a hack to put gridviews into scroll views which is by default not
+ * This class is used as a hack to put gridviews into scroll views which is by default not
  * possible Stackoverflow discussion:
  * http://stackoverflow.com/questions/9889255/how-to-add-multiple-gridviews-to-a-scrollview-in-android-java
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
  **/
 public class ScrollableGridView extends GridView {
 	boolean expanded = true;

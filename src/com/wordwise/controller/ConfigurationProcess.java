@@ -15,6 +15,12 @@ import com.wordwise.view.activity.configuration.LearningLanguageStep;
 import com.wordwise.view.activity.configuration.NameStep;
 import com.wordwise.view.activity.configuration.ProficientLanguagesStep;
 
+/**
+ * This class encapsulates the steps that should be taken during the initial
+ * configuration and their management
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class ConfigurationProcess {
 	private static ConfigurationProcess instance = null;
 	private Context context;
@@ -24,7 +30,9 @@ public class ConfigurationProcess {
 
 	private Class<? extends ConfigurationStep> initialStep = InitialStep.class;
 	private Class<? extends ConfigurationStep> finalStep = FinalStep.class;
-	private Class<? extends Activity> finishTarget = WordwiseApplication.getMainActivity().getClass();
+	// the activity to go after initial configuration
+	private Class<? extends Activity> finishTarget = WordwiseApplication
+			.getMainActivity().getClass();
 
 	private ConfigurationProcess(Context context) {
 		this.context = context;
@@ -38,6 +46,7 @@ public class ConfigurationProcess {
 		return instance;
 	}
 
+	// all the configuration steps are added here on the steps list
 	private void configureSteps() {
 		// initial step first
 		steps.add(initialStep);
@@ -47,6 +56,8 @@ public class ConfigurationProcess {
 		steps.add(finalStep);
 	}
 
+	// returns a list of steps which come after initial and before the final
+	// step
 	private List<Class<? extends ConfigurationStep>> getIntermediateSteps() {
 		List<Class<? extends ConfigurationStep>> intermediateSteps = new ArrayList<Class<? extends ConfigurationStep>>();
 
@@ -54,10 +65,11 @@ public class ConfigurationProcess {
 		intermediateSteps.add(NameStep.class);
 		intermediateSteps.add(LearningLanguageStep.class);
 		intermediateSteps.add(ProficientLanguagesStep.class);
-		
+
 		return intermediateSteps;
 	}
 
+	// starts the next step
 	public void nextStep() {
 		if (hasNext()) {
 			currentStepIndex++;
@@ -66,31 +78,37 @@ public class ConfigurationProcess {
 			onConfigurationFinish();
 	}
 
+	// goes to the finish target upon configuration finish
 	public void onConfigurationFinish() {
 		Intent intent = new Intent(context, finishTarget);
 		context.startActivity(intent);
 	}
 
+	// starts the initial conf. process
 	public void startProcess() {
 		if (steps.size() > 0)
 			startStep(steps.get(0));
 	}
 
+	// goes back to the previous step
 	public void previousStep() {
 		if (hasPrevious()) {
 			currentStepIndex--;
 			startStep(steps.get(currentStepIndex));
 		}
 	}
-	
-	public boolean hasPrevious(){
+
+	// checks whether or not there is a previous step
+	public boolean hasPrevious() {
 		return currentStepIndex > 0;
 	}
-	
-	public boolean hasNext(){
+
+	// checks whether or not there is a next step
+	public boolean hasNext() {
 		return currentStepIndex < steps.size() - 1;
 	}
 
+	// starts the next step activity
 	private void startStep(Class<? extends ConfigurationStep> stepClass) {
 		Intent intent = new Intent(context, stepClass);
 		context.startActivity(intent);

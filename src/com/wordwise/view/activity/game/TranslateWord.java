@@ -5,7 +5,6 @@ import java.util.List;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +23,11 @@ import com.wordwise.util.LanguageUtils;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for TranslateWord game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class TranslateWord extends WordwiseGameActivity
 		implements
 			SubmitListener,
@@ -65,8 +69,11 @@ public class TranslateWord extends WordwiseGameActivity
 		this.continueButton.setEnabled(false);
 	}
 
+	/*
+	 * gets a random proficient language out of the list of profient languages
+	 * of the user
+	 */
 	private DTOLanguage chooseRandomProficientLanguage() {
-		Log.v("", "randomda lang" + prefIOManager.getProficientLanguages().size());
 		prefIOManager.getProficientLanguages();
 		List<DTOLanguage> proficientLanguagesList = LanguageUtils
 				.getProficientLanguages(prefIOManager.getProficientLanguages());
@@ -78,33 +85,29 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	public void onGameStart() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameStop() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGamePause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameEnd() {
 		super.onGameEnd();
 		submitTranslation.setEnabled(false);
 		submitTranslation.setVisibility(View.GONE);
-		// Tell to the game manager that the translation is submitted
+		// notify game manager that the translation is submitted
 		wordToBeTranslated.setEnabled(false);
 		wordTranslation.setEnabled(false);
 
 		continueButton.setEnabled(true);
 		continueButton.setVisibility(View.VISIBLE);
 	}
-	
-	// sends the translation to the server
+
+	/*
+	 *  sends the translation to the server
+	 */
 	private void submit(String word, String translation) {
 		DTOWord englishWordDTO = new DTOWord();
 		DTOTranslation translationDTO = new DTOTranslation();
@@ -112,7 +115,7 @@ public class TranslateWord extends WordwiseGameActivity
 		translationDTO.setTranslation(translation);
 		translationDTO.setWord(englishWordDTO);
 		translationDTO.setLanguage(randomProficientLanguage);
-
+		//do the submit in the background
 		new TranslationSubmitTask(this, this, translationDTO).execute();
 	}
 
@@ -121,22 +124,17 @@ public class TranslateWord extends WordwiseGameActivity
 		wordTranslationBuffer = wordTranslation.getText().toString();
 
 		submit(wordToBeTranslatedBuffer, wordTranslationBuffer);
-
 	}
 
 	public int numberOfTranslationsNeeded(DTODifficulty difficulty) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int numberOfWordsNeeded(DTODifficulty difficulty) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public void retry(View v) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onSubmitResult(boolean result) {
@@ -175,7 +173,7 @@ public class TranslateWord extends WordwiseGameActivity
 	}
 
 	@Override
-	public void afterTextChanged(Editable arg0) {
+	public void afterTextChanged(Editable e) {
 		String word = wordToBeTranslated.getText().toString();
 		String translation = wordTranslation.getText().toString();
 		submitTranslation.setEnabled(true);

@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Loader;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,11 +17,18 @@ import com.wordwise.model.GameManagerContainer;
 import com.wordwise.server.dto.DTOTranslation;
 import com.wordwise.server.dto.DTOWord;
 
+/**
+ * This is a helper class that encapsulates implementation for asynchronously
+ * loading data from the server
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class LoaderHelper {
+	// type of the data that can be loaded from the server
 	public enum LoaderType {
 		TRANSLATION_LOADER, WORD_LOADER,
 	}
-
+	// UI elements
 	private LinearLayout loadingFailed;
 	private TextView loadingFailedText;
 	private Button retryButton, nextGameButton;
@@ -100,6 +106,7 @@ public class LoaderHelper {
 	}
 
 	public void loadFailed(String failureText) {
+		// removed loading indeterminate and show loading failed error
 		loading.setVisibility(View.GONE);
 		loadingFailed.setVisibility(View.VISIBLE);
 		loadingFailedText.setVisibility(View.VISIBLE);
@@ -108,32 +115,47 @@ public class LoaderHelper {
 		loadingFailedText.setText(failureText);
 	}
 
-	public boolean wordLoadSuccessfulOrShowError(Activity activity, List<DTOWord> words) {
-		Log.v("words", "" + words);
+	/**
+	 * Checks whether word loading was successful, shows error if it wasn't
+	 * 
+	 * @return true if successful, false otherwise
+	 */
+	public boolean wordLoadSuccessfulOrShowError(Activity activity,
+			List<DTOWord> words) {
 		String gameLoadFailText;
 		if (words == null) {
-			gameLoadFailText = activity.getResources().getString(R.string.fail_game_load);
+			gameLoadFailText = activity.getResources().getString(
+					R.string.fail_game_load);
 			loadFailed(gameLoadFailText);
 			return false;
 		} else if (words.size() < GameManagerContainer.getGameManager()
 				.NumberOfWordsNeeded()) {
-			gameLoadFailText = activity.getResources().getString(R.string.fail_insufficient_words_on_server);
+			gameLoadFailText = activity.getResources().getString(
+					R.string.fail_insufficient_words_on_server);
 			loadFailed(gameLoadFailText);
 			return false;
-		} 
+		}
 		return true;
 	}
 
-	public boolean translationLoadSuccessfulOrShowError(Activity activity, List<DTOTranslation> translations) {
-		Log.v("translations", "" + translations);
+	/**
+	 * Checks whether translation loading was successful, shows error if it
+	 * wasn't
+	 * 
+	 * @return true if successful, false otherwise
+	 */
+	public boolean translationLoadSuccessfulOrShowError(Activity activity,
+			List<DTOTranslation> translations) {
 		String gameLoadFailText;
 		if (translations == null) {
-			gameLoadFailText = activity.getResources().getString(R.string.fail_game_load);
+			gameLoadFailText = activity.getResources().getString(
+					R.string.fail_game_load);
 			loadFailed(gameLoadFailText);
 			return false;
 		} else if (translations.size() < GameManagerContainer.getGameManager()
 				.NumberOfTranslationsNeeded()) {
-			gameLoadFailText = activity.getResources().getString(R.string.fail_insufficient_translations_on_server);
+			gameLoadFailText = activity.getResources().getString(
+					R.string.fail_insufficient_translations_on_server);
 			loadFailed(gameLoadFailText);
 			return false;
 		}

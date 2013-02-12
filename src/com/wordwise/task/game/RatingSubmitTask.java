@@ -5,6 +5,11 @@ import android.app.Activity;
 import com.wordwise.model.SubmitListener;
 import com.wordwise.server.dto.DTORate;
 
+/**
+ * This class is used to submit rating asynchronously to server
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class RatingSubmitTask extends SubmitTask {
 	// rating to be submitted
 	private DTORate rating;
@@ -20,7 +25,7 @@ public class RatingSubmitTask extends SubmitTask {
 		boolean result = true;
 
 		if (rating != null)
-			result = serverComm.rateTranslation(rating);
+			result = serverComm.rateTranslation(rating); // request to send the rating to server
 		return result;
 	}
 }

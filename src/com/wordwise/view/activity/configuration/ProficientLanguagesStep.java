@@ -17,6 +17,12 @@ import com.wordwise.controller.PreferencesIOManager;
 import com.wordwise.server.dto.DTOLanguage;
 import com.wordwise.util.LanguageUtils;
 
+/**
+ * This class represents the final step where user is asked to select the
+ * languages he/she speaks fluently
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class ProficientLanguagesStep extends ConfigurationStep {
 	private String selectedLanguagesText;
 	private ListView list;
@@ -28,16 +34,17 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	protected void performOnCreate() {
 		setContentView(R.layout.conf_step_proficient_langs);
 
-		configuration = PreferencesIOManager.getInstance(getApplicationContext());
+		configuration = PreferencesIOManager
+				.getInstance(getApplicationContext());
 		list = (ListView) findViewById(R.id.list);
 		finish = (Button) findViewById(R.id.finish);
 		selectedLanguages = (TextView) findViewById(R.id.numberOfSelectedLanguages);
 		initListView();
-		selectedLanguagesText = selectedLanguages.getText().toString();	
-		if (!configuration.getProficientLanguages().isEmpty()){
+		selectedLanguagesText = selectedLanguages.getText().toString();
+		if (!configuration.getProficientLanguages().isEmpty()) {
 			finish.setEnabled(true);
 			setSelectedIndexes();
-		}	
+		}
 	}
 
 	@Override
@@ -66,24 +73,23 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 	public void toggle(CheckedTextView v) {
 		String langName = v.getText().toString();
 		DTOLanguage l = LanguageUtils.getByName(langName);
-		
-		if(configuration.getProficientLanguages().contains(l)){
+
+		if (configuration.getProficientLanguages().contains(l)) {
 			configuration.removeLanguage(l);
-		}
-		else{
+		} else {
 			configuration.addLanguage(l);
 		}
-		
-		//check the state of the next button
-		if (configuration.getProficientLanguages().size() > 0){
+
+		// check the state of the next button
+		if (configuration.getProficientLanguages().size() > 0) {
 			finish.setEnabled(true);
-		}		
-		else
+		} else
 			finish.setEnabled(false);
 		setSelectedLanguageCountText(configuration.getProficientLanguages()
 				.size());
 	}
 
+	// sets the textview for the number of selected elements to given value
 	private void setSelectedLanguageCountText(int count) {
 		selectedLanguages.setText(String.format(selectedLanguagesText, count));
 	}
@@ -105,11 +111,10 @@ public class ProficientLanguagesStep extends ConfigurationStep {
 		}
 		return selectedIndexes;
 	}
-
+	// checks whether the step is finished
 	@Override
 	public boolean isFinished() {
-		// TODO Auto-generated method stub
-		if(!configuration.getProficientLanguages().isEmpty()){
+		if (!configuration.getProficientLanguages().isEmpty()) {
 			return configuration.finishInitialConfiguration();
 		}
 		return false;

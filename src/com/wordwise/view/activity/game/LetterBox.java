@@ -29,6 +29,11 @@ import com.wordwise.util.WordwiseUtils;
 import com.wordwise.util.game.LetterBoxPositionUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for Letterbox game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class LetterBox extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>> {
@@ -37,22 +42,17 @@ public class LetterBox extends WordwiseGameActivity
 	private List<DTOTranslation> translations;
 	@Override
 	public void performOnCreate(Bundle savedInstanceState) {
+		// start the loader
 		loaderHelper.initLoader(this, LoaderType.TRANSLATION_LOADER);
 	}
 
 	public void onGameStart() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameStop() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGamePause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameInit() {
@@ -62,6 +62,9 @@ public class LetterBox extends WordwiseGameActivity
 		continueButton = (Button) findViewById(R.id.continueButton);
 	}
 
+	/*
+	 * initializes the letterbox grid with the real translation data
+	 */
 	private void initLettersGrid() {
 		final GridView lettersGrid = (GridView) findViewById(R.id.gridViewLetters);
 		lettersGrid.setAdapter(new LettersAdapter(this, letterBoxManager
@@ -89,8 +92,7 @@ public class LetterBox extends WordwiseGameActivity
 				| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
 
-	public void onGameEnd()
-	{
+	public void onGameEnd() {
 		super.onGameEnd();
 		continueButton.setEnabled(true);
 	}
@@ -105,11 +107,8 @@ public class LetterBox extends WordwiseGameActivity
 					int position, long id) {
 				DTOTranslation translation = (DTOTranslation) wordsGrid
 						.getAdapter().getItem(position);
-				WordwiseUtils.makeCustomToast(activity, translation.getTranslation());
-				/*
-				 * Toast.makeText(LetterBox.this,
-				 * translation.getWord().getWord(), Toast.LENGTH_SHORT).show();
-				 */
+				WordwiseUtils.makeCustomToast(activity,
+						translation.getTranslation());
 			}
 		});
 	}
@@ -200,12 +199,11 @@ public class LetterBox extends WordwiseGameActivity
 		else
 			return -1;
 	}
-	
-	public boolean canUse(DTOTranslation translation)
-	{
-		if (translation.getTranslation().trim().contains(" ") || 
-				(translation.getTranslation().length() > LetterBoxPositionUtils.getGridSize()))
-		{
+
+	public boolean canUse(DTOTranslation translation) {
+		if (translation.getTranslation().trim().contains(" ")
+				|| (translation.getTranslation().length() > LetterBoxPositionUtils
+						.getGridSize())) {
 			return false;
 		}
 		return true;
@@ -229,9 +227,10 @@ public class LetterBox extends WordwiseGameActivity
 				LoaderType.TRANSLATION_LOADER);
 	}
 
-	public void onLoadFinished(Loader<List<DTOTranslation>> arg0, List<DTOTranslation> translations)
-	{
-	 if(loaderHelper.translationLoadSuccessfulOrShowError(this, translations)) {
+	public void onLoadFinished(Loader<List<DTOTranslation>> arg0,
+			List<DTOTranslation> translations) {
+		if (loaderHelper.translationLoadSuccessfulOrShowError(this,
+				translations)) {
 			this.translations = translations;
 			initLayout();
 			this.onGameStart();
@@ -251,7 +250,7 @@ public class LetterBox extends WordwiseGameActivity
 	protected boolean isRealGame() {
 		return true;
 	}
-	
+
 	@Override
 	public Promotion getPromotion() {
 		return new GameFinishPromotion();

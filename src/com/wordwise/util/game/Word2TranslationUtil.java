@@ -6,8 +6,17 @@ import java.util.Random;
 
 import com.wordwise.server.dto.DTOTranslation;
 
+/**
+ * This is a utility class provides the common operation(s) used in the Words2Translations
+ * game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class Word2TranslationUtil {
 
+	/**
+	 * creates a random list from the given list of translations
+	 * */
 	public static List<DTOTranslation> mixTranslations(final List<DTOTranslation> initialList) {
 		List<DTOTranslation> copyList = new ArrayList<DTOTranslation>();
 

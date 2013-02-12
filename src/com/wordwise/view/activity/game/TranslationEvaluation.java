@@ -25,6 +25,11 @@ import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for TranslationEvaluation game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class TranslationEvaluation extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>>,
@@ -76,25 +81,18 @@ public class TranslationEvaluation extends WordwiseGameActivity
 		submitRating.setVisibility(View.VISIBLE);
 		continueButton.setVisibility(View.INVISIBLE);
 	}
-	
-	public DTOLanguage getLanguage()
-	{
+
+	public DTOLanguage getLanguage() {
 		return chooseRandomProficientLanguage();
 	}
 
-
 	public void onGameStart() {
-		// TODO Auto-generated method stub
 	}
 
 	public void onGameStop() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGamePause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void onGameEnd() {
@@ -175,6 +173,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	@Override
 	protected boolean isRealGame() {
+		// false because it is an evaluation type of game
 		return false;
 	}
 
@@ -185,6 +184,7 @@ public class TranslationEvaluation extends WordwiseGameActivity
 
 	@Override
 	public Promotion getPromotion() {
+		// upon evaluation submit, awarded promotion with be EvaluationPromotion
 		return new EvaluationPromotion();
 	}
 

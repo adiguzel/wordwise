@@ -8,6 +8,11 @@ import android.widget.EditText;
 import com.wordwise.R;
 import com.wordwise.controller.PreferencesIOManager;
 
+/**
+ * This class represents the final step where user is asked his name
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class NameStep extends ConfigurationStep implements TextWatcher {
 	private EditText name;
 	private PreferencesIOManager configuration;

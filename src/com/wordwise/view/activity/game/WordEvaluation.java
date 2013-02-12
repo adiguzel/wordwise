@@ -27,6 +27,11 @@ import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for WordEvaluation game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class WordEvaluation extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOWord>>,
@@ -87,7 +92,8 @@ public class WordEvaluation extends WordwiseGameActivity
 	}
 
 	public void onGameEnd() {
-		String successMessage = "Thank you for your feedback.";
+		String successMessage = getResources().getString(
+				R.string.feedback_successful_text);
 		WordwiseUtils.makeCustomToast(this, successMessage, Toast.LENGTH_LONG);
 		super.onGameEnd();
 		// disable the UI elements
@@ -97,6 +103,7 @@ public class WordEvaluation extends WordwiseGameActivity
 			qualityGroup.getChildAt(i).setEnabled(false);
 		}
 		wordDifficultyRating.setEnabled(false);
+		// arrange tehe buttons
 		submitEvaluation.setVisibility(View.GONE);
 		continueButton.setVisibility(View.VISIBLE);
 	}
@@ -225,6 +232,7 @@ public class WordEvaluation extends WordwiseGameActivity
 
 	@Override
 	protected boolean isRealGame() {
+		// false because it is an evaluation type of game
 		return false;
 	}
 

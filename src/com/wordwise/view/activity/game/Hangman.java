@@ -20,6 +20,11 @@ import com.wordwise.util.LoaderHelper.LoaderType;
 import com.wordwise.util.WordwiseUtils;
 import com.wordwise.view.activity.WordwiseGameActivity;
 
+/**
+ * The class that defines the implementation for Hangman game
+ * 
+ * @author Ugur Adiguzel, Dragan Mileski, Giovanni Maia
+ * */
 public class Hangman extends WordwiseGameActivity
 		implements
 			LoaderCallbacks<List<DTOTranslation>> {
