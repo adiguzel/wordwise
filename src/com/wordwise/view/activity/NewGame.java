@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.wordwise.R;
 import com.wordwise.controller.PreferencesIOManager;
-import com.wordwise.controller.RandomGameSelector;
+import com.wordwise.controller.QueueGameSelector;
 import com.wordwise.controller.WordwiseGameManager;
 import com.wordwise.gameengine.GameManager;
 import com.wordwise.model.GameManagerContainer;
@@ -29,7 +29,7 @@ public class NewGame extends Activity {
 		getActionBar().hide();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.new_game);
-		gManager = new WordwiseGameManager(new RandomGameSelector(), this);
+		gManager = new WordwiseGameManager(new QueueGameSelector(), this);
 		GameManagerContainer.setGameManager(gManager);
 		configuration = PreferencesIOManager.getInstance(this);
 	}
