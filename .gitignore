@@ -1,0 +1,11 @@
+bin
+syntax: regexp
+^gen/com/wordwise/R\.java$
+syntax: regexp
+^gen/com/wordwise/R\.java$
+syntax: regexp
+^gen/com/wordwise/R\.java$
+syntax: regexp
+^gen/com/wordwise/R\.java$
+syntax: regexp
+^gen/com/wordwise/R\.java$
