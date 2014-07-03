@@ -1,7 +1,18 @@
 wordwise
 ========
 
-An Android app for learning new languages by playing games
+![wordwise screenshot](/hero.png) 
+
+An Android app using which anybody can learn new words in different languages by playing fun games. 
+
+
+![wordwise screenshot](/hero2.png) 
+
+After each game, users can review the words they learned as well as hear the actual pronunciation of the word. The platform gets its power from its users - users provide and evaluate the quality and difficulty of words. User can play games in different difficult levels and feel progress thanks to gamification.
+
+Word server
+===========
+The word-server is developed as a seperate [project](https://github.com/Giovanni-Maia/wordwise-server).
 
 License
 -------
