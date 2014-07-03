@@ -3,7 +3,7 @@ wordwise
 
 ![wordwise screenshot](/hero.png) 
 
-An Android app using which anybody can learn new words in different languages by playing fun games. 
+An Android app using which anybody can learn new words in different languages by playing fun games with animations. Hangman is the classical word guessing game. WordMatch is a game where user simply match the English words with their corresponding translations with simple drag & drops. In Letterbox, users need to find the words hidden in a grid of letters. Finally, in Memory game, users need to reveal the hidden word and translation pairs one by one. 
 
 
 ![wordwise screenshot](/hero2.png) 
