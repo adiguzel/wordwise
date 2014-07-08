@@ -98,19 +98,19 @@ public class ConfigurationProcess {
 		}
 	}
 
-	// checks whether or not there is a previous step
-	public boolean hasPrevious() {
-		return currentStepIndex > 0;
-	}
+    // checks whether or not there is a previous step
+    public boolean hasPrevious() {
+        return currentStepIndex > 0;
+    }
 
-	// checks whether or not there is a next step
-	public boolean hasNext() {
-		return currentStepIndex < steps.size() - 1;
-	}
+    // checks whether or not there is a next step
+    public boolean hasNext() {
+        return currentStepIndex < steps.size() - 1;
+    }
 
-	// starts the next step activity
-	private void startStep(Class<? extends ConfigurationStep> stepClass) {
-		Intent intent = new Intent(context, stepClass);
-		context.startActivity(intent);
-	}
+    // starts the next step activity
+    private void startStep(Class<? extends ConfigurationStep> stepClass) {
+        Intent intent = new Intent(context, stepClass);
+        context.startActivity(intent);
+    }
 }
