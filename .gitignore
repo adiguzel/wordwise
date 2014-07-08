@@ -1,16 +1,3 @@
-bin
-syntax: regexp
-^gen/com/wordwise/R\.java$
-syntax: regexp
-^gen/com/wordwise/R\.java$
-syntax: regexp
-^gen/com/wordwise/R\.java$
-syntax: regexp
-^gen/com/wordwise/R\.java$
-syntax: regexp
-^gen/com/wordwise/R\.java$
-local.properties
-
 # built application files
 *.apk
 *.ap_
